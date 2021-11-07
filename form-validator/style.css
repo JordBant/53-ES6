@@ -33,13 +33,14 @@ GrandParents
     border: 2px blue solid;
     background-color: rgba(168, 168, 168, 0.322);
     /* ======================== */
-    width: 70vw;
-    height: 80vh; 
+    width: 30vw;
+    height: auto; 
 }
 
 .form
 {
-    min-width: 100%;
+    /* border: 3px solid red; */
+    width: 100%;
     min-height: 100%;
 }
 
@@ -51,23 +52,34 @@ Children
 
 .form-control
 {
-    border: red 2px solid;
-    width: 65%;
-    padding: 1.7px;
+    /* border: red 2px solid; */
+    width: 60%;
+    margin: 1.03vw/*max()*/;
 }
 
 .form-control label
 {
     display: block;
-    font-size: clamp(15px, 3.4vw, 30px);
+    font-size: clamp(15px, 1.5vw, 30px);
+}
+.form-control button
+{
+    
 }
 
 .form-control input
 {
+    font-size: 1em;
+    border-style: hidden;
+    border-bottom: 2px solid white;
+    background: transparent;
+    height: 25px;
     width: 100%;
 }
 
-.form-control > *
+.form-control input:focus
 {
-    margin: 2px;
+    outline: none;
+    border-bottom: 2px solid white;
+    background: transparent;
 }
