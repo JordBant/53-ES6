@@ -9,39 +9,64 @@
 </head>
 <body>
     <main class="wrapper">
-        <form action="#">
+        <div class="style-container">
+            <form action="#" id="form"  class="form">
 
-            <label for="First">
-                First Name
-            </label>
-            <input type="text" id="first"><br>
+                <section class="form-control">
+                    <label for="First">
+                        First Name
+                    </label>
+                    <input type="text" id="first"><br>
+                </section>
 
-            <label for="Last">
-                Last Name
-            </label>
-            <input type="text" id="last"><br>
+                <section class="form-control"> 
+                    <label for="Last">
+                        Last Name
+                    </label>
+                    <input type="text" id="last"><br>
+                </section>
 
-            <label for="Email">
-                Email
-            </label>
-            <input type="email" id="email"><br>
+                <section class="form-control">
+                    <label for="Username">
+                        Username
+                    </label>
+                    <input type="Username" id="username" placeholder="i.e Spartan017"><br>
+                </section>
 
-            <label for="Password">
-                Password
-            </label>
-            <input type="password" id="password"><br>
+                <section class="form-control">
+                    <label for="Email">
+                        Email
+                    </label>
+                    <input type="email" id="email"><br>
+                </section>
 
-            <label for="Re-type Password">
-                Confirm Password
-            </label>
-            <input type="password" id="validate"><br>
+                <section class="form-control">
+                    <label for="Password">
+                        Password
+                    </label>
+                    <input type="password" id="password"><br>
+                </section>
 
-            <label for="Phone Number">
-                Phone Number
-            </label>
-            <input type="number" id="number">
+                <section class="form-control">
+                    <label for="confirm">
+                        Confirm Password
+                    </label>
+                    <input type="password" id="confirm"><br>
+                </section>
+                
+                <section class="form-control">
+                    <label for="Phone Number">
+                        Phone Number
+                    </label>
+                    <input type="number" id="number">
+                </section>
 
-        </form>
+                <section class="form-control">
+                    <button type="submit">Submit</button>
+                </section>
+
+            </form>
+        </div>
     </main>
 
     <script src="script.js"></script>
