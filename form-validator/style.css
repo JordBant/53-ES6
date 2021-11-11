@@ -8,7 +8,8 @@
 
 body
 {
-    background-color: aliceblue;
+
+    background: linear-gradient(230deg, white, rgb(206, 236, 241), rgb(162, 221, 226), rgb(113, 189, 182));
 }
 
 /* 
@@ -19,7 +20,6 @@ GrandParents
 
 .wrapper
 {
-    border: 2px solid red;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -30,7 +30,8 @@ GrandParents
 .style-container
 {
     border-radius: 25px;
-    background-color: rgba(99, 99, 99, 0.322);
+    border: rgb(0, 0, 0) 3px solid;
+    background-color: rgb(177, 177, 177);
     box-shadow: 3px 3px 10px black;
     width: 30vw;
     height: auto; 
