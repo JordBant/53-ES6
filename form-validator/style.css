@@ -129,14 +129,23 @@ Form State Styles
 =======================
 */
 
-.success
+.accept input
 {
-    border: rgba(30, 214, 13, 0.493) 2px solid;
-    border-radius: 25px;
+    border-bottom: 2px solid greenyellow;
 }
 
-.fail
+/* .accept::after
 {
-    border: rgba(241, 55, 8, 0.514) 2px solid;
-    border-radius: 25px;
+    content: url(approve.svg);
 }
+*/
+
+.reject input
+{
+    border-bottom: 2px solid orangered;
+}
+
+/* .reject::after
+{
+    content: url(reject.svg);
+}  */
