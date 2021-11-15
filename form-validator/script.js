@@ -6,15 +6,33 @@ const email = document.getElementId('email');
 const number = document.getElementId('number');
 const username = document.getElementId('username');
 
-btn.addEventListener('submit', e => e.preventDefault)
+btn.addEventListener('submit', e = () => {e.preventDefault});
 
-// password function:
-
-
-function passwordValid(pw)
+function pwHandler(pw, confirm)
 {
-    input = pw.value;
+    function checkPW()
+    {
+        let howLong = pw.length;
+
+        for(let i = 0; i <= howLong; i++)
+        {
+            let character = pw.charAt(i);
+            (!isNan(character) && character == character.toUpperCase() && howLong < 8) ? password.parentElement.classList("accpet") : password.parentElement.classList("reject");
+        }
+    }
+
+    function checkConfirm()
+    {
+        let check1 = pw.value;
+        let check2 = confirm.value;
+        (check1 === check2) ? password.parentElement.classList("accpet") : password.parentElement.classList("reject");
+    }
+
+    checkPW();
+    checkConfirm();
 }
+
+pwHandler(password, confirm_password);
 
 /* pt 1 
     - Check if string is shorter than 8 characters
