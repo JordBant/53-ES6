@@ -6,26 +6,43 @@ const email = document.getElementId('email');
 const number = document.getElementId('number');
 const username = document.getElementId('username');
 
-form.addEventListener('submit', e = () => {e.preventDefault});
+form.addEventListener('submit', (e) => {e.preventDefault});
+
+
+//============State handlers===============//
+function acceptHandler(formElement)
+{
+    let changeOn = formElement.parentElement;
+    changeOn.className = 'form-section accept';
+}
+
+function rejectHandler(formElement)
+{
+    let changeOn = formElement.parentElement;
+    changeOn.className = 'form-section reject';
+}
+//=========================================//
+
 
 function pwHandler(pw, confirm)
 {
     function checkPW()
     {
         let howLong = pw.length;
-
+        let state = pw.parentElement;
         for(let i = 0; i <= howLong; i++)
         {
             let character = pw.charAt(i);
-            (!isNan(character) && character == character.toUpperCase() && howLong < 8) ? password.parentElement.classList("accpet") : password.parentElement.classList("reject");
+            (!isNan(character) && character == character.toUpperCase() && howLong < 8) ? acceptHandler(pw) : rejectHandler(pw);
         }
     }
 
     function checkConfirm()
     {
+        let state = confirm.parentElement;
         let check1 = pw.value;
         let check2 = confirm.value;
-        (check1 === check2) ? password.parentElement.classList("accpet") : password.parentElement.classList("reject");
+        (check1 === check2) ? acceptHandler(confirm) : rejectHandler(confirm);
     }
 
     checkPW();
