@@ -129,7 +129,7 @@ Form State Styles
 =======================
 */
 
-.accept input
+.form-control.accept input
 {
     border-bottom: 2px solid greenyellow;
 }
@@ -140,7 +140,7 @@ Form State Styles
 }
 */
 
-.reject input
+.form-control.reject input
 {
     border-bottom: 2px solid orangered;
 }
