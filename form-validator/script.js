@@ -1,12 +1,12 @@
-const input = document.getElementsByTagName('input');
-const btn = document.getElementsById('submit');
+const form = document.getElementsById('form');
+
 const password = document.getElementsById('password');
 const confirm_password = document.getElementId('confirm');
 const email = document.getElementId('email');
 const number = document.getElementId('number');
 const username = document.getElementId('username');
 
-btn.addEventListener('submit', e = () => {e.preventDefault});
+form.addEventListener('submit', e = () => {e.preventDefault});
 
 function pwHandler(pw, confirm)
 {
