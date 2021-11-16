@@ -21,9 +21,13 @@ function rejectHandler(formElement)
     let changeOn = formElement.parentElement;
     changeOn.className = 'form-section reject';
 }
-//=========================================//
+//===================Username======================//
 
+//====================Email========================//
 
+//===================Phone Number======================//
+
+//===================Password======================//
 function pwHandler(pw, confirm)
 {
     function checkPW()
@@ -50,14 +54,3 @@ function pwHandler(pw, confirm)
 }
 
 pwHandler(password, confirm_password);
-
-/* pt 1 
-    - Check if string is shorter than 8 characters
-    - Check if string contains numbers
-    - Check if string contains capital letter
-    - Check if string contains any invalid symbols
-
-   pt 2
-    - Cache and compare password value and confirm value
-    - Change state of form component based on the boolean value
- */ 
