@@ -49,26 +49,26 @@ Children
 ================
 */
 
-.form-control
+.form-section
 {
     width: min(auto, 90%);
     margin: 2vw;
 }
 
-.form-control > *
+.form-section > *
 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
 }
 
-.form-control label
+.form-section label
 {
     color: rgb(255, 255, 255);
     display: block;
     font-size: clamp(15px, 1.5vw, 30px);
 }
 
-.form-control input
+.form-section input
 {
     color: rgb(255, 255, 255);
     font-size: 1.02em;
@@ -101,7 +101,7 @@ Children
 
 /* --------Form Pseudo classes and elements------------ */
 
-.form-control input:focus
+.form-section input:focus
 {
     outline: none;
     border-bottom: 2px solid white;
@@ -129,7 +129,7 @@ Form State Styles
 =======================
 */
 
-.form-control.accept input
+.form-section.accept input
 {
     border-bottom: 2px solid greenyellow;
 }
@@ -140,7 +140,7 @@ Form State Styles
 }
 */
 
-.form-control.reject input
+.form-section.reject input
 {
     border-bottom: 2px solid orangered;
 }
