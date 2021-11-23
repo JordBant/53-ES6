@@ -5,6 +5,12 @@ const EMAIL = document.getElementById('email');
 const PHONE = document.getElementById('number');
 const USERNAME = document.getElementById('username');
 
+/*
+It seems as though Regex is best course of action 
+for validating the acceptance of strings in forms
+*/
+
+
 //============State handlers===============//
 function acceptHandler(formEl){
     const changeOn = formEl.parentElement;
@@ -22,18 +28,19 @@ function rejectHandler(formEl){
 //===================Phone Number==================//
 
 //===================Password======================//
-function pwHandler(pw, confirm){
+function pwHandler(pw){
 
     function checkPW()
     {
-        let howLong = pw.value.length;
-        if(pw.value === ""){
-            rejectHandler(pw);
-        }
-        // for some reason, will allow the state to be changed by just putting in 8 characters
+        const howLong = pw.value.length;
+        let temp = pw.value;
+        // if(pw.value === ""){
+        //     rejectHandler(pw);
+        // }
+        // for some reason, will allow for the accept state to be changed by just putting in 8 characters
         for(let i = 0; i <= howLong; i++)
         {
-            let character = pw.value.charAt(i);
+            let character = temp.charAt(i);
             if (character == character.toUpperCase() /* && howLong >= 8 &&!isNaN(character * 1)*/){
                 acceptHandler(pw);
             } else {
@@ -43,28 +50,28 @@ function pwHandler(pw, confirm){
     };
     checkPW();
 
-    // function checkConfirm(){
-    //     if(confirm.value === ""){
-    //         rejectHandler(confirm);
-    //     }
+//     function checkConfirm(){
+//         if(confirm.value === ""){
+//             rejectHandler(confirm);
+//         }
 
-    //     let check1 = pw.value;
-    //     let check2 = confirm.value;
+//         let check1 = pw.value;
+//         let check2 = confirm.value;
 
-    //     if(check1 === check2){
-    //         acceptHandler(confirm)
-    //     } else {
-    //         rejectHandler(confirm);
-    //     }
-    // };
-    // checkConfirm();
+//         if(check1 === check2){
+//             acceptHandler(confirm)
+//         } else {
+//             rejectHandler(confirm);
+//         }
+//     };
+//     checkConfirm();
+// 
 }
 // =================Event Listener============== //
-FORM.addEventListener('submit', (e) => {
-
+FORM.addEventListener("submit", (e) => {
     e.preventDefault();
     // UNameHandler(USERNAME);
     // eMailHandler(EMAIL);
     // PhoneNumHandler(PHONE);
-    pwHandler(PASSWORD, CONFIRM_PASSWORD);
+    pwHandler(USERNAME);
 });
