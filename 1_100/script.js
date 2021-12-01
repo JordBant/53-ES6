@@ -14,12 +14,8 @@ function game()
 
     if(userInput !== rand)
     {
-        let guessItem = document.createElement('li')
+        let guessItem = document.createElement('li').setAttribute('class', 'li-div')
             guessItem.innerText(userInput.toString());
-        let circle = document.createElement('div')
-            circle.setAttribute('id', 'li-div')
-            circle.append(guessItem);
-
         list.append(circle);
         let userInput = '';
         count++;
