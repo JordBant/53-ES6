@@ -1,0 +1,115 @@
+*
+{
+    margin: auto;
+    padding: auto;
+}
+
+/* 
+==========================================
+Container Parents
+==========================================
+*/
+body
+{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background: salmon;
+}
+
+ .wrapper
+{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 60vw;
+    height: 50vh;
+    border: 2px solid black;
+    border-radius: 50px;
+}
+
+.guesslist
+{
+    display: flex;
+    width: 90%;
+    height: 30%;
+    border: blue 2px solid;
+}
+
+.game-div
+{
+    border: 2px solid green;
+}
+
+/* 
+==========================================
+Child Elements
+==========================================
+*/
+
+.game-div > *
+{
+    margin: 2%;
+}
+
+.input-area
+{
+    border: cyan solid 2px;
+    width: 90%;
+    height: auto;
+}
+
+.instr
+{
+    font-size: 50px;
+    border: blueviolet 2px solid;
+}
+
+
+#guess
+{
+    border: none;
+    border-radius: 50px;
+    background: rgba(202, 202, 202, 0.699);
+    width: 12.8%;
+    height: 70px;
+    font-size: 30px;
+    text-align: center;
+}
+
+#submit
+{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+/*
+.li-div
+{
+    margin: 9px;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 50px;
+    display: inline-block;
+}
+
+.li-div > *
+{
+    list-style: none;
+    font-size: 20px;
+} */
+
+/* .guesslist div
+{
+    border: 2px solid white;
+    border-radius: 50%;
+    font-size: 20px;
+    width: 100px;
+    height: 100px;
+}
+
+.guesslist li
+{
+    text-align: center;
+} */
