@@ -16,7 +16,7 @@ function game()
     {
         let guessItem = document.createElement('li').setAttribute('class', 'li-div')
             guessItem.innerText(userInput.toString());
-        list.append(circle);
+        list.append(guessItem);
         let userInput = '';
         count++;
     }
