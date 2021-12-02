@@ -4,16 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Guessing Game</title>
 </head>
 <body>
-    <div>
-        <h1>Guess a number between 1 and 100</h1>
-        <input type="text" name="guess" id="guess" placeholder="Guess the number">
-        <button id="submit"> Submit Guess</button>
-        <ul id="guessList" class="guessList">
-
+    <main class="wrapper">
+        <div class="game-div">
+            <h1 class="instr">Guess a number between 1 and 100</h1>
+            <div class="input-area">
+                <input type="number" name="guess" id="guess" placeholder="Guess the number">
+                <button id="submit">Submit Guess</button>
+            </div>
+        </div>
+        <ul id="guesslist" class="guesslist">
+            <li class="li-div">100</li>
+            <li class="li-div">100</li>
+            <li class="li-div">100</li>
+            <li class="li-div">100</li>
+            <li class="li-div">100</li>
+            <li class="li-div">100</li>
+            <li class="li-div">100</li>
+            <li class="li-div">100</li>
+            <li class="li-div">100</li>
+            <li class="li-div">100</li>
         </ul>
-    </div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
