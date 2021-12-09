@@ -6,7 +6,7 @@ const submit = document.getElementById("submit");
 const list = document.getElementById("guesslist");
 const inputArea = document.getElementById("input-area")
 
-const rand = Math.floor(Math.random()*10);
+const rand = 50 /*Math.floor(Math.random()*100)*/;
 let count = 0;
 
 submit.addEventListener('click', game);
@@ -21,107 +21,59 @@ function game()
         reset.setAttribute("id", "reset");
         reset.append('Reset Game');
 
-    switch (userInput) {
-
-        // Rand - 5 ≤ userInput ≤ Rand + 5
-        case rand + 5 > userInput:
-        case userInput > rand:
-
-        case rand - 5 < userInput:
-        case userInput < rand:
-
-        case rand !== userInput:
-        case count !== 10:
-
-        // Apply redish-orange color styling of list item
+    switch (true)
+    {        
+        case (rand - 5 < userInput && userInput < rand + 5 && rand !== userInput && count < 11):
+            newLi.style.border = "7px solid red";
             newLi.append(userInput);
             list.append(newLi);
 
             count += 1;
             break;
     
-        case rand + 12 > userInput:
-        case userInput > rand:
-    
-        case rand - 12 < userInput:
-        case userInput < rand:
-
-        case rand !== userInput:
-        case count !== 10:
-        // Apply orangish color styling of list item
+        case (rand - 10 < userInput && userInput < rand + 10 && rand !== userInput && count < 11):
+            newLi.style.border = "7px solid orange";
             newLi.append(userInput);
             list.append(newLi);
             
             count += 1;
             break;
 
-        case rand + 20 > userInput:
-        case userInput > rand:
-    
-        case rand - 20 < userInput:
-        case userInput < rand:
-
-        case rand !== userInput:
-        case count !== 10:
-
-        // Apply yellow color styling of list item
+        case (rand - 20 < userInput && userInput < rand + 20 && rand !== userInput && count < 11):
+            newLi.style.border = "7px solid yellow";
             newLi.append(userInput);
             list.append(newLi);
             
             count += 1;
             break;
 
-        case rand + 29 > userInput:
-        case userInput > rand:
 
-        case rand - 29 < userInput:
-        case userInput < rand:
-
-        case rand !== userInput:
-        case count !== 10:
-        // Apply yellow color styling of list item
+        case (rand - 30 < userInput && userInput < rand + 30 && rand !== userInput && count < 11):
+            newLi.style.border = "7px solid green";
             newLi.append(userInput);
             list.append(newLi);
             
-        count += 1;
-        break;
+            count += 1;
+            break;
 
-        case rand + 34 > userInput:
-        case userInput > rand:
-
-        case rand - 34 < userInput:
-        case userInput < rand:
-
-        case rand !== userInput:
-        case count !== 10:
-        // Apply yellow-green color styling of list item
+        case (rand - 35 < userInput && userInput < rand + 35 && rand !== userInput && count < 11):
+            newLi.style.border = "7px solid purple";
             newLi.append(userInput);
             list.append(newLi);
                 
-        count += 1;
-        break;
+            count += 1;
+            break;
 
-        case rand + 40 > userInput:
-        case userInput > rand:
-
-        case rand - 40 < userInput:
-        case userInput < rand:
-
-        case rand !== userInput:
-        case count !== 10:
-        // Apply minty greeny color styling of list item
+        case (rand - 40 <= userInput && userInput <= rand + 40 && rand !== userInput && count < 11):
+            newLi.style.border = "7px solid blue";
             newLi.append(userInput);
             list.append(newLi);
             
             count += 1;
             break;
 
-        case rand + 40 < userInput:
-        case rand - 40 > userInput:
-
-        case rand !== userInput:
-        case count !== 10:
-        // Apply minty greeny color styling of list item
+        case (userInput < rand - 40 || rand + 40 < userInput && rand !== userInput && count < 11):
+            newLi.style.border = "7px solid grey";
             newLi.append(userInput);
             list.append(newLi);
             

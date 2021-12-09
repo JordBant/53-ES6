@@ -21,7 +21,7 @@ body
     width: 100vw;
     height: 100vh;
     background: rgb(59, 1, 59);
-    background-image: url(stock_backg.PNG);
+    background-image: url(images/stock_backg.PNG);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
