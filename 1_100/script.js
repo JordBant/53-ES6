@@ -7,7 +7,7 @@ const list = document.getElementById("guesslist");
 const inputArea = document.getElementById("input-area")
 
 const rand = 50 /*Math.floor(Math.random()*100)*/;
-let count = 0;
+let count = 1;
 
 submit.addEventListener('click', game);
 
@@ -23,7 +23,7 @@ function game()
 
     switch (true)
     {        
-        case (rand - 5 < userInput && userInput < rand + 5 && rand !== userInput && count < 11):
+        case (rand - 5 < userInput && userInput < rand + 5 && rand !== userInput && count !== 10):
             newLi.style.border = "7px solid red";
             newLi.append(userInput);
             list.append(newLi);
@@ -31,7 +31,7 @@ function game()
             count += 1;
             break;
     
-        case (rand - 10 < userInput && userInput < rand + 10 && rand !== userInput && count < 11):
+        case (rand - 10 < userInput && userInput < rand + 10 && rand !== userInput && count !== 10):
             newLi.style.border = "7px solid orange";
             newLi.append(userInput);
             list.append(newLi);
@@ -39,7 +39,7 @@ function game()
             count += 1;
             break;
 
-        case (rand - 20 < userInput && userInput < rand + 20 && rand !== userInput && count < 11):
+        case (rand - 20 < userInput && userInput < rand + 20 && rand !== userInput && count !== 10):
             newLi.style.border = "7px solid yellow";
             newLi.append(userInput);
             list.append(newLi);
@@ -48,7 +48,7 @@ function game()
             break;
 
 
-        case (rand - 30 < userInput && userInput < rand + 30 && rand !== userInput && count < 11):
+        case (rand - 30 < userInput && userInput < rand + 30 && rand !== userInput && count !== 10):
             newLi.style.border = "7px solid green";
             newLi.append(userInput);
             list.append(newLi);
@@ -56,7 +56,7 @@ function game()
             count += 1;
             break;
 
-        case (rand - 35 < userInput && userInput < rand + 35 && rand !== userInput && count < 11):
+        case (rand - 35 < userInput && userInput < rand + 35 && rand !== userInput && count !== 10):
             newLi.style.border = "7px solid purple";
             newLi.append(userInput);
             list.append(newLi);
@@ -64,7 +64,7 @@ function game()
             count += 1;
             break;
 
-        case (rand - 40 <= userInput && userInput <= rand + 40 && rand !== userInput && count < 11):
+        case (rand - 40 <= userInput && userInput <= rand + 40 && rand !== userInput && count !== 10):
             newLi.style.border = "7px solid blue";
             newLi.append(userInput);
             list.append(newLi);
@@ -72,7 +72,7 @@ function game()
             count += 1;
             break;
 
-        case (userInput < rand - 40 || rand + 40 < userInput && rand !== userInput && count < 11):
+        case (userInput < rand - 40 || rand + 40 < userInput && rand !== userInput && count !== 10):
             newLi.style.border = "7px solid grey";
             newLi.append(userInput);
             list.append(newLi);
