@@ -50,6 +50,7 @@ body
     height: 100px;
 }
 
+
 .game-div
 {
     /* border: 2px solid green; */
@@ -57,6 +58,7 @@ body
     flex-direction: column;
     align-items: center;
     text-align: center;
+    height: 50%;
 }
 
 /* 
@@ -98,10 +100,13 @@ li
 
 .input-area
 {
+    position: relative;
     display: flex;
     /* border: cyan solid 2px; */
     width: auto;
-    height: auto;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
 }
 
 .instr
@@ -115,23 +120,34 @@ li
 
 #guess
 {
+    position: relative;
     border: none;
     border-radius: 50px;
-    background: rgba(202, 202, 202, 0.689);
+    background: transparent;
     width: 100px;
-    height: 70px;
+    height: 80%;
     font-size: 30px;
+    border: 3px solid black;
     text-align: center;
 }
 
 #submit
 {
-    width: auto;
+    width: 75px;
     height: 70px;
     border-radius: 50px;
     transition: all 0.4s ease-in-out;
     background: transparent;
     border: 3px solid black;
+    position: absolute;
+    left: 110px;
+}
+
+#arrow
+{
+    transform: rotate(90deg);
+    width: auto;
+    height: 50%;
 }
 
 #reset
@@ -146,6 +162,13 @@ li
     transition: 0.2s all ease-in-out;
 }
 
+/* -----------State Management----------- */
+
+.error-state
+{
+    outline: rgb(221, 55, 55) 2px solid;
+}
+
 /* ----------------Pseudo---------------- */
 
 #reset:hover
@@ -155,11 +178,11 @@ li
 
 #submit:hover
 {
-    font-size: 20px;
-    letter-spacing: 2px;
     background: blanchedalmond;
-    margin-top: 0.01%;
-    margin-bottom: 0.01%;
-    border-radius: 50px;
-    width: auto;
-}
+    /* margin-top: 0.01%;
+    margin-bottom: 0.01%; */
+    height: 100%;
+    width: 120px;
+    font-size: 20px;
+} 
+

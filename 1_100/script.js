@@ -4,14 +4,17 @@ const body = document.getElementsByTagName('body')
 const input = document.getElementById("guess");
 const submit = document.getElementById("submit");
 const list = document.getElementById("guesslist");
-const inputArea = document.getElementById("input-area")
+const inputArea = document.getElementById("input-area");
+const arrowInd = document.getElementById("arrow");
+arrowInd.style.transform = 'rotate(90deg)';
+
 
 const rand =  Math.floor(Math.random()*100);
-let count = 1;
+let count = 0;
 
 submit.addEventListener('click', game);
 
-function game()
+function game() 
 {
     const userInput = Number(input.value);
     const newLi = document.createElement('li');
@@ -21,17 +24,24 @@ function game()
         reset.setAttribute("id", "reset");
         reset.append('Reset Game');
 
+    if(userInput < rand)
+    {
+        arrowInd.style.transform = "rotate(90deg)";
+    }
+
     switch (true)
     {        
-        case(userInput !== rand && count === 10):
-            // You ran out of turns
+        case(input.value === ''):
+        // submit.innerText = 'Enter In-Bound Number to start Game.'
+        input.value = "";
+        input.classList.add('error-state');
         break;
 
-        case (userInput <= 0 || userInput >= 101):
-            //Submit button will say Enter Number to start game
-            submit.innerText = 'Enter In-Bound Number to start Game.'
-            input.value = "";
-            break;
+        // case (userInput <= 0 || userInput >= 101):
+        //     //Submit button will say Enter Number to start game
+        //     submit.innerText = 'Enter In-Bound Number to start Game.'
+        //     input.value = "";
+        //     break;
         
         case (rand - 5 < userInput && userInput < rand + 5 && rand !== userInput && count !== 10):
             newLi.style.border = "7px solid #F70000";
@@ -100,13 +110,13 @@ function game()
         default:
             input.value = "";
             inputArea.replaceChild(reset, submit);
-            reset.addEventListener('click', gameReset);
+            // reset.addEventListener('click', gameReset);
 
             input.remove();
             break;
     }
 }
 
-const gameReset = () =>{
-    
-}
+// const gameReset = () =>{
+//     list.removeChild();
+// }
