@@ -35,4 +35,4 @@ Every time I make a guess
 
 3.) The number of direct child elements in the list will not exceed 10 items
 
-4.) switch case for each case of 
+4.) switch case for each case
