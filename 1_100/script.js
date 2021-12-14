@@ -24,14 +24,14 @@ function game()
 
     switch (true)
     {        
-        // case():
+        // case(input.value):
 
         //     break:
 
-        case(input.value === ''):
+        case(input.value === '' || userInput <= 0 || userInput >= 101):
         // submit.innerText = 'Enter In-Bound Number to start Game.'
-            input.value = "";
             input.classList.add('error-state');
+            input.value = "";
             break;
 
         case (userInput <= 0 || userInput >= 101):
@@ -117,3 +117,8 @@ function gameReset()
 
     input.value = "";
 }
+
+// function onHover()
+// {
+    
+// }

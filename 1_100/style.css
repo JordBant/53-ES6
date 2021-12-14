@@ -119,16 +119,14 @@ li
     /* border: blueviolet 2px solid; */
 }
 
-#guess
+#guess, .error-state
 {
     position: relative;
-    border: none;
-    border-radius: 50px;
+    border-radius: 12px;
     background: transparent;
     width: 100px;
     height: 80%;
     font-size: 30px;
-    border: 3px solid black;
     text-align: center;
 }
 
@@ -166,11 +164,15 @@ li
 
 /* -----------State Management----------- */
 
-.error-state
+#guess
 {
-    outline: rgb(221, 55, 55) 2px solid;
+    border: black 3px solid;
 }
 
+.error-state
+{
+    outline: rgb(221, 55, 55) 3px solid;
+}
 /* ----------------Pseudo---------------- */
 
 #reset:hover
@@ -188,3 +190,7 @@ li
     font-size: 20px;
 } 
 
+#guess:focus
+{
+    outline: none;
+}
