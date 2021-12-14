@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
 
 :root
 {
-    --div-shape: 90px;
-
+    --div-shape: 80px;
 }
 
 *
@@ -21,7 +21,11 @@ body
     display: flex;
     width: 100vw;
     height: 100vh;
-    background: salmon;
+    background: rgb(59, 1, 59);
+    background-image: url(images/stock_backg.PNG);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
  .wrapper
@@ -32,7 +36,10 @@ body
     margin: auto;
     width: 67vw;
     height: 50vh;
-    border: 2px solid black;
+    background-color: #a1a1a141;
+    border: #5f5f5fcb 1.3px solid;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 50px;
 }
 
@@ -42,8 +49,8 @@ body
     align-items: flex-start;
     width: auto;
     height: 100px;
-    /* border: blue 2px solid; */
 }
+
 
 .game-div
 {
@@ -52,6 +59,7 @@ body
     flex-direction: column;
     align-items: center;
     text-align: center;
+    height: 50%;
 }
 
 /* 
@@ -65,62 +73,118 @@ Child Elements
 {
     margin: 0.8%;
 }
+.input-area > *
+{
+    margin: 1%;
+}
 
 .wrapper > *
 {
     margin: 0.7%;
-    
 }
 
-.li-div > *
+li 
 {
     list-style: none;
     font-size: 20px;
     text-align: center;
+    border: black 2px solid;
+    border-radius: 50%;
+    margin: 5px;
+    width: var(--div-shape);
+    height: var(--div-shape);
+    line-height: var(--div-shape);
 }
 
 /* ----------------Input Area Elements---------------- */
 
 .input-area
 {
+    position: relative;
     display: flex;
     /* border: cyan solid 2px; */
     width: auto;
-    height: auto;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
 }
 
 .instr
 {
     font-size: 50px;
+    font-family: 'Dosis', sans-serif;    
     width: 100%;
+    color: black;
+    letter-spacing: 3px;
     /* border: blueviolet 2px solid; */
 }
 
 #guess
 {
+    position: relative;
     border: none;
     border-radius: 50px;
-    background: rgba(202, 202, 202, 0.689);
+    background: transparent;
     width: 100px;
-    height: 70px;
+    height: 80%;
     font-size: 30px;
+    border: 3px solid black;
     text-align: center;
 }
 
 #submit
 {
-    width: 70px;
+    width: 75px;
     height: 70px;
-    border-radius: 50%;
+    border-radius: 50px;
+    transition: all 0.4s ease-in-out;
+    background: transparent;
+    border: 3px solid black;
+    position: absolute;
+    left: 120px;
 }
 
-/* ----------------Guess List---------------- */
-.li-div
+#arrow
 {
-    margin: 5px;
-    border: 2px solid white;
-    border-radius: 50%;
-    width: var(--div-shape);
-    height: var(--div-shape);
-    line-height: var(--div-shape);
+    transform: rotate(90deg);
+    width: auto;
+    height: 50%;
+    transition: all 0.3s ease-in-out;
 }
+
+#reset
+{
+    background: transparent;
+    border-radius: 50px;
+    border: 3px solid black;
+    font-size: 30px;
+    letter-spacing: 2px;
+    width: 300px;
+    height: 70px;
+    transition: 0.2s all ease-in-out;
+}
+
+/* -----------State Management----------- */
+
+.error-state
+{
+    outline: rgb(221, 55, 55) 2px solid;
+}
+
+/* ----------------Pseudo---------------- */
+
+#reset:hover
+{
+  background: blanchedalmond;
+}
+
+#submit:hover
+{
+    background: blanchedalmond;
+    /* margin-top: 0.01%;
+    margin-bottom: 0.01%; */
+    height: 70%;
+    width: 150px;
+    font-size: 20px;
+} 
+

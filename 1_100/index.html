@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,25 +11,15 @@
     <main class="wrapper">
         <div class="game-div">
             <h1 class="instr">Guess a number between 1 and 100</h1>
-            <div class="input-area">
-                <input type="number" name="guess" id="guess" placeholder="Guess the number">
-                <button id="submit">Submit Guess</button>
+            <div class="input-area" id="input-area">
+                <input type="number" name="guess" id="guess" class="guess">
+                <button id="submit">
+                    <img src="images/indicate.png" alt="arrow" id="arrow">
+                </button>
             </div>
         </div>
-        <ul id="guesslist" class="guesslist">
-            <li class="li-div">100</li>
-            <li class="li-div">100</li>
-            <li class="li-div">100</li>
-            <li class="li-div">100</li>
-            <li class="li-div">100</li>
-            <li class="li-div">100</li>
-            <li class="li-div">100</li>
-            <li class="li-div">100</li>
-            <li class="li-div">100</li>
-            <li class="li-div">100</li>
-        </ul>
-    </main>
-
+        <ul id="guesslist" class="guesslist"></ul>
+    </main>†
     <script src="script.js"></script>
 </body>
 </html>
