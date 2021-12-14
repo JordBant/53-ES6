@@ -20,16 +20,19 @@ function game()
         reset.setAttribute("id", "reset");
         reset.append('Reset Game');
 
-        (userInput < rand) ?  arrowInd.style.transform = "rotate(360deg)" :  arrowInd.style.transform = "rotate(180deg)";
+        (userInput < rand) ? arrowInd.style.transform = "rotate(0deg)" : arrowInd.style.transform = "rotate(180deg)";
 
     switch (true)
     {        
+        // case():
+
+        //     break:
 
         case(input.value === ''):
         // submit.innerText = 'Enter In-Bound Number to start Game.'
-        input.value = "";
-        input.classList.add('error-state');
-        break;
+            input.value = "";
+            input.classList.add('error-state');
+            break;
 
         case (userInput <= 0 || userInput >= 101):
             //Submit button will say Enter Number to start game

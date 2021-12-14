@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
 
 :root
 {
@@ -80,7 +81,6 @@ Child Elements
 .wrapper > *
 {
     margin: 0.7%;
-    
 }
 
 li 
@@ -112,6 +112,7 @@ li
 .instr
 {
     font-size: 50px;
+    font-family: 'Dosis', sans-serif;    
     width: 100%;
     color: black;
     letter-spacing: 3px;
@@ -140,7 +141,7 @@ li
     background: transparent;
     border: 3px solid black;
     position: absolute;
-    left: 110px;
+    left: 120px;
 }
 
 #arrow
@@ -148,6 +149,7 @@ li
     transform: rotate(90deg);
     width: auto;
     height: 50%;
+    transition: all 0.3s ease-in-out;
 }
 
 #reset
@@ -181,8 +183,8 @@ li
     background: blanchedalmond;
     /* margin-top: 0.01%;
     margin-bottom: 0.01%; */
-    height: 100%;
-    width: 120px;
+    height: 70%;
+    width: 150px;
     font-size: 20px;
 } 
 
