@@ -130,6 +130,14 @@ li
     text-align: center;
 }
 
+#guessItem
+{
+    font-size: 50px;
+    font-family: 'Dosis', sans-serif;
+    border: none;
+    transition: 0.3s all ease-in-out;
+}
+
 #submit
 {
     width: 75px;

@@ -8,15 +8,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="flex-wrapper">
-        <input type="text" id="input"><button id="clear-input" ></button>
-        <div id="list-div">
-            <ul id="list"></ul>
-        </div>
-        <footer>
-            <button id="night-mode"></button>
-            <h1>To-Do </h1></footer>
+    <main class="main">
+        <button id="night-mode"></button>
+        <section class="todo-area">
+            <div class="input-area">
+                <input type="text" id="input" class="input">
+                <button id="clear-input" ></button>
+            </div>
+            <ul id="list" class="list">
+                <li id="task"> Pet the dog</li>
+                <li id="task"> Pet the cat now</li>
+            </ul>
+        </section>
     </main>
+    <footer class="title-footer">
+        <h1>To-Do</h1>
+    </footer>
 
     <script src="script.js"></script>
 </body>
