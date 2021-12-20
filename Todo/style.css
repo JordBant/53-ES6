@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100&display=swap');
+
 :root{
     --footer-position: 20;
 }
@@ -23,11 +25,11 @@ Parent
 
 .main
 {
-/* Box Model & Dimensions */
+    /* Box Model & Dimensions */
     padding: 20px;
     width: 100%;
     height: 80vh;
-    border: red 2px solid;
+    /* border: red 2px solid; */
 
     /* Positioning */
     position: relative;
@@ -40,19 +42,20 @@ Parent
 {
     /* Box Model & Dimensions */
     padding-right: 4%;
-    margin: auto;
+    margin-left: auto;
     height: 20vh;
-    width: 100%;
+    width: 80%;
 
     /* Positioning */
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    
    
     /* Border Styling and Colors */
-    border-top: 1px solid rgb(168, 114, 88);
-    color: white;
-    border: 2px solid green;
+    background: linear-gradient(300deg, rgb(116, 2, 116, 0.301), rgb(49, 49, 49));
+    border-top: 1px solid rgb(255, 243, 238);;
+    color: rgb(255, 243, 238);
 } 
 
 /* 
@@ -60,7 +63,6 @@ Parent
 Children
 ====================================
 */
-
 
 #night-mode
 {
@@ -74,7 +76,7 @@ Children
 
 .todo-area
 {
-    border: 3px solid green;
+    /* border: 3px solid green; */
 
     /* Positioning */
     position: relative;
@@ -85,29 +87,68 @@ Children
     
     /* Box Model & Dimensions */
     height: 100%;
-    width: 40%;
-    padding: 70px;
+    width: 60%;
+    padding-top: 70px;
 }
 
 /* -------------Input and Input Area--------------- */
+
 .input-area
 {
-    border: 2px red solid;
+    /* border: 2px red solid; */
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .input
 {
+    font-size: 20px;
+    color: whitesmoke;
+
     height: 50px;
-    width: 300px;
-    border-radius: 20px;
+    width: 500px;
+    margin-left: 10px;
+
+    background: none;
+    border: none;
+    border-bottom: 0.5px solid rgb(255, 243, 238);
+}
+
+#enter-input
+{
+    border: 2px solid rgb(255, 243, 238);
+    background: none;
+    margin-left: 20px;
+    border-radius: 25px;
+    height: 50px;
+    width: 50px;
+    transition: 0.4s all ease-in;
+}
+
+#arrow
+{
+    transform: rotate(90deg);
+    height: 30px;
+    color: rgb(255, 243, 238);
 }
 
 #clear-input
 {
+    border: none;
+    background: none;
+    right: 70px;
+    position: absolute;
+    height: 90px;
+    width: auto;
+    transition: 0.4s all ease;
+}
+
+#cross
+{
+    opacity: 0.5;
     height: 25px;
-    width: 25px;
+    transition: 0.4s all ease;
 }
 
 /* -----------List and List Items-------------- */
@@ -124,7 +165,6 @@ Children
     /* Positioning */
     position: absolute;
     top: 140px;
-   
 }
 
 #task
@@ -139,7 +179,7 @@ Children
     /* Typography and Font Styles */
     color: whitesmoke;
     list-style: none;
-    font: .9em sans-serif;
+    font: .9em 'Spartan', sans-serif;
 
     /* Border and Backgorund Styling */
     border-top-left-radius: 20px;
@@ -152,6 +192,31 @@ Children
 
 .title-footer h1
 {
+    font-family: 'Spartan', sans-serif;
     letter-spacing: 20px;
-    font-size: 100px;
+    font-size: 70px;
+}
+
+/* -----------Psuedo Elements and Classes-------------- */
+
+.input:focus, button:focus
+{
+    outline: none;
+}
+
+#enter-input:hover
+{
+    background: rgba(255, 243, 238, 0.589);
+    box-shadow:0 0 5px 0.4px rgb(255, 243, 238);
+    border: none;
+}
+
+#cross:hover
+{
+    opacity: 0.9;
+}
+
+button:hover
+{
+    cursor: pointer;
 }
