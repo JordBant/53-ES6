@@ -1,9 +1,14 @@
-const input = document.getElementById("input");
+const input = document.querySelectorAll("input");
 const list = document.getElementById("list");
 const inputDel = document.getElementById("clear-input");
 const inputEnter = document.getElementById("enter-input");
 
+// inputEnter.addEventListener('click', (e) => {console.log});
 inputEnter.addEventListener('click', inputHandler);
+
+inputDel.addEventListener('click', () => {
+    input.forEach(input => input.value = '');
+});
 
 function inputHandler()
 {
@@ -28,17 +33,17 @@ function inputHandler()
     taskDiv.append(taskDel);
     // taskDel.addEventListener('click', taskHandler);
 
-
     if(input.value)
     {
         task.append(input.value);
         list.append(taskDiv);
+        input.value = '';
     } else {
         alert("Input value");
     }
 }
 
-function taskHandler()
-{
-    
-}
+// function taskHandler()
+// {
+
+// }
