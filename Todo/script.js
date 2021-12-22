@@ -6,6 +6,7 @@ const inputEnter = document.getElementById("enter-input");
 // inputEnter.addEventListener('click', (e) => {console.log});
 inputEnter.addEventListener('click', inputHandler);
 
+//querySelectorAll returns a node-list 
 inputDel.addEventListener('click', () => {
     input.forEach(input => input.value = '');
 });
@@ -33,13 +34,13 @@ function inputHandler()
     taskDiv.append(taskDel);
     // taskDel.addEventListener('click', taskHandler);
 
-    if(input.value)
+    if(input[0].value)
     {
-        task.append(input.value);
+        task.append(input[0].value);
         list.append(taskDiv);
-        input.value = '';
+        input[0].value = '';
     } else {
-        alert("Input value");
+        alert("Enter valid input value");
     }
 }
 

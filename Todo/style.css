@@ -55,7 +55,7 @@ Parent
     
    
     /* Border Styling and Colors */
-    border-top: 1px solid rgb(255, 243, 238);;
+    border-bottom: 1px solid rgb(255, 243, 238);;
     color: rgb(255, 243, 238);
 } 
 
@@ -124,7 +124,7 @@ Children
     border-radius: 25px;
     height: 50px;
     width: 50px;
-    transition: 0.4s all ease-in;
+    transition: 0.2s all ease-in;
 }
 
 #arrow
@@ -154,28 +154,41 @@ Children
 
 /* -----------List and List Items-------------- */
 
+.list-div
+{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 700px;
+    width: 90%;
+    margin: 10px;
+
+    /* border: turquoise 2px solid; */
+}
+
 .list
 {
     border-right: 2px solid purple;
 
     /* Box-Model & Dimensions */
-    height: auto;
+    height: 100%;
     margin: 0;
-    width: 80%;
+    width: 700px;
 
     /* Positioning */
     position: absolute;
-    top: 140px;
+    top: 10px;
+    overflow-y: scroll;
 }
 
 #task-sec
 {
     align-items: center;
     display: flex;
-    width: auto;
+    width: 100%;
+    height: auto;
     position: relative;
     /* border: 2px solid red; */
-    height: auto;
 }
 
 #task-check
@@ -186,18 +199,27 @@ Children
     border: white 3px solid;
     width: 30px;
     position: absolute;
-    left: -33px;
+    left: 0px;
 }
 
 #task-del
 {
+    /* Border and Background */
     background: white;
-    border-radius: 25px;
-    height: 40px;
     border: white 3px solid;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+
+    /* Dimensions */
     width: 40px;
+    height: 40px;
+
+    /* Positioning */
     position: absolute;
-    right: -50px;
+    right: -30px;
+
+    /* Animation */
+    transition: all 0.3s ease-in-out;
 }
 
 #task-del #cross
@@ -209,10 +231,8 @@ Children
 {
     /* Box Model & Dimensions */
     height: auto;
-    width: 100%;
-    padding: 10px;
-    margin: 12px;
-    margin-right: 0;
+    width: 95%;
+    margin: 10px 0 10px auto;
     padding: 20px;
 
     /* Typography and Font Styles */
@@ -227,8 +247,9 @@ Children
 
     /* Positioning */
     text-align: left;
+    justify-self: flex-end;
 }
-
+/* --------------Footer H1---------------- */
 .title-footer h1
 {
     font-family: 'Spartan', sans-serif;
@@ -236,7 +257,11 @@ Children
     font-size: 40px;
 }
 
-/* -----------Psuedo Elements and Classes-------------- */
+/* 
+============================================
+Psuedo Elements and Classes
+============================================
+*/
 
 .input:focus, button:focus
 {
@@ -245,9 +270,9 @@ Children
 
 #enter-input:hover
 {
-    background: rgba(255, 243, 238, 0.589);
-    box-shadow:0 0 5px 0.4px rgb(255, 243, 238);
-    border: none;
+    background: white;
+    box-shadow:0 0 5px 0.4px white;
+    border: 4px solid white;
 }
 
 #cross:hover
@@ -258,4 +283,10 @@ Children
 button:hover
 {
     cursor: pointer;
+}
+
+#task-del:hover
+{
+    box-shadow:0 0 5px 0.4px white;
+    right: 0;
 }
