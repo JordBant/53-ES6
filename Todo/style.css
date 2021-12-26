@@ -65,7 +65,7 @@ Children
 ====================================
 */
 
-#night-mode
+.mode
 {
     position: absolute;
     top: 20px;
@@ -74,6 +74,30 @@ Children
     height: 35px;
     width: 35px;
 }
+
+.light
+{
+    position: absolute;
+    top: 20px;
+    right: 40px;
+
+    height: 35px;
+    width: 35px;
+}
+
+.dark
+{
+    position: absolute;
+    top: 20px;
+    right: 40px;
+
+    height: 35px;
+    width: 35px;
+
+    background: url(todo-images/moon.svg) no-repeat cente; 
+}
+
+/* ---------------To Do-------------- */
 
 .todo-area
 {
@@ -147,7 +171,6 @@ Children
 
 #cross
 {
-    opacity: 0.5;
     height: 25px;
     transition: 0.4s all ease;
 }
@@ -168,8 +191,6 @@ Children
 
 .list
 {
-    border-right: 2px solid purple;
-
     /* Box-Model & Dimensions */
     height: 100%;
     margin: 0;
@@ -211,20 +232,22 @@ Children
     border-bottom-left-radius: 25px;
 
     /* Dimensions */
-    width: 40px;
+    width: 10px;
     height: 40px;
 
     /* Positioning */
     position: absolute;
-    right: -30px;
+    text-align: right;
+    right: 0px;
 
     /* Animation */
     transition: all 0.3s ease-in-out;
 }
 
-#task-del #cross
+#task-cross
 {
-    height: 20px;
+    transition: ease-in-out all 0.3s;
+    height: 0;
 }
 
 #task
@@ -277,7 +300,13 @@ Psuedo Elements and Classes
 
 #cross:hover
 {
-    opacity: 0.9;
+    opacity: 1;
+}
+
+#task-cross:hover
+{
+    margin-left: 4px;
+    height: 25px;   
 }
 
 button:hover
@@ -287,6 +316,19 @@ button:hover
 
 #task-del:hover
 {
-    box-shadow:0 0 5px 0.4px white;
+    width: 40px;
+    box-shadow: 0 0 5px 0.4px white;
     right: 0;
+}
+
+.light::before
+{
+    content: url(todo-images/sun.svg);
+}
+
+.dark::before
+{
+   content: '';
+   background: url('todo-images/moon.svg') no-repeat center;
+   height: 500px;
 }
