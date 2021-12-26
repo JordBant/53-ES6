@@ -22,17 +22,30 @@ function inputHandler()
 
     const complete = document.createElement('input');
     complete.setAttribute('id', 'task-check');
+    complete.type = 'checkbox';
     taskDiv.append(complete);
-    // complete.addEventListener('click', taskHandler);
 
     const cross = document.createElement('img');
-    cross.setAttribute('id', 'cross');
-    // cross.append(cross.svg to the button); 
+    cross.setAttribute('id', 'task-cross');
+    cross.src = 'todo-images/cross.svg';
 
     const taskDel = document.createElement('button');
     taskDel.setAttribute('id', 'task-del');
     taskDiv.append(taskDel);
-    // taskDel.addEventListener('click', taskHandler);
+    taskDel.append(cross);
+
+    taskDel.addEventListener('click', () => {
+       taskDiv.remove();
+    });
+
+    switch (true) {
+        case (input[0].value):
+            
+            break;
+    
+        default:
+            break;
+    }
 
     if(input[0].value)
     {
@@ -41,7 +54,7 @@ function inputHandler()
         input[0].value = '';
     } else {
         alert("Enter valid input value");
-    }
+    } 
 }
 
 // function taskHandler()
