@@ -1,5 +1,5 @@
 # 53-ES6
-Here exists a collection of various FrontEnd projects done in HTML5 , CSS3, and Javascript ES6
+Here exists a collection of various beginner Frontend projects done in HTML**5 **, CSS**3**, and Javascript **ES6**
 ...
 Hench the name 53-ES6
 
