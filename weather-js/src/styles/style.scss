@@ -1,0 +1,45 @@
+@mixin body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@mixin flexEnd {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin card {
+    width: 170px;
+    height: 200px;
+    background: rgb(77, 75, 75);
+    list-style: none;
+    border-radius: 25px;
+    margin: 20px;
+}
+
+body
+{
+    @include body();
+    @include flexEnd();
+
+    width: 100vw;
+    height: 100vh;
+
+    li{
+        position: relative;
+        @include card();
+        @include flexCenter();
+        .line{
+            transform: rotate(-45deg);
+        }
+    }
+}
+
