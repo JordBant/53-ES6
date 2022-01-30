@@ -1,45 +1,75 @@
+//=============Mixins==============// 
+
 @mixin body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
-@mixin flexEnd {
+@mixin dimensions($fillWidth, $fillHeight){
+    width: $fillWidth;
+    height: $fillHeight;
+}
+
+@mixin fourGrid($area1, $area2, $area3, $area4){
+    display: grid;
+    // grid-template-columns: ;
+    // grid-template-rows: ;
+    grid-template-areas: 
+    '$area1 $area2'
+    '$area3 $area4';
+}
+
+@mixin flexPosition ($justify, $align){
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: $justify;
+    align-items: $align;
 }
 
-@mixin flexCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-@mixin card {
-    width: 170px;
-    height: 200px;
+@mixin card{
+    @include dimensions(170px, 200px);
     background: rgb(77, 75, 75);
     list-style: none;
     border-radius: 25px;
     margin: 20px;
 }
 
+//=============Properties==============// 
+
 body
 {
     @include body();
-    @include flexEnd();
-
-    width: 100vw;
-    height: 100vh;
-
-    li{
-        position: relative;
-        @include card();
-        @include flexCenter();
-        .line{
-            transform: rotate(-45deg);
-        }
-    }
+    @include flexPosition(flex-end, flex-end);
+    @include dimensions(100vw, 100vh);
+    @include fourGrid(main, aside1, main, aside2);
 }
 
+.main
+{
+    grid-area: main;
+}
+
+.aside1
+{
+    grid-area: aside1;
+}
+
+.aside2
+{
+    grid-area: aside2;
+
+    // .weather-cards{
+    //     // @include fourGrid(card1, card2, card3, card4);
+        
+
+    //     .card{
+    //         @include card();
+    //         @include flexPosition(center, center);
+
+    //         // .line{
+    //         //     transform: rotate(-45deg);
+    //         // }
+    //     }
+    // }
+}
