@@ -7,28 +7,24 @@
 
 }
 
-@mixin dimensions($fillWidth, $fillHeight){
+@mixin size($fillWidth, $fillHeight){
     width: $fillWidth;
     height: $fillHeight;
 }
 
-@mixin fourGrid($area1, $area2, $area3, $area4){
+@mixin gridDim($row1, $row2, $col1, $col2){
     display: grid;
-    // grid-template-columns: ;
-    // grid-template-rows: ;
-    grid-template-areas: 
-    '$area1 $area2'
-    '$area3 $area4';
+    grid-template: $row1 $row2 / $col1 $col2; //Do I need this?
 }
 
-@mixin flexPosition ($justify, $align){
+@mixin flex($justify, $align){
     display: flex;
     justify-content: $justify;
     align-items: $align;
 }
 
 @mixin card{
-    @include dimensions(170px, 200px);
+    @include size(170px, 200px);
     background: rgb(77, 75, 75);
     list-style: none;
     border-radius: 25px;
@@ -41,8 +37,13 @@ body
 {
     @include body();
     @include flexPosition(flex-end, flex-end);
-    @include dimensions(100vw, 100vh);
-    @include fourGrid(main, aside1, main, aside2);
+    @include size(100vw, 100vh);
+    @include gridDim();
+
+    body > *
+    {
+        border: 2px solid red;
+    }
 }
 
 .main

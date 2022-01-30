@@ -16,7 +16,6 @@ body {
   height: 100vh;
   display: -ms-grid;
   display: grid;
-      grid-template-areas: '$area1 $area2' '$area3 $area4';
 }
 
 .main {
