@@ -14,29 +14,20 @@ body {
           align-items: flex-end;
   width: 100vw;
   height: 100vh;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: '$area1 $area2' '$area3 $area4';
 }
 
-body li {
-  position: relative;
-  width: 170px;
-  height: 200px;
-  background: #4d4b4b;
-  list-style: none;
-  border-radius: 25px;
-  margin: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.main {
+  grid-area: main;
 }
 
-body li .line {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+.aside1 {
+  grid-area: aside1;
+}
+
+.aside2 {
+  grid-area: aside2;
 }
 /*# sourceMappingURL=style.css.map */
