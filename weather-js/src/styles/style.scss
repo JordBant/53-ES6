@@ -8,8 +8,9 @@
     box-sizing: border-box;
 }
 
-@mixin font($weight, $size){
-    font: $weight $size 'Overpass', sans-serif;
+@mixin font($weight-weight, $size-size, $color-color){
+    font: $weight-weight $size-size 'Overpass', sans-serif;
+    color: $color-color;
 }
 
 @mixin fourGrid($row1, $row2, $col1, $col2){
@@ -25,17 +26,17 @@
     height: $fillHeight;
 }
 
-@mixin flex($justify, $align, $direction, $self-ju, $self-al){
+@mixin flex($justify-justify, $align-align, $direction-flex_dir, $self-self_ju, $self-self_al){
     display: flex;
-    justify-content: $justify;
-    align-items: $align;
-    flex-direction: $direction;
-    justify-self: $self-ju;
-    align-self: $self-al;
+    justify-content: $justify-justify;
+    align-items: $align-align;
+    flex-direction: $direction-flex_dir;
+    justify-self: $self-self_ju;
+    align-self: $self-self_al;
 }
 
-@mixin card($cardW, $cardH){
-    @include size($cardW, $cardH, null, null);
+@mixin card($cardW-W, $cardH-H){
+    @include size($cardW-W, $cardH-H, null, null);
     background: rgb(77, 75, 75);
     list-style: none;
     border-radius: 25px;
@@ -61,13 +62,13 @@ body
     {        
         @include flex(flex-start, center, null, null, null);
         @include size(100%, auto, 0, 0);
-        @include font(300, clamp(25px, 4vw, 55px));
+        @include font(300, clamp(25px, 4vw, 55px), null);
 
         border: 2px solid red;
 
         .supers
         {
-            @include font(400, 20px);
+            @include font(400, 20px, color);
             @include size(auto, auto, 0, 3px);
             border: 2px brown solid;
 
@@ -100,10 +101,11 @@ body
     .card-list{
         @include size(100%, 100%, null, null);
         @include fourGrid(1fr, 1fr, 1fr, 1fr);
-
-
+        
         .card{
             @include card(70%, 80%);
+            @include flex(center, flex-start, column, null, null);
+            @include font(400, 20%, white);
         }
     }
 }

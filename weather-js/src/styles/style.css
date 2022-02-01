@@ -50,6 +50,7 @@ body {
 
 .main .main-sec .supers {
   font: 400 20px "Overpass", sans-serif;
+  color: color;
   margin: 0;
   padding: 3px;
   width: auto;
@@ -98,5 +99,20 @@ body {
   background: #4d4b4b;
   list-style: none;
   border-radius: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font: 400 20% "Overpass", sans-serif;
+  color: white;
 }
 /*# sourceMappingURL=style.css.map */
