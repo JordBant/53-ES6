@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100;300;400&display=swap');
+
 //=============Mixins==============// 
 
 @mixin body {
@@ -6,25 +8,34 @@
     box-sizing: border-box;
 }
 
+@mixin font($weight, $size){
+    font: $weight $size 'Overpass', sans-serif;
+}
+
 @mixin fourGrid($row1, $row2, $col1, $col2){
     display: grid;
     grid-template-rows: $row1 $row2;
     grid-template-columns: $col1 $col2;
 }
 
-@mixin size($fillWidth, $fillHeight){
+@mixin size($fillWidth, $fillHeight, $margin, $padding){
+    margin: $margin;
+    padding: $padding;
     width: $fillWidth;
     height: $fillHeight;
 }
 
-@mixin flex($justify, $align){
+@mixin flex($justify, $align, $direction, $self-ju, $self-al){
     display: flex;
     justify-content: $justify;
     align-items: $align;
+    flex-direction: $direction;
+    justify-self: $self-ju;
+    align-self: $self-al;
 }
 
-@mixin card{
-    @include size(70%, 90%);
+@mixin card($cardW, $cardH){
+    @include size($cardW, $cardH, null, null);
     background: rgb(77, 75, 75);
     list-style: none;
     border-radius: 25px;
@@ -35,14 +46,46 @@
 body
 {
     @include body();
-    @include size(100vw, 100vh);
-    @include fourGrid(1fr, 1fr, 2fr, 1fr);
+    @include size(100vw, 100vh, null, null);
+    @include fourGrid(1fr, 1fr, 3fr, 1fr);
 }
 
 .main
 {
+    @include flex(space-between, null, column, null, null);
+    padding: 20px 59px 40px 23px;
     border: 2px solid green;
     grid-row: 1 / -1;
+    
+    .main-sec
+    {        
+        @include flex(flex-start, center, null, null, null);
+        @include size(100%, auto, 0, 0);
+        @include font(300, clamp(25px, 4vw, 55px));
+
+        border: 2px solid red;
+
+        .supers
+        {
+            @include font(400, 20px);
+            @include size(auto, auto, 0, 3px);
+            border: 2px brown solid;
+
+            .super-line
+            {
+                @include size(100%, 3px, 0, 0);
+            }
+        }
+
+        .line
+        {
+            @include size(3px, 50%, null, null);
+            margin: 3px 30px;
+            background-color: black;
+            border-radius: 50px;
+            border: none;
+        }
+    }
 }
 
 .aside1
@@ -55,15 +98,12 @@ body
     border: 2px solid blue;
 
     .card-list{
-        @include size(100%, 100%);
+        @include size(100%, 100%, null, null);
         @include fourGrid(1fr, 1fr, 1fr, 1fr);
 
-        .card{
-            @include card();
 
-            // .line{
-            //     transform: rotate(-45deg);
-            // }
+        .card{
+            @include card(70%, 80%);
         }
     }
 }
