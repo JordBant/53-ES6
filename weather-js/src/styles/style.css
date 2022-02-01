@@ -3,30 +3,45 @@ body {
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
   width: 100vw;
   height: 100vh;
   display: -ms-grid;
   display: grid;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  -ms-grid-columns: 2fr 1fr;
+      grid-template-columns: 2fr 1fr;
 }
 
 .main {
-  grid-area: main;
+  border: 2px solid green;
+  grid-row: 1 / -1;
 }
 
 .aside1 {
-  grid-area: aside1;
+  border: 2px solid red;
 }
 
 .aside2 {
-  grid-area: aside2;
+  border: 2px solid blue;
+}
+
+.aside2 .card-list {
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.aside2 .card-list .card {
+  width: 70%;
+  height: 90%;
+  background: #4d4b4b;
+  list-style: none;
+  border-radius: 25px;
 }
 /*# sourceMappingURL=style.css.map */
