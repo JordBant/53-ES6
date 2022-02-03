@@ -9,4 +9,18 @@ Readouts on the percipitation, windspeed and direction and 'feels-like' temperat
 
 Option between Celsius and Fahrenheit with the corresponding conversions
 
-For this project, the RESTful weather API tomorrow.io will be consumed via Javascript's FetchAPI.
+Framework and Libraries
+------------------------
+- SASS
+
+APIs
+------------
+Tomorrow.io:
+- Weather API consumed via Javascript's FetchAPI to display weather conditions and climate in real time.
+- Also offers a selection of icons to represent weather conditions
+
+Unsplash API:
+- HD Photo API will be consumed via Javascript's FetchAPI to generate random HD photos upon client rendering.
+
+Google Fonts API
+- Text font API provided by Google consumed via URL import into stylesheet. Offers wide range of different font styles.

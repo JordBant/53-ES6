@@ -4,6 +4,8 @@ body {
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  margin: NULL;
+  padding: NULL;
   width: 100vw;
   height: 100vh;
   display: -ms-grid;
@@ -12,6 +14,13 @@ body {
       grid-template-rows: 1fr 1fr;
   -ms-grid-columns: 3fr 1fr;
       grid-template-columns: 3fr 1fr;
+  z-index: -100;
+  background: #ceae85 url(/weather-js/media/weatherApp.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+body > * {
+  background: transparent;
 }
 
 .main {
@@ -21,13 +30,48 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: NULL;
+      -ms-flex-align: NULL;
+          align-items: NULL;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
   padding: 20px 59px 40px 23px;
-  border: 2px solid green;
   grid-row: 1 / -1;
+}
+
+.main .navbar {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  height: 37px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.main .navbar .search {
+  font: 300 1rem "Overpass", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #46454580;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
+  border-radius: 50px;
+}
+
+.main .navbar .search:focus {
+  outline: none;
 }
 
 .main .main-sec {
@@ -40,22 +84,39 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: NULL;
+          flex-direction: NULL;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
   margin: 0;
   padding: 0;
   width: 100%;
   height: auto;
   font: 300 clamp(25px, 4vw, 55px) "Overpass", sans-serif;
-  border: 2px solid red;
+  color: white;
+}
+
+.main .main-sec .line {
+  margin: NULL;
+  padding: NULL;
+  width: 3px;
+  height: 50%;
+  margin: 3px 3%;
+  background-color: white;
+  border-radius: 50px;
+  border: none;
 }
 
 .main .main-sec .supers {
   font: 400 20px "Overpass", sans-serif;
-  color: color;
+  color: white;
   margin: 0;
-  padding: 3px;
+  padding: 1px;
   width: auto;
   height: auto;
-  border: 2px brown solid;
 }
 
 .main .main-sec .supers .super-line {
@@ -63,26 +124,34 @@ body {
   padding: 0;
   width: 100%;
   height: 3px;
-}
-
-.main .main-sec .line {
-  width: 3px;
-  height: 50%;
-  margin: 3px 30px;
-  background-color: black;
-  border-radius: 50px;
+  background: white;
   border: none;
 }
 
 .aside1 {
-  border: 2px solid red;
+  background: #817f7f80;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
+  border-top-left-radius: 35px;
 }
 
 .aside2 {
-  border: 2px solid blue;
+  background: #817f7f80;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
+  padding: 20px;
+  border-bottom-left-radius: 35px;
 }
 
 .aside2 .card-list {
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
   display: -ms-grid;
@@ -91,20 +160,29 @@ body {
       grid-template-rows: 1fr 1fr;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 0.5px;
+          column-gap: 0.5px;
+  border: 12x solid cyan;
 }
 
 .aside2 .card-list .card {
+  margin: 10px;
+  padding: 15px;
   width: 70%;
-  height: 80%;
-  background: #4d4b4b;
+  height: 78%;
+  background: #8abed3;
   list-style: none;
-  border-radius: 25px;
+  border-radius: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
@@ -112,7 +190,21 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  font: 400 20% "Overpass", sans-serif;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  font: 400 1rem "Overpass", sans-serif;
   color: white;
+}
+
+.aside2 .card-list .card p {
+  margin: 0;
+  padding: 0;
+  width: NULL;
+  height: NULL;
+  font: 300 230% "Overpass", sans-serif;
+  color: NULL;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 /*# sourceMappingURL=style.css.map */
