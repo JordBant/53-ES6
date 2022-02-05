@@ -15,12 +15,15 @@ Framework and Libraries
 
 APIs
 ------------
-Tomorrow.io:
+Tomorrow.io API:
 - Weather API consumed via Javascript's FetchAPI to display weather conditions and climate in real time.
 - Also offers a selection of icons to represent weather conditions
 
-Unsplash API:
-- HD Photo API will be consumed via Javascript's FetchAPI to generate random HD photos upon client rendering.
+Google Maps API
+- This API will be used for reverse geocoding to aid users in searching for places to see climate
 
 Google Fonts API
 - Text font API provided by Google consumed via URL import into stylesheet. Offers wide range of different font styles.
+
+Unsplash API:
+- HD Photo API will be consumed via Javascript's FetchAPI to generate random HD photos upon client rendering.
