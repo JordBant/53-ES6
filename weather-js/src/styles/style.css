@@ -97,6 +97,7 @@ body > * {
   height: auto;
   font: 300 clamp(25px, 4vw, 55px) "Overpass", sans-serif;
   color: white;
+  border: 2px solid red;
 }
 
 .main .main-sec .line {
@@ -113,10 +114,23 @@ body > * {
 .main .main-sec .supers {
   font: 400 20px "Overpass", sans-serif;
   color: white;
-  margin: 0;
-  padding: 1px;
+  margin: auto;
+  padding: 0;
   width: auto;
   height: auto;
+  margin-left: 20px;
+  border: 2px brown solid;
+  text-align: center;
+  -webkit-transform: rotate(-140deg);
+          transform: rotate(-140deg);
+}
+
+.main .main-sec .supers #Fahr {
+  font: 400 clamp(25px, 3.7vw, 55px) "Overpass", sans-serif;
+  color: white;
+  margin: 0;
+  -webkit-transform: rotate(140deg);
+          transform: rotate(140deg);
 }
 
 .main .main-sec .supers .super-line {

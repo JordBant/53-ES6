@@ -8,6 +8,12 @@
     box-sizing: border-box;
 }
 
+// @mixin animations{
+//     @keyframes identifier {
+        
+//     }
+// }
+
 @mixin frostGlass($hex-hex)
 {
     background: $hex-hex;
@@ -97,7 +103,7 @@ body
         @include size(100%, auto, 0, 0);
         @include font(300, clamp(25px, 4vw, 55px), white);
 
-        //border: 2px solid red;
+        border: 2px solid red;
 
         .line
         {
@@ -111,8 +117,20 @@ body
         .supers
         {
             @include font(400, 20px, white);
-            @include size(auto, auto, 0, 1px);
-            //border: 2px brown solid;
+            @include size(auto, auto, auto, 0);
+            margin-left: 20px;
+            //position: absolute;
+            border: 2px brown solid;
+            text-align: center;
+            transform: rotate(-140deg);
+
+            #Fahr
+            {
+                //position: absolute;  
+                @include font(400, clamp(25px, 3.7vw, 55px), white);
+                margin: 0;
+                transform: rotate(140deg);
+            }
 
             .super-line
             {
