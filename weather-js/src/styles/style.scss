@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100;300;400&display=swap');
 
+//=============Animations==============// 
+
+
+
 //=============Mixins==============// 
 
 @mixin body {
@@ -8,14 +12,7 @@
     box-sizing: border-box;
 }
 
-// @mixin animations{
-//     @keyframes identifier {
-        
-//     }
-// }
-
-@mixin frostGlass($hex-hex)
-{
+@mixin frostGlass($hex-hex){
     background: $hex-hex;
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -50,10 +47,11 @@
 }
 
 @mixin card($cardW-W, $cardH-H){
-    @include size($cardW-W, $cardH-H, 10px, 15px);
-    background: #8abed3;
+    @include size($cardW-W, $cardH-H, 10px, 10px);
+    @include frostGlass(#2dbef74b);
     list-style: none;
     border-radius: 15px;
+    border: none;
 }
 
 //=============Properties==============// 
@@ -83,15 +81,13 @@ body
         @include size(50%, 37px, 0, 0);
         align-self: center;
 
-        .search
-        {
+        .search{
             @include font(300, 1rem, white);
             @include size(100%, 100%, 0, 0);
             @include frostGlass(#46454580);
 
             border-radius: 50px;
-            &:focus
-            {
+            &:focus{
                 outline: none;
             }
         }
@@ -103,10 +99,9 @@ body
         @include size(100%, auto, 0, 0);
         @include font(300, clamp(25px, 4vw, 55px), white);
 
-        border: 2px solid red;
+        // border: 2px solid red;
 
-        .line
-        {
+        .line{
             @include size(3px, 50%, NULL, NULL);
             margin: 3px 3%;
             background-color: white;
@@ -114,22 +109,25 @@ body
             border: none;
         }
 
-        .supers
-        {
+        .supers{
+            @include flex(center, center, row, NULL, NULL);
             @include font(400, 20px, white);
-            @include size(auto, auto, auto, 0);
-            margin-left: 20px;
-            //position: absolute;
-            border: 2px brown solid;
-            text-align: center;
-            transform: rotate(-140deg);
+            @include size(auto, 50%, 0, 0);
+            margin-left: 5px;
+            
+            // border: 2px brown solid;
+            //transform: rotate(-140deg);
+
+            .unselected
+            {
+                @include flex(NULL, -align, -flex_dir, -self_ju, -self_al)
+            }
 
             #Fahr
             {
-                //position: absolute;  
                 @include font(400, clamp(25px, 3.7vw, 55px), white);
                 margin: 0;
-                transform: rotate(140deg);
+                //transform:
             }
 
             .super-line
@@ -146,6 +144,7 @@ body
 {
     @include frostGlass(#817f7f80);
     border-top-left-radius: 35px;
+    border-bottom: none;
     //border: 2px solid red;
 }
 
@@ -155,6 +154,7 @@ body
 
     padding: 20px;
     border-bottom-left-radius: 35px;
+    border-top: none;
     //border: 2px solid blue;
 
     .card-list{
@@ -163,19 +163,23 @@ body
 
         justify-items: center;
         align-items: center;
-        column-gap: 0.5px;
         border: 12x solid cyan;
 
         .card{
             @include card(70%, 78%);
             @include flex(space-between, flex-start, column, NULL, NULL);
             @include font(400, 1rem, white);
+        }
 
-            p{
-                @include size(NULL, NULL, 0, 0);
-                @include font(300, 230%, NULL);
-                align-self: flex-end;
-            }
+        // img{
+        //     @include size(300px, 300px, 0, 0);
+        // }
+
+        p{
+            @include size(NULL, NULL, 0, 0);
+            @include font(300, 30px, NULL);
+            justify-self: flex-end;
+            align-self: flex-end;
         }
     }
 }
