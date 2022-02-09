@@ -97,7 +97,6 @@ body > * {
   height: auto;
   font: 300 clamp(25px, 4vw, 55px) "Overpass", sans-serif;
   color: white;
-  border: 2px solid red;
 }
 
 .main .main-sec .line {
@@ -112,25 +111,54 @@ body > * {
 }
 
 .main .main-sec .supers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
   font: 400 20px "Overpass", sans-serif;
   color: white;
-  margin: auto;
+  margin: 0;
   padding: 0;
   width: auto;
-  height: auto;
-  margin-left: 20px;
-  border: 2px brown solid;
-  text-align: center;
-  -webkit-transform: rotate(-140deg);
-          transform: rotate(-140deg);
+  height: 50%;
+  margin-left: 5px;
+}
+
+.main .main-sec .supers .unselected {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: NULL;
+      -ms-flex-pack: NULL;
+          justify-content: NULL;
+  -webkit-box-align: -align;
+      -ms-flex-align: -align;
+          align-items: -align;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: -flex_dir;
+          flex-direction: -flex_dir;
+  justify-self: -self_ju;
+  -ms-flex-item-align: -self_al;
+      align-self: -self_al;
 }
 
 .main .main-sec .supers #Fahr {
   font: 400 clamp(25px, 3.7vw, 55px) "Overpass", sans-serif;
   color: white;
   margin: 0;
-  -webkit-transform: rotate(140deg);
-          transform: rotate(140deg);
 }
 
 .main .main-sec .supers .super-line {
@@ -150,6 +178,7 @@ body > * {
   -webkit-backdrop-filter: blur(14px);
           backdrop-filter: blur(14px);
   border-top-left-radius: 35px;
+  border-bottom: none;
 }
 
 .aside2 {
@@ -161,6 +190,7 @@ body > * {
           backdrop-filter: blur(14px);
   padding: 20px;
   border-bottom-left-radius: 35px;
+  border-top: none;
 }
 
 .aside2 .card-list {
@@ -178,19 +208,23 @@ body > * {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-column-gap: 0.5px;
-          column-gap: 0.5px;
   border: 12x solid cyan;
 }
 
 .aside2 .card-list .card {
   margin: 10px;
-  padding: 15px;
+  padding: 10px;
   width: 70%;
   height: 78%;
-  background: #8abed3;
+  background: #2dbef74b;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
   list-style: none;
   border-radius: 15px;
+  border: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -211,13 +245,14 @@ body > * {
   color: white;
 }
 
-.aside2 .card-list .card p {
+.aside2 .card-list p {
   margin: 0;
   padding: 0;
   width: NULL;
   height: NULL;
-  font: 300 230% "Overpass", sans-serif;
+  font: 300 30px "Overpass", sans-serif;
   color: NULL;
+  justify-self: flex-end;
   -ms-flex-item-align: end;
       align-self: flex-end;
 }
