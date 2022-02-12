@@ -212,7 +212,6 @@ body > * {
   -ms-flex-item-align: NULL;
       align-self: NULL;
   margin-bottom: auto;
-  border: 2px solid blue;
 }
 
 .aside1 .now .cur-condition {
@@ -232,7 +231,6 @@ body > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
-  border: 2px solid brown;
   padding: 0px;
 }
 

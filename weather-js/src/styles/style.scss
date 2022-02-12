@@ -155,10 +155,10 @@ body
         @include size(95%, auto, 0, 8px);
         @include flex(space-between, center, row, NULL, NULL);
         margin-bottom: auto;  //psuedo flex-start since justify-self isn't cooperating
-        border: 2px solid blue;
+        // border: 2px solid blue;
         .cur-condition{
             @include flex(center, center, NULL, NULL, NULL);
-            border: 2px solid brown;
+            // border: 2px solid brown;
             padding: 0px;
             #apparent{
                 @include font(200, 30px, rgba(255, 255, 255, 0.75), 'Manrope');
