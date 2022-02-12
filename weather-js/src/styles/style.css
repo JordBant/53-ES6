@@ -14,7 +14,6 @@ body {
       grid-template-rows: 1fr 1fr;
   -ms-grid-columns: 3fr 1fr;
       grid-template-columns: 3fr 1fr;
-  z-index: -100;
   background: #ceae85 url(/weather-js/media/weatherApp.jpg) no-repeat center center;
   background-size: cover;
 }
@@ -170,8 +169,98 @@ body > * {
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   -webkit-backdrop-filter: blur(14px);
           backdrop-filter: blur(14px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
   border-top-left-radius: 35px;
   border-bottom: none;
+  border: 2px solid red;
+}
+
+.aside1 .now {
+  margin: 0;
+  padding: 8px;
+  width: 95%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  margin-bottom: auto;
+  border: 2px solid blue;
+}
+
+.aside1 .now .cur-condition {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: NULL;
+          flex-direction: NULL;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  border: 2px solid brown;
+  padding: 0px;
+}
+
+.aside1 .now .cur-condition #apparent {
+  font: 200 30px "Manrope", sans-serif;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.aside1 .now .cur-condition ::before {
+  content: '';
+  margin: 15px;
+  padding: 0;
+  width: NULL;
+  height: 100%;
+  border: 1px solid white;
+}
+
+.aside1 .now #time {
+  font: 300 30px "Manrope", sans-serif;
+  color: NULL;
+}
+
+.aside1 .timeline {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  border: 2px solid green;
 }
 
 .aside2 {
@@ -201,10 +290,6 @@ body > * {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.aside2 .card-listimg {
-  border-bottom: white 2px solid;
 }
 
 .aside2 .card-list .card {
@@ -251,6 +336,22 @@ body > * {
           box-shadow: none;
 }
 
+.aside2 .card-list .card p {
+  margin: 0;
+  padding: 0;
+  width: NULL;
+  height: NULL;
+  font: 300 30px "Manrope", sans-serif;
+  color: NULL;
+}
+
+.aside2 .card-list .card img {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  height: auto;
+}
+
 .aside2 .card-list .card::before {
   opacity: 0;
   content: '';
@@ -270,17 +371,5 @@ body > * {
 
 .aside2 .card-list .card:hover::before {
   opacity: 0.7;
-}
-
-.aside2 .card-list p {
-  margin: 0;
-  padding: 0;
-  width: NULL;
-  height: NULL;
-  font: 300 30px "Manrope", sans-serif;
-  color: NULL;
-  justify-self: flex-end;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
 }
 /*# sourceMappingURL=style.css.map */
