@@ -62,7 +62,6 @@ body
     @include size(100vw, 100vh, NULL, NULL);
     @include fourGrid(1fr, 1fr, 3fr, 1fr);
 
-    z-index: -100;
     background:  rgb(206, 174, 133) url(/weather-js/media/weatherApp.jpg) no-repeat center center;
     background-size: cover;
 
@@ -78,7 +77,7 @@ body
 
     .navbar
     {
-        @include size(50%, 37px, 0, 0);
+        @include size(50%/*300px*/, 37px, 0, 0);
         align-self: center;
 
         .search{
@@ -147,9 +146,86 @@ body
 .aside1
 {
     @include frostGlass(#817f7f80);
+    @include flex(center, center, column, NULL, NULL);    
     border-top-left-radius: 35px;
     border-bottom: none;
-    //border: 2px solid red;
+    // border: 2px solid red;
+
+    .now{
+        @include size(85%, auto, 0, 8px);
+        @include flex(space-between, center, row, NULL, NULL);
+        margin-bottom: auto;  //psuedo flex-start since justify-self isn't cooperating
+        // border: 2px solid blue;
+        .cur-condition{
+            @include flex(center, center, NULL, NULL, NULL);
+            @include size(auto, auto, NULL, NULL);
+            position: relative;
+            // border: 2px solid brown;
+            padding: 0px;
+            &::before{
+                content: '';
+                @include size(0px, 50%, 15px, 0);
+                position: absolute;
+                right: 45%;
+                border: 1px solid white;
+            }
+            #apparent{
+                position: relative;
+                @include font(200, 30px, #ffffffbf, 'Manrope');
+                @include flex(center, center, column, NULL, NULL);
+                @include size(60px, auto, NULL, 0);
+                // border: 2px solid red;
+                margin-left: 17px;
+                &::before{
+                    content: 'Feels Like';
+                    @include size(100%, auto, 0, 0);
+                    @include font(500, 12px, white, Overpass);
+                    text-align: center;
+                    justify-self: flex-start;
+                    opacity: 1;
+                    transition: all 0.4 ease-in;
+                }
+            }
+        }
+        #time{
+            @include font(300, 30px, NULL, 'Manrope');
+        }
+    }
+    .timeline{
+        @include size(100%, 100%, 0, 0);
+        @include flex(center, flex-end, NULL, NULL, NULL);
+        // border: 2px solid green;
+        position: relative;
+
+        // 167.8px;
+        .interval-list{
+            @include size(90%, 100%, 0, 0);
+            list-style: none;
+            border: 2px solid red;
+            position: absolute;
+            #interval{
+                transform-origin: 1900%;
+                transform: rotate(calc(170deg / 9 * var(--i)));
+                margin: 0.5%;
+                position: absolute;
+                left: 1.7%;
+                top: 100%;
+                & li{
+                     transform: rotate(calc(170deg / -9 * var(--i)));
+                }
+            }
+        }
+
+        //Half Circle Timeline
+        &::before{
+            content: '';
+            @include size(/*80%, 60%,*/75%, 135px, 0, 0);
+            margin-bottom: 20px;
+            border-radius: 150px 150px 0 0;
+            background-color: #2f7ded;
+            z-index: -1;
+        }
+    }
 }
 
 .aside2
@@ -181,6 +257,17 @@ body
             border-radius: 0;
             box-shadow: none;
 
+            p{
+                @include size(NULL, NULL, 0, 0);
+                @include font(300, 30px, NULL, 'Manrope');
+                // justify-self: flex-end;
+                // align-self: flex-end;
+            }
+
+            img{
+                @include size(50%, auto, 0, 0);
+            }
+
             &::before{
                 opacity: 0;
                 content: '';
@@ -197,17 +284,6 @@ body
             &:hover::before{
                 opacity: 0.7;
             }
-        }
-
-        // img{
-        //     @include size(300px, 300px, 0, 0);
-        // }
-
-        p{
-            @include size(NULL, NULL, 0, 0);
-            @include font(300, 30px, NULL, 'Manrope');
-            justify-self: flex-end;
-            align-self: flex-end;
         }
     }
 }
