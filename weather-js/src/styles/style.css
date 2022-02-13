@@ -187,13 +187,12 @@ body > * {
       align-self: NULL;
   border-top-left-radius: 35px;
   border-bottom: none;
-  border: 2px solid red;
 }
 
 .aside1 .now {
   margin: 0;
   padding: 8px;
-  width: 95%;
+  width: 85%;
   height: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -231,21 +230,65 @@ body > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
+  margin: NULL;
+  padding: NULL;
+  width: auto;
+  height: auto;
+  position: relative;
   padding: 0px;
 }
 
-.aside1 .now .cur-condition #apparent {
-  font: 200 30px "Manrope", sans-serif;
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.aside1 .now .cur-condition ::before {
+.aside1 .now .cur-condition::before {
   content: '';
   margin: 15px;
   padding: 0;
-  width: NULL;
-  height: 100%;
+  width: 0px;
+  height: 50%;
+  position: absolute;
+  right: 45%;
   border: 1px solid white;
+}
+
+.aside1 .now .cur-condition #apparent {
+  position: relative;
+  font: 200 30px "Manrope", sans-serif;
+  color: #ffffffbf;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  margin: NULL;
+  padding: 0;
+  width: 60px;
+  height: auto;
+  margin-left: 17px;
+}
+
+.aside1 .now .cur-condition #apparent::before {
+  content: 'Feels Like';
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  font: 500 12px Overpass, sans-serif;
+  color: white;
+  text-align: center;
+  justify-self: flex-start;
+  opacity: 1;
+  -webkit-transition: all 0.4 ease-in;
+  transition: all 0.4 ease-in;
 }
 
 .aside1 .now #time {
@@ -257,8 +300,62 @@ body > * {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: auto;
-  border: 2px solid green;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: NULL;
+          flex-direction: NULL;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  position: relative;
+}
+
+.aside1 .timeline .interval-list {
+  margin: 0;
+  padding: 0;
+  width: 90%;
+  height: 100%;
+  list-style: none;
+  border: 2px solid red;
+  position: absolute;
+}
+
+.aside1 .timeline .interval-list #interval {
+  -webkit-transform-origin: 1900%;
+          transform-origin: 1900%;
+  -webkit-transform: rotate(calc(170deg / 9 * var(--i)));
+          transform: rotate(calc(170deg / 9 * var(--i)));
+  margin: 0.5%;
+  position: absolute;
+  left: 1.7%;
+  top: 100%;
+}
+
+.aside1 .timeline .interval-list #interval li {
+  -webkit-transform: rotate(calc(170deg / -9 * var(--i)));
+          transform: rotate(calc(170deg / -9 * var(--i)));
+}
+
+.aside1 .timeline::before {
+  content: '';
+  margin: 0;
+  padding: 0;
+  width: 75%;
+  height: 135px;
+  margin-bottom: 20px;
+  border-radius: 150px 150px 0 0;
+  background-color: #2f7ded;
+  z-index: -1;
 }
 
 .aside2 {
