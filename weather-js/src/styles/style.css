@@ -317,45 +317,77 @@ body > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
-  position: relative;
+  border: 2px solid green;
 }
 
 .aside1 .timeline .interval-list {
   margin: 0;
   padding: 0;
-  width: 90%;
-  height: 100%;
-  list-style: none;
-  border: 2px solid red;
-  position: absolute;
-}
-
-.aside1 .timeline .interval-list #interval {
-  -webkit-transform-origin: 1900%;
-          transform-origin: 1900%;
-  -webkit-transform: rotate(calc(170deg / 9 * var(--i)));
-          transform: rotate(calc(170deg / 9 * var(--i)));
-  margin: 0.5%;
-  position: absolute;
-  left: 1.7%;
-  top: 100%;
-}
-
-.aside1 .timeline .interval-list #interval li {
-  -webkit-transform: rotate(calc(170deg / -9 * var(--i)));
-          transform: rotate(calc(170deg / -9 * var(--i)));
-}
-
-.aside1 .timeline::before {
-  content: '';
-  margin: 0;
-  padding: 0;
-  width: 75%;
-  height: 135px;
-  margin-bottom: 20px;
+  width: 70%;
+  height: 55%;
+  margin-bottom: 33px;
   border-radius: 150px 150px 0 0;
   background-color: #2f7ded;
   z-index: -1;
+  list-style: none;
+  position: relative;
+}
+
+.aside1 .timeline .interval-list .hr2 {
+  -webkit-transform: rotate(292.5deg);
+          transform: rotate(292.5deg);
+}
+
+.aside1 .timeline .interval-list .hr3 {
+  -webkit-transform: rotate(315deg);
+          transform: rotate(315deg);
+}
+
+.aside1 .timeline .interval-list .hr4 {
+  -webkit-transform: rotate(337.5deg);
+          transform: rotate(337.5deg);
+}
+
+.aside1 .timeline .interval-list .hr5 {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
+.aside1 .timeline .interval-list .hr6 {
+  -webkit-transform: rotate(382.5deg);
+          transform: rotate(382.5deg);
+}
+
+.aside1 .timeline .interval-list .hr7 {
+  -webkit-transform: rotate(405deg);
+          transform: rotate(405deg);
+}
+
+.aside1 .timeline .interval-list .hr8 {
+  -webkit-transform: rotate(427.5deg);
+          transform: rotate(427.5deg);
+}
+
+.aside1 .timeline .interval-list > * {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 180%;
+  position: absolute;
+  text-align: center;
+}
+
+.aside1 .timeline .interval-list > * .hr9 {
+  left: 100%;
+}
+
+.aside1 .timeline .interval-list > *.hr1, .aside1 .timeline .interval-list > *.hr9 {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  border: 2px solid red;
+  top: 100%;
 }
 
 .aside2 {
