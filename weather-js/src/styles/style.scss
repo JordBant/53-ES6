@@ -3,7 +3,6 @@
 //=============Animations==============// 
 
 
-
 //=============Mixins==============// 
 
 @mixin body {
@@ -194,37 +193,58 @@ body
     .timeline{
         @include size(100%, 100%, 0, 0);
         @include flex(center, flex-end, NULL, NULL, NULL);
-        // border: 2px solid green;
-        position: relative;
+        border: 2px solid green;
 
         // 167.8px;
-        .interval-list{
-            @include size(90%, 100%, 0, 0);
-            list-style: none;
-            border: 2px solid red;
-            position: absolute;
-            #interval{
-                transform-origin: 1900%;
-                transform: rotate(calc(170deg / 9 * var(--i)));
-                margin: 0.5%;
-                position: absolute;
-                left: 1.7%;
-                top: 100%;
-                & li{
-                     transform: rotate(calc(170deg / -9 * var(--i)));
-                }
-            }
-        }
+        .interval-list{      
+            $position: 270deg;
+            $deg-apart: 22.5deg;
+            $betweens: $position + $deg-apart;
 
-        //Half Circle Timeline
-        &::before{
-            content: '';
-            @include size(/*80%, 60%,*/75%, 135px, 0, 0);
-            margin-bottom: 20px;
+            @include size(/*80% or 70%, 60% or 50%,*/70%, 55%, 0, 0);
+            margin-bottom: 33px;
             border-radius: 150px 150px 0 0;
             background-color: #2f7ded;
             z-index: -1;
+            list-style: none;
+            // border: 2px solid red;
+            position: relative;
+
+            @for $i from 2 through 8{
+                    .hr#{$i}{
+                        transform: rotate($betweens);
+                    } 
+                    $betweens: $betweens + $deg-apart;
+                }
+            
+            & > *{
+                @include size(100%, 180%, 0, 0);
+                position: absolute;
+                text-align: center;
+                // border: blue 2px solid;
+                .hr9{left:100%;}
+                &.hr1, &.hr9{
+                    @include size(auto, auto, 0, 0);
+                    border: 2px solid red;
+                    top: 100%;
+                }
+
+                // & > *
+                // {
+                //    rotate each li element so it is upright 
+                // }
+            }
         }
+
+        // //Half Circle Timeline
+        // &::before{
+        //     content: '';
+        //     @include size(/*80%, 60%,*/75%, 135px, 0, 0);
+        //     margin-bottom: 20px;
+        //     border-radius: 150px 150px 0 0;
+        //     background-color: #2f7ded;
+        //     z-index: -1;
+        // }
     }
 }
 
