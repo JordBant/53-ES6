@@ -318,6 +318,7 @@ body > * {
   -ms-flex-item-align: NULL;
       align-self: NULL;
   border: 2px solid green;
+  position: relative;
 }
 
 .aside1 .timeline .interval-list {
@@ -327,10 +328,40 @@ body > * {
   height: 55%;
   margin-bottom: 33px;
   border-radius: 150px 150px 0 0;
+  list-style: none;
   background-color: #2f7ded;
   z-index: -1;
-  list-style: none;
   position: relative;
+}
+
+.aside1 .timeline .interval-list > * {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 180%;
+  position: absolute;
+  text-align: center;
+}
+
+.aside1 .timeline .interval-list > * #info {
+  top: 100px;
+}
+
+.aside1 .timeline .interval-list .hr1 {
+  right: 100%;
+}
+
+.aside1 .timeline .interval-list .hr9 {
+  left: 100%;
+}
+
+.aside1 .timeline .interval-list .hr1, .aside1 .timeline .interval-list .hr9 {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  border: 2px solid red;
+  top: 100%;
 }
 
 .aside1 .timeline .interval-list .hr2 {
@@ -368,26 +399,27 @@ body > * {
           transform: rotate(427.5deg);
 }
 
-.aside1 .timeline .interval-list > * {
+.aside1 .timeline .inv-circle-wrapper {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 180%;
+  width: 80%;
+  height: 65%;
+  margin-bottom: 33px;
+  border-radius: 150px 150px 0 0;
+  list-style: none;
   position: absolute;
-  text-align: center;
+  background-color: aqua;
+  z-index: -2;
 }
 
-.aside1 .timeline .interval-list > * .hr9 {
-  left: 100%;
-}
-
-.aside1 .timeline .interval-list > *.hr1, .aside1 .timeline .interval-list > *.hr9 {
+.aside1 .timeline .inv-circle-wrapper .inv-circle {
   margin: 0;
   padding: 0;
-  width: auto;
-  height: auto;
-  border: 2px solid red;
-  top: 100%;
+  width: 75%;
+  height: 40%;
+  margin-bottom: 33px;
+  border-radius: 150px 150px 0 0;
+  list-style: none;
 }
 
 .aside2 {
