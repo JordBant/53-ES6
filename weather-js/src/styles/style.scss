@@ -11,6 +11,13 @@
     box-sizing: border-box;
 }
 
+@mixin circle($growWidth-growW, $growHeight-growH){
+    @include size(/*80% / 70%, 60% / 55%,*/$growWidth-growW, $growHeight-growH, 0, 0);
+    margin-bottom: 33px;
+    border-radius: 150px 150px 0 0;
+    list-style: none;
+}
+
 @mixin frostGlass($hex-hex){
     background: $hex-hex;
     border: 1px solid #ffffff4d;
@@ -98,8 +105,7 @@ body
         @include font(100, clamp(25px, 4vw, 55px), white, 'Overpass');
 
         // border: 2px solid red;
-        #temperature
-        {
+        #temperature{
             @include font(400, clamp(25px, 4vw, 55px), white, 'Manrope');
         }
 
@@ -145,7 +151,7 @@ body
 .aside1
 {
     @include frostGlass(#817f7f80);
-    @include flex(center, center, column, NULL, NULL);    
+    @include flex(center, center, column, NULL, NULL); 
     border-top-left-radius: 35px;
     border-bottom: none;
     // border: 2px solid red;
@@ -194,57 +200,61 @@ body
         @include size(100%, 100%, 0, 0);
         @include flex(center, flex-end, NULL, NULL, NULL);
         border: 2px solid green;
-
-        // 167.8px;
+        position: relative;
+        //Half Circle Timeline
         .interval-list{      
             $position: 270deg;
             $deg-apart: 22.5deg;
             $betweens: $position + $deg-apart;
 
-            @include size(/*80% or 70%, 60% or 50%,*/70%, 55%, 0, 0);
-            margin-bottom: 33px;
-            border-radius: 150px 150px 0 0;
+            @include circle(70%, 55%);
             background-color: #2f7ded;
             z-index: -1;
-            list-style: none;
-            // border: 2px solid red;
             position: relative;
 
-            @for $i from 2 through 8{
-                    .hr#{$i}{
-                        transform: rotate($betweens);
-                    } 
-                    $betweens: $betweens + $deg-apart;
-                }
-            
+            //Not initializing ruleset by referencing #interval because of ID's high priority 
+            //Will overwrite styling of 1st and 9th intervals
             & > *{
                 @include size(100%, 180%, 0, 0);
                 position: absolute;
                 text-align: center;
+                
                 // border: blue 2px solid;
-                .hr9{left:100%;}
-                &.hr1, &.hr9{
-                    @include size(auto, auto, 0, 0);
-                    border: 2px solid red;
-                    top: 100%;
-                }
-
                 // & > *
                 // {
-                //    rotate each li element so it is upright 
+                //    rotate each child element so it is upright 
                 // }
+                #info{
+                    top: 100px;
+                }
+            }
+
+            .hr1{right: 100%;}
+            .hr9{left:100%;}
+            .hr1, .hr9{
+                @include size(auto, auto, 0, 0);
+                border: 2px solid red;
+                top: 100%;
+            }
+            @for $i from 2 through 8{
+                .hr#{$i}{
+                    transform: rotate($betweens);
+                }
+                $betweens: $betweens + $deg-apart;
             }
         }
-
-        // //Half Circle Timeline
-        // &::before{
-        //     content: '';
-        //     @include size(/*80%, 60%,*/75%, 135px, 0, 0);
-        //     margin-bottom: 20px;
-        //     border-radius: 150px 150px 0 0;
-        //     background-color: #2f7ded;
-        //     z-index: -1;
-        // }
+        .inv-circle-wrapper
+        {
+            @include circle(80%, 65%);
+            position: absolute;
+            background-color: aqua;
+            z-index: -2;
+            .inv-circle
+            {
+                @include size(100%, 100%, 0, 0);
+                ba
+            }
+        }
     }
 }
 
