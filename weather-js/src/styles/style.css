@@ -231,11 +231,10 @@ body > * {
   -ms-flex-item-align: NULL;
       align-self: NULL;
   margin: NULL;
-  padding: NULL;
+  padding: 0;
   width: auto;
   height: auto;
   position: relative;
-  padding: 0px;
 }
 
 .aside1 .now .cur-condition::before {
@@ -285,7 +284,6 @@ body > * {
   font: 500 12px Overpass, sans-serif;
   color: white;
   text-align: center;
-  justify-self: flex-start;
   opacity: 1;
   -webkit-transition: all 0.4 ease-in;
   transition: all 0.4 ease-in;
@@ -321,6 +319,19 @@ body > * {
   overflow: hidden;
 }
 
+.aside1 .timeline::after {
+  content: '';
+  margin: 0;
+  padding: 0;
+  width: 75%;
+  height: 0;
+  margin-bottom: 20%;
+  position: absolute;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  border: 1px solid white;
+}
+
 .aside1 .timeline .half-circ-wrapper {
   margin: 0;
   padding: 0;
@@ -336,26 +347,24 @@ body > * {
   padding: 0;
   width: 100%;
   height: 100%;
+  border-radius: 150px 150px 0 0;
+  list-style: none;
   position: relative;
-}
-
-.aside1 .timeline .half-circ-wrapper .half-circle > * {
-  overflow: hidden;
 }
 
 .aside1 .timeline .half-circ-wrapper .half-circle #info {
   margin: 0;
-  padding: 0;
+  padding: 4px;
   width: 100%;
-  height: 180%;
+  height: 200%;
   overflow: hidden;
   position: absolute;
   text-align: center;
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle #info #info-at8 {
-  -webkit-transform: rotate(292.5deg);
-          transform: rotate(292.5deg);
+.aside1 .timeline .half-circ-wrapper .half-circle #info #info-at {
+  font: 400 15px "Overpass", sans-serif;
+  color: #ffffffab;
 }
 
 .aside1 .timeline .half-circ-wrapper .half-circle .info1 {
@@ -447,26 +456,31 @@ body > * {
 .aside1 .timeline .half-circ-wrapper .interval-list {
   margin: 0;
   padding: 0;
-  width: 90%;
+  width: 100%;
   height: 80%;
   border-radius: 150px 150px 0 0;
   list-style: none;
   position: absolute;
-  top: 55%;
+  top: 60%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  border-bottom: 3px solid white;
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list > * {
+.aside1 .timeline .half-circ-wrapper .interval-list #interval {
   margin: 0;
-  padding: 0;
+  padding: 7px;
   width: 100%;
-  height: 190%;
+  height: 175%;
   overflow: hidden;
   position: absolute;
   text-align: center;
+  left: -2%;
+}
+
+.aside1 .timeline .half-circ-wrapper .interval-list #interval #time {
+  font: 400 10px "Mansrope", sans-serif;
+  color: #ffffff;
 }
 
 .aside1 .timeline .half-circ-wrapper .interval-list .hr2 {
@@ -474,7 +488,7 @@ body > * {
           transform: rotate(292.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr2 .interval-of2 {
+.aside1 .timeline .half-circ-wrapper .interval-list .hr2 .time-of2 {
   -webkit-transform: rotate(-292.5deg);
           transform: rotate(-292.5deg);
 }
@@ -484,7 +498,7 @@ body > * {
           transform: rotate(315deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr3 .interval-of3 {
+.aside1 .timeline .half-circ-wrapper .interval-list .hr3 .time-of3 {
   -webkit-transform: rotate(-315deg);
           transform: rotate(-315deg);
 }
@@ -494,7 +508,7 @@ body > * {
           transform: rotate(337.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr4 .interval-of4 {
+.aside1 .timeline .half-circ-wrapper .interval-list .hr4 .time-of4 {
   -webkit-transform: rotate(-337.5deg);
           transform: rotate(-337.5deg);
 }
@@ -504,7 +518,7 @@ body > * {
           transform: rotate(360deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr5 .interval-of5 {
+.aside1 .timeline .half-circ-wrapper .interval-list .hr5 .time-of5 {
   -webkit-transform: rotate(-360deg);
           transform: rotate(-360deg);
 }
@@ -514,7 +528,7 @@ body > * {
           transform: rotate(382.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr6 .interval-of6 {
+.aside1 .timeline .half-circ-wrapper .interval-list .hr6 .time-of6 {
   -webkit-transform: rotate(-382.5deg);
           transform: rotate(-382.5deg);
 }
@@ -524,7 +538,7 @@ body > * {
           transform: rotate(405deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr7 .interval-of7 {
+.aside1 .timeline .half-circ-wrapper .interval-list .hr7 .time-of7 {
   -webkit-transform: rotate(-405deg);
           transform: rotate(-405deg);
 }
@@ -534,7 +548,7 @@ body > * {
           transform: rotate(427.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr8 .interval-of8 {
+.aside1 .timeline .half-circ-wrapper .interval-list .hr8 .time-of8 {
   -webkit-transform: rotate(-427.5deg);
           transform: rotate(-427.5deg);
 }
