@@ -48,8 +48,30 @@ body > * {
   padding: 0;
   width: 50%;
   height: 37px;
+  background: #46454580;
+  border: 1px solid #ffffff4d;
+  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: NULL;
+          flex-direction: NULL;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  border-radius: 25px;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
 }
 
@@ -58,15 +80,11 @@ body > * {
   color: white;
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
-  background: #46454580;
-  border: 1px solid #ffffff4d;
-  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  -webkit-backdrop-filter: blur(14px);
-          backdrop-filter: blur(14px);
-  border-radius: 50px;
+  width: 90%;
+  height: 97%;
+  background: none;
+  outline: none;
+  border: none;
 }
 
 .main .navbar .search:focus {
@@ -315,7 +333,6 @@ body > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
-  border: 2px solid green;
   overflow: hidden;
 }
 
@@ -336,7 +353,7 @@ body > * {
   margin: 0;
   padding: 0;
   width: 90%;
-  height: 65%;
+  height: 60%;
   border-radius: 150px 150px 0 0;
   list-style: none;
   position: relative;
@@ -354,7 +371,7 @@ body > * {
 
 .aside1 .timeline .half-circ-wrapper .half-circle #info {
   margin: 0;
-  padding: 4px;
+  padding: 7px;
   width: 100%;
   height: 200%;
   overflow: hidden;
