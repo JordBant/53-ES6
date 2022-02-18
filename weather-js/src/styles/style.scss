@@ -84,14 +84,20 @@ body
     .navbar
     {
         @include size(50%/*300px*/, 37px, 0, 0);
+        @include frostGlass(#46454580);
+        @include flex(center, center, NULL, NULL, NULL);
+
+        // border: red solid 2px;
+        border-radius: 25px;
         align-self: center;
 
         .search{
             @include font(300, 1rem, white, 'Overpass');
-            @include size(100%, 100%, 0, 0);
-            @include frostGlass(#46454580);
+            @include size(90%, 97%, 0, 0);
 
-            border-radius: 50px;
+            background: none;
+            outline: none;
+            border: none;
             &:focus{
                 outline: none;
             }
@@ -196,7 +202,7 @@ body
     .timeline{
         @include size(100%, 100%, 0, 0);
         @include flex(center, center, NULL, NULL, NULL);
-        border: 2px solid green;
+        // border: 2px solid green;
         overflow: hidden;
         &::after{
             content: '';
@@ -214,7 +220,7 @@ body
             $deg-apart: 22.5deg;                //1/4 of 90 degreea
             $betweens: $position + $deg-apart;  //the angle of seperation between any given set of numbers from the relative positions 270 and 180 degrees
 
-            @include circle(90%, 65%);
+            @include circle(90%, 60%);
             position: relative;            
 
             //Half Circle Timeline
@@ -225,7 +231,7 @@ body
                 position: relative;
 
                 #info{
-                    @include size(100%, 200%, 0, 4px);
+                    @include size(100%, 200%, 0, 7px);
 
                     overflow: hidden;
                     position: absolute;
@@ -260,7 +266,6 @@ body
 
                 @include circle(100%, 80%);
 
-                // text-align: center;
                 position: absolute;
                 top: 60%;
                 left: 50%;
@@ -272,6 +277,7 @@ body
                     position: absolute;
                     text-align: center;
                     left: -2%;
+                    
                     #time{
                         @include font(400, 10px, #ffffff, 'Mansrope');
                     }

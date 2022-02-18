@@ -7,16 +7,17 @@
 // const degree = document.getElementById('temperature');
 
 // async function getWeather(){
-    // const response = await fetch(
-    //     `https://api.tomorrow.io/v4/timelines?location=${-73.98529171943665},${40.75872069597532}&fields=weatherCode&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=imperial&apikey=r02b5dPj9KQ4f1zJXRjErMBgJtUmlQpL`);
-    // const data = await response.json();
-    // const dataObj = data.data.timelines[0].intervals[0].values;
+//     const response = await fetch(
+//         `https://api.tomorrow.io/v4/timelines?location=${-73.9},${40.7}&fields=weatherCode&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=metric&apikey=r02b5dPj9KQ4f1zJXRjErMBgJtUmlQpL`);
+//     const data = await response.json();
+//     const dataObj = data.data.timelines[0].intervals[0].values;
 
 //     degree.textContent = Math.floor(dataObj.temperature);
 
 //     // cache each value in intervals[0].value to the weatherInfo object
 //     //&fields=${'temperature'}&fields=${'precipitationType'}&fields=${'precipitationProbability'}
 // }
+// getWeather();
 
 // async function getPhoto(){
 //     const response = await fetch(/**Unsplash Authentication key */);
@@ -24,7 +25,6 @@
 //     const photosOf = ;
 // }
 // getPhoto();
-// getWeather();
 
 // document.addEventListener("DOMContentLoaded", async() => {
 
