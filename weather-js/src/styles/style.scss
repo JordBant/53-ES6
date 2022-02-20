@@ -158,15 +158,23 @@ body
 {
     @include frostGlass(#817f7f80);
     @include flex(center, center, column, NULL, NULL); 
+    // box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     border-top-left-radius: 35px;
     border-bottom: none;
+    border-right: none;
     // border: 2px solid red;
 
     .now{
         @include size(85%, auto, 0, 8px);
-        @include flex(space-between, center, row, NULL, NULL);
-        margin-bottom: auto;  //psuedo flex-start since justify-self isn't cooperating
+        @include flex(space-between, center, row, NULL, flex-end);
+        @include frostGlass(rgba(0, 0, 0, 0.059));
         // border: 2px solid blue;
+        box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+        border: none;
+        border-radius: 20px 0 0 20px;
+        margin-top: 15px;
+        padding: 0 15px 0 15px;
+
         .cur-condition{
             @include flex(center, center, NULL, NULL, NULL);
             @include size(auto, auto, NULL, 0);
@@ -196,22 +204,23 @@ body
                 }
             }
         }
-        #time{@include font(300, 30px, NULL, 'Manrope');}
+        #time{@include font(300, 30px, rgba(255, 255, 255, 0.712), 'Manrope');}
     }
     
     .timeline{
         @include size(100%, 100%, 0, 0);
         @include flex(center, center, NULL, NULL, NULL);
+        position: relative;
         // border: 2px solid green;
         overflow: hidden;
-        &::after{
-            content: '';
-            @include size(75%, 0, 0, 0);
-            margin-bottom: 20%;
-            position: absolute;
-            align-self: flex-end;
-            border: 1px solid white;
-        }
+        // &::after{
+        //     content: '';
+        //     @include size(75%, 0, 0, 0);
+        //     margin-bottom: 20%;
+        //     position: absolute;
+        //     align-self: flex-end;
+        //     border: 0.25px solid white;
+        // }
 
         .half-circ-wrapper
         {
@@ -231,7 +240,7 @@ body
                 position: relative;
 
                 #info{
-                    @include size(100%, 200%, 0, 7px);
+                    @include size(100%, 200%, 0, 8px);
 
                     overflow: hidden;
                     position: absolute;
@@ -264,15 +273,14 @@ body
             .interval-list{
                 $betweens-hour: $betweens;
 
-                @include circle(100%, 80%);
-
+                @include circle(100%, 75%);
                 position: absolute;
                 top: 60%;
                 left: 50%;
                 transform: translate(-50%, -50%);
 
                 #interval{
-                    @include size(100%, 175%, 0, 7px);
+                    @include size(100%, 175%, 0, 11px);
                     overflow: hidden;
                     position: absolute;
                     text-align: center;
@@ -294,6 +302,28 @@ body
                 }
             }
         }
+        .baseline{
+            @include size(100%, auto, 0, 0);
+            @include flex(space-between, center, NULL, NULL, NULL);
+            position: absolute;
+            top: 80%;
+            // border: 2px solid red;
+            & ul{
+                @include flex(space-between, center, NULL, NULL, NULL);
+                @include size(auto, auto, 0, 0);
+                border: 2px solid green;
+                list-style: none;
+                & ul:first-child ::after{
+                    content: '-';
+                    @include size(100%, 100%, 0, 0);
+                    @include font(100, 20px, #ffffff, 'Overpass');
+                    background-color: red;
+                }
+                & > li{
+                    @include font(100, 20px, #ffffff, 'Overpass');
+                }
+            }
+        }
     }
 }
 
@@ -302,8 +332,10 @@ body
     @include frostGlass(#817f7f80);
 
     padding: 20px;
+    // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     border-bottom-left-radius: 35px;
     border-top: none;
+    border-right: none;
     //border: 2px solid blue;
 
     .card-list{
@@ -312,7 +344,6 @@ body
 
         justify-items: center;
         align-items: center;
-
 
         .card{
             @include card(70%, 78%, NULL);
