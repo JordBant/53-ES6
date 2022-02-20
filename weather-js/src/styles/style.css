@@ -319,7 +319,7 @@ body > * {
   transition: all 0.4 ease-in;
 }
 
-.aside1 .now #time {
+.aside1 .now #clock {
   font: 300 30px "Manrope", sans-serif;
   color: rgba(255, 255, 255, 0.712);
 }
@@ -573,7 +573,7 @@ body > * {
 .aside1 .timeline .baseline {
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 90%;
   height: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -588,11 +588,15 @@ body > * {
   -webkit-box-direction: normal;
       -ms-flex-direction: NULL;
           flex-direction: NULL;
-  justify-self: NULL;
+  justify-self: center;
   -ms-flex-item-align: NULL;
       align-self: NULL;
   position: absolute;
-  top: 80%;
+  left: 50%;
+  top: 85%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  border-top: 1px dotted white;
 }
 
 .aside1 .timeline .baseline ul {
@@ -612,26 +616,14 @@ body > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
-  margin: 0;
+  margin: 5%;
   padding: 0;
   width: auto;
   height: auto;
-  border: 2px solid green;
   list-style: none;
 }
 
-.aside1 .timeline .baseline ul ul:first-child ::after {
-  content: '-';
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  font: 100 20px "Overpass", sans-serif;
-  color: #ffffff;
-  background-color: red;
-}
-
-.aside1 .timeline .baseline ul > li {
+.aside1 .timeline .baseline ul > * {
   font: 100 20px "Overpass", sans-serif;
   color: #ffffff;
 }
@@ -643,7 +635,7 @@ body > * {
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   -webkit-backdrop-filter: blur(14px);
           backdrop-filter: blur(14px);
-  padding: 20px;
+  padding: 20px 0 20px 20px;
   border-bottom-left-radius: 35px;
   border-top: none;
   border-right: none;
@@ -660,6 +652,19 @@ body > * {
       grid-template-rows: 1fr 1fr;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid #ffffff4d;
+  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(0);
+          backdrop-filter: blur(0);
+  -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px 0 0 20px;
+  border: none;
+  margin-right: 0;
   justify-items: center;
   -webkit-box-align: center;
       -ms-flex-align: center;

@@ -27,7 +27,7 @@
                 <img src="/weather-js/media/humid.svg" alt="" id="cond-icon">
                 <p id="apparent">~&deg;</p>
              </section>
-             <time id="time">
+             <time id="clock">
                  <span id="clk-hour">00</span>:<span id="clk-min">00</span>
                  <span id="meridiem">PM</span>
             </time>
@@ -54,13 +54,15 @@
                 </ul>
                 <section>
                     <div class="baseline">
-                        <ul class="current" style = "border: 2px solid red;">
-                            <li class="current-info" id="current-info">100F&deg;</li>
-                            <li class="current-hour" id="current-hour">12AM</li>
+                        <!-- style="border-right: 0.75px solid white; -->
+                        <ul class="current">
+                            <li class="current-info" id="info-at">~&deg;</li>
+                            <li class="current-hour" id="current-hour">~</li>
                         </ul>
-                        <ul class="last" style = "margin: 0; border: 2px solid blue;">
-                            <li class="last-info" id="last-info">100F&deg;</li>
-                            <li class="last-hour" id="last-hour">12PM</li>
+                        <!-- style="border-left: 0.75px solid white; -->
+                        <ul class="last">
+                            <li class="last-info" id="info-at">~&deg;</li>
+                            <li class="last-hour" id="last-hour">~</li>
                         </ul>
                     </div>
                 </section>

@@ -11,7 +11,6 @@
     box-sizing: border-box;
 }
 
-
 @mixin circle($growWidth-growW, $growHeight-growH){
     @include size(/*80% / 70%, 60% / 55%,*/$growWidth-growW, $growHeight-growH, 0, 0);
     border-radius: 150px 150px 0 0;
@@ -168,8 +167,8 @@ body
         @include size(85%, auto, 0, 8px);
         @include flex(space-between, center, row, NULL, flex-end);
         @include frostGlass(rgba(0, 0, 0, 0.059));
-        // border: 2px solid blue;
         box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+        // border: 2px solid blue;
         border: none;
         border-radius: 20px 0 0 20px;
         margin-top: 15px;
@@ -204,7 +203,7 @@ body
                 }
             }
         }
-        #time{@include font(300, 30px, rgba(255, 255, 255, 0.712), 'Manrope');}
+        #clock{@include font(300, 30px, rgba(255, 255, 255, 0.712), 'Manrope');}
     }
     
     .timeline{
@@ -303,23 +302,21 @@ body
             }
         }
         .baseline{
-            @include size(100%, auto, 0, 0);
-            @include flex(space-between, center, NULL, NULL, NULL);
+            @include size(90%, auto, 0, 0);
+            @include flex(space-between, center, NULL, center, NULL);
             position: absolute;
-            top: 80%;
-            // border: 2px solid red;
+            left: 50%;
+            top: 85%;
+            transform: translateX(-50%);
+            border-top: 1px dotted white;
+
             & ul{
                 @include flex(space-between, center, NULL, NULL, NULL);
-                @include size(auto, auto, 0, 0);
-                border: 2px solid green;
+                @include size(auto, auto, 5%, 0);
+
+                // border: 2px solid green;
                 list-style: none;
-                & ul:first-child ::after{
-                    content: '-';
-                    @include size(100%, 100%, 0, 0);
-                    @include font(100, 20px, #ffffff, 'Overpass');
-                    background-color: red;
-                }
-                & > li{
+                & > *{
                     @include font(100, 20px, #ffffff, 'Overpass');
                 }
             }
@@ -331,17 +328,24 @@ body
 {
     @include frostGlass(#817f7f80);
 
-    padding: 20px;
+    padding: 20px 0 20px 20px;
     // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     border-bottom-left-radius: 35px;
     border-top: none;
     border-right: none;
-    //border: 2px solid blue;
+    // border: 2px solid blue;
 
     .card-list{
         @include size(100%, 100%, 0, 0);
         @include fourGrid(1fr, 1fr, 1fr, 1fr);
+        @include frostGlass(rgba(0, 0, 0, 0.1));
+        backdrop-filter: blur(0);
+        box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+        border-radius: 20px 0 0 20px;
+        border: none;
 
+        // border: red solid 2px;
+        margin-right: 0;
         justify-items: center;
         align-items: center;
 
