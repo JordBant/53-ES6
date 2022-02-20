@@ -25,9 +25,12 @@
          <section class="now">
              <section class="cur-condition">
                 <img src="/weather-js/media/humid.svg" alt="" id="cond-icon">
-                <p id="apparent">87&deg;</p>
+                <p id="apparent">~&deg;</p>
              </section>
-             <time id="time">12:00<span id="meridiem">PM</span></time>
+             <time id="time">
+                 <span id="clk-hour">00</span>:<span id="clk-min">00</span>
+                 <span id="meridiem">PM</span>
+            </time>
             </section>
          <section class="timeline">
              <div class="half-circ-wrapper">
@@ -49,34 +52,38 @@
                     <li id="interval"  class = 'hr7'><p style="margin: 0;" id ="time" class="time-of7">7am</p></li>
                     <li id="interval"  class = 'hr8'><p style="margin: 0;" id ="time" class="time-of8">12PM</p></li>
                 </ul>
-                <!-- <section>
+                <section>
                     <div class="baseline">
-                        <p id="current-hour">3am</p>
-                        <p id="current-info">30&deg;</p>
-                        <p id="last-hour">12pm</p>
-                        <p id="last-info">30&deg;</p>
+                        <ul class="current" style = "border: 2px solid red;">
+                            <li class="current-info" id="current-info">100F&deg;</li>
+                            <li class="current-hour" id="current-hour">12AM</li>
+                        </ul>
+                        <ul class="last" style = "margin: 0; border: 2px solid blue;">
+                            <li class="last-info" id="last-info">100F&deg;</li>
+                            <li class="last-hour" id="last-hour">12PM</li>
+                        </ul>
                     </div>
-                </section> -->
+                </section>
              </div>
          </section>
      </aside> 
      <aside class="aside2">
         <ul class="card-list">
             <li id= 'card1' class="card">
-                <img src="/weather-js/media/rain.svg" alt="">
-                <p>~&percnt;</p>
+                <img src="/weather-js/media/rain.svg" alt="" id="percip-icon">
+                <p id="percipProb">~&percnt;</p>
             </li>
             <li id= 'card2' class="card">
                 <img src="/weather-js/media/humid.svg" alt="">
-                <p>~&percnt;</p>
+                <p id="humid">~&percnt;</p>
             </li>
             <li id= 'card3' class="card">
                 <img src="/weather-js/media/visibility.svg" alt="">                
-                <p>~&percnt;</p>
+                <p id="visibility">~&percnt;</p>
             </li>
             <li id= 'card4' class="card">
                 <img src="/weather-js/media/windspeed.svg" alt="">
-                <p>~&percnt;</p>
+                <p id="windSpeed">~&percnt;</p>
             </li>
         </ul>
      </aside>

@@ -205,6 +205,7 @@ body > * {
       align-self: NULL;
   border-top-left-radius: 35px;
   border-bottom: none;
+  border-right: none;
 }
 
 .aside1 .now {
@@ -226,9 +227,20 @@ body > * {
       -ms-flex-direction: row;
           flex-direction: row;
   justify-self: NULL;
-  -ms-flex-item-align: NULL;
-      align-self: NULL;
-  margin-bottom: auto;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  background: rgba(0, 0, 0, 0.059);
+  border: 1px solid #ffffff4d;
+  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
+  -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 20px 0 0 20px;
+  margin-top: 15px;
+  padding: 0 15px 0 15px;
 }
 
 .aside1 .now .cur-condition {
@@ -309,7 +321,7 @@ body > * {
 
 .aside1 .now #time {
   font: 300 30px "Manrope", sans-serif;
-  color: NULL;
+  color: rgba(255, 255, 255, 0.712);
 }
 
 .aside1 .timeline {
@@ -333,20 +345,8 @@ body > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
+  position: relative;
   overflow: hidden;
-}
-
-.aside1 .timeline::after {
-  content: '';
-  margin: 0;
-  padding: 0;
-  width: 75%;
-  height: 0;
-  margin-bottom: 20%;
-  position: absolute;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-  border: 1px solid white;
 }
 
 .aside1 .timeline .half-circ-wrapper {
@@ -371,7 +371,7 @@ body > * {
 
 .aside1 .timeline .half-circ-wrapper .half-circle #info {
   margin: 0;
-  padding: 7px;
+  padding: 8px;
   width: 100%;
   height: 200%;
   overflow: hidden;
@@ -474,7 +474,7 @@ body > * {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 80%;
+  height: 75%;
   border-radius: 150px 150px 0 0;
   list-style: none;
   position: absolute;
@@ -486,7 +486,7 @@ body > * {
 
 .aside1 .timeline .half-circ-wrapper .interval-list #interval {
   margin: 0;
-  padding: 7px;
+  padding: 11px;
   width: 100%;
   height: 175%;
   overflow: hidden;
@@ -570,6 +570,72 @@ body > * {
           transform: rotate(-427.5deg);
 }
 
+.aside1 .timeline .baseline {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: NULL;
+          flex-direction: NULL;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  position: absolute;
+  top: 80%;
+}
+
+.aside1 .timeline .baseline ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: NULL;
+          flex-direction: NULL;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  border: 2px solid green;
+  list-style: none;
+}
+
+.aside1 .timeline .baseline ul ul:first-child ::after {
+  content: '-';
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font: 100 20px "Overpass", sans-serif;
+  color: #ffffff;
+  background-color: red;
+}
+
+.aside1 .timeline .baseline ul > li {
+  font: 100 20px "Overpass", sans-serif;
+  color: #ffffff;
+}
+
 .aside2 {
   background: #817f7f80;
   border: 1px solid #ffffff4d;
@@ -580,6 +646,7 @@ body > * {
   padding: 20px;
   border-bottom-left-radius: 35px;
   border-top: none;
+  border-right: none;
 }
 
 .aside2 .card-list {
