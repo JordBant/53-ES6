@@ -4,6 +4,31 @@
 // const weatherCard3;
 // const weatherCard4;
 
+const dateIRL = new Date();
+const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+const month = ['01', '02', "03", "04", "05","06", "07", "08", "09", "10", "11", "12"];
+
+const supers = document.getElementById('supers');
+supers.addEventListener('click', toggleF_C);
+
+function toggleF_C(measurement){
+    const Fahr = document.getElementById('Fahr');
+    const Cels = document.getElementById('Cels');
+    let measurement = '';
+    if (Fahr.classList.contains('selected') || Cels.classList.contains('selected')){
+        Fahr.classList.toggle('selected');
+        Cels.classList.toggle('selected');
+        Fahr.classList.toggle('unselected');
+        Cels.classList.toggle('unselected');
+    }
+    (Fahr.classList.contains('selected')) ? measurement : ;
+
+    // activeDeg.classList.replace('selected', 'unselected');
+    // inactiveDeg.classList.replace('selected')
+}
+
+// addEventListener('click', tempMeasurement);
+
 // const degree = document.getElementById('temperature');
 // const apparent = document.getElementById('apparent');
 
@@ -13,7 +38,6 @@
 // const humid = document.getElementById('humid');
 // const vis = document.getElementById('visibility');
 // const windSpeed = document.getElementById('windSpeed');
-const intervalList = document.querySelectorAll('#interval');
 
 // const metricConven = 'imperial';
 // const lat = 40.7;
@@ -44,34 +68,34 @@ setInterval(clockTime, 1000);
         
 function clockTime()
 {
-    const dateIRL = new Date();
-    const Hour = dateIRL.getHours();
+    const Hour = (dateIRL.getHours() > 12) ? dateIRL.getHours() - 12 : dateIRL.getHours();
     const Min = dateIRL.getMinutes();
 
-    const timeline_currentHour = document.getElementById('current-hour');
-    const timeline_lastHour = document.getElementById('last-hour');
+    const nowDate = document.getElementById('date');
+    const clock = document.getElementById('clk-time');
 
-    const clockHour = document.getElementById('clk-hour');
-    const clockMin = document.getElementById('clk-min');
-    const AM_PM = document.getElementById('meridiem');
+    let minuteForm = (Min < 10) ? `0${Min}`: `${Min}`;
+    let meridiem = (dateIRL.getHours() < 12) ? `AM` : `PM`;
+
+    clock.textContent = `${Hour}:${minuteForm} ${meridiem}`;
+    nowDate.textContent = `${week[dateIRL.getDay()]} - ${month[dateIRL.getMonth()]}/${dateIRL.getDate()}`;
+
+    const tl_currentHour = document.getElementById('current-hour-at');
+    const tl_lastHour = document.getElementById('last-hour-at');
+    const intervalList = document.querySelectorAll('#interval');
+
     // let sec = document.getElementById('sec');
 
-    clockMin.textContent = Min;
-    (Min < 10) ? clockMin.textContent = `0${Min}`: `${Min}`;
-    
-    clockHour.textContent = Hour;
-    const civilianTime = (Hour > 12) ? clockHour.textContent = Hour - 12 : Hour;
-    const meridiem = (Hour >= 11) ? AM_PM.textContent = 'PM' : AM_PM.textContent = 'AM';
+    (dateIRL.getHours() >= 12) ? tl_currentHour.textContent = `| ${Hour}PM` : tl_currentHour.textContent = `| ${Hour}AM`;
+    (dateIRL.getHours() + 8 > 23 || dateIRL.getHours() + 8 <= 12) ? tl_lastHour.textContent = `| ${Hour + 8}AM` : tl_lastHour.textContent = `| ${Hour + 8}PM`;
 
-    timeline_currentHour.textContent = `| ${civilianTime}${AM_PM.textContent}`;
-    timeline_lastHour.textContent = `| ${(Hour + 8) - 12}${meridiem}`;
-
-    let interval = Hour + 1;
-    for(i = 0; i < 8; i++){
-        intervalList[i].firstChild.textContent = `${interval - 12}${meridiem}`;
-        interval += 1;
-    }
-    
+    // let interval = dateIRL.getHours() + 1;
+    // for(i = 0; i < 8; i++){
+    //     const intervalMeridiem = (interval > 11) ? `PM` : `AM`;
+    //     const civTime = (interval > 12) ? interval - 12 : interval;
+    //     intervalList[i].firstChild.textContent = `${civTime}${intervalMeridiem}`; //${intervalMeridiem}
+    //     interval += 1;
+    // }
 }
 
 // async function getPhoto(){

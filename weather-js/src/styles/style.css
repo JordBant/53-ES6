@@ -161,14 +161,14 @@ body > * {
 .main .main-sec .supers .selected {
   cursor: pointer;
   font-size: clamp(25px, 3.7vw, 55px);
-  margin: 0;
+  margin: 7px;
   -webkit-transition: 0.3s all ease-in-out;
   transition: 0.3s all ease-in-out;
 }
 
 .main .main-sec .supers .unselected {
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.4;
   -webkit-transition: 0.3s all ease-in-out;
   transition: 0.3s all ease-in-out;
   margin-left: 4px;
@@ -320,8 +320,55 @@ body > * {
 }
 
 .aside1 .now #clock {
-  font: 300 30px "Manrope", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  font: 300 27px "Manrope", sans-serif;
   color: rgba(255, 255, 255, 0.712);
+  margin-right: 2px;
+}
+
+.aside1 .now #clock .calender-date {
+  font: 500 15px "Manrope", sans-serif;
+  color: rgba(255, 255, 255, 0.7);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: NULL;
+          flex-direction: NULL;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+}
+
+.aside1 .now #clock .calender-date #day, .aside1 .now #clock .calender-date #date {
+  margin: 0;
+  letter-spacing: 2px;
 }
 
 .aside1 .timeline {

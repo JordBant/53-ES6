@@ -66,7 +66,6 @@ body
     @include body();
     @include size(100vw, 100vh, NULL, NULL);
     @include fourGrid(1fr, 1fr, 3fr, 1fr);
-
     background:  rgb(206, 174, 133) url(/weather-js/media/weatherApp.jpg) no-repeat center center;
     background-size: cover;
 
@@ -93,7 +92,6 @@ body
         .search{
             @include font(300, 1rem, white, 'Overpass');
             @include size(90%, 97%, 0, 0);
-
             background: none;
             outline: none;
             border: none;
@@ -135,12 +133,12 @@ body
             {
                 cursor: pointer;
                 font-size: clamp(25px, 3.7vw, 55px);
-                margin: 0;
+                margin: 7px;
                 transition: 0.3s all ease-in-out;
             }
             .unselected{
                 cursor: pointer;
-                opacity: 0.7;
+                opacity: 0.4;
                 transition: 0.3s all ease-in-out;
                 margin-left: 4px;
                 text-shadow: none;
@@ -203,7 +201,24 @@ body
                 }
             }
         }
-        #clock{@include font(300, 30px, rgba(255, 255, 255, 0.712), 'Manrope');}
+        #clock{
+            @include flex(center, center, column, NULL, NULL);
+            @include font(300, 27px, rgba(255, 255, 255, 0.712), 'Manrope');
+            margin-right: 2px;
+            // border: 2px solid blue;
+
+            .calender-date{
+                @include font(500, 15px, rgba(255, 255, 255, 0.7), 'Manrope');
+                @include flex(center, center, NULL, NULL, NULL);
+                @include size(100%, auto, 0, 0);
+                // border: 2px solid  red;
+
+                #day, #date{
+                    margin: 0;
+                    letter-spacing: 2px;
+                }
+            }
+        }
     }
     
     .timeline{
@@ -265,7 +280,6 @@ body
                     $betweens-info: $betweens-info + $deg-apart;
                 }
             }
-
 
             //Not initializing ruleset by referencing #interval because of ID's high priority 
             //Will overwrite styling of 1st and 9th interval positionå
