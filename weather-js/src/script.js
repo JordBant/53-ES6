@@ -8,23 +8,24 @@ const dateIRL = new Date();
 const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 const month = ['01', '02', "03", "04", "05","06", "07", "08", "09", "10", "11", "12"];
 
+let metricConven = 'imperial';
 const supers = document.getElementById('supers');
-supers.addEventListener('click', toggleF_C);
+supers.addEventListener('click', toggleF_C(metricConven));
 
-function toggleF_C(measurement){
+function toggleF_C(convention){
     const Fahr = document.getElementById('Fahr');
     const Cels = document.getElementById('Cels');
-    let measurement = '';
+    
     if (Fahr.classList.contains('selected') || Cels.classList.contains('selected')){
         Fahr.classList.toggle('selected');
         Cels.classList.toggle('selected');
         Fahr.classList.toggle('unselected');
         Cels.classList.toggle('unselected');
-    }
-    (Fahr.classList.contains('selected')) ? measurement : ;
-
+    } else
+    (Fahr.classList.contains('selected')) ? convention = 'imperial' : convention = 'metric';
     // activeDeg.classList.replace('selected', 'unselected');
     // inactiveDeg.classList.replace('selected')
+    return convention;
 }
 
 // addEventListener('click', tempMeasurement);
@@ -39,7 +40,6 @@ function toggleF_C(measurement){
 // const vis = document.getElementById('visibility');
 // const windSpeed = document.getElementById('windSpeed');
 
-// const metricConven = 'imperial';
 // const lat = 40.7;
 // const long = -74;
 
