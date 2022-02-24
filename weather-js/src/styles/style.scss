@@ -17,6 +17,14 @@
     list-style: none;
 }
 
+@mixin glimmer {
+    background: linear-gradient(90deg, #817f7f00, #ffffff36);
+    position: absolute;
+    top: 0; 
+    left: 0;
+    transition: 0.3s all ease-in-out;
+}
+
 @mixin frostGlass($hex-hex){
     background: $hex-hex;
     border: 1px solid #ffffff4d;
@@ -81,23 +89,36 @@ body
 
     .navbar
     {
-        @include size(50%/*300px*/, 37px, 0, 0);
-        @include frostGlass(#46454580);
-        @include flex(center, center, NULL, NULL, NULL);
+        @include size(50%, auto, 0, 5px);
+        @include flex(center, center, column, NULL, NULL);
 
-        // border: red solid 2px;
-        border-radius: 25px;
+        border: red solid 2px;
         align-self: center;
+        border-radius: 15px;
 
-        .search{
-            @include font(300, 1rem, white, 'Overpass');
-            @include size(90%, 97%, 0, 0);
-            background: none;
-            outline: none;
-            border: none;
-            &:focus{
+        .search-bar-div{
+            @include size(100%/*300px*/, 37px, 0, 0);
+            @include frostGlass(#46454580);
+            @include flex(center, center, NULL, NULL, NULL);
+
+            border: green solid 2px;
+            border-radius: 25px;
+            .search{
+                @include font(300, 1rem, white, 'Overpass');
+                @include size(90%, 97%, 0, 0);
+                background: none;
                 outline: none;
+                border: none;
+                &:focus{
+                    outline: none;
+                }
             }
+        }
+        .active-locations{
+            @include size(95%, auto, NULL, 0);
+            margin: 20px 5px 20px 5px;
+            border: red solid 2px;
+            list-style: none;
         }
     }
     
@@ -110,6 +131,7 @@ body
         // border: 2px solid red;
         #temperature{
             @include font(400, clamp(25px, 4vw, 55px), white, 'Manrope');
+            transition: all 1s ease-in-out
         }
 
         .line{
@@ -391,11 +413,7 @@ body
                 content: '';
 
                 @include size(100%, 100%, auto, 0);
-                background: linear-gradient(90deg, #817f7f00, #ffffff36);
-                position: absolute;
-                top: 0; 
-                left: 0;
-                transition: 0.3s all ease-in-out;
+                @include glimmer();
                 border-radius: 15px 0 0 15px;
             }
 
