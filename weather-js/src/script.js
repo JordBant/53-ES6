@@ -28,7 +28,8 @@ const vis = document.getElementById('visibility');
 const windSpeed = document.getElementById('windSpeed');
 
 async function getWeather(){
-    toggleF_C();
+    toggleUnits();
+    
     const response = await fetch(
         `https://api.tomorrow.io/v4/timelines?location=${fields.lat},${fields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${fields.measureConven}&apikey=r02b5dPj9KQ4f1zJXRjErMBgJtUmlQpL`);
         const data = await response.json();
@@ -49,7 +50,7 @@ async function getWeather(){
     const supers = document.getElementById('supers');
     supers.addEventListener('click', getWeather);
     
-    function toggleF_C(){
+    function toggleUnits(){
         const Fahr = document.getElementById('Fahr');
         const Cels = document.getElementById('Cels');
         

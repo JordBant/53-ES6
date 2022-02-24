@@ -45,8 +45,35 @@ body > * {
 
 .main .navbar {
   margin: 0;
-  padding: 0;
+  padding: 5px;
   width: 50%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  border: red solid 2px;
+  -ms-flex-item-align: center;
+      align-self: center;
+  border-radius: 15px;
+}
+
+.main .navbar .search-bar-div {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   height: 37px;
   background: #46454580;
   border: 1px solid #ffffff4d;
@@ -70,12 +97,11 @@ body > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
+  border: green solid 2px;
   border-radius: 25px;
-  -ms-flex-item-align: center;
-      align-self: center;
 }
 
-.main .navbar .search {
+.main .navbar .search-bar-div .search {
   font: 300 1rem "Overpass", sans-serif;
   color: white;
   margin: 0;
@@ -87,8 +113,18 @@ body > * {
   border: none;
 }
 
-.main .navbar .search:focus {
+.main .navbar .search-bar-div .search:focus {
   outline: none;
+}
+
+.main .navbar .active-locations {
+  margin: NULL;
+  padding: 0;
+  width: 95%;
+  height: auto;
+  margin: 20px 5px 20px 5px;
+  border: red solid 2px;
+  list-style: none;
 }
 
 .main .main-sec {
@@ -119,6 +155,8 @@ body > * {
 .main .main-sec #temperature {
   font: 400 clamp(25px, 4vw, 55px) "Manrope", sans-serif;
   color: white;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 .main .main-sec .line {
