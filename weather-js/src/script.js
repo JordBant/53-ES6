@@ -14,7 +14,6 @@ const dateIRL = new Date();
 const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 const month = ['01', '02', "03", "04", "05","06", "07", "08", "09", "10", "11", "12"];
 
-const supers = document.getElementById('supers');
 
 // addEventListener('click', tempMeasurement);
 
@@ -41,11 +40,14 @@ async function getWeather(){
         
         degree.textContent = Math.floor(dataObj.temperature);
         apparent.textContent = Math.floor(dataObj.temperatureApparent);
+        toggleF_C();
         
         // cache each value in intervals[0].value to the weatherInfo object
         //&fields=${'temperature'}&fields=${'precipitationType'}&fields=${'precipitationProbability'}
     }
-    supers.addEventListener('click', toggleF_C);
+    
+    const supers = document.getElementById('supers');
+    supers.addEventListener('click', getWeather);
     
     function toggleF_C(){
         const Fahr = document.getElementById('Fahr');
@@ -57,7 +59,7 @@ async function getWeather(){
             Cels.classList.toggle('selected');
             Cels.classList.toggle('unselected');
         }  
-        return fields.measureConven = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
+        return fields.measureConven = (Fahr.classList.contains('unselected')) ? 'metric' : 'imperial';
     }
     
     function clockTime()
