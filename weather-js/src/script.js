@@ -28,6 +28,7 @@ const vis = document.getElementById('visibility');
 const windSpeed = document.getElementById('windSpeed');
 
 async function getWeather(){
+    toggleF_C();
     const response = await fetch(
         `https://api.tomorrow.io/v4/timelines?location=${fields.lat},${fields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${fields.measureConven}&apikey=r02b5dPj9KQ4f1zJXRjErMBgJtUmlQpL`);
         const data = await response.json();
@@ -40,7 +41,6 @@ async function getWeather(){
         
         degree.textContent = Math.floor(dataObj.temperature);
         apparent.textContent = Math.floor(dataObj.temperatureApparent);
-        toggleF_C();
         
         // cache each value in intervals[0].value to the weatherInfo object
         //&fields=${'temperature'}&fields=${'precipitationType'}&fields=${'precipitationProbability'}
@@ -59,7 +59,7 @@ async function getWeather(){
             Cels.classList.toggle('selected');
             Cels.classList.toggle('unselected');
         }  
-        return fields.measureConven = (Fahr.classList.contains('unselected')) ? 'metric' : 'imperial';
+        return fields.measureConven = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
     }
     
     function clockTime()
