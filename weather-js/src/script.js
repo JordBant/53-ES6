@@ -48,7 +48,7 @@ const windSpeed = document.getElementById('windSpeed');
 //     }
     
     const supers = document.getElementById('supers');
-    supers.addEventListener('click', getWeather);
+    // supers.addEventListener('click', getWeather);
 
     const searchBar = document.getElementById('search');
     searchBar.addEventListener('input', search);
@@ -103,11 +103,14 @@ function search(){
     const searchItem = document.getElementById('location');
     const searchDiv = document.getElementById('search-div')
 
-    if(searchBar.value !== " " && searchBar.focus){
-        searchDiv.classList.toggle("active");
-        resultList.appendChild(searchItem);
-        searchDiv.append(resultList);
-    }
+    if(searchBar.value !== "" && searchBar.focus){
+        // resultList.append(searchItem);
+        // searchDiv.append(resultList);
+        searchDiv.classList.add("active");
+     } 
+    //elseif(searchBar.focus){
+    //     searchDiv.classList.remove("active");
+    // }
     /*  
     if searchBar.focus === true 
     resultList.toggle(locations-dropdown "on")
@@ -120,7 +123,7 @@ function search(){
         //     const photosOf = ;
         // }
 
-getWeather();
+// getWeather();
 // getPhoto();
 clockTime();
 setInterval(clockTime, 1000);
