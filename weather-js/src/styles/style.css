@@ -45,9 +45,9 @@ body > * {
 
 .main .navbar {
   margin: 0;
-  padding: 5px;
+  padding: 10px;
   width: 50%;
-  height: auto;
+  height: 60%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -64,16 +64,18 @@ body > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
-  border: red solid 2px;
+  -webkit-box-shadow: 0 0 5px black;
+          box-shadow: 0 0 5px black;
   -ms-flex-item-align: center;
       align-self: center;
-  border-radius: 15px;
+  border-radius: 25px;
+  background: #46454580;
 }
 
 .main .navbar .search-bar-div {
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 95%;
   height: 37px;
   background: #46454580;
   border: 1px solid #ffffff4d;
@@ -97,15 +99,15 @@ body > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
-  border: green solid 2px;
   border-radius: 25px;
+  border: black 0.5px solid;
 }
 
 .main .navbar .search-bar-div .search {
   font: 300 1rem "Overpass", sans-serif;
   color: white;
   margin: 0;
-  padding: 0;
+  padding: 0 5px 0 5px;
   width: 90%;
   height: 97%;
   background: none;
@@ -115,16 +117,50 @@ body > * {
 
 .main .navbar .search-bar-div .search:focus {
   outline: none;
+  background: none;
 }
 
-.main .navbar .active-locations {
-  margin: NULL;
+.main .navbar .locations-dropdown {
+  margin: 20px 0 20px 0;
   padding: 0;
+  width: 100%;
+  height: 80%;
+  overflow: scroll;
+  text-align: start;
+  list-style: none;
+}
+
+.main .navbar .locations-dropdown .location {
+  font: 100 15px "Manrope", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 15px;
   width: 95%;
   height: auto;
-  margin: 20px 5px 20px 5px;
-  border: red solid 2px;
-  list-style: none;
+  position: relative;
+  border-top: rgba(255, 255, 255, 0.521) solid 1px;
+}
+
+.main .navbar .locations-dropdown .location::before {
+  content: '';
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(#817f7f00), to(#ffffff36));
+  background: linear-gradient(90deg, #817f7f00, #ffffff36);
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: 0.3s all ease-in-out;
+  transition: 0.3s all ease-in-out;
+  opacity: 0;
+}
+
+.main .navbar .locations-dropdown .location:hover::before {
+  opacity: 0.5;
+  -webkit-box-shadow: inset 0 0 5px black;
+          box-shadow: inset 0 0 5px black;
 }
 
 .main .main-sec {
@@ -817,9 +853,13 @@ body > * {
 }
 
 .aside2 .card-list .card::before {
-  opacity: 0;
   content: '';
   margin: auto;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+  margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
@@ -830,6 +870,7 @@ body > * {
   left: 0;
   -webkit-transition: 0.3s all ease-in-out;
   transition: 0.3s all ease-in-out;
+  opacity: 0;
   border-radius: 15px 0 0 15px;
 }
 
