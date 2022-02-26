@@ -91,36 +91,29 @@ body
     //border: 2px solid green;
     grid-row: 1 / -1;
 
-    .navbar
-    {
-        @include size(50%, 60%, 0, 10px);
+    .search-div{
+        
+        @include frostGlass(#46454580);
+        @include size(50%, 5%, 0, 0);
         @include flex(center, center, column, NULL, NULL);
+        align-self: center;
+        transition: all 0.5s ease-in-out;
 
         // border: pink solid 2px;
-        box-shadow: 0 0 5px black;
-        align-self: center;
+        box-shadow: none;
         border-radius: 25px;
         background: #46454580;
 
-        .search-bar-div{
-            @include size(95%/*300px*/, 37px, 0, 0);
-            @include frostGlass(#46454580);
-            @include flex(center, center, NULL, NULL, NULL);
-
-            // border: green solid 2px;
-            border-radius: 25px;
-            border: black 0.5px solid;
-
-            .search{
-                @include font(300, 1rem, white, 'Overpass');
-                @include size(90%, 97%, 0, 0 5px 0 5px);
-                background: none;
+        .search{
+            @include font(300, 1rem, white, 'Overpass');
+            @include size(425px, 37px, 0, 0 5px 0 5px);
+            // background: none;
+            margin-bottom: auto;
+            outline: none;
+            border: none;
+            &:focus{
                 outline: none;
-                border: none;
-                &:focus{
-                    outline: none;
-                    background: none
-                }
+                background: none
             }
         }
         .locations-dropdown{
@@ -139,10 +132,17 @@ body
                 &::before{@include glimmer();}
                 &:hover::before{
                     opacity: 0.5;
-                    box-shadow: inset 0 0 5px black;
+                    box-shadow: inset 0 0 4px white;
                 }
             }
         }
+    }
+    .active{
+        @extend .search-div;
+        height: 60%;
+        padding: 10px;
+        box-shadow: 0 0 5px black;
+        border-radius: 15px;
     }
     
     .main-sec

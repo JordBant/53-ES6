@@ -27,25 +27,25 @@ const humid = document.getElementById('humid');
 const vis = document.getElementById('visibility');
 const windSpeed = document.getElementById('windSpeed');
 
-async function getWeather(){
-    toggleUnits();
+// async function getWeather(){
+//     toggleUnits();
 
-    const response = await fetch(
-        `https://api.tomorrow.io/v4/timelines?location=${fields.lat},${fields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${fields.measureConven}&apikey=r02b5dPj9KQ4f1zJXRjErMBgJtUmlQpL`);
-        const data = await response.json();
-        const dataObj = data.data.timelines[0].intervals[0].values;
+//     const response = await fetch(
+//         `https://api.tomorrow.io/v4/timelines?location=${fields.lat},${fields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${fields.measureConven}&apikey=r02b5dPj9KQ4f1zJXRjErMBgJtUmlQpL`);
+//         const data = await response.json();
+//         const dataObj = data.data.timelines[0].intervals[0].values;
         
-        vis.textContent = dataObj.visibility;
-        windSpeed.textContent = dataObj.windSpeed;
-        percipProb.textContent = dataObj.precipitationProbability;
-        humid.textContent = dataObj.humidity;
+//         vis.textContent = dataObj.visibility;
+//         windSpeed.textContent = dataObj.windSpeed;
+//         percipProb.textContent = dataObj.precipitationProbability;
+//         humid.textContent = dataObj.humidity;
         
-        degree.textContent = Math.floor(dataObj.temperature);
-        apparent.textContent = Math.floor(dataObj.temperatureApparent);
+//         degree.textContent = Math.floor(dataObj.temperature);
+//         apparent.textContent = Math.floor(dataObj.temperatureApparent);
         
-        // cache each value in intervals[0].value to the weatherInfo object
-        //&fields=${'temperature'}&fields=${'precipitationType'}&fields=${'precipitationProbability'}
-    }
+//         // cache each value in intervals[0].value to the weatherInfo object
+//         //&fields=${'temperature'}&fields=${'precipitationType'}&fields=${'precipitationProbability'}
+//     }
     
     const supers = document.getElementById('supers');
     supers.addEventListener('click', getWeather);
@@ -100,8 +100,14 @@ async function getWeather(){
     
 function search(){
     const resultList = document.getElementById('locations-dropdown');
-    const searchResult = document.getElementById('location');
+    const searchItem = document.getElementById('location');
+    const searchDiv = document.getElementById('search-div')
 
+    if(searchBar.value !== " " && searchBar.focus){
+        searchDiv.classList.toggle("active");
+        resultList.appendChild(searchItem);
+        searchDiv.append(resultList);
+    }
     /*  
     if searchBar.focus === true 
     resultList.toggle(locations-dropdown "on")
