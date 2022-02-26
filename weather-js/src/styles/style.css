@@ -43,11 +43,17 @@ body > * {
   grid-row: 1 / -1;
 }
 
-.main .navbar {
+.main .search-div, .main .active {
+  background: #46454580;
+  border: 1px solid #ffffff4d;
+  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
   margin: 0;
-  padding: 10px;
+  padding: 0;
   width: 50%;
-  height: 60%;
+  height: 5%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -64,63 +70,34 @@ body > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
-  -webkit-box-shadow: 0 0 5px black;
-          box-shadow: 0 0 5px black;
   -ms-flex-item-align: center;
       align-self: center;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   border-radius: 25px;
   background: #46454580;
 }
 
-.main .navbar .search-bar-div {
-  margin: 0;
-  padding: 0;
-  width: 95%;
-  height: 37px;
-  background: #46454580;
-  border: 1px solid #ffffff4d;
-  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  -webkit-backdrop-filter: blur(14px);
-          backdrop-filter: blur(14px);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: NULL;
-          flex-direction: NULL;
-  justify-self: NULL;
-  -ms-flex-item-align: NULL;
-      align-self: NULL;
-  border-radius: 25px;
-  border: black 0.5px solid;
-}
-
-.main .navbar .search-bar-div .search {
+.main .search-div .search, .main .active .search {
   font: 300 1rem "Overpass", sans-serif;
   color: white;
   margin: 0;
   padding: 0 5px 0 5px;
-  width: 90%;
-  height: 97%;
-  background: none;
+  width: 425px;
+  height: 37px;
+  margin-bottom: auto;
   outline: none;
   border: none;
 }
 
-.main .navbar .search-bar-div .search:focus {
+.main .search-div .search:focus, .main .active .search:focus {
   outline: none;
   background: none;
 }
 
-.main .navbar .locations-dropdown {
+.main .search-div .locations-dropdown, .main .active .locations-dropdown {
   margin: 20px 0 20px 0;
   padding: 0;
   width: 100%;
@@ -130,7 +107,7 @@ body > * {
   list-style: none;
 }
 
-.main .navbar .locations-dropdown .location {
+.main .search-div .locations-dropdown .location, .main .active .locations-dropdown .location {
   font: 100 15px "Manrope", sans-serif;
   color: white;
   margin: 0;
@@ -141,7 +118,7 @@ body > * {
   border-top: rgba(255, 255, 255, 0.521) solid 1px;
 }
 
-.main .navbar .locations-dropdown .location::before {
+.main .search-div .locations-dropdown .location::before, .main .active .locations-dropdown .location::before {
   content: '';
   margin: 0;
   padding: 0;
@@ -157,10 +134,18 @@ body > * {
   opacity: 0;
 }
 
-.main .navbar .locations-dropdown .location:hover::before {
+.main .search-div .locations-dropdown .location:hover::before, .main .active .locations-dropdown .location:hover::before {
   opacity: 0.5;
-  -webkit-box-shadow: inset 0 0 5px black;
-          box-shadow: inset 0 0 5px black;
+  -webkit-box-shadow: inset 0 0 4px white;
+          box-shadow: inset 0 0 4px white;
+}
+
+.main .active {
+  height: 60%;
+  padding: 10px;
+  -webkit-box-shadow: 0 0 5px black;
+          box-shadow: 0 0 5px black;
+  border-radius: 15px;
 }
 
 .main .main-sec {
