@@ -29,7 +29,7 @@ const windSpeed = document.getElementById('windSpeed');
 
 async function getWeather(){
     toggleUnits();
-    
+
     const response = await fetch(
         `https://api.tomorrow.io/v4/timelines?location=${fields.lat},${fields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${fields.measureConven}&apikey=r02b5dPj9KQ4f1zJXRjErMBgJtUmlQpL`);
         const data = await response.json();
@@ -49,6 +49,9 @@ async function getWeather(){
     
     const supers = document.getElementById('supers');
     supers.addEventListener('click', getWeather);
+
+    const searchBar = document.getElementById('search');
+    searchBar.addEventListener('input', search);
     
     function toggleUnits(){
         const Fahr = document.getElementById('Fahr');
@@ -84,7 +87,7 @@ async function getWeather(){
         // let sec = document.getElementById('sec');
         
         (dateIRL.getHours() >= 12) ? tl_currentHour.textContent = `| ${Hour}PM` : tl_currentHour.textContent = `| ${Hour}AM`;
-    (dateIRL.getHours() + 8 > 23 || dateIRL.getHours() + 8 <= 12) ? tl_lastHour.textContent = `| ${Hour + 8}AM` : tl_lastHour.textContent = `| ${Hour + 8}PM`;
+        (dateIRL.getHours() + 8 > 23 || dateIRL.getHours() + 8 <= 12) ? tl_lastHour.textContent = `| ${Hour + 8}AM` : tl_lastHour.textContent = `| ${Hour + 8}PM`;
     
     // let interval = dateIRL.getHours() + 1;
     // for(i = 0; i < 8; i++){
@@ -95,6 +98,16 @@ async function getWeather(){
         // }
     }
     
+function search(){
+    const resultList = document.getElementById('locations-dropdown');
+    const searchResult = document.getElementById('location');
+
+    /*  
+    if searchBar.focus === true 
+    resultList.toggle(locations-dropdown "on")
+    */
+}
+
     // async function getPhoto(){
         //     const response = await fetch(/**Unsplash Authentication key */);
         //     const data = await response.json();
