@@ -27,3 +27,12 @@ Google Fonts API
 
 Unsplash API:
 - HD Photo API will be consumed via Javascript's FetchAPI to generate random HD photos upon client rendering.
+
+
+Notes
+-----------
+______________________
+Monday 28th February:
+______________________
+Resorted to hover for the event to listen for. 
+-----------
