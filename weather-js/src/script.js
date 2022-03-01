@@ -1,37 +1,70 @@
-// const weatherInfo = {}
-// const weatherCard1;
-// const weatherCard2;
-// const weatherCard3;
-// const weatherCard4;
+//----------------------------Location Elements(.main)--------------------------------
 
-const fields = {
-    lat: 40.7,
-    long: -74,
-    measureConven: 'imperial'
-}
+const 
+const supers = document.getElementById('supers');
+const searchBar = document.getElementById('search'); 
 
+//----------------------------Clock--------------------------------
 const dateIRL = new Date();
 const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 const month = ['01', '02', "03", "04", "05","06", "07", "08", "09", "10", "11", "12"];
 
+const apiFields = {
+    lat: 40.7,
+    long: -74,
+    measureConven: 'imperial',
+    locality: 'Guilderland',
+    state: 'New York',
+    zip: '10007'
+}
 
-// addEventListener('click', tempMeasurement);
+// const degree = document.getElementById('temperature');
+// const apparent = document.getElementById('apparent');
 
-const degree = document.getElementById('temperature');
-const apparent = document.getElementById('apparent');
+// const percipProb = document.getElementById('percipProb');
+// // const percipType = document.getElementById('percip-icon');
 
-const percipProb = document.getElementById('percipProb');
-// const percipType = document.getElementById('percip-icon');
+// const humid = document.getElementById('humid');
+// const vis = document.getElementById('visibility');
+// const windSpeed = document.getElementById('windSpeed');
 
-const humid = document.getElementById('humid');
-const vis = document.getElementById('visibility');
-const windSpeed = document.getElementById('windSpeed');
+    // async function getPhoto(){
+    //         const response = await fetch(/**Unsplash URI &Authentication key */);
+    //         const data = await response.json();
+    //         const photosOf = ;
+    //     }
+
+async function getLocation(){
+    const res = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${apiFields.locality},${apiFields.state}&key=AIzaSyDkpwAqY-2AOpFudRfsI9NvFKJ8W_z_Y4c`        
+        );
+        const data = await res.json();
+        const coordinates = data.results[0].geometry.location; 
+        const locationInfo = data.results[0].address_components;
+        
+        // error handling
+        // if(data,status !== "OK"){
+            
+            // }
+        apiFields.lat = coordinates.lat;
+        apiFields.long = coordinates.long;
+            
+        locationInfo.forEach(component => {
+            if(component.types.includes("locality") || component.types.includes("sublocality")){
+                apiFields.locality = locationInfo.long_name;
+            }
+            if(component.types.includes("administrative_level_1")){
+                apiFields.city = locationInfo.long_name;
+            }
+        });
+        console.log(locationInfo);
+    }
 
 // async function getWeather(){
 //     toggleUnits();
 
 //     const response = await fetch(
-//         `https://api.tomorrow.io/v4/timelines?location=${fields.lat},${fields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${fields.measureConven}&apikey=r02b5dPj9KQ4f1zJXRjErMBgJtUmlQpL`);
+//         `https://api.tomorrow.io/v4/timelines?location=${apiFields.lat},${apiFields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${apiFields.measureConven}&apikey=r02b5dPj9KQ4f1zJXRjErMBgJtUmlQpL`);
 //         const data = await response.json();
 //         const dataObj = data.data.timelines[0].intervals[0].values;
         
@@ -47,11 +80,9 @@ const windSpeed = document.getElementById('windSpeed');
 //         //&fields=${'temperature'}&fields=${'precipitationType'}&fields=${'precipitationProbability'}
 //     }
     
-    const supers = document.getElementById('supers');
-    supers.addEventListener('click', getWeather);
+    // supers.addEventListener('click', getWeather);
 
-    const searchBar = document.getElementById('search');
-    searchBar.addEventListener('input', search);
+    // searchBar.addEventListener('input', search);
     
     function toggleUnits(){
         const Fahr = document.getElementById('Fahr');
@@ -98,29 +129,40 @@ const windSpeed = document.getElementById('windSpeed');
         // }
     }
     
-function search(){
-    const resultList = document.getElementById('locations-dropdown');
-    const searchItem = document.getElementById('location');
-    const searchDiv = document.getElementById('search-div')
+// function search(){
+//     // const resultList = document.createElement('ul')
+//     // resultList.setAttribute('id', 'location-dropdown');
+//     // resultList.setAttribute('class', 'location-dropdown');
 
-    if(searchBar.value !== " " && searchBar.focus){
-        searchDiv.classList.toggle("active");
-        resultList.appendChild(searchItem);
-        searchDiv.append(resultList);
-    }
-    /*  
-    if searchBar.focus === true 
-    resultList.toggle(locations-dropdown "on")
-    */
-}
+//     // const searchItem = document.createElement('li')
+//     // searchItem.setAttribute('id', 'location');
+//     // searchItem.setAttribute('class', 'location');
 
-    // async function getPhoto(){
-        //     const response = await fetch(/**Unsplash Authentication key */);
-        //     const data = await response.json();
-        //     const photosOf = ;
-        // }
+//     const searchDiv = document.getElementById('search-div');
+//     // searchDiv.append(resultList);
 
-getWeather();
+//     if(searchBar.value !== ""){
+//         // resultList.append(searchItem);
+//         searchDiv.classList.add("active");
+//      } 
+//      else {
+//         searchDiv.classList.remove("active");
+//      }
+//     //  switch (true) {
+//     //     case searchBar.focus:
+//     //         searchDiv.classList.toggle("active");
+//     //          break;
+             
+//     //     default:
+//     //         searchDiv.classList.remove("active");
+//     //          break;
+//     //  }
+// }
+
+
+// getWeather();
+// searchBar.addEventListener('keyup', search);
 // getPhoto();
+getLocation();
 clockTime();
 setInterval(clockTime, 1000);

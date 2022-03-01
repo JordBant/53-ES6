@@ -94,10 +94,10 @@ body
     .search-div{
         
         @include frostGlass(#46454580);
-        @include size(50%, 5%, 0, 0);
+        @include size(50%, 5%, 0, 5px);
         @include flex(center, center, column, NULL, NULL);
         align-self: center;
-        transition: all 0.5s ease-in-out;
+        transition: all 0.4s ease-in-out;
 
         // border: pink solid 2px;
         box-shadow: none;
@@ -107,16 +107,17 @@ body
         .search{
             @include font(300, 1rem, white, 'Overpass');
             @include size(425px, 37px, 0, 0 5px 0 5px);
-            // background: none;
+            background: none;
             margin-bottom: auto;
             outline: none;
             border: none;
+            border-bottom: 1px solid white;
             &:focus{
                 outline: none;
                 background: none
             }
         }
-        .locations-dropdown{
+        .location-dropdown{
             @include size(100%, 80%, 20px 0 20px 0, 0);
             // border: blue 2px solid;
             overflow: scroll;
@@ -124,7 +125,8 @@ body
             list-style: none;
             .location{
                 @include font(100, 15px/*clamp(25px, 4vw, 55px)*/, white, 'Manrope');
-                @include size(95%, auto, 0, 15px);
+                @include size(95%, 10px, 0, 15px);
+                list-style: none;
                 position: relative;
                 border-top: rgba(255, 255, 255, 0.521) solid 1px;
                 // background-color: red;
@@ -136,13 +138,20 @@ body
                 }
             }
         }
-    }
-    .active{
-        @extend .search-div;
-        height: 60%;
-        padding: 10px;
-        box-shadow: 0 0 5px black;
-        border-radius: 15px;
+        &:hover{
+            @extend .search-div;
+            height: 60%;
+            padding: 10px;
+            box-shadow: 0 0 5px black;
+            border-radius: 15px;
+        }
+        &:focus{
+            @extend .search-div;
+            height: 60%;
+            padding: 10px;
+            box-shadow: 0 0 5px black;
+            border-radius: 15px;
+        }
     }
     
     .main-sec
