@@ -1,6 +1,6 @@
 //----------------------------Location Elements(.main)--------------------------------
 
-const 
+const locationEl = document.getElementById('location');
 const supers = document.getElementById('supers');
 const searchBar = document.getElementById('search'); 
 
@@ -13,7 +13,8 @@ const apiFields = {
     lat: 40.7,
     long: -74,
     measureConven: 'imperial',
-    locality: 'Guilderland',
+    address: ``,
+    locality: 'Middlieton',
     state: 'New York',
     zip: '10007'
 }
@@ -28,13 +29,13 @@ const apiFields = {
 // const vis = document.getElementById('visibility');
 // const windSpeed = document.getElementById('windSpeed');
 
-    // async function getPhoto(){
-    //         const response = await fetch(/**Unsplash URI &Authentication key */);
-    //         const data = await response.json();
-    //         const photosOf = ;
-    //     }
+// async function getPhoto(){
+//         const response = await fetch(/**Unsplash URI &Authentication key */);
+//         const data = await response.json();
+//         const photosOf = ;
+//     }
 
-async function getLocation(){
+    async function getLocation(){
     const res = await fetch(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${apiFields.locality},${apiFields.state}&key=AIzaSyDkpwAqY-2AOpFudRfsI9NvFKJ8W_z_Y4c`        
         );
@@ -43,12 +44,12 @@ async function getLocation(){
         const locationInfo = data.results[0].address_components;
         
         // error handling
-        // if(data,status !== "OK"){
+        // if(data.status !== "OK"){
             
             // }
         apiFields.lat = coordinates.lat;
         apiFields.long = coordinates.long;
-            
+        
         locationInfo.forEach(component => {
             if(component.types.includes("locality") || component.types.includes("sublocality")){
                 apiFields.locality = locationInfo.long_name;
@@ -56,8 +57,11 @@ async function getLocation(){
             if(component.types.includes("administrative_level_1")){
                 apiFields.city = locationInfo.long_name;
             }
+            if(component.types.includes("postal_code")){
+                apiFields.zip = locationInfo.long_name;
+            }
         });
-        console.log(locationInfo);
+       console.log(locationInfo);
     }
 
 // async function getWeather(){
@@ -97,6 +101,43 @@ async function getLocation(){
         return fields.measureConven = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
     }
     
+    /*async*/ function search(){
+
+
+        
+        // const searchDiv = document.querySelector('.search-div');
+        // const res = await fetch(
+        //     'https://maps.googleapis.com/maps/api/js?key=MY-API-KEY_z_Y4c&libraries=places&callback=initMap'
+        //     );
+        // const places = await res.json();
+        // if (places){
+        //     console.log('got em');
+        // }
+        // const regex = new RegExp(`^${searchBar.value}`, `gi`);
+        
+        // const resultList = document.createElement('ul');
+        // resultList.setAttribute('id', 'location-dropdown');
+        // resultList.setAttribute('class', 'location-dropdown');
+    
+        // const searchItem = document.createElement('li')
+        // searchItem.setAttribute('id', 'location');
+        // searchItem.setAttribute('class', 'location');
+    
+        // searchDiv.append(resultList);
+    }
+
+    // function initMap(){
+    //     let autocomplete = new google.maps.places.Autocomplete(searchBar,
+    //         {
+    //             componentRestrictions : {'country':['us']},
+    //             fields: ['address_components'],
+    //             types: [('regions')]
+    //         });
+    //         searchBar.addListener('place_changed', () => {
+    //             const place = autocomplete.getPlace();
+    //         });
+    // }
+
     function clockTime()
     {
         const Hour = (dateIRL.getHours() > 12) ? dateIRL.getHours() - 12 : dateIRL.getHours();
@@ -108,8 +149,9 @@ async function getLocation(){
         let minuteForm = (Min < 10) ? `0${Min}`: `${Min}`;
         let meridiem = (dateIRL.getHours() < 12) ? `AM` : `PM`;
         
+        const today = (dateIRL.getDate() < 10) ? `0${dateIRL.getDate()}` : `${dateIRL.getDate()}`;
         clock.textContent = `${Hour}:${minuteForm} ${meridiem}`;
-        nowDate.textContent = `${week[dateIRL.getDay()]} - ${month[dateIRL.getMonth()]}/${dateIRL.getDate()}`;
+        nowDate.textContent = `${week[dateIRL.getDay()]} - ${month[dateIRL.getMonth()]}/${today}`;
         
         const tl_currentHour = document.getElementById('current-hour-at');
         const tl_lastHour = document.getElementById('last-hour-at');
@@ -122,47 +164,19 @@ async function getLocation(){
     
     // let interval = dateIRL.getHours() + 1;
     // for(i = 0; i < 8; i++){
-        //     const intervalMeridiem = (interval > 11) ? `PM` : `AM`;
-        //     const civTime = (interval > 12) ? interval - 12 : interval;
-        //     intervalList[i].firstChild.textContent = `${civTime}${intervalMeridiem}`; //${intervalMeridiem}
-        //     interval += 1;
-        // }
+    //         const intervalMeridiem = (interval > 11) ? `PM` : `AM`;
+    //         const civTime = (interval > 12) ? interval - 12 : interval;
+    //         intervalList[i].firstChild.textContent = `${civTime}${intervalMeridiem}`; //${intervalMeridiem}
+    //         interval += 1;
+    //     }
     }
     
-// function search(){
-//     // const resultList = document.createElement('ul')
-//     // resultList.setAttribute('id', 'location-dropdown');
-//     // resultList.setAttribute('class', 'location-dropdown');
-
-//     // const searchItem = document.createElement('li')
-//     // searchItem.setAttribute('id', 'location');
-//     // searchItem.setAttribute('class', 'location');
-
-//     const searchDiv = document.getElementById('search-div');
-//     // searchDiv.append(resultList);
-
-//     if(searchBar.value !== ""){
-//         // resultList.append(searchItem);
-//         searchDiv.classList.add("active");
-//      } 
-//      else {
-//         searchDiv.classList.remove("active");
-//      }
-//     //  switch (true) {
-//     //     case searchBar.focus:
-//     //         searchDiv.classList.toggle("active");
-//     //          break;
-             
-//     //     default:
-//     //         searchDiv.classList.remove("active");
-//     //          break;
-//     //  }
-// }
 
 
 // getWeather();
-// searchBar.addEventListener('keyup', search);
 // getPhoto();
+search();                       
 getLocation();
 clockTime();
 setInterval(clockTime, 1000);
+// searchBar.addEventListener('input', search);
