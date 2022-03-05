@@ -10,11 +10,12 @@ const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 const month = ['01', '02', "03", "04", "05","06", "07", "08", "09", "10", "11", "12"];
 
 const apiFields = {
+    userInput:'',
     lat: 40.7,
     long: -74,
     measureConven: 'imperial',
     address: ``,
-    locality: 'Middlieton',
+    locality: 'Middleton',
     state: 'New York',
     zip: '10007'
 }
@@ -36,9 +37,9 @@ const apiFields = {
 //     }
 
     async function getLocation(){
-    const res = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${apiFields.locality},${apiFields.state}&key=AIzaSyDkpwAqY-2AOpFudRfsI9NvFKJ8W_z_Y4c`        
-        );
+        apiFields.userInput = searchBar.value;
+        const res = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${apiFields.locality},${apiFields.state}&key=AIzaSyALM6G5bVN_qVck_6nYZ6oyAHs_KBQVXsw`);
         const data = await res.json();
         const coordinates = data.results[0].geometry.location; 
         const locationInfo = data.results[0].address_components;
@@ -55,7 +56,7 @@ const apiFields = {
                 apiFields.locality = locationInfo.long_name;
             }
             if(component.types.includes("administrative_level_1")){
-                apiFields.city = locationInfo.long_name;
+                apiFields.state = locationInfo.long_name;
             }
             if(component.types.includes("postal_code")){
                 apiFields.zip = locationInfo.long_name;
@@ -101,41 +102,42 @@ const apiFields = {
         return fields.measureConven = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
     }
     
-    /*async*/ function search(){
+    async function search(){
+        const userInput = 
+        (searchBar.value !== '' && searchBar.value.includes(' ')) 
+        ? searchBar.value.replace(' ', '%20') 
+        : searchBar.value;
 
-
-        
-        // const searchDiv = document.querySelector('.search-div');
-        // const res = await fetch(
-        //     'https://maps.googleapis.com/maps/api/js?key=MY-API-KEY_z_Y4c&libraries=places&callback=initMap'
-        //     );
-        // const places = await res.json();
-        // if (places){
-        //     console.log('got em');
-        // }
-        // const regex = new RegExp(`^${searchBar.value}`, `gi`);
-        
-        // const resultList = document.createElement('ul');
-        // resultList.setAttribute('id', 'location-dropdown');
-        // resultList.setAttribute('class', 'location-dropdown');
-    
-        // const searchItem = document.createElement('li')
-        // searchItem.setAttribute('id', 'location');
-        // searchItem.setAttribute('class', 'location');
-    
-        // searchDiv.append(resultList);
-    }
-
-    // function initMap(){
-    //     let autocomplete = new google.maps.places.Autocomplete(searchBar,
-    //         {
-    //             componentRestrictions : {'country':['us']},
-    //             fields: ['address_components'],
-    //             types: [('regions')]
-    //         });
-    //         searchBar.addListener('place_changed', () => {
-    //             const place = autocomplete.getPlace();
-    //         });
+        const res = await fetch(`https://spott.p.rapidapi.com/places?type=CITY&skip=0&country=US&limit=7&q=${userInput}`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "spott.p.rapidapi.com",
+                "x-rapidapi-key": "e80c8b39ccmsh4d779a180d55cecp145249jsn3e3f964c90b2"
+            }
+        })
+        const places = await res.json();
+        const regex = new RegExp(`^${searchBar.value}`, 'gi'); 
+        // const matches = places.filter(place = () => {
+        //     if (place.name.charAt(0) === regex){
+        //         return places[place];
+        //     }
+        // });
+            if(places){
+                console.log(places);
+            }
+        }
+    //         // const places = await res.json();
+            
+    //         // const resultList = document.createElement('ul');
+    //         // resultList.setAttribute('id', 'location-dropdown');
+    //         // resultList.setAttribute('class', 'location-dropdown');
+            
+    //         // const searchItem = document.createElement('li')
+    //         // searchItem.setAttribute('id', 'location');
+    //         // searchItem.setAttribute('class', 'location');
+            
+    //     // const searchDiv = document.querySelector('.search-div');
+    //     // searchDiv.append(resultList);
     // }
 
     function clockTime()
@@ -175,8 +177,7 @@ const apiFields = {
 
 // getWeather();
 // getPhoto();
-search();                       
-getLocation();
 clockTime();
+getLocation();
 setInterval(clockTime, 1000);
-// searchBar.addEventListener('input', search);
+searchBar.addEventListener('input', search);
