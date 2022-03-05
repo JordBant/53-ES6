@@ -111,7 +111,6 @@ body
             margin-bottom: auto;
             outline: none;
             border: none;
-            border-bottom: 1px solid white;
             &:focus{
                 outline: none;
                 background: none
@@ -143,6 +142,7 @@ body
             height: 60%;
             padding: 10px;
             box-shadow: 0 0 5px black;
+            border-bottom: 1px solid white;
             border-radius: 15px;
         }
         &:focus{
