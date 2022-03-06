@@ -107,21 +107,24 @@ body
         .search{
             @include font(300, 1rem, white, 'Overpass');
             @include size(425px, 37px, 0, 0 5px 0 5px);
+            position: absolute;
+            top: 5px;
             background: none;
-            margin-bottom: auto;
             outline: none;
             border: none;
+            transition: all 0.7s ease-in-out;
+
             &:focus{
                 outline: none;
-                background: none
+                background: none;
             }
         }
-        .location-dropdown{
-            @include size(100%, 80%, 20px 0 20px 0, 0);
-            // border: blue 2px solid;
+        .locations-dropdown{
+            @include size(100%, 80%, 50px 0 5px 0, 0);
             overflow: scroll;
             text-align: start;
             list-style: none;
+            // border: 2px solid red;
             .location{
                 @include font(100, 15px/*clamp(25px, 4vw, 55px)*/, white, 'Manrope');
                 @include size(95%, 10px, 0, 15px);
@@ -142,15 +145,11 @@ body
             height: 60%;
             padding: 10px;
             box-shadow: 0 0 5px black;
-            border-bottom: 1px solid white;
             border-radius: 15px;
-        }
-        &:focus{
-            @extend .search-div;
-            height: 60%;
-            padding: 10px;
-            box-shadow: 0 0 5px black;
-            border-radius: 15px;
+            .search{
+                top: 5px;
+                border-bottom: 0.25px white solid;
+            }
         }
     }
     
