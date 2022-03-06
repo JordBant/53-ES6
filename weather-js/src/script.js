@@ -1,6 +1,5 @@
 //----------------------------Location Elements(.main)--------------------------------
 
-const locationEl = document.getElementById('location');
 const supers = document.getElementById('supers');
 const searchBar = document.getElementById('search'); 
 
@@ -14,7 +13,6 @@ const apiFields = {
     lat: 40.7,
     long: -74,
     measureConven: 'imperial',
-    address: ``,
     locality: 'Middleton',
     state: 'New York',
     zip: '10007'
@@ -103,12 +101,12 @@ const apiFields = {
     }
     
     async function search(){
-        const userInput = 
-        (searchBar.value !== '' && searchBar.value.includes(' ')) 
-        ? searchBar.value.replace(' ', '%20') 
-        : searchBar.value;
+        // const searchList = document.getElementById('locations-dropdown');
+        // if(searchList){
 
-        const res = await fetch(`https://spott.p.rapidapi.com/places?type=CITY&skip=0&country=US&limit=7&q=${userInput}`, {
+        // }
+        const userInput = (searchBar.value !== '' && searchBar.value.includes(' ')) ? searchBar.value.replace(' ', '%20') : searchBar.value;
+        const res = await fetch(`https://spott.p.rapidapi.com/places?type=CITY&skip=0&country=US&limit=10&q=${userInput}`, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "spott.p.rapidapi.com",
@@ -116,15 +114,12 @@ const apiFields = {
             }
         })
         const places = await res.json();
-        const regex = new RegExp(`^${searchBar.value}`, 'gi'); 
-        // const matches = places.filter(place = () => {
-        //     if (place.name.charAt(0) === regex){
-        //         return places[place];
-        //     }
-        // });
-            if(places){
-                console.log(places);
-            }
+        places.forEach(place => {
+            let suggestion = document.createElement('li').textContent(`${place.name}, ${place.adminDivision1.name}`);
+            suggestion.setAttribute('id', 'location');
+            suggestion.setAttribute('class', 'location');
+            searchList.append(suggestion);
+        });
         }
     //         // const places = await res.json();
             
@@ -157,13 +152,13 @@ const apiFields = {
         
         const tl_currentHour = document.getElementById('current-hour-at');
         const tl_lastHour = document.getElementById('last-hour-at');
-        const intervalList = document.querySelectorAll('#interval');
         
         // let sec = document.getElementById('sec');
         
         (dateIRL.getHours() >= 12) ? tl_currentHour.textContent = `| ${Hour}PM` : tl_currentHour.textContent = `| ${Hour}AM`;
         (dateIRL.getHours() + 8 > 23 || dateIRL.getHours() + 8 <= 12) ? tl_lastHour.textContent = `| ${Hour + 8}AM` : tl_lastHour.textContent = `| ${Hour + 8}PM`;
-    
+        
+    // const intervalList = document.querySelectorAll('#interval');
     // let interval = dateIRL.getHours() + 1;
     // for(i = 0; i < 8; i++){
     //         const intervalMeridiem = (interval > 11) ? `PM` : `AM`;
@@ -177,6 +172,7 @@ const apiFields = {
 
 // getWeather();
 // getPhoto();
+search();
 clockTime();
 getLocation();
 setInterval(clockTime, 1000);
