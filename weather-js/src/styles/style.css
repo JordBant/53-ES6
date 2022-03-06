@@ -43,7 +43,7 @@ body > * {
   grid-row: 1 / -1;
 }
 
-.main .search-div, .main .search-div:hover, .main .search-div:focus {
+.main .search-div, .main .search-div:hover {
   background: #46454580;
   border: 1px solid #ffffff4d;
   -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -87,10 +87,13 @@ body > * {
   padding: 0 5px 0 5px;
   width: 425px;
   height: 37px;
+  position: absolute;
+  top: 5px;
   background: none;
-  margin-bottom: auto;
   outline: none;
   border: none;
+  -webkit-transition: all 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out;
 }
 
 .main .search-div .search:focus {
@@ -98,8 +101,8 @@ body > * {
   background: none;
 }
 
-.main .search-div .location-dropdown {
-  margin: 20px 0 20px 0;
+.main .search-div .locations-dropdown {
+  margin: 50px 0 5px 0;
   padding: 0;
   width: 100%;
   height: 80%;
@@ -108,7 +111,7 @@ body > * {
   list-style: none;
 }
 
-.main .search-div .location-dropdown .location {
+.main .search-div .locations-dropdown .location {
   font: 100 15px "Manrope", sans-serif;
   color: white;
   margin: 0;
@@ -120,7 +123,7 @@ body > * {
   border-top: rgba(255, 255, 255, 0.521) solid 1px;
 }
 
-.main .search-div .location-dropdown .location::before {
+.main .search-div .locations-dropdown .location::before {
   content: '';
   margin: 0;
   padding: 0;
@@ -136,7 +139,7 @@ body > * {
   opacity: 0;
 }
 
-.main .search-div .location-dropdown .location:hover::before {
+.main .search-div .locations-dropdown .location:hover::before {
   opacity: 0.5;
   -webkit-box-shadow: inset 0 0 4px white;
           box-shadow: inset 0 0 4px white;
@@ -147,16 +150,12 @@ body > * {
   padding: 10px;
   -webkit-box-shadow: 0 0 5px black;
           box-shadow: 0 0 5px black;
-  border-bottom: 1px solid white;
   border-radius: 15px;
 }
 
-.main .search-div:focus {
-  height: 60%;
-  padding: 10px;
-  -webkit-box-shadow: 0 0 5px black;
-          box-shadow: 0 0 5px black;
-  border-radius: 15px;
+.main .search-div:hover .search {
+  top: 5px;
+  border-bottom: 0.25px white solid;
 }
 
 .main .main-sec {
