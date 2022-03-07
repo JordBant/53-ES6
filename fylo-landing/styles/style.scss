@@ -52,9 +52,32 @@ body{
 
 .main-up{
     @include size(auto, auto, 0 0 90px 0, 50px);
+    justify-content: space-around;
     .upper-article{
-        & h1 {@include font(700, 1.9rem, black, 'Raleway');}
-        & p {@include font(400, 1rem, black, 'Raleway');}
+        @include size(45%, auto, 0, 0);
+        // border: red solid 2px;
+
+        & h1 {@include font(700, 2.3rem, black, 'Raleway');}
+        & p {@include font(400, 1rem, black, 'Open Sans');}
+    }
+    .submission-div1{
+        @include flex(center, center, NULL, NULL, NULL);
+        @include size(97%, auto, 0, 0);
+        & .input1{@include size(65%, 35px, 0, 0 10px);}
+        & .submit-btn1{
+            @include size(45%, 40px, 0 20px, 0);
+            @include font(700, 0.9rem, white, 'Raleway');
+            background: hsl(224, 93%, 58%);
+            border: none;
+            border-radius: 2.5px;
+            flex-grow: 1;
+            transition: all 0.2s ease-in-out;
+            &:hover{
+                background: hsl(238, 22%, 44%);
+                cursor: pointer;
+            }
+        }
+        // border: green solid 2px;
     }
     .pic1{
         @include size(45%, auto, 0, 0);
@@ -63,7 +86,11 @@ body{
 
 .main-mid{
     @include size(auto, auto, 0 0 50px 0, 70px);
+    justify-content: space-around;
+
     .middle-article{
+        @include size(47%, auto, 0, 0);
+
         & h2 {@include font(700, 2.5rem, black, 'Raleway');}
         & p {@include font(400, 1rem, black, 'Open Sans');}
         & a {
@@ -88,7 +115,11 @@ body{
     height: 27vh;
     background: #585989;
     > * {border: red 2px solid;}
-    
+    .submission-div2{
+        @extend .submission-div1;
+        .input2{@extend .input1;}
+        .submit-btn2{@extend .submit-btn1;}
+    }
     .lower-article{
         @include font(700, NULL, white, 'Raleway');
         @include size(40%, auto, 0, 0);

@@ -98,18 +98,80 @@ body > * > * {
   padding: 50px;
   width: auto;
   height: auto;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.main-up .upper-article {
+  margin: 0;
+  padding: 0;
+  width: 45%;
+  height: auto;
 }
 
 .main-up .upper-article h1 {
-  font: 700 1.9rem "Raleway", sans-serif;
+  font: 700 2.3rem "Raleway", sans-serif;
   text-decoration: none;
   color: black;
 }
 
 .main-up .upper-article p {
-  font: 400 1rem "Raleway", sans-serif;
+  font: 400 1rem "Open Sans", sans-serif;
   text-decoration: none;
   color: black;
+}
+
+.main-up .submission-div1, .main-up .main-low .submission-div2, .main-low .main-up .submission-div2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: NULL;
+          flex-direction: NULL;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  margin: 0;
+  padding: 0;
+  width: 97%;
+  height: auto;
+}
+
+.main-up .submission-div1 .input1, .main-up .main-low .submission-div2 .input1, .main-low .main-up .submission-div2 .input1, .main-low .submission-div2 .main-up .submission-div1 .input2, .main-up .main-low .submission-div2 .input2, .main-low .main-up .submission-div2 .input2 {
+  margin: 0;
+  padding: 0 10px;
+  width: 65%;
+  height: 35px;
+}
+
+.main-up .submission-div1 .submit-btn1, .main-up .main-low .submission-div2 .submit-btn1, .main-low .main-up .submission-div2 .submit-btn1, .main-low .submission-div2 .main-up .submission-div1 .submit-btn2, .main-up .main-low .submission-div2 .submit-btn2, .main-low .main-up .submission-div2 .submit-btn2 {
+  margin: 0 20px;
+  padding: 0;
+  width: 45%;
+  height: 40px;
+  font: 700 0.9rem "Raleway", sans-serif;
+  text-decoration: none;
+  color: white;
+  background: #3065f8;
+  border: none;
+  border-radius: 2.5px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.main-up .submission-div1 .submit-btn1:hover, .main-up .main-low .submission-div2 .submit-btn1:hover, .main-low .main-up .submission-div2 .submit-btn1:hover, .main-low .submission-div2 .main-up .submission-div1 .submit-btn2:hover, .main-up .main-low .submission-div2 .submit-btn2:hover, .main-low .main-up .submission-div2 .submit-btn2:hover {
+  background: #585989;
+  cursor: pointer;
 }
 
 .main-up .pic1 {
@@ -123,6 +185,15 @@ body > * > * {
   margin: 0 0 50px 0;
   padding: 70px;
   width: auto;
+  height: auto;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.main-mid .middle-article {
+  margin: 0;
+  padding: 0;
+  width: 47%;
   height: auto;
 }
 
