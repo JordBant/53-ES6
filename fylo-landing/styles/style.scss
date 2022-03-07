@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@400;700&display=swap');
+
+@mixin size($fillWidth-width, $fillHeight-height, $margin-margin, $padding-padding){
+    margin: $margin-margin;
+    padding: $padding-padding;
+    width: $fillWidth-width;
+    height: $fillHeight-height;
+}
+
+@mixin font($weight-weight, $size-size, $color-color, $font-fam){
+    font: $weight-weight $size-size $font-fam, sans-serif;
+    text-decoration: none;
+    color: $color-color;
+}
+
+@mixin flex($justify-justify, $align-align, $direction-flex_dir, $self-self_ju, $self-self_al){
+    display: flex;
+    justify-content: $justify-justify;
+    align-items: $align-align;
+    flex-direction: $direction-flex_dir;
+    justify-self: $self-self_ju;
+    align-self: $self-self_al;
+}
+// ========================================
+
+body{
+    @include flex(center, NULL, column, NULL, NULL);
+    @include size(100vw, auto, 0, 0);
+    box-sizing: border-box;
+    & > * {
+        @include size(100vw, auto, NULL, NULL);
+        border: red solid 2px;
+        & > *{
+            @include flex(NULL, center, NULL, NULL, NULL);
+        }
+    }
+}
+
+.fylo-nav{
+    @include size(auto, auto, 0, 20px 70px 20px 70px);
+    justify-content: space-between;
+    border: green 3px solid;
+    .nav-links{
+        @include size(20%, auto, 0, 0);
+        @include flex(space-between, center, NULL, NULL, NULL);
+        list-style: none;
+
+        a{@include font(400, 1rem, black, 'Raleway');}
+        border: 2px solid blue;
+    }
+}
+
+.main-up{
+    @include size(auto, auto, 0 0 90px 0, 50px);
+    .upper-article{
+        & h1 {@include font(700, 1.7rem, black, 'Raleway');}
+        & p {@include font(400, 1rem, black, 'Raleway');}
+    }
+    .pic1{
+        @include size(45%, auto, 0, 0);
+    }
+}
+
+.main-mid{
+    @include size(auto, auto, 0 0 50px 0, 70px);
+    .middle-article{
+        & h2 {@include font(700, 2.5rem, black, 'Raleway');}
+        & p {@include font(400, 1rem, black, 'Open Sans');}
+        & a {
+            @include font(400, 1rem, hsl(170, 45%, 43%), 'Open Sans');
+            &::after{
+                content: url(../images/icon-arrow.svg);
+                @include size(50px, auto, 0 0 0 5px, 0);
+            }
+            border-bottom: hsl(170, 45%, 43%) 1px solid;
+        }
+    }
+    .pic2{@include size(40%, auto, 0, 0);}
+    .canvas-placeholder{ 
+        @include size(400px, 200px, 10px, 0);
+        background: black;  
+    }
+}
+
+.main-low{
+    @include size(auto, auto, 0, 50px);
+    justify-content: space-between;
+    height: 27vh;
+    background: #585989;
+    > * {border: red 2px solid;}
+    
+    .lower-article{
+        @include font(700, NULL, white, 'Raleway');
+        @include size(40%, auto, 0, 0);
+        & h3 {@include font(700, 1.7rem, white, 'Raleway');}
+        & p {@include font(400, 1rem, white, 'Open Sans');}
+    }
+    
+}
+
+.fylo-footer
+{
+    @include flex(space-between, center, NULL, NULL, NULL);
+    height: 50vh;
+    & > *{
+        @include size(NULL, 100%, 20px, 0);
+        border: red 2px solid;
+        flex-grow: 1;
+    }
+}
+
+// .fylo-main{
+//     .upper-class{
+
+//     }
+// }
