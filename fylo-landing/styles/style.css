@@ -165,8 +165,8 @@ body > * > * {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.05s ease-in-out;
+  transition: all 0.05s ease-in-out;
 }
 
 .main-up .submission-div1 .submit-btn1:hover {
@@ -315,8 +315,8 @@ body > * > * {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.05s ease-in-out;
+  transition: all 0.05s ease-in-out;
   display: block;
 }
 
@@ -334,9 +334,9 @@ body > * > * {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: NULL;
@@ -344,15 +344,19 @@ body > * > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
-  height: 50vh;
+  height: 47vh;
   background: #070439;
+}
+
+.fylo-footer .logo-text, .fylo-footer .logo-square {
+  fill: #F8F8FE;
 }
 
 .fylo-footer > * {
   margin: 0 70px;
   padding: 0;
-  width: NULL;
-  height: 100%;
+  width: auto;
+  height: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -369,9 +373,6 @@ body > * > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
   border: red 2px solid;
 }
 
@@ -380,11 +381,63 @@ body > * > * {
   text-decoration: none;
   color: white;
   list-style: none;
-  margin: 10px;
+  margin: 0 0 auto 0;
+  padding: 0;
 }
 
 .fylo-footer > * > * > a, .fylo-footer > * ul > * > a {
   text-decoration: none;
   color: white;
+}
+
+.fylo-footer > * > * > a:hover, .fylo-footer > * ul > * > a:hover {
+  color: #585989;
+}
+
+.fylo-footer .footer-col-1 .phone::before {
+  content: url(../images/icon-phone.svg);
+  margin: 3px;
+  padding: 0;
+  width: 45px;
+  height: auto;
+}
+
+.fylo-footer .footer-col-1 .email::before {
+  content: url(../images/icon-email.svg);
+  margin: 3px;
+  padding: 0;
+  width: 80px;
+  height: auto;
+}
+
+.fylo-footer .footer-col-4 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  width: 10%;
+  border: 2px solid green;
+}
+
+.fylo-footer .footer-col-4 .media-icon {
+  -webkit-transition: 0.2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
+}
+
+.fylo-footer .footer-col-4 .media-icon:hover {
+  fill: #585989;
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
