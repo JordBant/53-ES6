@@ -53,7 +53,7 @@ body > * > * {
 
 .fylo-nav {
   margin: 0;
-  padding: 20px 70px 20px 70px;
+  padding: 50px 70px 50px 70px;
   width: auto;
   height: auto;
   -webkit-box-pack: justify;
@@ -94,7 +94,7 @@ body > * > * {
 }
 
 .main-up {
-  margin: 0 0 90px 0;
+  margin: 0 0 200px 0;
   padding: 50px;
   width: auto;
   height: auto;
@@ -121,7 +121,7 @@ body > * > * {
   color: black;
 }
 
-.main-up .submission-div1, .main-up .main-low .submission-div2, .main-low .main-up .submission-div2 {
+.main-up .submission-div1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -144,18 +144,18 @@ body > * > * {
   height: auto;
 }
 
-.main-up .submission-div1 .input1, .main-up .main-low .submission-div2 .input1, .main-low .main-up .submission-div2 .input1, .main-low .submission-div2 .main-up .submission-div1 .input2, .main-up .main-low .submission-div2 .input2, .main-low .main-up .submission-div2 .input2 {
+.main-up .submission-div1 .input1 {
   margin: 0;
   padding: 0 10px;
   width: 65%;
   height: 35px;
 }
 
-.main-up .submission-div1 .submit-btn1, .main-up .main-low .submission-div2 .submit-btn1, .main-low .main-up .submission-div2 .submit-btn1, .main-low .submission-div2 .main-up .submission-div1 .submit-btn2, .main-up .main-low .submission-div2 .submit-btn2, .main-low .main-up .submission-div2 .submit-btn2 {
+.main-up .submission-div1 .submit-btn1 {
   margin: 0 20px;
   padding: 0;
   width: 45%;
-  height: 40px;
+  height: 45px;
   font: 700 0.9rem "Raleway", sans-serif;
   text-decoration: none;
   color: white;
@@ -169,8 +169,10 @@ body > * > * {
   transition: all 0.2s ease-in-out;
 }
 
-.main-up .submission-div1 .submit-btn1:hover, .main-up .main-low .submission-div2 .submit-btn1:hover, .main-low .main-up .submission-div2 .submit-btn1:hover, .main-low .submission-div2 .main-up .submission-div1 .submit-btn2:hover, .main-up .main-low .submission-div2 .submit-btn2:hover, .main-low .main-up .submission-div2 .submit-btn2:hover {
-  background: #585989;
+.main-up .submission-div1 .submit-btn1:hover {
+  background: #5782fa;
+  -webkit-box-shadow: 0 0 1px 0 black;
+          box-shadow: 0 0 1px 0 black;
   cursor: pointer;
 }
 
@@ -182,18 +184,31 @@ body > * > * {
 }
 
 .main-mid {
-  margin: 0 0 50px 0;
-  padding: 70px;
+  margin: 0;
+  padding: 100px;
   width: auto;
   height: auto;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  position: relative;
+  background: #F8F8FE;
+}
+
+.main-mid::before {
+  content: url(../images/bg-curve-desktop.svg);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: -10%;
+  z-index: 1;
 }
 
 .main-mid .middle-article {
   margin: 0;
   padding: 0;
-  width: 47%;
+  width: 55%;
   height: auto;
 }
 
@@ -243,16 +258,10 @@ body > * > * {
   margin: 0;
   padding: 50px;
   width: auto;
-  height: auto;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   height: 27vh;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   background: #585989;
-}
-
-.main-low > * {
-  border: red 2px solid;
 }
 
 .main-low .lower-article {
@@ -277,6 +286,47 @@ body > * > * {
   color: white;
 }
 
+.main-low .submission-div2 {
+  margin: 0;
+  padding: 0;
+  width: 30%;
+  height: auto;
+}
+
+.main-low .submission-div2 .input2 {
+  margin: 20px;
+  padding: 0 10px;
+  width: 100%;
+  height: 35px;
+  display: block;
+}
+
+.main-low .submission-div2 .submit-btn2 {
+  margin: 0 20px;
+  padding: 0;
+  width: 45%;
+  height: 45px;
+  font: 700 0.9rem "Raleway", sans-serif;
+  text-decoration: none;
+  color: white;
+  background: #3065f8;
+  border: none;
+  border-radius: 2.5px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  display: block;
+}
+
+.main-low .submission-div2 .submit-btn2:hover {
+  background: #5782fa;
+  -webkit-box-shadow: 0 0 1px 0 black;
+          box-shadow: 0 0 1px 0 black;
+  cursor: pointer;
+}
+
 .fylo-footer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -295,16 +345,46 @@ body > * > * {
   -ms-flex-item-align: NULL;
       align-self: NULL;
   height: 50vh;
+  background: #070439;
 }
 
 .fylo-footer > * {
-  margin: 20px;
+  margin: 0 70px;
   padding: 0;
   width: NULL;
   height: 100%;
-  border: red 2px solid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  border: red 2px solid;
+}
+
+.fylo-footer > * > *, .fylo-footer > * ul > * {
+  font: 400 1rem "Open Sans", sans-serif;
+  text-decoration: none;
+  color: white;
+  list-style: none;
+  margin: 10px;
+}
+
+.fylo-footer > * > * > a, .fylo-footer > * ul > * > a {
+  text-decoration: none;
+  color: white;
 }
 /*# sourceMappingURL=style.css.map */
