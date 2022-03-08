@@ -20,7 +20,7 @@
     border: none;
     border-radius: 2.5px;
     flex-grow: 1;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.05s ease-in-out;
     &:hover{
         background: hsl(224, 94%, 66%);
         box-shadow: 0 0 1px 0 black;
@@ -146,23 +146,49 @@ body{
 
 .fylo-footer
 {
-    @include flex(space-between, center, NULL, NULL, NULL);
-    height: 50vh;
+    @include flex(space-between, flex-end, NULL, NULL, NULL);
+    height: 47vh;
     background: hsl(243, 87%, 12%);
-    & > *{
-        @include size(NULL, 100%, 0 70px, 0);
+    .logo-text, .logo-square{fill: #F8F8FE;}
+    & > * {
+        @include size(auto, 70%, 0 70px, 0);
         @include flex(center, flex-start, column, NULL, NULL);
+        border: red 2px solid;
         & > *, ul > *{
             @include font(400, 1rem, white, 'Open Sans');
             list-style: none;
-            margin: 10px;
+            margin: 0 0 auto 0;
+            padding: 0;
             & > a{
                 text-decoration: none;
                 color: white;
+                &:hover{color:  hsl(238, 22%, 44%);}
             }
         }
-        flex-grow: 1;
-        border: red 2px solid;
+    }
+    .footer-col-1{
+        & .phone{
+            &::before{
+                content: url(../images/icon-phone.svg);
+                @include size(45px, auto, 3px, 0);
+            }
+        }
+        & .email{
+            &::before{
+                content: url(../images/icon-email.svg);
+                @include size(80px, auto, 3px, 0);
+            }
+        }
+    }
+    .footer-col-4{
+        @include flex(space-between, center, row, NULL, NULL);
+        width: 10%;
+        border: 2px solid green;
+        .media-icon{transition: 0.2s all ease-in-out;}
+        .media-icon:hover{
+            fill: #585989;
+            cursor: pointer;
+        }
     }
 }
 
