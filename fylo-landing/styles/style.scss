@@ -13,6 +13,21 @@
     color: $color-color;
 }
 
+@mixin button{
+    @include size(45%, 45px, 0 20px, 0);
+    @include font(700, 0.9rem, white, 'Raleway');
+    background: hsl(224, 93%, 58%);
+    border: none;
+    border-radius: 2.5px;
+    flex-grow: 1;
+    transition: all 0.2s ease-in-out;
+    &:hover{
+        background: hsl(224, 94%, 66%);
+        box-shadow: 0 0 1px 0 black;
+        cursor: pointer;
+    }
+}
+
 @mixin flex($justify-justify, $align-align, $direction-flex_dir, $self-self_ju, $self-self_al){
     display: flex;
     justify-content: $justify-justify;
@@ -37,7 +52,7 @@ body{
 }
 
 .fylo-nav{
-    @include size(auto, auto, 0, 20px 70px 20px 70px);
+    @include size(auto, auto, 0, 50px 70px 50px 70px);
     justify-content: space-between;
     border: green 3px solid;
     .nav-links{
@@ -51,7 +66,7 @@ body{
 }
 
 .main-up{
-    @include size(auto, auto, 0 0 90px 0, 50px);
+    @include size(auto, auto, 0 0 200px 0, 50px);
     justify-content: space-around;
     .upper-article{
         @include size(45%, auto, 0, 0);
@@ -64,37 +79,33 @@ body{
         @include flex(center, center, NULL, NULL, NULL);
         @include size(97%, auto, 0, 0);
         & .input1{@include size(65%, 35px, 0, 0 10px);}
-        & .submit-btn1{
-            @include size(45%, 40px, 0 20px, 0);
-            @include font(700, 0.9rem, white, 'Raleway');
-            background: hsl(224, 93%, 58%);
-            border: none;
-            border-radius: 2.5px;
-            flex-grow: 1;
-            transition: all 0.2s ease-in-out;
-            &:hover{
-                background: hsl(238, 22%, 44%);
-                cursor: pointer;
-            }
-        }
+        & .submit-btn1{@include button();}
         // border: green solid 2px;
     }
-    .pic1{
-        @include size(45%, auto, 0, 0);
-    }
+    .pic1{@include size(45%, auto, 0, 0);}
 }
 
 .main-mid{
-    @include size(auto, auto, 0 0 50px 0, 70px);
+    @include size(auto, auto, 0, 100px);
     justify-content: space-around;
+    position: relative;
+    background: #F8F8FE;
+    // border: 2px solid green;
 
+    &::before{
+        content: url(../images/bg-curve-desktop.svg);
+        @include size(100%, auto, 0, 0);
+        position: absolute;
+        top: -10%;
+        z-index: 1;
+        // border: 2px solid cyan;
+    }
     .middle-article{
-        @include size(47%, auto, 0, 0);
+        @include size(55%, auto, 0, 0);
 
         & h2 {@include font(700, 2.5rem, black, 'Raleway');}
         & p {@include font(400, 1rem, black, 'Open Sans');}
-        & a {
-            @include font(400, 1rem, hsl(170, 45%, 43%), 'Open Sans');
+        & a {@include font(400, 1rem, hsl(170, 45%, 43%), 'Open Sans');
             &::after{
                 content: url(../images/icon-arrow.svg);
                 @include size(50px, auto, 0 0 0 5px, 0);
@@ -110,33 +121,48 @@ body{
 }
 
 .main-low{
-    @include size(auto, auto, 0, 50px);
-    justify-content: space-between;
-    height: 27vh;
+    @include size(auto, 27vh, 0, 50px);
+    justify-content: space-around;
     background: #585989;
-    > * {border: red 2px solid;}
-    .submission-div2{
-        @extend .submission-div1;
-        .input2{@extend .input1;}
-        .submit-btn2{@extend .submit-btn1;}
-    }
     .lower-article{
         @include font(700, NULL, white, 'Raleway');
         @include size(40%, auto, 0, 0);
         & h3 {@include font(700, 1.7rem, white, 'Raleway');}
         & p {@include font(400, 1rem, white, 'Open Sans');}
     }
-    
+    .submission-div2{
+        @include size(30%, auto, 0, 0);
+        // border: 2px solid green;
+        .input2{
+            @include size(100%, 35px, 20px, 0 10px);
+            display: block;
+        }
+        .submit-btn2{
+            @include button();
+            display: block;
+        }
+    }
 }
 
 .fylo-footer
 {
     @include flex(space-between, center, NULL, NULL, NULL);
     height: 50vh;
+    background: hsl(243, 87%, 12%);
     & > *{
-        @include size(NULL, 100%, 20px, 0);
-        border: red 2px solid;
+        @include size(NULL, 100%, 0 70px, 0);
+        @include flex(center, flex-start, column, NULL, NULL);
+        & > *, ul > *{
+            @include font(400, 1rem, white, 'Open Sans');
+            list-style: none;
+            margin: 10px;
+            & > a{
+                text-decoration: none;
+                color: white;
+            }
+        }
         flex-grow: 1;
+        border: red 2px solid;
     }
 }
 
