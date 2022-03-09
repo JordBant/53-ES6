@@ -29,7 +29,6 @@ body > * {
   padding: NULL;
   width: 100vw;
   height: auto;
-  border: red solid 2px;
 }
 
 body > * > * {
@@ -59,7 +58,6 @@ body > * > * {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  border: green 3px solid;
 }
 
 .fylo-nav .nav-links {
@@ -84,7 +82,6 @@ body > * > * {
   -ms-flex-item-align: NULL;
       align-self: NULL;
   list-style: none;
-  border: 2px solid blue;
 }
 
 .fylo-nav .nav-links a {
@@ -251,7 +248,25 @@ body > * > * {
   padding: 0;
   width: 400px;
   height: 200px;
+  position: relative;
   background: black;
+}
+
+.main-mid .canvas-placeholder::before {
+  content: 'In progress';
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font: 400 2rem "Raleway", sans-serif;
+  text-decoration: none;
+  color: cyan;
+  position: absolute;
+  z-index: 1;
+  margin: auto;
+  text-align: center;
+  top: 0;
+  left: 0;
 }
 
 .main-low {
@@ -344,7 +359,7 @@ body > * > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
-  height: 47vh;
+  height: 50vh;
   background: #070439;
 }
 
@@ -356,7 +371,44 @@ body > * > * {
   margin: 0 70px;
   padding: 0;
   width: auto;
-  height: 70%;
+  height: 65%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.fylo-footer .footer-col-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-self: NULL;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.fylo-footer .footer-col-1 a {
+  font: 400 1rem "Open Sans", sans-serif;
+  text-decoration: none;
+  color: white;
+  text-decoration: none;
+  color: white;
+}
+
+.fylo-footer .footer-col-1 a:hover {
+  color: #585989;
+}
+
+.fylo-footer .footer-col-1 .contact-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -373,28 +425,17 @@ body > * > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
-  border: red 2px solid;
-}
-
-.fylo-footer > * > *, .fylo-footer > * ul > * {
-  font: 400 1rem "Open Sans", sans-serif;
-  text-decoration: none;
-  color: white;
-  list-style: none;
-  margin: 0 0 auto 0;
+  margin: 30px 0 0 0;
   padding: 0;
+  width: 100%;
+  height: auto;
 }
 
-.fylo-footer > * > * > a, .fylo-footer > * ul > * > a {
-  text-decoration: none;
-  color: white;
+.fylo-footer .footer-col-1 .contact-info .phone {
+  margin-bottom: 15px;
 }
 
-.fylo-footer > * > * > a:hover, .fylo-footer > * ul > * > a:hover {
-  color: #585989;
-}
-
-.fylo-footer .footer-col-1 .phone::before {
+.fylo-footer .footer-col-1 .contact-info .phone::before {
   content: url(../images/icon-phone.svg);
   margin: 3px;
   padding: 0;
@@ -402,12 +443,52 @@ body > * > * {
   height: auto;
 }
 
-.fylo-footer .footer-col-1 .email::before {
+.fylo-footer .footer-col-1 .contact-info .email::before {
   content: url(../images/icon-email.svg);
   margin: 3px;
   padding: 0;
   width: 80px;
   height: auto;
+}
+
+.fylo-footer #list-col #content-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-self: NULL;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+}
+
+.fylo-footer #list-col #content-list li {
+  font: 400 1rem "Open Sans", sans-serif;
+  text-decoration: none;
+  color: white;
+  list-style: none;
+  margin-bottom: 25px;
+}
+
+.fylo-footer #list-col #content-list li a {
+  text-decoration: none;
+  color: white;
+}
+
+.fylo-footer #list-col #content-list li a:hover {
+  color: #585989;
 }
 
 .fylo-footer .footer-col-4 {
@@ -417,9 +498,9 @@ body > * > * {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -427,8 +508,8 @@ body > * > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
+  margin-right: 300px;
   width: 10%;
-  border: 2px solid green;
 }
 
 .fylo-footer .footer-col-4 .media-icon {
