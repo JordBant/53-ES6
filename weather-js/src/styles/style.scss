@@ -93,19 +93,17 @@ body
 
     .search-div{
         
-        @include frostGlass(#46454580);
+        @include frostGlass(#ffffff3d);
         @include size(50%, 5%, 0, 5px);
         @include flex(center, center, column, NULL, NULL);
         align-self: center;
         transition: all 0.4s ease-in-out;
 
         // border: pink solid 2px;
-        box-shadow: none;
         border-radius: 25px;
-        background: #46454580;
 
         .search{
-            @include font(300, 1rem, white, 'Overpass');
+            @include font(300, 1rem, black, 'Overpass');
             @include size(425px, 37px, 0, 0 5px 0 5px);
             position: absolute;
             top: 5px;
@@ -113,7 +111,7 @@ body
             outline: none;
             border: none;
             transition: all 0.7s ease-in-out;
-
+            
             &:focus{
                 outline: none;
                 background: none;
@@ -126,7 +124,7 @@ body
             list-style: none;
             // border: 2px solid red;
             .location{
-                @include font(100, 15px/*clamp(25px, 4vw, 55px)*/, white, 'Manrope');
+                @include font(100, 15px/*clamp(25px, 4vw, 55px)*/, black, 'Manrope');
                 @include size(95%, 10px, 0, 15px);
                 list-style: none;
                 position: relative;
@@ -136,7 +134,7 @@ body
                 &::before{@include glimmer();}
                 &:hover::before{
                     opacity: 0.5;
-                    box-shadow: inset 0 0 4px white;
+                    box-shadow: inset 0 0 4px rgb(110, 110, 110);
                 }
             }
         }
@@ -144,11 +142,10 @@ body
             height: 60%;
             border: none;
             padding: 10px;
-            box-shadow: 0 0 8px black;
             border-radius: 15px;
             .search{
                 top: 5px;
-                border-bottom: 0.25px white solid;
+                border-bottom: 0.25px black solid;
             }
         }
     }
@@ -206,7 +203,7 @@ body
 
 .aside1
 {
-    @include frostGlass(#817f7f80);
+    @include frostGlass(#ffffff81);
     @include flex(center, center, column, NULL, NULL); 
     border-top-left-radius: 35px;
     border-bottom: none;
@@ -215,7 +212,7 @@ body
     .now{
         @include size(85%, auto, 0, 8px);
         @include flex(space-between, center, row, NULL, flex-end);
-        @include frostGlass(rgba(0, 0, 0, 0.059));
+        @include frostGlass(rgba(0, 0, 0, 0.164));
         box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
         // border: 2px solid blue;
         border: none;
@@ -237,7 +234,7 @@ body
             }
             #apparent{
                 position: relative;
-                @include font(200, 30px, #ffffffbf, 'Manrope');
+                @include font(200, 30px, black, 'Manrope');
                 @include flex(center, center, column, NULL, NULL);
                 @include size(60px, auto, NULL, 0);
                 // border: 2px solid red;
@@ -245,7 +242,7 @@ body
                 &::before{
                     content: 'Feels Like';
                     @include size(100%, auto, 0, 0);
-                    @include font(500, 12px, white, Overpass);
+                    @include font(500, 12px, black, Overpass);
                     text-align: center;
                     opacity: 1;
                     transition: all 0.4 ease-in;
@@ -254,12 +251,12 @@ body
         }
         #clock{
             @include flex(center, center, column, NULL, NULL);
-            @include font(300, 27px, rgba(255, 255, 255, 0.712), 'Manrope');
+            @include font(300, 27px, black, 'Manrope');
             margin-right: 2px;
             // border: 2px solid blue;
 
             .calender-date{
-                @include font(500, 15px, rgba(255, 255, 255, 0.7), 'Manrope');
+                @include font(500, 15px, black, 'Manrope');
                 @include flex(center, center, NULL, NULL, NULL);
                 @include size(100%, auto, 0, 0);
                 // border: 2px solid  red;
@@ -302,7 +299,7 @@ body
                     position: absolute;
                     text-align: center;
                     #info-at{
-                       @include font(400, 15px, #ffffffab, 'Overpass');
+                       @include font(400, 15px, black, 'Overpass');
                     }
                 }
 
@@ -342,7 +339,7 @@ body
                     left: -2%;
                     
                     #time{
-                        @include font(400, 10px, #ffffff, 'Mansrope');
+                        @include font(400, 10px, black, 'Mansrope');
                     }
                 }
                 
@@ -364,7 +361,7 @@ body
             left: 50%;
             top: 85%;
             transform: translateX(-50%);
-            border-top: 1px dotted white;
+            border-top: 1px dotted black;
 
             & ul{
                 @include flex(space-between, center, NULL, NULL, NULL);
@@ -373,7 +370,7 @@ body
                 // border: 2px solid green;
                 list-style: none;
                 & > *{
-                    @include font(100, 20px, #ffffff, 'Overpass');
+                    @include font(100, 20px, black, 'Overpass');
                 }
             }
         }
@@ -382,7 +379,7 @@ body
 
 .aside2
 {
-    @include frostGlass(#817f7f80);
+    @include frostGlass(#ffffff81);
 
     padding: 20px 0 20px 20px;
     border-bottom-left-radius: 35px;
@@ -406,10 +403,10 @@ body
         .card{
             @include card(70%, 78%, NULL);
             @include flex(space-between, flex-end, column, NULL, NULL);
-            @include font(200, 1rem, white, 'Manrope');
+            @include font(200, 1rem, black, 'Manrope');
             position: relative;
             background: none;
-            border-right: solid white 1px;
+            border-right: solid black 1px;
             backdrop-filter: none;
             transition: all 2s ease-in-out;
             border-radius: 0;
