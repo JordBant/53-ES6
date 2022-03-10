@@ -43,7 +43,7 @@ body > * {
   grid-row: 1 / -1;
 }
 
-.main .search-div, .main .search-div:hover {
+.main .search-div {
   background: #46454580;
   border: 1px solid #ffffff4d;
   -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -147,9 +147,10 @@ body > * {
 
 .main .search-div:hover {
   height: 60%;
+  border: none;
   padding: 10px;
-  -webkit-box-shadow: 0 0 5px black;
-          box-shadow: 0 0 5px black;
+  -webkit-box-shadow: 0 0 8px black;
+          box-shadow: 0 0 8px black;
   border-radius: 15px;
 }
 
@@ -776,8 +777,8 @@ body > * {
           backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(0);
           backdrop-filter: blur(0);
-  -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
-          box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.5);
   border-radius: 20px 0 0 20px;
   border: none;
   margin-right: 0;
