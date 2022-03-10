@@ -44,7 +44,7 @@ body > * {
 }
 
 .main .search-div {
-  background: #46454580;
+  background: #ffffff3d;
   border: 1px solid #ffffff4d;
   -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -74,15 +74,12 @@ body > * {
       align-self: center;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
-  -webkit-box-shadow: none;
-          box-shadow: none;
   border-radius: 25px;
-  background: #46454580;
 }
 
 .main .search-div .search {
   font: 300 1rem "Overpass", sans-serif;
-  color: white;
+  color: black;
   margin: 0;
   padding: 0 5px 0 5px;
   width: 425px;
@@ -113,7 +110,7 @@ body > * {
 
 .main .search-div .locations-dropdown .location {
   font: 100 15px "Manrope", sans-serif;
-  color: white;
+  color: black;
   margin: 0;
   padding: 15px;
   width: 95%;
@@ -141,22 +138,20 @@ body > * {
 
 .main .search-div .locations-dropdown .location:hover::before {
   opacity: 0.5;
-  -webkit-box-shadow: inset 0 0 4px white;
-          box-shadow: inset 0 0 4px white;
+  -webkit-box-shadow: inset 0 0 4px #6e6e6e;
+          box-shadow: inset 0 0 4px #6e6e6e;
 }
 
 .main .search-div:hover {
   height: 60%;
   border: none;
   padding: 10px;
-  -webkit-box-shadow: 0 0 8px black;
-          box-shadow: 0 0 8px black;
   border-radius: 15px;
 }
 
 .main .search-div:hover .search {
   top: 5px;
-  border-bottom: 0.25px white solid;
+  border-bottom: 0.25px black solid;
 }
 
 .main .main-sec {
@@ -251,7 +246,7 @@ body > * {
 }
 
 .aside1 {
-  background: #817f7f80;
+  background: #ffffff81;
   border: 1px solid #ffffff4d;
   -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -299,7 +294,7 @@ body > * {
   justify-self: NULL;
   -ms-flex-item-align: end;
       align-self: flex-end;
-  background: rgba(0, 0, 0, 0.059);
+  background: rgba(0, 0, 0, 0.164);
   border: 1px solid #ffffff4d;
   -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -351,7 +346,7 @@ body > * {
 .aside1 .now .cur-condition #apparent {
   position: relative;
   font: 200 30px "Manrope", sans-serif;
-  color: #ffffffbf;
+  color: black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -382,7 +377,7 @@ body > * {
   width: 100%;
   height: auto;
   font: 500 12px Overpass, sans-serif;
-  color: white;
+  color: black;
   text-align: center;
   opacity: 1;
   -webkit-transition: all 0.4 ease-in;
@@ -407,13 +402,13 @@ body > * {
   -ms-flex-item-align: NULL;
       align-self: NULL;
   font: 300 27px "Manrope", sans-serif;
-  color: rgba(255, 255, 255, 0.712);
+  color: black;
   margin-right: 2px;
 }
 
 .aside1 .now #clock .calender-date {
   font: 500 15px "Manrope", sans-serif;
-  color: rgba(255, 255, 255, 0.7);
+  color: black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -498,7 +493,7 @@ body > * {
 
 .aside1 .timeline .half-circ-wrapper .half-circle #info #info-at {
   font: 400 15px "Overpass", sans-serif;
-  color: #ffffffab;
+  color: black;
 }
 
 .aside1 .timeline .half-circ-wrapper .half-circle .info1 {
@@ -614,7 +609,7 @@ body > * {
 
 .aside1 .timeline .half-circ-wrapper .interval-list #interval #time {
   font: 400 10px "Mansrope", sans-serif;
-  color: #ffffff;
+  color: black;
 }
 
 .aside1 .timeline .half-circ-wrapper .interval-list .hr2 {
@@ -713,7 +708,7 @@ body > * {
   top: 85%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  border-top: 1px dotted white;
+  border-top: 1px dotted black;
 }
 
 .aside1 .timeline .baseline ul {
@@ -742,11 +737,11 @@ body > * {
 
 .aside1 .timeline .baseline ul > * {
   font: 100 20px "Overpass", sans-serif;
-  color: #ffffff;
+  color: black;
 }
 
 .aside2 {
-  background: #817f7f80;
+  background: #ffffff81;
   border: 1px solid #ffffff4d;
   -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -819,10 +814,10 @@ body > * {
   -ms-flex-item-align: NULL;
       align-self: NULL;
   font: 200 1rem "Manrope", sans-serif;
-  color: white;
+  color: black;
   position: relative;
   background: none;
-  border-right: solid white 1px;
+  border-right: solid black 1px;
   -webkit-backdrop-filter: none;
           backdrop-filter: none;
   -webkit-transition: all 2s ease-in-out;
