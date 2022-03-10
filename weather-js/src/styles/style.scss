@@ -141,10 +141,10 @@ body
             }
         }
         &:hover{
-            @extend .search-div;
             height: 60%;
+            border: none;
             padding: 10px;
-            box-shadow: 0 0 5px black;
+            box-shadow: 0 0 8px black;
             border-radius: 15px;
             .search{
                 top: 5px;
@@ -208,11 +208,9 @@ body
 {
     @include frostGlass(#817f7f80);
     @include flex(center, center, column, NULL, NULL); 
-    // box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     border-top-left-radius: 35px;
     border-bottom: none;
     border-right: none;
-    // border: 2px solid red;
 
     .now{
         @include size(85%, auto, 0, 8px);
@@ -278,16 +276,7 @@ body
         @include size(100%, 100%, 0, 0);
         @include flex(center, center, NULL, NULL, NULL);
         position: relative;
-        // border: 2px solid green;
         overflow: hidden;
-        // &::after{
-        //     content: '';
-        //     @include size(75%, 0, 0, 0);
-        //     margin-bottom: 20%;
-        //     position: absolute;
-        //     align-self: flex-end;
-        //     border: 0.25px solid white;
-        // }
 
         .half-circ-wrapper
         {
@@ -396,18 +385,16 @@ body
     @include frostGlass(#817f7f80);
 
     padding: 20px 0 20px 20px;
-    // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     border-bottom-left-radius: 35px;
     border-top: none;
     border-right: none;
-    // border: 2px solid blue;
 
     .card-list{
         @include size(100%, 100%, 0, 0);
         @include fourGrid(1fr, 1fr, 1fr, 1fr);
         @include frostGlass(rgba(0, 0, 0, 0.1));
         backdrop-filter: blur(0);
-        box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.5);
         border-radius: 20px 0 0 20px;
         border: none;
 

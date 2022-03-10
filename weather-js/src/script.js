@@ -83,10 +83,6 @@ const apiFields = {
 //         //&fields=${'temperature'}&fields=${'precipitationType'}&fields=${'precipitationProbability'}
 //     }
     
-    // supers.addEventListener('click', getWeather);
-
-    // searchBar.addEventListener('input', search);
-    
     function toggleUnits(){
         const Fahr = document.getElementById('Fahr');
         const Cels = document.getElementById('Cels');
@@ -119,21 +115,8 @@ const apiFields = {
             suggestion.setAttribute('id', 'location');
             suggestion.setAttribute('class', 'location');
             searchList.append(suggestion);
-        });
+            });
         }
-    //         // const places = await res.json();
-            
-    //         // const resultList = document.createElement('ul');
-    //         // resultList.setAttribute('id', 'location-dropdown');
-    //         // resultList.setAttribute('class', 'location-dropdown');
-            
-    //         // const searchItem = document.createElement('li')
-    //         // searchItem.setAttribute('id', 'location');
-    //         // searchItem.setAttribute('class', 'location');
-            
-    //     // const searchDiv = document.querySelector('.search-div');
-    //     // searchDiv.append(resultList);
-    // }
 
     function clockTime()
     {
@@ -154,7 +137,6 @@ const apiFields = {
         const tl_lastHour = document.getElementById('last-hour-at');
         
         // let sec = document.getElementById('sec');
-        
         (dateIRL.getHours() >= 12) ? tl_currentHour.textContent = `| ${Hour}PM` : tl_currentHour.textContent = `| ${Hour}AM`;
         (dateIRL.getHours() + 8 > 23 || dateIRL.getHours() + 8 <= 12) ? tl_lastHour.textContent = `| ${Hour + 8}AM` : tl_lastHour.textContent = `| ${Hour + 8}PM`;
         
@@ -175,5 +157,7 @@ const apiFields = {
 search();
 clockTime();
 getLocation();
+
 setInterval(clockTime, 1000);
 searchBar.addEventListener('input', search);
+// supers.addEventListener('click', getWeather);
