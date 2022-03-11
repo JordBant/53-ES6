@@ -18,16 +18,17 @@ const apiFields = {
     zip: '10007'
 }
 
-// const degree = document.getElementById('temperature');
-// const apparent = document.getElementById('apparent');
+const degree = document.getElementById('temperature');
+const apparent = document.getElementById('apparent');
 
-// const percipProb = document.getElementById('percipProb');
-// // const percipType = document.getElementById('percip-icon');
+const percipProb = document.getElementById('percipProb');
+// const percipType = document.getElementById('percip-icon');
 
-// const humid = document.getElementById('humid');
-// const vis = document.getElementById('visibility');
-// const windSpeed = document.getElementById('windSpeed');
+const humid = document.getElementById('humid');
+const vis = document.getElementById('visibility');
+const windSpeed = document.getElementById('windSpeed');
 
+// Third API to be consumed after data from US-Cities JSON managed
 // async function getPhoto(){
 //         const response = await fetch(/**Unsplash URI &Authentication key */);
 //         const data = await response.json();
@@ -47,7 +48,7 @@ const apiFields = {
             
             // }
         apiFields.lat = coordinates.lat;
-        apiFields.long = coordinates.long;
+        apiFields.long = coordinates.lng;
         
         locationInfo.forEach(component => {
             if(component.types.includes("locality") || component.types.includes("sublocality")){
@@ -60,28 +61,27 @@ const apiFields = {
                 apiFields.zip = locationInfo.long_name;
             }
         });
-       console.log(locationInfo);
+        console.log(coordinates);
     }
 
-// async function getWeather(){
-//     toggleUnits();
+async function getWeather(){
+    toggleUnits();
 
-//     const response = await fetch(
-//         `https://api.tomorrow.io/v4/timelines?location=${apiFields.lat},${apiFields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${apiFields.measureConven}&apikey=r02b5dPj9KQ4f1zJXRjErMBgJtUmlQpL`);
-//         const data = await response.json();
-//         const dataObj = data.data.timelines[0].intervals[0].values;
+    const response = await fetch(
+        `https://api.tomorrow.io/v4/timelines?location=${apiFields.lat},${apiFields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${apiFields.measureConven}&apikey=r02b5dPj9KQ4f1zJXRjErMBgJtUmlQpL`);
+        const data = await response.json();
+        const dataObj = data.data.timelines[0].intervals[0].values;
         
-//         vis.textContent = dataObj.visibility;
-//         windSpeed.textContent = dataObj.windSpeed;
-//         percipProb.textContent = dataObj.precipitationProbability;
-//         humid.textContent = dataObj.humidity;
+        vis.textContent = dataObj.visibility;
+        windSpeed.textContent = dataObj.windSpeed;
+        percipProb.textContent = dataObj.precipitationProbability;
+        humid.textContent = dataObj.humidity;
         
-//         degree.textContent = Math.floor(dataObj.temperature);
-//         apparent.textContent = Math.floor(dataObj.temperatureApparent);
-        
-//         // cache each value in intervals[0].value to the weatherInfo object
-//         //&fields=${'temperature'}&fields=${'precipitationType'}&fields=${'precipitationProbability'}
-//     }
+        degree.textContent = Math.floor(dataObj.temperature);
+        apparent.textContent = Math.floor(dataObj.temperatureApparent);
+
+        console.log(dataObj);
+    }
     
     function toggleUnits(){
         const Fahr = document.getElementById('Fahr');
@@ -93,30 +93,31 @@ const apiFields = {
             Cels.classList.toggle('selected');
             Cels.classList.toggle('unselected');
         }  
-        return fields.measureConven = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
+        return apiFields.measureConven = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
     }
     
-    async function search(){
-        // const searchList = document.getElementById('locations-dropdown');
-        // if(searchList){
+    // Spott API limits 1000 API calls a month and I reached it
+    // async function search(){
+    //     // const searchList = document.getElementById('locations-dropdown');
+    //     // if(searchList){
 
-        // }
-        const userInput = (searchBar.value !== '' && searchBar.value.includes(' ')) ? searchBar.value.replace(' ', '%20') : searchBar.value;
-        const res = await fetch(`https://spott.p.rapidapi.com/places?type=CITY&skip=0&country=US&limit=10&q=${userInput}`, {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "spott.p.rapidapi.com",
-                "x-rapidapi-key": "e80c8b39ccmsh4d779a180d55cecp145249jsn3e3f964c90b2"
-            }
-        })
-        const places = await res.json();
-        places.forEach(place => {
-            let suggestion = document.createElement('li').textContent(`${place.name}, ${place.adminDivision1.name}`);
-            suggestion.setAttribute('id', 'location');
-            suggestion.setAttribute('class', 'location');
-            searchList.append(suggestion);
-            });
-        }
+    //     // }
+    //     const userInput = (searchBar.value !== '' && searchBar.value.includes(' ')) ? searchBar.value.replace(' ', '%20') : searchBar.value;
+    //     const res = await fetch(`https://spott.p.rapidapi.com/places?type=CITY&skip=0&country=US&limit=10&q=${userInput}`, {
+    //         "method": "GET",
+    //         "headers": {
+    //             "x-rapidapi-host": "spott.p.rapidapi.com",
+    //             "x-rapidapi-key": "e80c8b39ccmsh4d779a180d55cecp145249jsn3e3f964c90b2"
+    //         }
+    //     })
+    //     const places = await res.json();
+    //     places.forEach(place => {
+    //         let suggestion = document.createElement('li').textContent(`${place.name}, ${place.adminDivision1.name}`);
+    //         suggestion.setAttribute('id', 'location');
+    //         suggestion.setAttribute('class', 'location');
+    //         searchList.append(suggestion);
+    //         });
+    //     }
 
     function clockTime()
     {
@@ -152,12 +153,12 @@ const apiFields = {
     
 
 
-// getWeather();
+getWeather();
 // getPhoto();
-search();
+// search();
 clockTime();
 getLocation();
-
+    
 setInterval(clockTime, 1000);
-searchBar.addEventListener('input', search);
-// supers.addEventListener('click', getWeather);
+// searchBar.addEventListener('input', search);
+supers.addEventListener('click', getWeather);
