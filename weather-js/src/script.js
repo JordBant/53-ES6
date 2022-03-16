@@ -38,7 +38,7 @@ const windSpeed = document.getElementById('windSpeed');
     async function getLocation(){
         apiFields.userInput = searchBar.value;
         const res = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${apiFields.locality},${apiFields.state}&key=AIzaSyALM6G5bVN_qVck_6nYZ6oyAHs_KBQVXsw`);
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${apiFields.locality},${apiFields.state}&key=MYKEY`);
         const data = await res.json();
         const coordinates = data.results[0].geometry.location; 
         const locationInfo = data.results[0].address_components;
@@ -68,7 +68,7 @@ async function getWeather(){
     toggleUnits();
 
     const response = await fetch(
-        `https://api.tomorrow.io/v4/timelines?location=${apiFields.lat},${apiFields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${apiFields.measureConven}&apikey=r02b5dPj9KQ4f1zJXRjErMBgJtUmlQpL`);
+        `https://api.tomorrow.io/v4/timelines?location=${apiFields.lat},${apiFields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${apiFields.measureConven}&apikey=MYKEY`);
         const data = await response.json();
         const dataObj = data.data.timelines[0].intervals[0].values;
         
@@ -107,7 +107,7 @@ async function getWeather(){
     //         "method": "GET",
     //         "headers": {
     //             "x-rapidapi-host": "spott.p.rapidapi.com",
-    //             "x-rapidapi-key": "e80c8b39ccmsh4d779a180d55cecp145249jsn3e3f964c90b2"
+    //             "x-rapidapi-key": ""
     //         }
     //     })
     //     const places = await res.json();
