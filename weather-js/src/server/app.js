@@ -4,7 +4,7 @@ const axios = require('axios')
 const path = require('path')
 
 require('dotenv').config()
-const PORT = (process.env.PORT) ? process.env.PORT : 3000;
+const PORT = (process.env.PORT) ? process.env.PORT : 5500;
 const weatherKEY = process.env.tmIO_KEY
 const geocodeKEY = process.env.geoKEY
 
@@ -12,16 +12,21 @@ const geocodeKEY = process.env.geoKEY
 const lat = 43
 const long = 74
 
-const getWeather = async () => {
-    try {
-        const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=imperial&apikey=${weatherKEY}`)
-        const weather = response.data;
-        console.log(weather.timelines)
-    } catch (error) { console.error(error); }
-}
-getWeather()
-// axios.get()
-// `https://maps.googleapis.com/maps/api/geocode/json?address=${apiFields.locality},${apiFields.state}&key=MYKEY`);
-// `https://api.tomorrow.io/v4/timelines?location=${apiFields.lat},${apiFields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${apiFields.measureConven}&apikey=MYKEY`);
+//to be fetched upon input into search
+const userInputPlace = 'Bronx'
+
+app.get('/place', (req, res) =>{
+    const geocode = async () => {
+        try {
+            const response = await axios.get(`
+            https://api.mapbox.com/geocoding/v5/mapbox.places/${userInputPlace}.json?country=us&limit=9&types=locality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}
+            `);
+            const placeInfo = response.features;
+            res.json(placeInfo)
+        } catch (error) { console.error(error); }
+    }
+    geocode()
+})
+
 // app.use(express.static(path.join(__dirname, '../public')))
 app.listen(PORT, console.log('Listening on port ' + PORT))
