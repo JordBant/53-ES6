@@ -13,22 +13,36 @@ const lat = 43
 const long = 74
 const unit = 'imperial'
 
-// const placeOBJ = {
+const placeOBJ = {
+    autocomplete:[],
+    chosenPlace: '',
 
-// }
 
-//to be fetched upon input into search
-const userInputPlace = 'Zion'
 
-app.get('/a', (req,res) =>{
+/*------------------------------------------------
+Coordinates are only to be rewritten & retrieved 
+when "chosenPlace" is parameterized to 
+
+    lat: 70,
+    long: 40
+--------------------------------------------------*/
+}
+
+const processUIData = () =>{
+    autocomplete.find(choice => choice )
+}
+
+app.get('/place', (req,res) =>{
         const geocode = async () => {
             try {
                 const response = await axios.get(`
-                https://api.mapbox.com/geocoding/v5/mapbox.places/${userInputPlace}.json?country=us&limit=9&proximity=ip&types=locality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}
+                https://api.mapbox.com/geocoding/v5/mapbox.places/Zion.json?country=us&limit=9&types=postcode%2Clocality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}
                 `)
                 const locations = response.data.features;
-                res.json(locations)
-                console.log(locations)
+                const placeNames = locations.map(location => location.place_name);
+    
+                // res.json(placeNames)
+                // console.log(locations)
             } catch (error) { console.error(error); }
         }
         geocode()
