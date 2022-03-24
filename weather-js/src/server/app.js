@@ -20,29 +20,15 @@ const unit = 'imperial'
 //to be fetched upon input into search
 const userInputPlace = 'Zion'
 
-// app.get('/', (req, res) =>{
-//     const geocode = async () => {
-//         try {
-//             const response = await axios.get(`
-//             https://api.mapbox.com/geocoding/v5/mapbox.places/${userInputPlace}.json?country=us&limit=9&types=locality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}
-//             `);
-//             console.log(response.query)
-//         } catch (error) { 
-//             console.error(error); 
-//         }
-//     }
-//     geocode()
-// })
-
-app.get('/', (req,res) =>{
+app.get('/a', (req,res) =>{
         const geocode = async () => {
             try {
                 const response = await axios.get(`
                 https://api.mapbox.com/geocoding/v5/mapbox.places/${userInputPlace}.json?country=us&limit=9&proximity=ip&types=locality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}
                 `)
-                const location = response.features;
-                res.json(location)
-                console.log(location)
+                const locations = response.data.features;
+                res.json(locations)
+                console.log(locations)
             } catch (error) { console.error(error); }
         }
         geocode()
