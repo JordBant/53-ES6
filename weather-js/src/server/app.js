@@ -5,47 +5,63 @@ const axios = require('axios')
 
 require('dotenv').config()
 const PORT = 3000;
-// const weatherKEY = process.env.tmIO_KEY
-const geocodeKEY = process.env.geoKEY
+const weatherKEY = process.env.tmIO_KEY;
+const geocodeKEY = process.env.geoKEY;
 
 //placeholder values 
-const lat = 43
-const long = 74
-const unit = 'imperial'
+const lat = 43;
+const long = 74;
+const unit = 'imperial';
 
-const placeOBJ = {
+const forClient = {
     autocomplete:[],
-    chosenPlace: '',
 
+/*------------------------------------------------*/
+    // Assigned from accepting client-side input
 
+    chosenPlace: 'Zion, Illinois, United States',
+
+    /*
+        Client Side dynamic inputs should be tracked by client js. 
+        On 'input' event fired, client js will dynamically update a js object via 
+        a constantly rewritten let-variable. On input, that object will make a post request to 
+        this code with a stringified JSON object and "passed by reference" to dynInput. And
+        dynInput will then be "passed by reference" into the URL's interpolated object property call
+    */
+    dynInput: '',
+/*------------------------------------------------*/
 
 /*------------------------------------------------
-Coordinates are only to be rewritten & retrieved 
-when "chosenPlace" is parameterized to 
+    Coordinates are only to be rewritten & retrieved 
+    when "chosenPlace" is parameterized to 
 
-    lat: 70,
-    long: 40
+    lat: ,
+    long: 
 --------------------------------------------------*/
-}
-
-const processUIData = () =>{
-    autocomplete.find(choice => choice )
 }
 
 app.get('/place', (req,res) =>{
         const geocode = async () => {
             try {
-                const response = await axios.get(`
-                https://api.mapbox.com/geocoding/v5/mapbox.places/Zion.json?country=us&limit=9&types=postcode%2Clocality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}
-                `)
+                const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${forClient.dynInput}.json?country=us&limit=3&types=postcode%2Clocality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}`);
                 const locations = response.data.features;
-                const placeNames = locations.map(location => location.place_name);
-    
-                // res.json(placeNames)
-                // console.log(locations)
-            } catch (error) { console.error(error); }
+                
+                let matches = locations.map(location => {
+                    return {
+                        matchedPlace: location.place_name,
+                        coord: location.center
+                    }
+                });
+                const anchor = matches.map(match => match.matchedPlace);
+                forClient.autocomplete = anchor;
+                    
+                console.log(forClient.autocomplete);
+                res.json(locations);
+            } catch (error) {
+                console.error(error);
+            }
         }
-        geocode()
+        geocode();
     })
 
 // app.get('/', (req,res) =>{
@@ -61,4 +77,4 @@ app.get('/place', (req,res) =>{
 // })
 
 // app.use(express.static(path.join(__dirname, '../public')))
-app.listen(PORT, console.log('Listening on port ' + PORT))
+app.listen(PORT, console.log('Listening on port ' + PORT));
