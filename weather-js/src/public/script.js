@@ -157,8 +157,21 @@ getWeather();
 // getPhoto();
 // search();
 clockTime();
-getLocation();
-    
 setInterval(clockTime, 1000);
+
+getLocation();
 // searchBar.addEventListener('input', search);
 supers.addEventListener('click', getWeather);
+
+//-----------------------------//
+
+
+// async () => {
+//     const response = await fetch(``); //My server side code
+//     const weather = await response.json();
+// }
+
+// async () => {
+//     const response = await fetch(``); //My server side code
+//     const geocode = await response.json();
+// }
