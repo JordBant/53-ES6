@@ -14,7 +14,7 @@ body {
       grid-template-rows: 1fr 1fr;
   -ms-grid-columns: 3fr 1fr;
       grid-template-columns: 3fr 1fr;
-  background: #ceae85 url(/weather-js/media/weatherApp.jpg) no-repeat center center;
+  background: #ceae85 url(../media/weatherApp.jpg) no-repeat center center;
   background-size: cover;
 }
 
