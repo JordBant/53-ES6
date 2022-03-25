@@ -78,7 +78,7 @@ body
     @include body();
     @include size(100vw, 100vh, NULL, NULL);
     @include fourGrid(1fr, 1fr, 3fr, 1fr);
-    background: rgb(206, 174, 133) url(/weather-js/media/weatherApp.jpg) no-repeat center center;
+    background: rgb(206, 174, 133) url(../media/weatherApp.jpg) no-repeat center center;
     background-size: cover;
 
     & > *{background: transparent;}

@@ -1,10 +1,10 @@
 const express = require('express')
 const app = express()
 const axios = require('axios')
-// const path = require('path')
+const path = require('path')
 
 require('dotenv').config()
-const PORT = 3000;
+const PORT = 5500;
 const weatherKEY = process.env.tmIO_KEY;
 const geocodeKEY = process.env.geoKEY;
 
@@ -41,29 +41,33 @@ const forClient = {
 }
 
 app.get('/place', (req,res) =>{
-        const geocode = async () => {
-            try {
-                const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${forClient.dynInput}.json?country=us&limit=3&types=postcode%2Clocality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}`);
-                const locations = response.data.features;
+    const geocode = async () => {
+        try {
+            const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${forClient.dynInput}.json?country=us&limit=3&types=postcode%2Clocality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}`);
+            const locations = response.data.features;
+            
+            let matches = locations.map(location => {
+                return {
+                    matchedPlace: location.place_name,
+                    coord: location.center
+                }
+            });
+            const anchor = matches.map(match => match.matchedPlace);
+            forClient.autocomplete = anchor;
                 
-                let matches = locations.map(location => {
-                    return {
-                        matchedPlace: location.place_name,
-                        coord: location.center
-                    }
-                });
-                const anchor = matches.map(match => match.matchedPlace);
-                forClient.autocomplete = anchor;
-                    
-                console.log(forClient.autocomplete);
-                res.json(locations);
-            } catch (error) {
-                console.error(error);
-            }
+            console.log(forClient.autocomplete);
+            res.json(locations);
+        } catch (error) {
+            console.error(error);
         }
-        geocode();
-    })
+    }
+    geocode();
+})
 
+app.post('/input', (req, res) => {
+    console.log(res)
+})
+    
 // app.get('/', (req,res) =>{
 //     const getWeather = async () => {
 //         try {
@@ -76,5 +80,5 @@ app.get('/place', (req,res) =>{
 //     getWeather()
 // })
 
-// app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.static(path.join(__dirname, '../public')))
 app.listen(PORT, console.log('Listening on port ' + PORT));
