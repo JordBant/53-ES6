@@ -1,4 +1,4 @@
-//----------------------------Location Elements(.main)--------------------------------
+//----------------------------()--------------------------------
 
 const supers = document.getElementById('supers');
 const searchBar = document.getElementById('search'); 
@@ -137,14 +137,17 @@ setInterval(clockTime, 1000);
 // getLocation();
 // searchBar.addEventListener('input', search);
 // supers.addEventListener('click', getWeather);
-searchBar.addEventListener('input', () => {
-    const data = { input: searchBar.value}
-    console.log(data)
-    fetch('/input', {
+searchBar.addEventListener('input', async () => {
+    const myInput = {input: searchBar.value}
+    const response = await fetch('/input', {
         method: "POST",
         header: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
     })
+    const data = response.json()
+    console.log(myInput)
+    // const suggestions = await response.json()
+    // console.log(JSON.stringify(suggestions))
     //Server response is Stringified data pertaining to that city
 })
 
