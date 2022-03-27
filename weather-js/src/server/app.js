@@ -44,8 +44,8 @@ const forClient = {
 }
 
 app.post('/input', (req,res) =>{
-    console.log(req.body)
-    res.json(copy)
+    console.log(`my body is: ${req.body}`)
+    res.json({msg: `got it`})
     // const geocode = async () => {
     //     try {
     //         const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/Zion.json?country=us&limit=5&types=postcode%2Clocality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}`);

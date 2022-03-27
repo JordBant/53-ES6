@@ -8,16 +8,19 @@ const dateIRL = new Date();
 const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 const month = ['01', '02', "03", "04", "05","06", "07", "08", "09", "10", "11", "12"];
 
+//----------------------------Data For UI--------------------------------
+
 const apiFields = {
-    userInput:'',
+    chosenPlace: '',
     lat: 40.7,
     long: -74,
     measureConven: 'imperial',
     locality: 'Middleton',
     state: 'New York',
-    chosenPlace: '',
     zip: '10007'
 }
+
+//------------------------Elements----------------------------
 
 const degree = document.getElementById('temperature');
 const apparent = document.getElementById('apparent');
@@ -28,6 +31,7 @@ const percipProb = document.getElementById('percipProb');
 const humid = document.getElementById('humid');
 const vis = document.getElementById('visibility');
 const windSpeed = document.getElementById('windSpeed');
+//------------------------------------------------------------
 
 // Third API to be consumed after data from US-Cities JSON managed
 // async function getPhoto(){
@@ -120,6 +124,7 @@ function clockTime()
     (dateIRL.getHours() >= 12) ? tl_currentHour.textContent = `| ${Hour}PM` : tl_currentHour.textContent = `| ${Hour}AM`;
     (dateIRL.getHours() + 8 > 23 || dateIRL.getHours() + 8 <= 12) ? tl_lastHour.textContent = `| ${Hour + 8}AM` : tl_lastHour.textContent = `| ${Hour + 8}PM`;
     
+
 // const intervalList = document.querySelectorAll('#interval');
 // let interval = dateIRL.getHours() + 1;
 // for(i = 0; i < 8; i++){
@@ -131,34 +136,27 @@ function clockTime()
 }
 
 // getWeather();
-clockTime();
-setInterval(clockTime, 1000);
-
 // getLocation();
 // searchBar.addEventListener('input', search);
 // supers.addEventListener('click', getWeather);
+
+
+clockTime();
+setInterval(clockTime, 1000);
+//-----------------------------||-----------------------------||-----------------------------//
+                                         // Problem Code
 searchBar.addEventListener('input', async () => {
     const myInput = {input: searchBar.value}
+    console.log (`client input : ${myInput.input}`)
+
     const response = await fetch('/input', {
         method: "POST",
         header: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
+        body: JSON.stringify(myInput)
     })
-    const data = response.json()
-    console.log(myInput)
-    // const suggestions = await response.json()
-    // console.log(JSON.stringify(suggestions))
-    //Server response is Stringified data pertaining to that city
+
+    const data = await response.json()
+    console.log(data)
+    //Server response should be an array of the cities that are generated in the autocomplete
 })
-
-//-----------------------------//
-
-// async () => {
-//     const response = await fetch(``); //My server side code
-//     const weather = await response.json();
-// }
-
-// async () => {
-//     const response = await fetch(``); //My server side code
-//     const geocode = await response.json();
-// }
+//-----------------------------||-----------------------------||-----------------------------//
