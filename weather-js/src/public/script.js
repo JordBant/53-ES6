@@ -144,13 +144,13 @@ setInterval(clockTime, 1000);
 //-----------------------------||-----------------------------||-----------------------------//
                                        // Problem Code //
 searchBar.addEventListener('input', async () => {
-    const data = {input: 'searchBar.value'}
+    const data = {input: searchBar.value}
     console.log (`client: ${searchBar.value}`)
     
     try {
-        const response = await fetch('/', {
+        const response = await fetch('/input', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(data)
         })
         const locArr = await response.json()

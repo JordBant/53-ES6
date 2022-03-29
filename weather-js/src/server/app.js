@@ -3,7 +3,9 @@ const path = require('path')
 
 const express = require('express')
 const app = express()
-app.use(express.static(path.join(__dirname, '../public')))
+
+const myCurrPath = path.join(__dirname, '../public')
+app.use(express.static(myCurrPath))
 app.use(express.json());
 // app.use(express.urlencoded({extended: false}));
 
@@ -44,31 +46,28 @@ const forClient = {
 --------------------------------------------------*/
 }
 
-app.post('/', (req, res) =>{
-    const search = req.body
-    console.log(`Server got: ${search.body}`)
-    res.json(`Server got: ${search}`)
-
-    // const geocode = async () => {
-    //     try {
-    //         const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/Zion.json?country=us&limit=5&types=postcode%2Clocality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}`);
-    //         const locations = response.data.features;
+app.post('/input', (req, res) =>{
+    const search = req.body.input
+    const geocode = async () => {
+        try {
+            const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${search}.json?country=us&limit=5&types=postcode%2Clocality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}`);
+            const locations = response.data.features;
             
-    //         const matches = locations.map(location => {
-    //             return {
-    //                 matchedPlace: location.place_name,
-    //                 coord: location.center
-    //             }
-    //         });
-    //         const anchor = matches.map(match => match.matchedPlace);
-    //         forClient.autocomplete = anchor;
+            const matches = locations.map(location => {
+                return {
+                    matchedPlace: location.place_name,
+                    coord: location.center
+                }
+            });
+            const anchor = matches.map(match => match.matchedPlace);
+            forClient.autocomplete = anchor;
             
-    //         // res.json(forClient.autocomplete);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-    // geocode();
+            // res.json(forClient.autocomplete);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    geocode();
 })
 
 // app.post('/input', (req, res) => {
