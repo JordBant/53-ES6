@@ -1,5 +1,4 @@
 //----------------------------()--------------------------------
-
 const supers = document.getElementById('supers');
 const searchBar = document.getElementById('search'); 
 
@@ -21,7 +20,6 @@ const apiFields = {
 }
 
 //------------------------Elements----------------------------
-
 const degree = document.getElementById('temperature');
 const apparent = document.getElementById('apparent');
 
@@ -144,19 +142,24 @@ function clockTime()
 clockTime();
 setInterval(clockTime, 1000);
 //-----------------------------||-----------------------------||-----------------------------//
-                                         // Problem Code
+                                       // Problem Code //
 searchBar.addEventListener('input', async () => {
-    const myInput = {input: searchBar.value}
-    console.log (`client input : ${myInput.input}`)
-
-    const response = await fetch('/input', {
-        method: "POST",
-        header: {"Content-Type": "application/json"},
-        body: JSON.stringify(myInput)
-    })
-
-    const data = await response.json()
-    console.log(data)
+    const data = {input: 'searchBar.value'}
+    console.log (`client: ${searchBar.value}`)
+    
+    try {
+        const response = await fetch('/', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        })
+        const locArr = await response.json()
+        console.log(`
+        Client's response: 
+        ${(locArr)}
+        `)
+    }
+    catch(error){ return error }
     //Server response should be an array of the cities that are generated in the autocomplete
 })
 //-----------------------------||-----------------------------||-----------------------------//
