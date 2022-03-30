@@ -19,32 +19,7 @@ const lat = 43;
 const long = 74;
 const unit = 'imperial';
 
-const forClient = {
-    autocomplete:[],
-
-/*------------------------------------------------*/
-    // Assigned from accepting client-side input
-
-    chosenPlace: 'Zion, Illinois, United States',
-
-    /*
-        Client Side dynamic inputs should be tracked by client js. 
-        On 'input' event fired, client js will dynamically update a js object via 
-        a constantly rewritten let-variable. On input, that object will make a post request to 
-        this code with a stringified JSON object and "passed by reference" to dynInput. And
-        dynInput will then be "passed by reference" into the URL's interpolated object property call
-    */
-    dynInput: '',
-/*------------------------------------------------*/
-
-/*------------------------------------------------
-    Coordinates are only to be rewritten & retrieved 
-    when "chosenPlace" is parameterized to 
-
-    lat: ,
-    long: 
---------------------------------------------------*/
-}
+const forClient = { placeData: [] };
 
 app.post('/input', (req, res) =>{
     const search = req.body.input
@@ -54,20 +29,20 @@ app.post('/input', (req, res) =>{
         try {
             const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${search}.json?country=us&limit=8&types=postcode%2Clocality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}`);
             const locations = response.data.features;
-            
-            const matches = locations.map(location => {
+
+            forClient.placeData = locations.map(location => {
                 return {
                     matchedPlace: location.place_name,
                     coord: location.center
                 }
             });
-            forClient.autocomplete = matches.map(match => match.matchedPlace);
             // forClient.autocomplete = anchor;
             // res.json(forClient.autocomplete);
         } catch (error) {
             console.error(error);
         }
-        res.json(forClient.autocomplete)
+        res.json(forClient)
+        console.log(forClient)
     }
     geocode();
 })

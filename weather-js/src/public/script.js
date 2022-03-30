@@ -9,15 +9,18 @@ const month = ['01', '02', "03", "04", "05","06", "07", "08", "09", "10", "11", 
 
 //----------------------------Data For UI--------------------------------
 
-const apiFields = {
-    placesArr: [],
+const apiResponses = { 
+    loc_Suggest: [], 
+    placesArr: []
+}
+
+const displayFields = {
     chosenPlace: '',
     lat: 40.7,
     long: -74,
     measureConven: 'imperial',
     locality: 'Middleton',
     state: 'New York',
-    zip: '10007'
 }
 
 //------------------------Elements----------------------------
@@ -155,17 +158,18 @@ searchBar.addEventListener('input', async () => {
 
         })
         const locArr = await response.json()
-        apiFields.placesArr = locArr
+        apiResponses.placesArr = locArr
+        apiResponses.loc_Suggest = locArr.filter(location => location.placeData.matchedPlace)
         
-        const { placesArr:places } = apiFields
+        const { loc_Suggest:suggestions } = apiRespones
         if(searchBar.value === 0 ){
             searchBar.removeChild(searchBar.lastChild);
         }
-        places.forEach(place => {
-            const location = document.createElement('li')
-            location.setAttribute('class' , 'location')
-            location.textContent = place
-            loc_List.appendChild(location)
+        suggestions.forEach(suggestion => {
+            const locationLi = document.createElement('li')
+            locationLi.setAttribute('class' , 'location')
+            locationLi.textContent = suggestion
+            loc_List.appendChild(locationLi)
         })
     }
     catch(error) { return error }
