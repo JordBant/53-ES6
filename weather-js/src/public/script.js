@@ -158,8 +158,11 @@ searchBar.addEventListener('input', async () => {
         apiFields.placesArr = locArr
         
         const { placesArr:places } = apiFields
+        if(searchBar.value === 0 ){
+            searchBar.removeChild(searchBar.lastChild);
+        }
         places.forEach(place => {
-            const location = document.createElement('li').setAttribute('id','location');
+            const location = document.createElement('li')
             location.setAttribute('class' , 'location')
             location.textContent = place
             loc_List.appendChild(location)
