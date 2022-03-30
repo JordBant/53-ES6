@@ -1,7 +1,7 @@
 //----------------------------()--------------------------------
 const supers = document.getElementById('supers');
 const searchBar = document.getElementById('search'); 
-
+const loc_List = document.getElementById('locations-dropdown')
 //----------------------------Clock--------------------------------
 const dateIRL = new Date();
 const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
@@ -10,6 +10,7 @@ const month = ['01', '02', "03", "04", "05","06", "07", "08", "09", "10", "11", 
 //----------------------------Data For UI--------------------------------
 
 const apiFields = {
+    placesArr: [],
     chosenPlace: '',
     lat: 40.7,
     long: -74,
@@ -86,7 +87,7 @@ const windSpeed = document.getElementById('windSpeed');
 
 //         console.log(dataObj);
 //     }
-    
+
 function toggleUnits(){
     const Fahr = document.getElementById('Fahr');
     const Cels = document.getElementById('Cels');
@@ -144,22 +145,27 @@ setInterval(clockTime, 1000);
 //-----------------------------||-----------------------------||-----------------------------//
                                        // Problem Code //
 searchBar.addEventListener('input', async () => {
-    const data = {input: searchBar.value}
-    console.log (`client: ${searchBar.value}`)
-    
+    const data = {input: searchBar.value}    
     try {
         const response = await fetch('/input', {
+
             method: 'POST',
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(data)
+
         })
         const locArr = await response.json()
-        console.log(`
-        Client's response: 
-        ${(locArr)}
-        `)
+        apiFields.placesArr = locArr
+        
+        const { placesArr:places } = apiFields
+        places.forEach(place => {
+            const location = document.createElement('li').setAttribute('id','location');
+            location.setAttribute('class' , 'location')
+            location.textContent = place
+            loc_List.appendChild(location)
+        })
     }
-    catch(error){ return error }
+    catch(error) { return error }
     //Server response should be an array of the cities that are generated in the autocomplete
 })
 //-----------------------------||-----------------------------||-----------------------------//

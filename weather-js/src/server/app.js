@@ -48,9 +48,11 @@ const forClient = {
 
 app.post('/input', (req, res) =>{
     const search = req.body.input
+    console.log('server reads: ' + search)
+
     const geocode = async () => {
         try {
-            const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${search}.json?country=us&limit=5&types=postcode%2Clocality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}`);
+            const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${search}.json?country=us&limit=8&types=postcode%2Clocality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}`);
             const locations = response.data.features;
             
             const matches = locations.map(location => {
@@ -59,17 +61,16 @@ app.post('/input', (req, res) =>{
                     coord: location.center
                 }
             });
-            const anchor = matches.map(match => match.matchedPlace);
-            forClient.autocomplete = anchor;
-            
+            forClient.autocomplete = matches.map(match => match.matchedPlace);
+            // forClient.autocomplete = anchor;
             // res.json(forClient.autocomplete);
         } catch (error) {
             console.error(error);
         }
+        res.json(forClient.autocomplete)
     }
     geocode();
 })
-
 // app.post('/input', (req, res) => {
 //     forClient.dynInput = res.body
 //     console.log(forClient.dynInput)
