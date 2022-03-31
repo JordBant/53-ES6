@@ -10,8 +10,8 @@ const month = ['01', '02', "03", "04", "05","06", "07", "08", "09", "10", "11", 
 //----------------------------Data For UI--------------------------------
 
 const apiResponses = { 
-    loc_Suggest: [], 
-    placesArr: []
+    suggestArr: [], 
+    placesArr: [],
 }
 
 const displayFields = {
@@ -157,20 +157,26 @@ searchBar.addEventListener('input', async () => {
             body: JSON.stringify(data)
 
         })
-        const locArr = await response.json()
-        apiResponses.placesArr = locArr
-        apiResponses.loc_Suggest = locArr.filter(location => location.placeData.matchedPlace)
+        const loc_Obj = await response.json()
+        apiResponses.placesArr = loc_Obj.placeData
+        // console.log(apiResponses.placesArr)
         
-        const { loc_Suggest:suggestions } = apiRespones
-        if(searchBar.value === 0 ){
-            searchBar.removeChild(searchBar.lastChild);
-        }
-        suggestions.forEach(suggestion => {
-            const locationLi = document.createElement('li')
-            locationLi.setAttribute('class' , 'location')
-            locationLi.textContent = suggestion
-            loc_List.appendChild(locationLi)
-        })
+        apiResponses.suggestArr = loc_Obj.placeData.map(location => location.matchedPlace)
+        // apiResponses.suggestArr = loc_Obj.placeData.filter(location => location.placeData.matchedPlace)
+        console.log(apiResponses.suggestArr)
+
+        // const {loc_Suggest: suggest, placesArr: locInfo } = apiResponses
+        
+        // const { loc_Suggest:suggestions } = apiRespones
+        // suggestions.forEach(suggestion => {
+        //     const locationLi = document.createElement('li')
+        //     locationLi.setAttribute('class' , 'location')
+        //     locationLi.textContent = suggestion
+        //     loc_List.appendChild(locationLi)
+        // })
+        // if(searchBar.value === 0 ){
+        //     searchBar.removeChild(searchBar.lastChild);
+        // }
     }
     catch(error) { return error }
     //Server response should be an array of the cities that are generated in the autocomplete

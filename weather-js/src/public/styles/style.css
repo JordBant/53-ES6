@@ -41,6 +41,16 @@ body > * {
       align-self: NULL;
   padding: 20px 59px 40px 23px;
   grid-row: 1 / -1;
+  /* 
+    ++++++++++++++++++++++ 
+        Search Section 
+    ++++++++++++++++++++++ 
+    */
+  /* 
+    ++++++++++++++++++++++++++++++++++++++++++++
+            City / Temperature Section 
+    ++++++++++++++++++++++++++++++++++++++++++++
+    */
 }
 
 .main .search-div {
