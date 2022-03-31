@@ -91,6 +91,26 @@ const windSpeed = document.getElementById('windSpeed');
 //         console.log(dataObj);
 //     }
 
+const updateHTML = (paramArr) => {
+//    switch (true) {
+//        case loc_List.hasChildNodes():
+           
+//            break;
+   
+//        default:
+//            break;
+//    }
+    if(loc_List.hasChildNodes){
+        //remove
+    }
+    paramArr.forEach(index => {
+        const locationLi = document.createElement('li')
+        locationLi.setAttribute('class' , 'location')
+        locationLi.textContent = index
+        loc_List.appendChild(locationLi)
+    })
+}
+
 function toggleUnits(){
     const Fahr = document.getElementById('Fahr');
     const Cels = document.getElementById('Cels');
@@ -142,7 +162,6 @@ function clockTime()
 // searchBar.addEventListener('input', search);
 // supers.addEventListener('click', getWeather);
 
-
 clockTime();
 setInterval(clockTime, 1000);
 //-----------------------------||-----------------------------||-----------------------------//
@@ -166,13 +185,8 @@ searchBar.addEventListener('input', async () => {
         
         const {suggestArr: suggest, placesArr: locInfo } = apiResponses
         console.log(suggest)
-        
-        suggest.forEach(choice => {
-            const locationLi = document.createElement('li')
-            locationLi.setAttribute('class' , 'location')
-            locationLi.textContent = choice
-            loc_List.appendChild(locationLi)
-        })
+
+        updateHTML(suggest)
         // if(searchBar.value === 0 ){
         //     searchBar.removeChild(searchBar.lastChild);
         // }
