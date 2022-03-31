@@ -163,17 +163,16 @@ searchBar.addEventListener('input', async () => {
         
         apiResponses.suggestArr = loc_Obj.placeData.map(location => location.matchedPlace)
         // apiResponses.suggestArr = loc_Obj.placeData.filter(location => location.placeData.matchedPlace)
-        console.log(apiResponses.suggestArr)
-
-        // const {loc_Suggest: suggest, placesArr: locInfo } = apiResponses
         
-        // const { loc_Suggest:suggestions } = apiRespones
-        // suggestions.forEach(suggestion => {
-        //     const locationLi = document.createElement('li')
-        //     locationLi.setAttribute('class' , 'location')
-        //     locationLi.textContent = suggestion
-        //     loc_List.appendChild(locationLi)
-        // })
+        const {suggestArr: suggest, placesArr: locInfo } = apiResponses
+        console.log(suggest)
+        
+        suggest.forEach(choice => {
+            const locationLi = document.createElement('li')
+            locationLi.setAttribute('class' , 'location')
+            locationLi.textContent = choice
+            loc_List.appendChild(locationLi)
+        })
         // if(searchBar.value === 0 ){
         //     searchBar.removeChild(searchBar.lastChild);
         // }
