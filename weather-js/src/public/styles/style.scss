@@ -3,7 +3,7 @@
 //=============Animations==============// 
 
 
-//=============Mixins==============// 
+//===========================Mixins===========================//
 
 @mixin body {
     margin: 0;
@@ -71,8 +71,8 @@
     border: none;
 }
 
-//=============Properties==============// 
-
+//==--==--==--==--==--==--==--==--==--==--==--==--==//
+//===========================Properties===========================//
 body
 {
     @include body();
@@ -84,6 +84,10 @@ body
     & > *{background: transparent;}
 }
 
+//==--==--==--==--==--==--==--==--==--==--==--==--==//
+                  // Main Section //
+//==--==--==--==--==--==--==--==--==--==--==--==--==//
+
 .main
 {
     @include flex(space-between, NULL, column, NULL, NULL);
@@ -91,6 +95,11 @@ body
     //border: 2px solid green;
     grid-row: 1 / -1;
 
+    /* 
+    ++++++++++++++++++++++ 
+        Search Section 
+    ++++++++++++++++++++++ 
+    */
     .search-div{
         
         @include frostGlass(#ffffff3d);
@@ -109,6 +118,7 @@ body
             top: 5px;
             background: none;
             outline: none;
+            // border: 2px solid red;
             border: none;
             transition: all 0.7s ease-in-out;
             
@@ -149,7 +159,12 @@ body
             }
         }
     }
-    
+
+    /* 
+    ++++++++++++++++++++++++++++++++++++++++++++
+            City / Temperature Section 
+    ++++++++++++++++++++++++++++++++++++++++++++
+    */
     .main-sec
     {        
         @include flex(flex-start, center, NULL, NULL, NULL);
@@ -201,6 +216,9 @@ body
     }
 }
 
+//==--==--==--==--==--==--==--==--==--==--==--==--==//
+             // Aside 1 (Grid Child 1) //
+//==--==--==--==--==--==--==--==--==--==--==--==--==//
 .aside1
 {
     @include frostGlass(#ffffff81);
@@ -377,6 +395,9 @@ body
     }
 }
 
+//==--==--==--==--==--==--==--==--==--==--==--==--==//
+             // Aside 2 (Grid Child 2) //
+//==--==--==--==--==--==--==--==--==--==--==--==--==//
 .aside2
 {
     @include frostGlass(#ffffff81);
