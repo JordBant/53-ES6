@@ -5,12 +5,11 @@ const list = document.getElementById("guesslist");
 const inputArea = document.getElementById("input-area");
 const arrowInd = document.getElementById("arrow");
 
-const rand =  Math.floor(Math.random()*100) + 1;
-
 submit.addEventListener('click', game);
 
 function game()
 {
+    const rand =  Math.floor(Math.random()*100) + 1;
     const userInput = Number(input.value);
 
     const newLi = document.createElement('li');
