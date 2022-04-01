@@ -36,10 +36,8 @@ app.post('/input', (req, res) =>{
                     coord: location.center
                 }
             });
-            // forClient.autocomplete = anchor;
-            // res.json(forClient.autocomplete);
-        } catch (error) {
-            console.error(error);
+        } catch (error) { 
+            console.error(error) 
         }
         res.json(forClient)
         console.log(forClient)
