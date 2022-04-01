@@ -2,6 +2,8 @@
 const supers = document.getElementById('supers');
 const searchBar = document.getElementById('search'); 
 const loc_List = document.getElementById('locations-dropdown')
+
+const oldChildren = loc_List.children;
 //----------------------------Clock--------------------------------
 const dateIRL = new Date();
 const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
@@ -43,9 +45,9 @@ const windSpeed = document.getElementById('windSpeed');
 //     }
 
     // async function getLocation(){
-    //     apiFields.userInput = searchBar.value;
+    //     displayFields.userInput = searchBar.value;
     //     const res = await fetch(
-    //     `https://maps.googleapis.com/maps/api/geocode/json?address=${apiFields.locality},${apiFields.state}&key=MYKEY`);
+    //     `https://maps.googleapis.com/maps/api/geocode/json?address=${displayFields.locality},${displayFields.state}&key=MYKEY`);
     //     const data = await res.json();
     //     const coordinates = data.results[0].geometry.location; 
     //     const locationInfo = data.results[0].address_components;
@@ -54,18 +56,18 @@ const windSpeed = document.getElementById('windSpeed');
     //     // if(data.status !== "OK"){
             
     //         // }
-    //     apiFields.lat = coordinates.lat;
-    //     apiFields.long = coordinates.lng;
+    //     displayFields.lat = coordinates.lat;
+    //     displayFields.long = coordinates.lng;
         
     //     locationInfo.forEach(component => {
     //         if(component.types.includes("locality") || component.types.includes("sublocality")){
-    //             apiFields.locality = locationInfo.long_name;
+    //             displayFields.locality = locationInfo.long_name;
     //         }
     //         if(component.types.includes("administrative_level_1")){
-    //             apiFields.state = locationInfo.long_name;
+    //             displayFields.state = locationInfo.long_name;
     //         }
     //         if(component.types.includes("postal_code")){
-    //             apiFields.zip = locationInfo.long_name;
+    //             displayFields.zip = locationInfo.long_name;
     //         }
     //     });
     //     console.log(coordinates);
@@ -75,7 +77,7 @@ const windSpeed = document.getElementById('windSpeed');
 //     toggleUnits();
 
 //     const response = await fetch(
-//         `https://api.tomorrow.io/v4/timelines?location=${apiFields.lat},${apiFields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${apiFields.measureConven}&apikey=MYKEY
+//         `https://api.tomorrow.io/v4/timelines?location=${displayFields.lat},${displayFields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${displayFields.measureConven}&apikey=MYKEY
 //         `);
 //         const data = await response.json();
 //         const dataObj = data.data.timelines[0].intervals[0].values;
@@ -91,24 +93,47 @@ const windSpeed = document.getElementById('windSpeed');
 //         console.log(dataObj);
 //     }
 
+// const updateHTML = (paramArr) => {
+//     for(let i = 0; i <= paramArr.length; i++){
+//         const locationLi = document.createElement('li')
+//         locationLi.setAttribute('class' , 'location')
+//         locationLi.textContent = paramArr[i]
+        
+//         (oldChildren.length > 0) ? loc_List.replaceChild(locationLi, oldChildren[i]) : loc_List.appendChild(locationLi);
+//             /**
+//              * Param array will be the array of cities.
+//              * For the length of any given city-array
+//              * - make a list item
+//              * - append the value at that index of the city array
+//              * 
+//              * - Assess if there are any children on the Dropdown:
+//              * ----------------
+//              * If TRUE
+//              * ----------------
+//              * create an array out of those children and 
+//              * replace the li at the index of the children's array  
+//              * with the the newly made li
+//              * ----------------
+//              * Otherwise
+//              * ----------------
+//              * append the newly made li to list
+//              */
+//     }
+// }
+
 const updateHTML = (paramArr) => {
-//    switch (true) {
-//        case loc_List.hasChildNodes():
-           
-//            break;
-   
-//        default:
-//            break;
-//    }
-    if(loc_List.hasChildNodes){
-        //remove
-    }
-    paramArr.forEach(index => {
-        const locationLi = document.createElement('li')
-        locationLi.setAttribute('class' , 'location')
-        locationLi.textContent = index
-        loc_List.appendChild(locationLi)
-    })
+    for(let i = 0; i <= paramArr.length; i++){
+        const locationLi = document.createElement('li');
+        locationLi.setAttribute('class' , 'location');
+        locationLi.textContent = paramArr[i];
+        loc_List.appendChild(locationLi);
+        
+        (loc_List.children.length === 0) ? loc_List.appendChild(locationLi) : loc_List.replaceChild(locationLi, loc_List.children[i]);
+        // if(searchBar.value === '') {
+        //     loc_List.children[i].remove()
+        // }
+        //develop helper function to remove each Li is searchBar is empty
+    }    
 }
 
 function toggleUnits(){
@@ -121,7 +146,7 @@ function toggleUnits(){
         Cels.classList.toggle('selected');
         Cels.classList.toggle('unselected');
     }  
-    return apiFields.measureConven = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
+    return displayFields.measureConven = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
 }
 
 function clockTime()
@@ -132,8 +157,8 @@ function clockTime()
     const nowDate = document.getElementById('date');
     const clock = document.getElementById('clk-time');
     
-    let minuteForm = (Min < 10) ? `0${Min}`: `${Min}`;
-    let meridiem = (dateIRL.getHours() < 12) ? `AM` : `PM`;
+    const minuteForm = (Min < 10) ? `0${Min}`: `${Min}`;
+    const meridiem = (dateIRL.getHours() < 12) ? `AM` : `PM`;
     
     const today = (dateIRL.getDate() < 10) ? `0${dateIRL.getDate()}` : `${dateIRL.getDate()}`;
     clock.textContent = `${Hour}:${minuteForm} ${meridiem}`;
@@ -167,7 +192,7 @@ setInterval(clockTime, 1000);
 //-----------------------------||-----------------------------||-----------------------------//
                                        // Problem Code //
 searchBar.addEventListener('input', async () => {
-    const data = {input: searchBar.value}    
+    const data = { input: searchBar.value }    
     try {
         const response = await fetch('/input', {
 
@@ -176,22 +201,28 @@ searchBar.addEventListener('input', async () => {
             body: JSON.stringify(data)
 
         })
-        const loc_Obj = await response.json()
-        apiResponses.placesArr = loc_Obj.placeData
+        const loc_Obj = await response.json();
         // console.log(apiResponses.placesArr)
+        apiResponses.placesArr = loc_Obj.placeData;
+        apiResponses.suggestArr = loc_Obj.placeData.map(location => location.matchedPlace);
         
-        apiResponses.suggestArr = loc_Obj.placeData.map(location => location.matchedPlace)
-        // apiResponses.suggestArr = loc_Obj.placeData.filter(location => location.placeData.matchedPlace)
+        const {suggestArr: suggest, placesArr: locInfo } = apiResponses;
         
-        const {suggestArr: suggest, placesArr: locInfo } = apiResponses
-        console.log(suggest)
-
+        console.log(suggest);
         updateHTML(suggest)
-        // if(searchBar.value === 0 ){
-        //     searchBar.removeChild(searchBar.lastChild);
-        // }
+
+        // suggest.forEach((suggestion, index) => {
+        //     const locationLi = document.createElement('li');
+        //     locationLi.setAttribute('class' , 'location');
+        //     locationLi.textContent = suggestion;
+        //     loc_List.appendChild(locationLi)
+
+        //     (oldChildren.length === 0) ? loc_List.appendChild(locationLi) : loc_List.replaceChild(locationLi, oldChildren[index]);
+        // })        
     }
-    catch(error) { return error }
+    catch(error) { 
+        return error 
+    }
     //Server response should be an array of the cities that are generated in the autocomplete
 })
 //-----------------------------||-----------------------------||-----------------------------//
