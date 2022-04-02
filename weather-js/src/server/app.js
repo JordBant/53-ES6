@@ -14,7 +14,7 @@ const PORT = 5500;
 const weatherKEY = process.env.tmIO_KEY;
 const geocodeKEY = process.env.geoKEY;
 
-//placeholder values  
+//placeholder values 
 const lat = 43;
 const long = 74;
 const unit = 'imperial';
@@ -36,30 +36,27 @@ app.post('/input', (req, res) =>{
                     coord: location.center
                 }
             });
-        } catch (error) { 
-            console.error(error) 
+
+        } catch (error) {
+            console.error(error);
         }
         res.json(forClient)
         console.log(forClient)
     }
     geocode();
 })
-// app.post('/input', (req, res) => {
-//     forClient.dynInput = res.body
-//     console.log(forClient.dynInput)
-//     res.json(forClient.dynInput)
-// })
-    
-// app.get('/', (req,res) =>{
-//     const getWeather = async () => {
-//         try {
-//             const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${unit}&apikey=${weatherKEY}`)
-//             const weather = response.data.data;
-//             res.json(weather)
-//             console.log(weather)
-//         } catch (error) { console.error(error); }
-//     }
-//     getWeather()
-// })
+
+app.post('/weather', (req, res) => {
+    const coordinates = req.body.geolocation
+    const getWeather = async () => {
+        try {
+            const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${unit}&apikey=${weatherKEY}`)
+            const weather = response.data.data;
+            res.json(weather)
+            console.log(weather)
+        } catch (error) { console.error(error); }
+    }
+    getWeather()
+})
 
 app.listen(PORT, console.log('Listening on port ' + PORT));

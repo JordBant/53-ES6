@@ -73,25 +73,35 @@ const windSpeed = document.getElementById('windSpeed');
     //     console.log(coordinates);
     // }
 
-// async function getWeather(){
+// async function getWeather(place){
+    
 //     toggleUnits();
+//     try {
+//         const response = await fetch('/weather', {
 
-//     const response = await fetch(
-//         `https://api.tomorrow.io/v4/timelines?location=${displayFields.lat},${displayFields.long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${displayFields.measureConven}&apikey=MYKEY
-//         `);
-//         const data = await response.json();
-//         const dataObj = data.data.timelines[0].intervals[0].values;
-        
-//         vis.textContent = dataObj.visibility;
-//         windSpeed.textContent = dataObj.windSpeed;
-//         percipProb.textContent = dataObj.precipitationProbability;
-//         humid.textContent = dataObj.humidity;
-        
-//         degree.textContent = Math.floor(dataObj.temperature);
-//         apparent.textContent = Math.floor(dataObj.temperatureApparent);
+//             method: 'POST',
+//             headers: {"Content-Type" : "application/json"},
+//             body: JSON.stringify(place)
 
-//         console.log(dataObj);
+//         })
+//         const weather = await response.json();
+//     } catch (error) {
+//         console.log(error)
 //     }
+    // const dataObj = data.data.timelines[0].intervals[0].values;
+        
+    // vis.textContent = dataObj.visibility;
+    // windSpeed.textContent = dataObj.windSpeed;
+    // percipProb.textContent = dataObj.precipitationProbability;
+    // humid.textContent = dataObj.humidity;
+    
+    // degree.textContent = Math.floor(dataObj.temperature);
+    // apparent.textContent = Math.floor(dataObj.temperatureApparent);
+
+    // console.log(dataObj);
+//     }
+// getWeather(displayFields.chosenPlace)
+
 
 const updateHTML = (paramArr) => {
     //when there i
@@ -100,7 +110,6 @@ const updateHTML = (paramArr) => {
             loc_List.removeChild(loc_List.firstChild);
         }
     }
-
     for(let i = 0; i <= paramArr.length; i++){
         const locationLi = document.createElement('li');
         locationLi.setAttribute('class' , 'location');
@@ -110,10 +119,8 @@ const updateHTML = (paramArr) => {
         if (loc_List.children.length > 0) {
             loc_List.replaceChild(locationLi, loc_List.children[i]);
         }
-        locationLi.addEventListener('click', () =>{
-            displayFields.chosenPlace = locationLi.textContent
-        })
-    }    
+        locationLi.addEventListener('click', () => displayFields.chosenPlace = locationLi.textContent)
+    }  
 }
 
 function toggleUnits(){
@@ -170,6 +177,10 @@ function clockTime()
 clockTime();
 setInterval(clockTime, 1000);
 
+// oldChildren.forEach(child => {
+//     child.addEventListener('click', console.log(child + 'clicked'))
+// });
+
 searchBar.addEventListener('input', async () => {
     const data = { input: searchBar.value }    
     try {
@@ -181,17 +192,31 @@ searchBar.addEventListener('input', async () => {
 
         })
         const loc_Obj = await response.json();
-
         apiResponses.placesArr = loc_Obj.placeData;
         apiResponses.suggestArr = loc_Obj.placeData.map(location => location.matchedPlace);
         
         const {suggestArr: suggest, placesArr: locInfo } = apiResponses;
-        
-        console.log(suggest);
         updateHTML(suggest)      
+        console.log(suggest);
     }
     catch(error) { 
         return error 
     }
     //Server response should be an array of the cities that are generated in the autocomplete
 })
+
+// const getCoords = async () => {
+//     const coordinates = { geolocation: []
+//         /*
+//             where textcontent of list item = matchedPlace String assign coordinates to this object
+//         */
+//     }
+//     const response = await fetch('/weather', {
+
+//         method: 'POST',
+//         headers: {"Content-Type" : "application/json"},
+//         body: JSON.stringify(coordinates)
+
+//     })
+//     const weatherObj = response.json()
+// }
