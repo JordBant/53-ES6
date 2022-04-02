@@ -93,46 +93,26 @@ const windSpeed = document.getElementById('windSpeed');
 //         console.log(dataObj);
 //     }
 
-// const updateHTML = (paramArr) => {
-//     for(let i = 0; i <= paramArr.length; i++){
-//         const locationLi = document.createElement('li')
-//         locationLi.setAttribute('class' , 'location')
-//         locationLi.textContent = paramArr[i]
-        
-//         (oldChildren.length > 0) ? loc_List.replaceChild(locationLi, oldChildren[i]) : loc_List.appendChild(locationLi);
-//             /**
-//              * Param array will be the array of cities.
-//              * For the length of any given city-array
-//              * - make a list item
-//              * - append the value at that index of the city array
-//              * 
-//              * - Assess if there are any children on the Dropdown:
-//              * ----------------
-//              * If TRUE
-//              * ----------------
-//              * create an array out of those children and 
-//              * replace the li at the index of the children's array  
-//              * with the the newly made li
-//              * ----------------
-//              * Otherwise
-//              * ----------------
-//              * append the newly made li to list
-//              */
-//     }
-// }
-
 const updateHTML = (paramArr) => {
+    //when there i
+    while ((searchBar.value === '' && oldChildren.length > 0) || (paramArr.length === 0 && oldChildren.length > 0)){
+        for (let i = 0; i < oldChildren.length; i++) {
+            loc_List.removeChild(loc_List.firstChild);
+        }
+    }
+
     for(let i = 0; i <= paramArr.length; i++){
         const locationLi = document.createElement('li');
         locationLi.setAttribute('class' , 'location');
         locationLi.textContent = paramArr[i];
         loc_List.appendChild(locationLi);
-        
-        (loc_List.children.length === 0) ? loc_List.appendChild(locationLi) : loc_List.replaceChild(locationLi, loc_List.children[i]);
-        // if(searchBar.value === '') {
-        //     loc_List.children[i].remove()
-        // }
-        //develop helper function to remove each Li is searchBar is empty
+
+        if (loc_List.children.length > 0) {
+            loc_List.replaceChild(locationLi, loc_List.children[i]);
+        }
+        locationLi.addEventListener('click', () =>{
+            displayFields.chosenPlace = locationLi.textContent
+        })
     }    
 }
 
@@ -147,7 +127,7 @@ function toggleUnits(){
         Cels.classList.toggle('unselected');
     }  
     return displayFields.measureConven = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
-}
+}   
 
 function clockTime()
 {
@@ -189,8 +169,7 @@ function clockTime()
 
 clockTime();
 setInterval(clockTime, 1000);
-//-----------------------------||-----------------------------||-----------------------------//
-                                       // Problem Code //
+
 searchBar.addEventListener('input', async () => {
     const data = { input: searchBar.value }    
     try {
@@ -202,27 +181,17 @@ searchBar.addEventListener('input', async () => {
 
         })
         const loc_Obj = await response.json();
-        // console.log(apiResponses.placesArr)
+
         apiResponses.placesArr = loc_Obj.placeData;
         apiResponses.suggestArr = loc_Obj.placeData.map(location => location.matchedPlace);
         
         const {suggestArr: suggest, placesArr: locInfo } = apiResponses;
         
         console.log(suggest);
-        updateHTML(suggest)
-
-        // suggest.forEach((suggestion, index) => {
-        //     const locationLi = document.createElement('li');
-        //     locationLi.setAttribute('class' , 'location');
-        //     locationLi.textContent = suggestion;
-        //     loc_List.appendChild(locationLi)
-
-        //     (oldChildren.length === 0) ? loc_List.appendChild(locationLi) : loc_List.replaceChild(locationLi, oldChildren[index]);
-        // })        
+        updateHTML(suggest)      
     }
     catch(error) { 
         return error 
     }
     //Server response should be an array of the cities that are generated in the autocomplete
 })
-//-----------------------------||-----------------------------||-----------------------------//

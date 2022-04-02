@@ -14,7 +14,7 @@ const PORT = 5500;
 const weatherKEY = process.env.tmIO_KEY;
 const geocodeKEY = process.env.geoKEY;
 
-//placeholder values 
+//placeholder values  
 const lat = 43;
 const long = 74;
 const unit = 'imperial';
