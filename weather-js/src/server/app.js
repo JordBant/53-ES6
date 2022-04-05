@@ -54,26 +54,28 @@ app.post('/weather', (req, res) => {
     weatherAppParams.long = coords[1]
     const {lat, long} = weatherAppParams
 
-    console.log(`Server Wants: ${lat} ${long}`)
+    console.log(`Server Wants Location At: ${lat} ${long}`)
 
     //Holds Tomorrow.io Request Object
-    const tempObj = { weatherObject: '' }
+    const weatherObj = { weatherInfo: [] }
 
     const getWeather = async () => {
         try {
-            console.log(`Server Got: ${lat} ${long}`)
-
             const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${weatherAppParams.unit}&apikey=${weatherKEY}`)
-            tempObj.weatherObj = response.data.data.timelines
+            // const weatherAt = response.data
+            
+            // Pass Tomorrow.io data by reference into temp object
+            // const info = response.data
+            console.log(`Server Will Respond With: ${response.data}`)
+            console.log(`${lat}, ${long}`)
 
-            res.json('Hello')
-            console.log(tempObj)
-
-        } catch (error) { console.error(error) }
+        } catch (error) { 
+            console.log(error) 
+        } 
+        //Send Weather Object to Client
+        // console.log(`Server sends: ${weatherObj}`)
+        // res.json(weatherObj)
     }
-    
-    // const { weatherObject: weather } = tempObj
-
     getWeather()
 })
 
