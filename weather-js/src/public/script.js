@@ -146,7 +146,6 @@ const getWeather = async () => {
             displayFields.long
 
         ]}
-        console.log(coordinates)
     try {
         const response = await fetch('/weather', {
     
@@ -155,8 +154,9 @@ const getWeather = async () => {
             body: JSON.stringify(coordinates)
     
         })
-        const data = response.json()
-        console.log('Response: ' + data)
+        const data = await response.json()
+        const weather = data.weatherInfo
+        console.log('Client: ' + weather)
 
     } catch (error) {
         console.log(error)
