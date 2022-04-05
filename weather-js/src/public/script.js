@@ -104,12 +104,12 @@ const windSpeed = document.getElementById('windSpeed');
 
 
 const updateHTML = (paramArr) => {
-    //when there i
     while ((searchBar.value === '' && oldChildren.length > 0) || (paramArr.length === 0 && oldChildren.length > 0)){
         for (let i = 0; i < oldChildren.length; i++) {
             loc_List.removeChild(loc_List.firstChild);
         }
     }
+
     for(let i = 0; i <= paramArr.length; i++){
         const locationLi = document.createElement('li');
         locationLi.setAttribute('class' , 'location');
@@ -119,11 +119,46 @@ const updateHTML = (paramArr) => {
         if (loc_List.children.length > 0) {
             loc_List.replaceChild(locationLi, loc_List.children[i]);
         }
-        locationLi.addEventListener('click', () => displayFields.chosenPlace = locationLi.textContent)
+        
+        locationLi.addEventListener('click', 
+        () => {
+            displayFields.chosenPlace = locationLi.textContent
+
+            const { placesArr } = apiResponses
+            const { chosenPlace: choice } = displayFields
+            const temp = placesArr.find(place => place.matchedPlace === choice)
+
+            console.log(displayFields.lat)
+            displayFields.lat = temp.coord[1]
+            displayFields.long = temp.coord[0]
+        })
     }  
 }
 
-function toggleUnits(){
+const getWeather = async () => {
+    try {
+        const coordinates = {
+            geolocation:[
+
+                displayFields.lat,
+                displayFields.long
+
+            ]}
+        const response = await fetch('/weather', {
+    
+            method: 'POST',
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(coordinates)
+    
+        })
+        const data = response.json()
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const toggleUnits =() => {
     const Fahr = document.getElementById('Fahr');
     const Cels = document.getElementById('Cels');
     
@@ -136,8 +171,7 @@ function toggleUnits(){
     return displayFields.measureConven = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
 }   
 
-function clockTime()
-{
+const clockTime = () =>{
     const Hour = (dateIRL.getHours() > 12) ? dateIRL.getHours() - 12 : dateIRL.getHours();
     const Min = dateIRL.getMinutes();
     
@@ -177,10 +211,6 @@ function clockTime()
 clockTime();
 setInterval(clockTime, 1000);
 
-// oldChildren.forEach(child => {
-//     child.addEventListener('click', console.log(child + 'clicked'))
-// });
-
 searchBar.addEventListener('input', async () => {
     const data = { input: searchBar.value }    
     try {
@@ -196,27 +226,10 @@ searchBar.addEventListener('input', async () => {
         apiResponses.suggestArr = loc_Obj.placeData.map(location => location.matchedPlace);
         
         const {suggestArr: suggest, placesArr: locInfo } = apiResponses;
-        updateHTML(suggest)      
-        console.log(suggest);
+        updateHTML(suggest)   
     }
     catch(error) { 
         return error 
     }
     //Server response should be an array of the cities that are generated in the autocomplete
 })
-
-// const getCoords = async () => {
-//     const coordinates = { geolocation: []
-//         /*
-//             where textcontent of list item = matchedPlace String assign coordinates to this object
-//         */
-//     }
-//     const response = await fetch('/weather', {
-
-//         method: 'POST',
-//         headers: {"Content-Type" : "application/json"},
-//         body: JSON.stringify(coordinates)
-
-//     })
-//     const weatherObj = response.json()
-// }
