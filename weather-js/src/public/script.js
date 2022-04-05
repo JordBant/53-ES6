@@ -120,6 +120,7 @@ const updateHTML = (paramArr) => {
             loc_List.replaceChild(locationLi, loc_List.children[i]);
         }
         
+        //Get Weather on click location
         locationLi.addEventListener('click', 
         () => {
             displayFields.chosenPlace = locationLi.textContent
@@ -128,22 +129,24 @@ const updateHTML = (paramArr) => {
             const { chosenPlace: choice } = displayFields
             const temp = placesArr.find(place => place.matchedPlace === choice)
 
-            console.log(displayFields.lat)
             displayFields.lat = temp.coord[1]
             displayFields.long = temp.coord[0]
+            console.log('Coords: ' + displayFields.lat +' '+ displayFields.long)
+
+            getWeather();
         })
     }  
 }
 
 const getWeather = async () => {
+    const coordinates = {
+        geolocation:[
+
+            displayFields.lat,
+            displayFields.long
+
+        ]}
     try {
-        const coordinates = {
-            geolocation:[
-
-                displayFields.lat,
-                displayFields.long
-
-            ]}
         const response = await fetch('/weather', {
     
             method: 'POST',
@@ -152,13 +155,14 @@ const getWeather = async () => {
     
         })
         const data = response.json()
+        console.log('Response: ' + data)
 
     } catch (error) {
         console.log(error)
     }
 }
 
-const toggleUnits =() => {
+const toggleUnits = () => {
     const Fahr = document.getElementById('Fahr');
     const Cels = document.getElementById('Cels');
     
@@ -171,7 +175,7 @@ const toggleUnits =() => {
     return displayFields.measureConven = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
 }   
 
-const clockTime = () =>{
+const clockTime = () => {
     const Hour = (dateIRL.getHours() > 12) ? dateIRL.getHours() - 12 : dateIRL.getHours();
     const Min = dateIRL.getMinutes();
     

@@ -15,15 +15,16 @@ const weatherKEY = process.env.tmIO_KEY;
 const geocodeKEY = process.env.geoKEY;
 
 //placeholder values 
-const lat = 43;
-const long = 74;
-const unit = 'imperial';
+const weatherAppParams = {
+    lat: 43,
+    long: 74,
+    unit: 'imperial'
+}
 
 const forClient = { placeData: [] };
 
 app.post('/input', (req, res) =>{
     const search = req.body.input
-    console.log('server reads: ' + search)
 
     const geocode = async () => {
         try {
@@ -41,18 +42,25 @@ app.post('/input', (req, res) =>{
             console.error(error);
         }
         res.json(forClient)
-        console.log(forClient)
+        // console.log(forClient)
     }
     geocode();
 })
 
 app.post('/weather', (req, res) => {
-    const coordinates = req.body.geolocation
+    const coords = req.body.geolocation
+    coords[0] = weatherAppParams.lat
+    coords[1] = weatherAppParams.long
+    const {lat, long} = weatherAppParams
+
     const getWeather = async () => {
         try {
-            const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${unit}&apikey=${weatherKEY}`)
-            
-        } catch (error) { console.error(error); }
+            const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${weatherAppParams.unit}&apikey=${weatherKEY}`)
+            const weatherObj = response
+
+            console.log('Server Got: ' + coords)
+            res.json(coords)
+        } catch (error) { console.error(error) }
     }
     getWeather()
 })
