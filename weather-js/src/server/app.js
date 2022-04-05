@@ -49,19 +49,31 @@ app.post('/input', (req, res) =>{
 
 app.post('/weather', (req, res) => {
     const coords = req.body.geolocation
-    coords[0] = weatherAppParams.lat
-    coords[1] = weatherAppParams.long
+
+    weatherAppParams.lat = coords[0]
+    weatherAppParams.long = coords[1]
     const {lat, long} = weatherAppParams
+
+    console.log(`Server Wants: ${lat} ${long}`)
+
+    //Holds Tomorrow.io Request Object
+    const tempObj = { weatherObject: '' }
 
     const getWeather = async () => {
         try {
-            const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${weatherAppParams.unit}&apikey=${weatherKEY}`)
-            const weatherObj = response
+            console.log(`Server Got: ${lat} ${long}`)
 
-            console.log('Server Got: ' + coords)
-            res.json(coords)
+            const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${weatherAppParams.unit}&apikey=${weatherKEY}`)
+            tempObj.weatherObj = response.data.data.timelines
+
+            res.json('Hello')
+            console.log(tempObj)
+
         } catch (error) { console.error(error) }
     }
+    
+    // const { weatherObject: weather } = tempObj
+
     getWeather()
 })
 

@@ -146,6 +146,7 @@ const getWeather = async () => {
             displayFields.long
 
         ]}
+        console.log(coordinates)
     try {
         const response = await fetch('/weather', {
     
