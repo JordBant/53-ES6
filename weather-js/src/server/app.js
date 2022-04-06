@@ -21,7 +21,13 @@ const weatherAppParams = {
     unit: 'imperial'
 }
 
-const forClient = { placeData: [] };
+const weatherAPI = {
+    weatherInfo: []
+}
+
+const placesAPI = { 
+    placeData: []
+ }
 
 app.post('/input', (req, res) =>{
     const search = req.body.input
@@ -31,17 +37,16 @@ app.post('/input', (req, res) =>{
             const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${search}.json?country=us&limit=8&types=postcode%2Clocality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}`);
             const locations = response.data.features;
 
-            forClient.placeData = locations.map(location => {
+            placesAPI.placeData = locations.map(location => {
                 return {
                     matchedPlace: location.place_name,
                     coord: location.center
                 }
-            });
-
+            })
         } catch (error) {
             console.error(error);
         }
-        res.json(forClient)
+        res.json(placesAPI)
         // console.log(forClient)
     }
     geocode();
@@ -52,29 +57,31 @@ app.post('/weather', (req, res) => {
 
     weatherAppParams.lat = coords[0]
     weatherAppParams.long = coords[1]
-    const {lat, long} = weatherAppParams
-
-    console.log(`Server Wants Location At: ${lat} ${long}`)
+    const {lat, long, unit} = weatherAppParams
 
     //Holds Tomorrow.io Request Object
-    const weatherObj = { weatherInfo: [] }
 
     const getWeather = async () => {
         try {
-            const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${weatherAppParams.unit}&apikey=${weatherKEY}`)
-            // const weatherAt = response.data
-            
-            // Pass Tomorrow.io data by reference into temp object
-            // const info = response.data
-            console.log(`Server Will Respond With: ${response.data}`)
-            console.log(`${lat}, ${long}`)
+            console.log(`API is given: ${lat}, ${long}`)
+
+            const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${unit}&apikey=${weatherKEY}`)
+            weatherAPI.weatherInfo = response.data.data.timelines
+
+            console.log('Inside Try-Catch:')
+            console.log(weatherAPI)
+            console.log(`Specific value: ${weatherAPI.weatherInfo[0].intervals[0].values.humidity}`)
 
         } catch (error) { 
             console.log(error) 
         } 
-        //Send Weather Object to Client
-        // console.log(`Server sends: ${weatherObj}`)
-        // res.json(weatherObj)
+        // const {weatherInfo} = weatherAPI
+
+        // Send Weather Object to Client
+        /*
+            Note: When completing a response from a request as res.json(), you must send the information back as itself instead of inside a string
+        */
+        res.json(weatherAPI)
     }
     getWeather()
 })

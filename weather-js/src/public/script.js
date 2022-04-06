@@ -146,6 +146,8 @@ const getWeather = async () => {
             displayFields.long
 
         ]}
+        console.log(`Client Request: ${coordinates.geolocation}`)
+
     try {
         const response = await fetch('/weather', {
     
@@ -155,8 +157,9 @@ const getWeather = async () => {
     
         })
         const data = await response.json()
-        const weather = data.weatherInfo
-        console.log('Client: ' + weather)
+        console.log('Client:', data)
+
+        
 
     } catch (error) {
         console.log(error)
@@ -208,8 +211,6 @@ const clockTime = () => {
 //     }
 }
 
-// getWeather();
-// getLocation();
 // searchBar.addEventListener('input', search);
 // supers.addEventListener('click', getWeather);
 
@@ -217,7 +218,9 @@ clockTime();
 setInterval(clockTime, 1000);
 
 searchBar.addEventListener('input', async () => {
-    const data = { input: searchBar.value }    
+    const data = { 
+        input: searchBar.value 
+    }    
     try {
         const response = await fetch('/input', {
 
