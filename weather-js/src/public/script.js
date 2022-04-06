@@ -11,9 +11,15 @@ const month = ['01', '02', "03", "04", "05","06", "07", "08", "09", "10", "11", 
 
 //----------------------------Data For UI--------------------------------
 
-const apiResponses = { 
+const apiComm = { 
     suggestArr: [], 
     placesArr: [],
+
+    /*
+        Array to hold weather information 
+        in a nine hour time span
+    */
+    nineHourSpan: []
 }
 
 const displayFields = {
@@ -125,7 +131,7 @@ const updateHTML = (paramArr) => {
         () => {
             displayFields.chosenPlace = locationLi.textContent
 
-            const { placesArr } = apiResponses
+            const { placesArr } = apiComm
             const { chosenPlace: choice } = displayFields
             const temp = placesArr.find(place => place.matchedPlace === choice)
 
@@ -146,7 +152,6 @@ const getWeather = async () => {
             displayFields.long
 
         ]}
-        console.log(`Client Request: ${coordinates.geolocation}`)
 
     try {
         const response = await fetch('/weather', {
@@ -158,8 +163,6 @@ const getWeather = async () => {
         })
         const data = await response.json()
         console.log('Client:', data)
-
-        
 
     } catch (error) {
         console.log(error)
@@ -230,10 +233,10 @@ searchBar.addEventListener('input', async () => {
 
         })
         const loc_Obj = await response.json();
-        apiResponses.placesArr = loc_Obj.placeData;
-        apiResponses.suggestArr = loc_Obj.placeData.map(location => location.matchedPlace);
+        apiComm.placesArr = loc_Obj.placeData;
+        apiComm.suggestArr = loc_Obj.placeData.map(location => location.matchedPlace);
         
-        const {suggestArr: suggest, placesArr: locInfo } = apiResponses;
+        const {suggestArr: suggest, placesArr: locInfo } = apiComm;
         updateHTML(suggest)   
     }
     catch(error) { 

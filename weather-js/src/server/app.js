@@ -65,18 +65,18 @@ app.post('/weather', (req, res) => {
         try {
             console.log(`API is given: ${lat}, ${long}`)
 
-            const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=current&units=${unit}&apikey=${weatherKEY}`)
-            weatherAPI.weatherInfo = response.data.data.timelines
+            const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=1h&units=${unit}&apikey=${weatherKEY}`)
+            // weatherAPI.weatherInfo = response.data.data.timelines
+            const intervals = response.data.data.timelines[0].intervals
 
-            console.log('Inside Try-Catch:')
-            console.log(weatherAPI)
-            console.log(`Specific value: ${weatherAPI.weatherInfo[0].intervals[0].values.humidity}`)
+            for (let i = 0; i < 9; i++) {
+                weatherAPI.weatherInfo = intervals[i].values
+            }
 
+            // console.log(response.data)
         } catch (error) { 
             console.log(error) 
         } 
-        // const {weatherInfo} = weatherAPI
-
         // Send Weather Object to Client
         /*
             Note: When completing a response from a request as res.json(), you must send the information back as itself instead of inside a string
