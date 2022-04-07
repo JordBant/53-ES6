@@ -2,6 +2,7 @@
 const supers = document.getElementById('supers');
 const searchBar = document.getElementById('search'); 
 const loc_List = document.getElementById('locations-dropdown')
+const city = document.getElementById('location')
 
 const oldChildren = loc_List.children;
 //----------------------------Clock--------------------------------
@@ -14,11 +15,6 @@ const month = ['01', '02', "03", "04", "05","06", "07", "08", "09", "10", "11", 
 const apiComm = { 
     suggestArr: [], 
     placesArr: [],
-
-    /*
-        Array to hold weather information 
-        in a nine hour time span
-    */
     nineHourSpan: []
 }
 
@@ -27,16 +23,45 @@ const displayFields = {
     lat: 40.7,
     long: -74,
     measureConven: 'imperial',
-    locality: 'Middleton',
+    locality: 'New York',
     state: 'New York',
+    weatherConditions: [
+        {
+            card: 1,
+            type: 'percipitation',
+            typeOf: 'rain',
+            unit: '',
+            icon: ''
+        },
+
+        {
+            card: 2,
+            type: 'humidity',
+            unit: '',
+            icon: ''
+        },
+
+        {
+            card: 3,
+            type: 'visibility',
+            unit: '',
+            icon: ''
+        },
+
+        {
+            card: 4,
+            type: 'windspeed',
+            unit: '',
+            icon: ''
+        }
+    ]
 }
 
-//------------------------Elements----------------------------
+//------------------------Weather Attributes----------------------------
 const degree = document.getElementById('temperature');
 const apparent = document.getElementById('apparent');
 
 const percipProb = document.getElementById('percipProb');
-// const percipType = document.getElementById('percip-icon');
 
 const humid = document.getElementById('humid');
 const vis = document.getElementById('visibility');
@@ -50,64 +75,18 @@ const windSpeed = document.getElementById('windSpeed');
 //         const photosOf = ;
 //     }
 
-    // async function getLocation(){
-    //     displayFields.userInput = searchBar.value;
-    //     const res = await fetch(
-    //     `https://maps.googleapis.com/maps/api/geocode/json?address=${displayFields.locality},${displayFields.state}&key=MYKEY`);
-    //     const data = await res.json();
-    //     const coordinates = data.results[0].geometry.location; 
-    //     const locationInfo = data.results[0].address_components;
-        
-    //     // error handling
-    //     // if(data.status !== "OK"){
-            
-    //         // }
-    //     displayFields.lat = coordinates.lat;
-    //     displayFields.long = coordinates.lng;
-        
-    //     locationInfo.forEach(component => {
-    //         if(component.types.includes("locality") || component.types.includes("sublocality")){
-    //             displayFields.locality = locationInfo.long_name;
-    //         }
-    //         if(component.types.includes("administrative_level_1")){
-    //             displayFields.state = locationInfo.long_name;
-    //         }
-    //         if(component.types.includes("postal_code")){
-    //             displayFields.zip = locationInfo.long_name;
-    //         }
-    //     });
-    //     console.log(coordinates);
-    // }
+const displayHTML = () => {
+    city.textContent = `${displayFields.locality}, ${displayFields.state}`
+    /**
+     * Display temperatures
+     * 
+     * Display weather conditions respective to whats denoted by the card number in 
+     * the weatherConditions Object arrr
+     * 
+     * Map the nineHour object array to the array of data in in the 9Hour arch
+     */
 
-// async function getWeather(place){
-    
-//     toggleUnits();
-//     try {
-//         const response = await fetch('/weather', {
-
-//             method: 'POST',
-//             headers: {"Content-Type" : "application/json"},
-//             body: JSON.stringify(place)
-
-//         })
-//         const weather = await response.json();
-//     } catch (error) {
-//         console.log(error)
-//     }
-    // const dataObj = data.data.timelines[0].intervals[0].values;
-        
-    // vis.textContent = dataObj.visibility;
-    // windSpeed.textContent = dataObj.windSpeed;
-    // percipProb.textContent = dataObj.precipitationProbability;
-    // humid.textContent = dataObj.humidity;
-    
-    // degree.textContent = Math.floor(dataObj.temperature);
-    // apparent.textContent = Math.floor(dataObj.temperatureApparent);
-
-    // console.log(dataObj);
-//     }
-// getWeather(displayFields.chosenPlace)
-
+}
 
 const updateHTML = (paramArr) => {
     while ((searchBar.value === '' && oldChildren.length > 0) || (paramArr.length === 0 && oldChildren.length > 0)){
@@ -133,6 +112,11 @@ const updateHTML = (paramArr) => {
 
             const { placesArr } = apiComm
             const { chosenPlace: choice } = displayFields
+            
+            const cityNameArr = choice.split(',')
+            displayFields.locality = cityNameArr[0]
+            displayFields.state = cityNameArr[1]
+
             const temp = placesArr.find(place => place.matchedPlace === choice)
 
             displayFields.lat = temp.coord[1]
@@ -142,31 +126,6 @@ const updateHTML = (paramArr) => {
             getWeather();
         })
     }  
-}
-
-const getWeather = async () => {
-    const coordinates = {
-        geolocation:[
-
-            displayFields.lat,
-            displayFields.long
-
-        ]}
-
-    try {
-        const response = await fetch('/weather', {
-    
-            method: 'POST',
-            headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify(coordinates)
-    
-        })
-        const data = await response.json()
-        console.log('Client:', data)
-
-    } catch (error) {
-        console.log(error)
-    }
 }
 
 const toggleUnits = () => {
@@ -244,3 +203,30 @@ searchBar.addEventListener('input', async () => {
     }
     //Server response should be an array of the cities that are generated in the autocomplete
 })
+
+const getWeather = async () => {
+    const coordinates = {
+        geolocation:[
+
+            displayFields.lat,
+            displayFields.long
+
+        ]}
+
+    try {
+        const response = await fetch('/weather', {
+    
+            method: 'POST',
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(coordinates)
+    
+        })
+        const data = await response.json()
+        console.log('Client:', data)
+
+
+    } catch (error) {
+        console.log(error)
+    }
+    displayHTML()
+}

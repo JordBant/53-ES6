@@ -128,6 +128,9 @@ body > * {
   list-style: none;
   position: relative;
   border-top: rgba(255, 255, 255, 0.521) solid 1px;
+  -webkit-transition: 0.4s all ease-in-out;
+  transition: 0.4s all ease-in-out;
+  opacity: 1;
 }
 
 .main .search-div .locations-dropdown .location::before {
