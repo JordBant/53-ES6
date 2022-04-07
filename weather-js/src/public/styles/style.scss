@@ -139,6 +139,8 @@ body
                 list-style: none;
                 position: relative;
                 border-top: rgba(255, 255, 255, 0.521) solid 1px;
+                transition: 0.4s all ease-in-out;
+                opacity: 1;
                 // background-color: red;
                 
                 &::before{@include glimmer();}

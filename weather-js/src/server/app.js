@@ -21,13 +21,13 @@ const weatherAppParams = {
     unit: 'imperial'
 }
 
-const weatherAPI = {
-    weatherInfo: []
+const weatherAPI = { 
+    weatherInfo: [] 
 }
 
 const placesAPI = { 
-    placeData: []
- }
+    placeData: [] 
+}
 
 app.post('/input', (req, res) =>{
     const search = req.body.input
@@ -43,11 +43,11 @@ app.post('/input', (req, res) =>{
                     coord: location.center
                 }
             })
+
         } catch (error) {
             console.error(error);
         }
         res.json(placesAPI)
-        // console.log(forClient)
     }
     geocode();
 })
@@ -59,28 +59,18 @@ app.post('/weather', (req, res) => {
     weatherAppParams.long = coords[1]
     const {lat, long, unit} = weatherAppParams
 
-    //Holds Tomorrow.io Request Object
-
     const getWeather = async () => {
         try {
-            console.log(`API is given: ${lat}, ${long}`)
-
             const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=1h&units=${unit}&apikey=${weatherKEY}`)
-            // weatherAPI.weatherInfo = response.data.data.timelines
-            const intervals = response.data.data.timelines[0].intervals
+            const intervalArr = response.data.data.timelines[0].intervals
 
-            for (let i = 0; i < 9; i++) {
-                weatherAPI.weatherInfo = intervals[i].values
+            for(let i = 0; i < 9; i++){
+                weatherAPI.weatherInfo[i] = intervalArr[i].values
             }
 
-            // console.log(response.data)
         } catch (error) { 
             console.log(error) 
         } 
-        // Send Weather Object to Client
-        /*
-            Note: When completing a response from a request as res.json(), you must send the information back as itself instead of inside a string
-        */
         res.json(weatherAPI)
     }
     getWeather()
