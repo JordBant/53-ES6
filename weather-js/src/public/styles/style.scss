@@ -382,7 +382,7 @@ body
             top: 85%;
             transform: translateX(-50%);
             border-top: 1px dotted black;
-
+            
             & ul{
                 @include flex(space-between, center, NULL, NULL, NULL);
                 @include size(auto, auto, 5%, 0);

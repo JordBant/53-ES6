@@ -4,6 +4,8 @@ const searchBar = document.getElementById('search');
 const loc_List = document.getElementById('locations-dropdown')
 const city = document.getElementById('location')
 
+const intervals = document.querySelectorAll('#info-at')
+
 const oldChildren = loc_List.children;
 //----------------------------Clock--------------------------------
 const dateIRL = new Date();
@@ -31,6 +33,7 @@ const displayFields = {
             type: 'percipitation',
             typeOf: 'rain',
             unit: '',
+            measurement: '',
             icon: ''
         },
 
@@ -38,6 +41,7 @@ const displayFields = {
             card: 2,
             type: 'humidity',
             unit: '',
+            measurement: '',
             icon: ''
         },
 
@@ -45,6 +49,7 @@ const displayFields = {
             card: 3,
             type: 'visibility',
             unit: '',
+            measurement: '',
             icon: ''
         },
 
@@ -52,6 +57,7 @@ const displayFields = {
             card: 4,
             type: 'windspeed',
             unit: '',
+            measurement: '',
             icon: ''
         }
     ]
@@ -75,13 +81,31 @@ const windSpeed = document.getElementById('windSpeed');
 //         const photosOf = ;
 //     }
 
+
+/*
+    Convert node list to array and rearrange the node 
+    list if the value of arr[0] is not the intended array 
+*/
+const ArrangeNodeList = (nodeList, [index, numberOf]) => {
+    const nodeArr = nodeList
+    const firstPosition = nodeArr.splice(index, numberOf)
+    nodeArr.unshift(firstPosition)
+
+    return nodeArr
+}
+
 const displayHTML = () => {
+    const weatherConditionArr = ArrangeNodeList([...intervals], [7, 1])
+    const {nineHourSpan: infoAt} = apiComm
+    
+    console.log(infoAt)
     city.textContent = `${displayFields.locality}, ${displayFields.state}`
+
     /**
      * Display temperatures
      * 
      * Display weather conditions respective to whats denoted by the card number in 
-     * the weatherConditions Object arrr
+     * the weatherConditions Object Arr
      * 
      * Map the nineHour object array to the array of data in in the 9Hour arch
      */
@@ -113,6 +137,7 @@ const updateHTML = (paramArr) => {
             const { placesArr } = apiComm
             const { chosenPlace: choice } = displayFields
             
+            //Split string to select just locality and state
             const cityNameArr = choice.split(',')
             displayFields.locality = cityNameArr[0]
             displayFields.state = cityNameArr[1]
@@ -176,6 +201,9 @@ const clockTime = () => {
 // searchBar.addEventListener('input', search);
 // supers.addEventListener('click', getWeather);
 
+                        //---------------------------//
+//==||==||==||==||==||==|| Server-Side Communication ||==||==||==||==||==||==//
+                        //---------------------------//
 clockTime();
 setInterval(clockTime, 1000);
 
