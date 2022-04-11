@@ -17,61 +17,30 @@ const month = ['01', '02', "03", "04", "05","06", "07", "08", "09", "10", "11", 
 const apiComm = { 
     suggestArr: [], 
     placesArr: [],
-    nineHourSpan: []
+    nineHour_Info: [],
+    convention: 'imperial'
 }
 
 const displayFields = {
     chosenPlace: '',
     lat: 40.7,
     long: -74,
-    measureConven: 'imperial',
+    currentTemp: '',
+    currentApparent: '',
     locality: 'New York',
     state: 'New York',
-    weatherConditions: [
-        {
-            card: 1,
-            type: 'percipitation',
-            typeOf: 'rain',
-            unit: '',
-            measurement: '',
-            icon: ''
-        },
-
-        {
-            card: 2,
-            type: 'humidity',
-            unit: '',
-            measurement: '',
-            icon: ''
-        },
-
-        {
-            card: 3,
-            type: 'visibility',
-            unit: '',
-            measurement: '',
-            icon: ''
-        },
-
-        {
-            card: 4,
-            type: 'windspeed',
-            unit: '',
-            measurement: '',
-            icon: ''
-        }
-    ]
+    currentCondition: 'temperature',
 }
 
 //------------------------Weather Attributes----------------------------
 const degree = document.getElementById('temperature');
 const apparent = document.getElementById('apparent');
 
-const percipProb = document.getElementById('percipProb');
+const percipProbEl = document.getElementById('percipProb');
 
 const humid = document.getElementById('humid');
 const vis = document.getElementById('visibility');
-const windSpeed = document.getElementById('windSpeed');
+const windSpeedEl = document.getElementById('windSpeed');
 //------------------------------------------------------------
 
 // Third API to be consumed after data from US-Cities JSON managed
@@ -81,25 +50,50 @@ const windSpeed = document.getElementById('windSpeed');
 //         const photosOf = ;
 //     }
 
-
 /*
     Convert node list to array and rearrange the node 
     list if the value of arr[0] is not the intended array 
 */
-const ArrangeNodeList = (nodeList, [index, numberOf]) => {
-    const nodeArr = nodeList
+
+const ArrangeNodeList = ([...nodeList], [index, numberOf]) => {
+    //nodeList will be an array of spreaded elements 
+    const nodeArr = [...nodeList]
+    
+    //change the nodeArr[0] from an array of size 1 to whatever the value of that index is
     const firstPosition = nodeArr.splice(index, numberOf)
-    nodeArr.unshift(firstPosition)
+    const indexInfo = firstPosition[0]
+    nodeArr.unshift(indexInfo)
 
     return nodeArr
 }
 
 const displayHTML = () => {
-    const weatherConditionArr = ArrangeNodeList([...intervals], [7, 1])
-    const {nineHourSpan: infoAt} = apiComm
-    
-    console.log(infoAt)
+    const elementArr = ArrangeNodeList(intervals, [7, 1])
+    const { nineHour_Info: nineHour } =  apiComm    
+
+    //find out how to make the object's property be ...
+    // ... dynamically interchangable with other properties
+    const displayArr = nineHour.map(object => object.temperature) 
+
+    degree.textContent = `${Math.floor(displayFields.currentTemp)}\u00B0`
+    apparent.textContent = `${Math.floor(displayFields.currentApparent)}\u00B0`
     city.textContent = `${displayFields.locality}, ${displayFields.state}`
+
+    const { humidity, visibility, precipitationProbability:percipProb, windSpeed } = nineHour[0] 
+
+    vis.textContent = `${humidity}%`
+    humid.textContent = `${visibility}mi`
+    percipProbEl.textContent = `${percipProb}%`
+    windSpeedEl.textContent = `${windSpeed}mph`
+
+    elementArr.forEach((element, index) => {
+        const wholeNum = Math.floor(displayArr[index])
+        element.textContent = `${wholeNum}\u00B0` // + interpolated variable conatining appended unit
+    });
+
+    console.log('Particular condition:', displayArr)
+    console.log('Element Arr:', elementArr)    
+    console.log('Object Array:', nineHour)
 
     /**
      * Display temperatures
@@ -109,7 +103,6 @@ const displayHTML = () => {
      * 
      * Map the nineHour object array to the array of data in in the 9Hour arch
      */
-
 }
 
 const updateHTML = (paramArr) => {
@@ -163,7 +156,7 @@ const toggleUnits = () => {
         Cels.classList.toggle('selected');
         Cels.classList.toggle('unselected');
     }  
-    return displayFields.measureConven = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
+    return apiComm.convention = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
 }   
 
 const clockTime = () => {
@@ -186,7 +179,6 @@ const clockTime = () => {
     // let sec = document.getElementById('sec');
     (dateIRL.getHours() >= 12) ? tl_currentHour.textContent = `| ${Hour}PM` : tl_currentHour.textContent = `| ${Hour}AM`;
     (dateIRL.getHours() + 8 > 23 || dateIRL.getHours() + 8 <= 12) ? tl_lastHour.textContent = `| ${Hour + 8}AM` : tl_lastHour.textContent = `| ${Hour + 8}PM`;
-    
 
 // const intervalList = document.querySelectorAll('#interval');
 // let interval = dateIRL.getHours() + 1;
@@ -201,11 +193,13 @@ const clockTime = () => {
 // searchBar.addEventListener('input', search);
 // supers.addEventListener('click', getWeather);
 
+
+clockTime();
+setInterval(clockTime, 1000);
+
                         //---------------------------//
 //==||==||==||==||==||==|| Server-Side Communication ||==||==||==||==||==||==//
                         //---------------------------//
-clockTime();
-setInterval(clockTime, 1000);
 
 searchBar.addEventListener('input', async () => {
     const data = { 
@@ -250,11 +244,17 @@ const getWeather = async () => {
     
         })
         const data = await response.json()
-        console.log('Client:', data)
 
+        apiComm.nineHour_Info = data.weatherInfo
+        displayFields.currentTemp = data.weatherInfo[0].temperature
+        displayFields.currentApparent = data.weatherInfo[0].temperatureApparent
+        // toggleUnits()
 
     } catch (error) {
         console.log(error)
     }
     displayHTML()
 }
+getWeather()
+
+//The user should 
