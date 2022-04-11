@@ -54,6 +54,7 @@ app.post('/input', (req, res) =>{
 
 app.post('/weather', (req, res) => {
     const coords = req.body.geolocation
+    weatherAppParams.unit = req.body.unit
 
     weatherAppParams.lat = coords[0]
     weatherAppParams.long = coords[1]
