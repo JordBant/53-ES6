@@ -18,13 +18,13 @@ const apiComm = {
     suggestArr: [], 
     placesArr: [],
     nineHour_Info: [],
+    lat: 40.7,
+    long: -74,
     convention: 'imperial'
 }
 
 const displayFields = {
     chosenPlace: '',
-    lat: 40.7,
-    long: -74,
     currentTemp: '',
     currentApparent: '',
     locality: 'New York',
@@ -191,8 +191,6 @@ const clockTime = () => {
 }
 
 // searchBar.addEventListener('input', search);
-// supers.addEventListener('click', getWeather);
-
 
 clockTime();
 setInterval(clockTime, 1000);
@@ -227,11 +225,14 @@ searchBar.addEventListener('input', async () => {
 })
 
 const getWeather = async () => {
-    const coordinates = {
+    toggleUnits()
+
+    const URLparams = {
+        unit: apiComm.convention,
         geolocation:[
 
-            displayFields.lat,
-            displayFields.long
+            apiComm.lat,
+            apiComm.long
 
         ]}
 
@@ -240,7 +241,7 @@ const getWeather = async () => {
     
             method: 'POST',
             headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify(coordinates)
+            body: JSON.stringify(URLparams)
     
         })
         const data = await response.json()
@@ -256,5 +257,6 @@ const getWeather = async () => {
     displayHTML()
 }
 getWeather()
+supers.addEventListener('click', getWeather);
 
 //The user should 
