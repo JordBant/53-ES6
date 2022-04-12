@@ -225,7 +225,6 @@ searchBar.addEventListener('input', async () => {
 })
 
 const getWeather = async () => {
-    toggleUnits()
 
     const URLparams = {
         unit: apiComm.convention,
@@ -256,7 +255,18 @@ const getWeather = async () => {
     }
     displayHTML()
 }
+
+// const dynamicPictures = () => {
+//     const pictureParams = {
+//         /*
+//             Time of day
+//             Weather condition
+//             locality, state
+//         */
+//     }
+// }
+
 getWeather()
-supers.addEventListener('click', getWeather);
+supers.addEventListener('click', toggleUnits);
 
 //The user should 

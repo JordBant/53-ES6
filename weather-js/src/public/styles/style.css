@@ -84,15 +84,16 @@ body > * {
       align-self: center;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
+  position: relative;
   border-radius: 25px;
 }
 
 .main .search-div .search {
   font: 300 1rem "Overpass", sans-serif;
-  color: black;
+  color: White;
   margin: 0;
   padding: 0 5px 0 5px;
-  width: 425px;
+  width: 90%;
   height: 37px;
   position: absolute;
   top: 5px;
