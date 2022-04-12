@@ -475,7 +475,7 @@ body > * {
   overflow: hidden;
 }
 
-.aside1 .timeline .half-circ-wrapper {
+.aside1 .timeline .info-wrapper {
   margin: 0;
   padding: 0;
   width: 90%;
@@ -483,9 +483,11 @@ body > * {
   border-radius: 150px 150px 0 0;
   list-style: none;
   position: relative;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle {
+.aside1 .timeline .info-wrapper .info-list {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -495,7 +497,7 @@ body > * {
   position: relative;
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle #info {
+.aside1 .timeline .info-wrapper .info-list #info {
   margin: 0;
   padding: 8px;
   width: 100%;
@@ -505,20 +507,20 @@ body > * {
   text-align: center;
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle #info #info-at {
+.aside1 .timeline .info-wrapper .info-list #info #info-at {
   font: 400 15px "Overpass", sans-serif;
   color: black;
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info1 {
+.aside1 .timeline .info-wrapper .info-list .info1 {
   right: 80%;
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info9 {
+.aside1 .timeline .info-wrapper .info-list .info9 {
   left: 80%;
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info1, .aside1 .timeline .half-circ-wrapper .half-circle .info9 {
+.aside1 .timeline .info-wrapper .info-list .info1, .aside1 .timeline .info-wrapper .info-list .info9 {
   margin: 0;
   padding: 0;
   width: auto;
@@ -526,77 +528,77 @@ body > * {
   top: 100%;
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info2 {
+.aside1 .timeline .info-wrapper .info-list .info2 {
   -webkit-transform: rotate(292.5deg);
           transform: rotate(292.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info2 .info-at2 {
+.aside1 .timeline .info-wrapper .info-list .info2 .info-at2 {
   -webkit-transform: rotate(-292.5deg);
           transform: rotate(-292.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info3 {
+.aside1 .timeline .info-wrapper .info-list .info3 {
   -webkit-transform: rotate(315deg);
           transform: rotate(315deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info3 .info-at3 {
+.aside1 .timeline .info-wrapper .info-list .info3 .info-at3 {
   -webkit-transform: rotate(-315deg);
           transform: rotate(-315deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info4 {
+.aside1 .timeline .info-wrapper .info-list .info4 {
   -webkit-transform: rotate(337.5deg);
           transform: rotate(337.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info4 .info-at4 {
+.aside1 .timeline .info-wrapper .info-list .info4 .info-at4 {
   -webkit-transform: rotate(-337.5deg);
           transform: rotate(-337.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info5 {
+.aside1 .timeline .info-wrapper .info-list .info5 {
   -webkit-transform: rotate(360deg);
           transform: rotate(360deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info5 .info-at5 {
+.aside1 .timeline .info-wrapper .info-list .info5 .info-at5 {
   -webkit-transform: rotate(-360deg);
           transform: rotate(-360deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info6 {
+.aside1 .timeline .info-wrapper .info-list .info6 {
   -webkit-transform: rotate(382.5deg);
           transform: rotate(382.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info6 .info-at6 {
+.aside1 .timeline .info-wrapper .info-list .info6 .info-at6 {
   -webkit-transform: rotate(-382.5deg);
           transform: rotate(-382.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info7 {
+.aside1 .timeline .info-wrapper .info-list .info7 {
   -webkit-transform: rotate(405deg);
           transform: rotate(405deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info7 .info-at7 {
+.aside1 .timeline .info-wrapper .info-list .info7 .info-at7 {
   -webkit-transform: rotate(-405deg);
           transform: rotate(-405deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info8 {
+.aside1 .timeline .info-wrapper .info-list .info8 {
   -webkit-transform: rotate(427.5deg);
           transform: rotate(427.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .half-circle .info8 .info-at8 {
+.aside1 .timeline .info-wrapper .info-list .info8 .info-at8 {
   -webkit-transform: rotate(-427.5deg);
           transform: rotate(-427.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list {
+.aside1 .timeline .info-wrapper .interval-list {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -610,7 +612,7 @@ body > * {
           transform: translate(-50%, -50%);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list #interval {
+.aside1 .timeline .info-wrapper .interval-list #interval {
   margin: 0;
   padding: 11px;
   width: 100%;
@@ -621,77 +623,77 @@ body > * {
   left: -2%;
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list #interval #time {
+.aside1 .timeline .info-wrapper .interval-list #interval #time {
   font: 400 10px "Mansrope", sans-serif;
   color: black;
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr2 {
+.aside1 .timeline .info-wrapper .interval-list .hr2 {
   -webkit-transform: rotate(292.5deg);
           transform: rotate(292.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr2 .time-of2 {
+.aside1 .timeline .info-wrapper .interval-list .hr2 .time-of2 {
   -webkit-transform: rotate(-292.5deg);
           transform: rotate(-292.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr3 {
+.aside1 .timeline .info-wrapper .interval-list .hr3 {
   -webkit-transform: rotate(315deg);
           transform: rotate(315deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr3 .time-of3 {
+.aside1 .timeline .info-wrapper .interval-list .hr3 .time-of3 {
   -webkit-transform: rotate(-315deg);
           transform: rotate(-315deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr4 {
+.aside1 .timeline .info-wrapper .interval-list .hr4 {
   -webkit-transform: rotate(337.5deg);
           transform: rotate(337.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr4 .time-of4 {
+.aside1 .timeline .info-wrapper .interval-list .hr4 .time-of4 {
   -webkit-transform: rotate(-337.5deg);
           transform: rotate(-337.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr5 {
+.aside1 .timeline .info-wrapper .interval-list .hr5 {
   -webkit-transform: rotate(360deg);
           transform: rotate(360deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr5 .time-of5 {
+.aside1 .timeline .info-wrapper .interval-list .hr5 .time-of5 {
   -webkit-transform: rotate(-360deg);
           transform: rotate(-360deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr6 {
+.aside1 .timeline .info-wrapper .interval-list .hr6 {
   -webkit-transform: rotate(382.5deg);
           transform: rotate(382.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr6 .time-of6 {
+.aside1 .timeline .info-wrapper .interval-list .hr6 .time-of6 {
   -webkit-transform: rotate(-382.5deg);
           transform: rotate(-382.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr7 {
+.aside1 .timeline .info-wrapper .interval-list .hr7 {
   -webkit-transform: rotate(405deg);
           transform: rotate(405deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr7 .time-of7 {
+.aside1 .timeline .info-wrapper .interval-list .hr7 .time-of7 {
   -webkit-transform: rotate(-405deg);
           transform: rotate(-405deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr8 {
+.aside1 .timeline .info-wrapper .interval-list .hr8 {
   -webkit-transform: rotate(427.5deg);
           transform: rotate(427.5deg);
 }
 
-.aside1 .timeline .half-circ-wrapper .interval-list .hr8 .time-of8 {
+.aside1 .timeline .info-wrapper .interval-list .hr8 .time-of8 {
   -webkit-transform: rotate(-427.5deg);
           transform: rotate(-427.5deg);
 }
@@ -881,5 +883,48 @@ body > * {
 
 .aside2 .card-list .card:hover::before {
   opacity: 0.7;
+}
+
+/*
+    - The screen is a flex parent
+    - Search Bar would take up 80% of the top of the nav
+    - bottom of the main section keeps the same format ( City, State | Temperature F/C )
+    - Photo will be parallax
+    ---------------------------
+    - Bottom will be a second imported picture as a background 
+    which will just be a picture of the current weather condition
+
+    - Left side of the bottom page will be a list of the conditions with corresponding times
+    - Right Side will be the current weather condition represented as an icon and the current feels like temperature
+*/
+@media only screen and (max-width: 1245px) {
+  .timeline {
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: NULL;
+            flex-direction: NULL;
+    justify-self: NULL;
+    -ms-flex-item-align: NULL;
+        align-self: NULL;
+    background: white;
+  }
+  .timeline .info-wrapper {
+    border-radius: 15px;
+    background: cyan;
+    border: 2px solid red;
+  }
 }
 /*# sourceMappingURL=style.css.map */
