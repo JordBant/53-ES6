@@ -81,7 +81,7 @@ body
     background: rgb(206, 174, 133) url(../media/weatherApp.jpg) no-repeat center center;
     background-size: cover;
 
-    & > *{background: transparent;}
+    & > *{background: transparent;}    
 }
 
 //==--==--==--==--==--==--==--==--==--==--==--==--==//
@@ -297,7 +297,7 @@ body
         position: relative;
         overflow: hidden;
 
-        .half-circ-wrapper
+        .info-wrapper
         {
             $upright: 0deg;                     //for individual numbers
             $position: 270deg;                  //relative position of the numbers on the baseline
@@ -305,10 +305,11 @@ body
             $betweens: $position + $deg-apart;  //the angle of seperation between any given set of numbers from the relative positions 270 and 180 degrees
 
             @include circle(90%, 60%);
-            position: relative;            
+            position: relative;      
+            transition: all 0.4s ease-in-out;      
 
             //Half Circle Timeline
-            .half-circle{     
+            .info-list{     
                 $betweens-info: $betweens;
 
                 @include circle(100%, 100%);
@@ -466,6 +467,36 @@ body
 //===========================Media Queries=============================//
 
                 // -=-=-=-=-Portrait Phones-=-=--=- //
+//Media query for portrait of a phone 
+/*
+    - The screen is a flex parent
+    - Search Bar would take up 80% of the top of the nav
+    - bottom of the main section keeps the same format ( City, State | Temperature F/C )
+    - Photo will be parallax
+    ---------------------------
+    - Bottom will be a second imported picture as a background 
+    which will just be a picture of the current weather condition
+
+    - Left side of the bottom page will be a list of the conditions with corresponding times
+    - Right Side will be the current weather condition represented as an icon and the current feels like temperature
+*/
+
+
+@media only screen and (max-width: 1245px){
+    .timeline{
+        @include size(20px, 50%, 0, 0);
+        @include flex(center, center, NULL, NULL, NULL);
+        background: white;
+        .info-wrapper{
+            // @include size(90%, 100%, 0, 0);
+            // transform: rotate(-90deg);
+
+            border-radius: 15px;
+            background: cyan;
+            border: 2px solid red;
+        }
+    }
+}
 
 
 //=====================================================================//
