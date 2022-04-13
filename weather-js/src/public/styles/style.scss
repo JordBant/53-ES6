@@ -12,7 +12,7 @@
 }
 
 @mixin circle($growWidth-growW, $growHeight-growH){
-    @include size(/*80% / 70%, 60% / 55%,*/$growWidth-growW, $growHeight-growH, 0, 0);
+    @include size($growWidth-growW, $growHeight-growH, 0, 0);
     border-radius: 150px 150px 0 0;
     list-style: none;
 }
@@ -113,7 +113,7 @@ body
         border-radius: 25px;
 
         .search{
-            @include font(300, 1rem, White, 'Overpass');
+            @include font(300, 1rem, black, 'Overpass');
             @include size(90%, 37px, 0, 0 5px 0 5px);
             position: absolute;
             top: 5px;
@@ -305,6 +305,10 @@ body
             $betweens: $position + $deg-apart;  //the angle of seperation between any given set of numbers from the relative positions 270 and 180 degrees
 
             @include circle(90%, 60%);
+            // @include size(90%, 60%, 0, 0);
+            // border-radius: 150px 150px 0 0;
+            // list-style: none;
+            //--------------------------//
             position: relative;      
             transition: all 0.4s ease-in-out;      
 
@@ -313,6 +317,10 @@ body
                 $betweens-info: $betweens;
 
                 @include circle(100%, 100%);
+                // @include size(100%, 100%, 0, 0);
+                // border-radius: 150px 150px 0 0;
+                // list-style: none;
+                //---------------------------//
                 position: relative;
 
                 #info{
@@ -349,6 +357,11 @@ body
                 $betweens-hour: $betweens;
 
                 @include circle(100%, 75%);
+                // @include size(100%, 75%, 0, 0);
+                // border-radius: 150px 150px 0 0;
+                // list-style: none;
+                //----------------------------//
+                
                 position: absolute;
                 top: 60%;
                 left: 50%;
@@ -482,21 +495,38 @@ body
 */
 
 
-@media only screen and (max-width: 1245px){
-    .timeline{
-        @include size(20px, 50%, 0, 0);
-        @include flex(center, center, NULL, NULL, NULL);
-        background: white;
-        .info-wrapper{
-            // @include size(90%, 100%, 0, 0);
-            // transform: rotate(-90deg);
+// @media only screen and (max-width: 1245px){
 
-            border-radius: 15px;
-            background: cyan;
-            border: 2px solid red;
-        }
-    }
-}
+    // .timeline{
+        // @include size(10%, 50%, 0, 0);
+        // @include flex(center, center, NULL, NULL, NULL);
+
+        // background: white;
+        // .info-wrapper{
+        //     @include size(80%, 80%, 0, 0);
+            
+        //     // transform: rotate(-90deg);
+        //     border-radius: 0px;
+        //     background: cyan;
+        //     // border: 2px solid red;
+
+        //     position: relative;
+            
+        //     .info-list{
+        //         border: 2px solid red;
+        //         @include flex(flex-start, center, column, flex-start, flex-end);
+        //         border-radius: 15px;
+        //         #info{
+
+        //         }
+        //     }
+        //     .interval-list{
+        //         border: 2px solid green;
+        //         border-radius: 20px 20px 20px 20px;
+        //     }
+        // }
+    // }
+// }
 
 
 //=====================================================================//
