@@ -146,18 +146,18 @@ const updateHTML = (paramArr) => {
     }  
 }
 
-const toggleUnits = () => {
-    const Fahr = document.getElementById('Fahr');
-    const Cels = document.getElementById('Cels');
+// const toggleUnits = () => {
+//     const Fahr = document.getElementById('Fahr');
+//     const Cels = document.getElementById('Cels');
     
-    if (Fahr.classList.contains('selected') || Cels.classList.contains('selected')){
-        Fahr.classList.toggle('selected');
-        Fahr.classList.toggle('unselected');
-        Cels.classList.toggle('selected');
-        Cels.classList.toggle('unselected');
-    }  
-    return apiComm.convention = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
-}   
+//     if (Fahr.classList.contains('selected') || Cels.classList.contains('selected')){
+//         Fahr.classList.toggle('selected');
+//         Fahr.classList.toggle('unselected');
+//         Cels.classList.toggle('selected');
+//         Cels.classList.toggle('unselected');
+//     }  
+//     return apiComm.convention = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
+// }   
 
 const clockTime = () => {
     const Hour = (dateIRL.getHours() > 12) ? dateIRL.getHours() - 12 : dateIRL.getHours();
@@ -266,7 +266,21 @@ const getWeather = async () => {
 //     }
 // }
 
+const toggleUnits = () => {
+    const Fahr = document.getElementById('Fahr');
+    const Cels = document.getElementById('Cels');
+    
+    if (Fahr.classList.contains('selected') || Cels.classList.contains('selected')){
+        Fahr.classList.toggle('selected');
+        Fahr.classList.toggle('unselected');
+        Cels.classList.toggle('selected');
+        Cels.classList.toggle('unselected');
+    }  
+    apiComm.convention = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
+    // getWeather()
+}  
+
 getWeather()
-supers.addEventListener('click', toggleUnits);
+// supers.addEventListener('click', toggleUnits);
 
 //The user should 
