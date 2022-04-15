@@ -236,6 +236,7 @@ body
         @include flex(space-between, center, row, NULL, flex-end);
         @include frostGlass(rgba(0, 0, 0, 0.164));
         box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+        margin-bottom: auto;
         // border: 2px solid blue;
         border: none;
         border-radius: 20px 0 0 20px;
@@ -301,126 +302,126 @@ body
         }
     }
     
-    .timeline{
-        @include size(100%, 100%, 0, 0);
-        @include flex(center, center, NULL, NULL, NULL);
-        position: relative;
-        overflow: hidden;
+    // .timeline{
+    //     @include size(100%, 100%, 0, 0);
+    //     @include flex(center, center, NULL, NULL, NULL);
+    //     position: relative;
+    //     overflow: hidden;
 
-        .info-wrapper
-        {
-            $upright: 0deg;                     //for individual numbers
-            $position: 270deg;                  //relative position of the numbers on the baseline
-            $deg-apart: 22.5deg;                //1/4 of 90 degreea
-            $betweens: $position + $deg-apart;  //the angle of seperation between any given set of numbers from the relative positions 270 and 180 degrees
+    //     .info-wrapper
+    //     {
+    //         $upright: 0deg;                     //for individual numbers
+    //         $position: 270deg;                  //relative position of the numbers on the baseline
+    //         $deg-apart: 22.5deg;                //1/4 of 90 degreea
+    //         $betweens: $position + $deg-apart;  //the angle of seperation between any given set of numbers from the relative positions 270 and 180 degrees
 
-            @include circle(90%, 60%);
-            // @include size(90%, 60%, 0, 0);
-            // border-radius: 150px 150px 0 0;
-            // list-style: none;
-            //--------------------------//
-            position: relative;      
-            transition: all 0.4s ease-in-out;      
+    //         @include circle(90%, 60%);
+    //         // @include size(90%, 60%, 0, 0);
+    //         // border-radius: 150px 150px 0 0;
+    //         // list-style: none;
+    //         //--------------------------//
+    //         position: relative;      
+    //         transition: all 0.4s ease-in-out;      
 
-            //Half Circle Timeline
-            .info-list{     
-                $betweens-info: $betweens;
+    //         //Half Circle Timeline
+    //         .info-list{     
+    //             $betweens-info: $betweens;
 
-                @include circle(100%, 100%);
-                // @include size(100%, 100%, 0, 0);
-                // border-radius: 150px 150px 0 0;
-                // list-style: none;
-                //---------------------------//
-                position: relative;
+    //             @include circle(100%, 100%);
+    //             // @include size(100%, 100%, 0, 0);
+    //             // border-radius: 150px 150px 0 0;
+    //             // list-style: none;
+    //             //---------------------------//
+    //             position: relative;
 
-                #info{
-                    @include size(100%, 200%, 0, 8px);
+    //             #info{
+    //                 @include size(100%, 200%, 0, 8px);
 
-                    overflow: hidden;
-                    position: absolute;
-                    text-align: center;
-                    #info-at{
-                       @include font(400, 15px, black, 'Overpass');
-                    }
-                }
+    //                 overflow: hidden;
+    //                 position: absolute;
+    //                 text-align: center;
+    //                 #info-at{
+    //                    @include font(400, 15px, black, 'Overpass');
+    //                 }
+    //             }
 
-                .info1{right:80%;}
-                .info9{left:80%;}
-                .info1, .info9{
-                    @include size(auto, auto, 0, 0);
-                    top: 100%;
-                }
-                @for $i from 2 through 8{
-                    .info#{$i}{
-                        transform: rotate($betweens-info);
-                        .info-at#{$i}{
-                            transform: rotate(-$betweens-info);
-                        }
-                    }
-                    $betweens-info: $betweens-info + $deg-apart;
-                }
-            }
+    //             .info1{right:80%;}
+    //             .info9{left:80%;}
+    //             .info1, .info9{
+    //                 @include size(auto, auto, 0, 0);
+    //                 top: 100%;
+    //             }
+    //             @for $i from 2 through 8{
+    //                 .info#{$i}{
+    //                     transform: rotate($betweens-info);
+    //                     .info-at#{$i}{
+    //                         transform: rotate(-$betweens-info);
+    //                     }
+    //                 }
+    //                 $betweens-info: $betweens-info + $deg-apart;
+    //             }
+    //         }
 
-            //Not initializing ruleset by referencing #interval because of ID's high priority 
-            //Will overwrite styling of 1st and 9th interval positionå
-            .interval-list{
-                $betweens-hour: $betweens;
+    //         //Not initializing ruleset by referencing #interval because of ID's high priority 
+    //         //Will overwrite styling of 1st and 9th interval positionå
+    //         .interval-list{
+    //             $betweens-hour: $betweens;
 
-                @include circle(100%, 75%);
-                // @include size(100%, 75%, 0, 0);
-                // border-radius: 150px 150px 0 0;
-                // list-style: none;
-                //----------------------------//
+    //             @include circle(100%, 75%);
+    //             // @include size(100%, 75%, 0, 0);
+    //             // border-radius: 150px 150px 0 0;
+    //             // list-style: none;
+    //             //----------------------------//
                 
-                position: absolute;
-                top: 60%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+    //             position: absolute;
+    //             top: 60%;
+    //             left: 50%;
+    //             transform: translate(-50%, -50%);
 
-                #interval{
-                    @include size(100%, 175%, 0, 11px);
-                    overflow: hidden;
-                    position: absolute;
-                    text-align: center;
-                    left: -2%;
+    //             #interval{
+    //                 @include size(100%, 175%, 0, 11px);
+    //                 overflow: hidden;
+    //                 position: absolute;
+    //                 text-align: center;
+    //                 left: -2%;
                     
-                    #time{
-                        @include font(400, 10px, black, 'Mansrope');
-                    }
-                }
+    //                 #time{
+    //                     @include font(400, 10px, black, 'Mansrope');
+    //                 }
+    //             }
                 
-                @for $i from 2 through 8{
-                    .hr#{$i}{
-                        transform: rotate($betweens-hour);
-                        .time-of#{$i}{
-                            transform: rotate(-$betweens-hour);
-                        }
-                    }
-                    $betweens-hour: $betweens-hour + $deg-apart;
-                }
-            }
-        }
-        .baseline{
-            @include size(90%, auto, 0, 0);
-            @include flex(space-between, center, NULL, center, NULL);
-            position: absolute;
-            left: 50%;
-            top: 85%;
-            transform: translateX(-50%);
-            border-top: 1px dotted black;
+    //             @for $i from 2 through 8{
+    //                 .hr#{$i}{
+    //                     transform: rotate($betweens-hour);
+    //                     .time-of#{$i}{
+    //                         transform: rotate(-$betweens-hour);
+    //                     }
+    //                 }
+    //                 $betweens-hour: $betweens-hour + $deg-apart;
+    //             }
+    //         }
+    //     }
+    //     .baseline{
+    //         @include size(90%, auto, 0, 0);
+    //         @include flex(space-between, center, NULL, center, NULL);
+    //         position: absolute;
+    //         left: 50%;
+    //         top: 85%;
+    //         transform: translateX(-50%);
+    //         border-top: 1px dotted black;
 
-            & ul{
-                @include flex(space-between, center, NULL, NULL, NULL);
-                @include size(auto, auto, 5%, 0);
+    //         & ul{
+    //             @include flex(space-between, center, NULL, NULL, NULL);
+    //             @include size(auto, auto, 5%, 0);
 
-                // border: 2px solid green;
-                list-style: none;
-                & > *{
-                    @include font(100, 20px, black, 'Overpass');
-                }
-            }
-        }
-    }
+    //             // border: 2px solid green;
+    //             list-style: none;
+    //             & > *{
+    //                 @include font(100, 20px, black, 'Overpass');
+    //             }
+    //         }
+    //     }
+    // }
 }
 
 //==--==--==--==--==--==--==--==--==--==--==--==--==//
@@ -527,7 +528,6 @@ body
             @include size(50%, 6px, NULL, NULL);
             top: 50%;
             right: 50%;
-            height: 6px;
             position: absolute;
             border-radius: 6px;
             transform-origin: 100%;
@@ -546,6 +546,33 @@ body
         .sec-hand{
             @include size(47%, 1.7px, NULL, NULL);
             background: red;
+        }
+    }
+    .timeline{
+        @include size(95%, 95%, 0, 0);
+        @include flex(center, center, NULL, NULL, NULL);
+
+        .info-wrapper {
+            @include size(100%, 100%, 0, 0);
+            @include flex(center, center, row, NULL, NULL);
+
+            .interval{order: 1;}
+            .info-list{order: 2;}
+            & > * {
+                @include size(50%, 90%, 20px, 0);
+                @include flex(center, center, column, NULL, NULL);
+                @include font(200, 1.8rem, black, 'Manrope');
+
+                text-align: left;
+                list-style: none;
+
+                & > * {
+                    padding: 8px;
+                }
+            }
+            .baseline {
+                display: none;
+            }
         }
     }
     // .timeline{
