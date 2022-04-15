@@ -420,6 +420,36 @@ body > * {
   margin-right: 2px;
 }
 
+.aside1 .now #clock .digital {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: NULL;
+          flex-direction: NULL;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+}
+
+.aside1 .now #clock .digital .digits {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+}
+
 .aside1 .now #clock .calender-date {
   font: 500 15px "Manrope", sans-serif;
   color: black;
@@ -446,6 +476,9 @@ body > * {
 }
 
 .aside1 .now #clock .calender-date #day, .aside1 .now #clock .calender-date #date {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   margin: 0;
   letter-spacing: 2px;
 }
@@ -897,4 +930,62 @@ body > * {
     - Left side of the bottom page will be a list of the conditions with corresponding times
     - Right Side will be the current weather condition represented as an icon and the current feels like temperature
 */
+@media only screen and (max-width: 900px) {
+  #day {
+    opacity: 0;
+    position: absolute;
+  }
+  .digital {
+    opacity: 0;
+    position: absolute;
+  }
+  .analog {
+    margin: NULL;
+    padding: NULL;
+    width: 50px;
+    height: 50px;
+    border: 3px solid black;
+    border-radius: 50%;
+    position: relative;
+    opacity: 1;
+  }
+  .analog .hand {
+    margin: NULL;
+    padding: NULL;
+    width: 50%;
+    height: 6px;
+    top: 50%;
+    right: 50%;
+    height: 6px;
+    position: absolute;
+    border-radius: 6px;
+    -webkit-transform-origin: 100%;
+            transform-origin: 100%;
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+    -webkit-transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+            transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+  }
+  .analog .hour-hand {
+    margin: NULL;
+    padding: NULL;
+    width: 30%;
+    height: 3px;
+    background: black;
+  }
+  .analog .min-hand {
+    margin: NULL;
+    padding: NULL;
+    width: 45%;
+    height: 2px;
+    background: black;
+  }
+  .analog .sec-hand {
+    margin: NULL;
+    padding: NULL;
+    width: 47%;
+    height: 1.7px;
+    background: red;
+  }
+}
 /*# sourceMappingURL=style.css.map */

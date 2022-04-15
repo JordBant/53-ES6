@@ -8,7 +8,6 @@ const intervals = document.querySelectorAll('#info-at')
 
 const oldChildren = loc_List.children;
 //----------------------------Clock--------------------------------
-const dateIRL = new Date();
 const week = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 const month = ['01', '02', "03", "04", "05","06", "07", "08", "09", "10", "11", "12"];
 
@@ -160,23 +159,47 @@ const updateHTML = (paramArr) => {
 // }   
 
 const clockTime = () => {
+    const dateIRL = new Date();
+
+    const hour = document.getElementById('hour');
+    const min = document.getElementById('min');
+    
     const Hour = (dateIRL.getHours() > 12) ? dateIRL.getHours() - 12 : dateIRL.getHours();
     const Min = dateIRL.getMinutes();
-    
-    const nowDate = document.getElementById('date');
-    const clock = document.getElementById('clk-time');
-    
-    const minuteForm = (Min < 10) ? `0${Min}`: `${Min}`;
+    const Sec = dateIRL.getSeconds(); 
+
     const meridiem = (dateIRL.getHours() < 12) ? `AM` : `PM`;
+    const minuteForm = (Min < 10) ? `:0${Min} ${meridiem}`: `:${Min} ${meridiem}`;
+
+    hour.textContent = Hour;
+    min.textContent = minuteForm;
+
+    //---------------------------Analog---------------------------//
+    const minHand = document.querySelector('.min-hand');
+    const hourHand = document.querySelector('.hour-hand');
+    const secHand = document.querySelector('.sec-hand');
+
+    const secondsDegrees = ((Sec / 60) * 360) + 90;
+    secHand.style.transform = `rotate(${secondsDegrees}deg)`;
     
-    const today = (dateIRL.getDate() < 10) ? `0${dateIRL.getDate()}` : `${dateIRL.getDate()}`;
-    clock.textContent = `${Hour}:${minuteForm} ${meridiem}`;
-    nowDate.textContent = `${week[dateIRL.getDay()]} - ${month[dateIRL.getMonth()]}/${today}`;
+    const minDegrees = ((Min / 60) * 360) + ((Sec/60)*6) + 90;
+    minHand.style.transform = `rotate(${minDegrees}deg)`;
+    
+    const hourDegrees = ((Hour / 12) * 360) + ((Min/60)*30) + 90;
+    hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+    console.log(`${Hour}:${Min}`)
+
+    //------------------------------Date------------------------------//
+    const todayDate = (dateIRL.getDate() < 10) ? `0${dateIRL.getDate()}` : `${dateIRL.getDate()}`;
+    const nowDay = document.getElementById('day');
+    const nowDate = document.getElementById('date');
+
+    nowDay.textContent =`${week[dateIRL.getDay()]} - `
+    nowDate.textContent = ` ${month[dateIRL.getMonth()]}/${todayDate}`;
     
     const tl_currentHour = document.getElementById('current-hour-at');
     const tl_lastHour = document.getElementById('last-hour-at');
     
-    // let sec = document.getElementById('sec');
     (dateIRL.getHours() >= 12) ? tl_currentHour.textContent = `| ${Hour}PM` : tl_currentHour.textContent = `| ${Hour}AM`;
     (dateIRL.getHours() + 8 > 23 || dateIRL.getHours() + 8 <= 12) ? tl_lastHour.textContent = `| ${Hour + 8}AM` : tl_lastHour.textContent = `| ${Hour + 8}PM`;
 
@@ -192,8 +215,6 @@ const clockTime = () => {
 
 // searchBar.addEventListener('input', search);
 
-clockTime();
-setInterval(clockTime, 1000);
 
                         //---------------------------//
 //==||==||==||==||==||==|| Server-Side Communication ||==||==||==||==||==||==//
@@ -283,4 +304,5 @@ const toggleUnits = () => {
 getWeather()
 // supers.addEventListener('click', toggleUnits);
 
-//The user should 
+setInterval(clockTime, 1000);
+clockTime();
