@@ -277,6 +277,15 @@ body
             margin-right: 2px;
             // border: 2px solid blue;
 
+            .digital{
+                @include flex(center, center, NULL, NULL, NULL);
+                @include size(auto, auto, 0, 0);
+
+                .digits{
+                    @include size(auto, auto, 0, 0);
+                }
+            }
+
             .calender-date{
                 @include font(500, 15px, black, 'Manrope');
                 @include flex(center, center, NULL, NULL, NULL);
@@ -284,6 +293,7 @@ body
                 // border: 2px solid  red;
 
                 #day, #date{
+                    align-self: center;
                     margin: 0;
                     letter-spacing: 2px;
                 }
@@ -495,8 +505,49 @@ body
 */
 
 
-// @media only screen and (max-width: 1245px){
+@media only screen and (max-width: 900px){
 
+    #day{
+       opacity: 0;
+       position: absolute; 
+    }
+    .digital{
+        opacity: 0;
+        position: absolute;
+    }
+    .analog{
+        @include size(50px, 50px, NULL, NULL);
+    
+        border: 3px solid black;
+        border-radius: 50%;
+        position: relative;
+        opacity: 1;
+
+        .hand{
+            @include size(50%, 6px, NULL, NULL);
+            top: 50%;
+            right: 50%;
+            height: 6px;
+            position: absolute;
+            border-radius: 6px;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+        }
+    
+        .hour-hand{
+            @include size(30%, 3px, NULL, NULL);
+            background: black;
+        }
+        .min-hand{
+            @include size(45%, 2px, NULL, NULL);
+            background: black;
+        }
+        .sec-hand{
+            @include size(47%, 1.7px, NULL, NULL);
+            background: red;
+        }
+    }
     // .timeline{
         // @include size(10%, 50%, 0, 0);
         // @include flex(center, center, NULL, NULL, NULL);
@@ -526,7 +577,7 @@ body
         //     }
         // }
     // }
-// }
+}
 
 
 //=====================================================================//
