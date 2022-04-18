@@ -54,20 +54,8 @@ const windSpeedEl = document.getElementById('windSpeed');
     list if the value of arr[0] is not the intended array 
 */
 
-const ArrangeNodeList = ([...nodeList], [index, numberOf]) => {
-    //nodeList will be an array of spreaded elements 
-    const nodeArr = [...nodeList]
-    
-    //change the nodeArr[0] from an array of size 1 to whatever the value of that index is
-    const firstPosition = nodeArr.splice(index, numberOf)
-    const indexInfo = firstPosition[0]
-    nodeArr.unshift(indexInfo)
-
-    return nodeArr
-}
-
 const displayHTML = () => {
-    const elementArr = ArrangeNodeList(intervals, [7, 1])
+    const elementArr = [...intervals];
     const { nineHour_Info: nineHour } =  apiComm    
 
     //find out how to make the object's property be ...
@@ -91,8 +79,8 @@ const displayHTML = () => {
     });
 
     console.log('Particular condition:', displayArr)
-    console.log('Element Arr:', elementArr)    
     console.log('Object Array:', nineHour)
+    console.log('Element Arr:', elementArr)    
 
     /**
      * Display temperatures
@@ -145,23 +133,26 @@ const updateHTML = (paramArr) => {
     }  
 }
 
-// const toggleUnits = () => {
-//     const Fahr = document.getElementById('Fahr');
-//     const Cels = document.getElementById('Cels');
+const toggleUnits = () => {
+    const Fahr = document.getElementById('Fahr');
+    const Cels = document.getElementById('Cels');
     
-//     if (Fahr.classList.contains('selected') || Cels.classList.contains('selected')){
-//         Fahr.classList.toggle('selected');
-//         Fahr.classList.toggle('unselected');
-//         Cels.classList.toggle('selected');
-//         Cels.classList.toggle('unselected');
-//     }  
-//     return apiComm.convention = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
-// }   
+    if (Fahr.classList.contains('selected') || Cels.classList.contains('selected')){
+        Fahr.classList.toggle('selected');
+        Fahr.classList.toggle('unselected');
+        Cels.classList.toggle('selected');
+        Cels.classList.toggle('unselected');
+    }  
+    apiComm.convention = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
+    // getWeather()
+}  
 
 const clockTime = () => {
+
+    //---------------------------Digital---------------------------//
     const dateIRL = new Date();
 
-    const hour = document.getElementById('hour');
+    const digitalClock = document.getElementById('digital');
     const min = document.getElementById('min');
     
     const Hour = (dateIRL.getHours() > 12) ? dateIRL.getHours() - 12 : dateIRL.getHours();
@@ -169,10 +160,9 @@ const clockTime = () => {
     const Sec = dateIRL.getSeconds(); 
 
     const meridiem = (dateIRL.getHours() < 12) ? `AM` : `PM`;
-    const minuteForm = (Min < 10) ? `:0${Min} ${meridiem}`: `:${Min} ${meridiem}`;
+    const minuteForm = (Min < 10) ? `0${Min}`: `${Min}`;
 
-    hour.textContent = Hour;
-    min.textContent = minuteForm;
+    digitalClock.textContent = `${Hour}:${minuteForm} ${meridiem}`;
 
     //---------------------------Analog---------------------------//
     const minHand = document.querySelector('.min-hand');
@@ -213,8 +203,6 @@ const clockTime = () => {
 //     }
 }
 
-// searchBar.addEventListener('input', search);
-
 
                         //---------------------------//
 //==||==||==||==||==||==|| Server-Side Communication ||==||==||==||==||==||==//
@@ -236,7 +224,7 @@ searchBar.addEventListener('input', async () => {
         apiComm.placesArr = loc_Obj.placeData;
         apiComm.suggestArr = loc_Obj.placeData.map(location => location.matchedPlace);
         
-        const {suggestArr: suggest, placesArr: locInfo } = apiComm;
+        const { suggestArr: suggest } = apiComm;
         updateHTML(suggest)   
     }
     catch(error) { 
@@ -286,20 +274,6 @@ const getWeather = async () => {
 //         */
 //     }
 // }
-
-const toggleUnits = () => {
-    const Fahr = document.getElementById('Fahr');
-    const Cels = document.getElementById('Cels');
-    
-    if (Fahr.classList.contains('selected') || Cels.classList.contains('selected')){
-        Fahr.classList.toggle('selected');
-        Fahr.classList.toggle('unselected');
-        Cels.classList.toggle('selected');
-        Cels.classList.toggle('unselected');
-    }  
-    apiComm.convention = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
-    // getWeather()
-}  
 
 getWeather()
 // supers.addEventListener('click', toggleUnits);

@@ -11,12 +11,6 @@
     box-sizing: border-box;
 }
 
-@mixin circle($growWidth-growW, $growHeight-growH){
-    @include size($growWidth-growW, $growHeight-growH, 0, 0);
-    border-radius: 150px 150px 0 0;
-    list-style: none;
-}
-
 //to be added onto pseudo elements
 @mixin glimmer {
     content: '';
@@ -236,6 +230,7 @@ body
         @include flex(space-between, center, row, NULL, flex-end);
         @include frostGlass(rgba(0, 0, 0, 0.164));
         box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+        margin-bottom: auto;
         // border: 2px solid blue;
         border: none;
         border-radius: 20px 0 0 20px;
@@ -264,7 +259,7 @@ body
                 &::before{
                     content: 'Feels Like';
                     @include size(100%, auto, 0, 0);
-                    @include font(500, 12px, black, Overpass);
+                    @include font(500, 12px, black, 'Overpass');
                     text-align: center;
                     opacity: 1;
                     transition: all 0.4 ease-in;
@@ -275,15 +270,11 @@ body
             @include flex(center, center, column, NULL, NULL);
             @include font(300, 27px, black, 'Manrope');
             margin-right: 2px;
-            // border: 2px solid blue;
+            border: 2px solid blue;
 
             .digital{
                 @include flex(center, center, NULL, NULL, NULL);
-                @include size(auto, auto, 0, 0);
-
-                .digits{
-                    @include size(auto, auto, 0, 0);
-                }
+                margin: 0;
             }
 
             .calender-date{
@@ -303,122 +294,57 @@ body
     
     .timeline{
         @include size(100%, 100%, 0, 0);
-        @include flex(center, center, NULL, NULL, NULL);
+        @include flex(center, center, column, NULL, NULL);
         position: relative;
         overflow: hidden;
 
-        .info-wrapper
-        {
-            $upright: 0deg;                     //for individual numbers
+        .arch{     
             $position: 270deg;                  //relative position of the numbers on the baseline
             $deg-apart: 22.5deg;                //1/4 of 90 degreea
-            $betweens: $position + $deg-apart;  //the angle of seperation between any given set of numbers from the relative positions 270 and 180 degrees
-
-            @include circle(90%, 60%);
-            // @include size(90%, 60%, 0, 0);
-            // border-radius: 150px 150px 0 0;
-            // list-style: none;
-            //--------------------------//
-            position: relative;      
-            transition: all 0.4s ease-in-out;      
-
-            //Half Circle Timeline
-            .info-list{     
-                $betweens-info: $betweens;
-
-                @include circle(100%, 100%);
-                // @include size(100%, 100%, 0, 0);
-                // border-radius: 150px 150px 0 0;
-                // list-style: none;
-                //---------------------------//
-                position: relative;
-
-                #info{
-                    @include size(100%, 200%, 0, 8px);
-
-                    overflow: hidden;
-                    position: absolute;
-                    text-align: center;
-                    #info-at{
-                       @include font(400, 15px, black, 'Overpass');
-                    }
-                }
-
-                .info1{right:80%;}
-                .info9{left:80%;}
-                .info1, .info9{
-                    @include size(auto, auto, 0, 0);
-                    top: 100%;
-                }
-                @for $i from 2 through 8{
-                    .info#{$i}{
-                        transform: rotate($betweens-info);
-                        .info-at#{$i}{
-                            transform: rotate(-$betweens-info);
-                        }
-                    }
-                    $betweens-info: $betweens-info + $deg-apart;
-                }
-            }
-
-            //Not initializing ruleset by referencing #interval because of ID's high priority 
-            //Will overwrite styling of 1st and 9th interval positionå
-            .interval-list{
-                $betweens-hour: $betweens;
-
-                @include circle(100%, 75%);
-                // @include size(100%, 75%, 0, 0);
-                // border-radius: 150px 150px 0 0;
-                // list-style: none;
-                //----------------------------//
-                
+            $betweens: $position + $deg-apart;
+        
+            @include size(150px, 150px, 0 7px 0 0, 0);
+            transition: all 0.5s ease-in-out;
+            position: relative;
+        
+            .interval{
+                @include size(100%, 190%, 0, 8px);
+        
+                list-style: none;
                 position: absolute;
-                top: 60%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                text-align: center;
 
-                #interval{
-                    @include size(100%, 175%, 0, 11px);
-                    overflow: hidden;
-                    position: absolute;
-                    text-align: center;
-                    left: -2%;
-                    
-                    #time{
-                        @include font(400, 10px, black, 'Mansrope');
-                    }
+                #info-at{
+                    @include font(400, 0.85em, black, 'Overpass');
                 }
-                
-                @for $i from 2 through 8{
-                    .hr#{$i}{
-                        transform: rotate($betweens-hour);
-                        .time-of#{$i}{
-                            transform: rotate(-$betweens-hour);
-                        }
-                    }
-                    $betweens-hour: $betweens-hour + $deg-apart;
+                .time{
+                    @include font(400, 0.7em, black, 'Overpass');
                 }
             }
+        
+            @for $i from 1 through 7{
+                .position-#{$i}{
+                    transform: rotate($betweens);
+                    .info-#{$i}{
+                        transform: rotate(-$betweens);
+                    }
+                    .interval-at#{$i}{
+                        transform: rotate(-$betweens);
+                    }
+                }
+                $betweens: $betweens + $deg-apart;
+            }
+            
         }
         .baseline{
-            @include size(90%, auto, 0, 0);
-            @include flex(space-between, center, NULL, center, NULL);
-            position: absolute;
-            left: 50%;
-            top: 85%;
-            transform: translateX(-50%);
-            border-top: 1px dotted black;
+            @include size(94%, auto, 0, 0);
+            @include frostGlass(rgba(128, 128, 128, 0.075));
+            @include flex(space-around, center, NULL, NULL, flex-end);
 
-            & ul{
-                @include flex(space-between, center, NULL, NULL, NULL);
-                @include size(auto, auto, 5%, 0);
+            border-radius: 15px 0 0 15px;
+            // .baseOf{
 
-                // border: 2px solid green;
-                list-style: none;
-                & > *{
-                    @include font(100, 20px, black, 'Overpass');
-                }
-            }
+            // }
         }
     }
 }
@@ -453,6 +379,7 @@ body
             @include card(70%, 78%, NULL);
             @include flex(space-between, flex-end, column, NULL, NULL);
             @include font(200, 1rem, black, 'Manrope');
+
             position: relative;
             background: none;
             border-right: solid black 1px;
@@ -506,12 +433,7 @@ body
 
 
 @media only screen and (max-width: 900px){
-
-    #day{
-       opacity: 0;
-       position: absolute; 
-    }
-    .digital{
+    #digital{
         opacity: 0;
         position: absolute;
     }
@@ -527,7 +449,6 @@ body
             @include size(50%, 6px, NULL, NULL);
             top: 50%;
             right: 50%;
-            height: 6px;
             position: absolute;
             border-radius: 6px;
             transform-origin: 100%;
@@ -548,37 +469,7 @@ body
             background: red;
         }
     }
-    // .timeline{
-        // @include size(10%, 50%, 0, 0);
-        // @include flex(center, center, NULL, NULL, NULL);
-
-        // background: white;
-        // .info-wrapper{
-        //     @include size(80%, 80%, 0, 0);
-            
-        //     // transform: rotate(-90deg);
-        //     border-radius: 0px;
-        //     background: cyan;
-        //     // border: 2px solid red;
-
-        //     position: relative;
-            
-        //     .info-list{
-        //         border: 2px solid red;
-        //         @include flex(flex-start, center, column, flex-start, flex-end);
-        //         border-radius: 15px;
-        //         #info{
-
-        //         }
-        //     }
-        //     .interval-list{
-        //         border: 2px solid green;
-        //         border-radius: 20px 20px 20px 20px;
-        //     }
-        // }
-    // }
 }
-
 
 //=====================================================================//
 
