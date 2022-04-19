@@ -267,22 +267,19 @@ body
             }
         }
         #clock{
-            @include flex(center, center, column, NULL, NULL);
-            @include font(300, 27px, black, 'Manrope');
-            margin-right: 2px;
-            border: 2px solid blue;
+            @include flex(center, center, column, 0, 0);
+            @include font(300, clamp(27px, 2.3vw, 35px), black, 'Manrope');
 
-            .digital{
-                @include flex(center, center, NULL, NULL, NULL);
+            #digital{
                 margin: 0;
+                padding: 0;
             }
 
             .calender-date{
                 @include font(500, 15px, black, 'Manrope');
                 @include flex(center, center, NULL, NULL, NULL);
                 @include size(100%, auto, 0, 0);
-                // border: 2px solid  red;
-
+                
                 #day, #date{
                     align-self: center;
                     margin: 0;
@@ -303,7 +300,7 @@ body
             $deg-apart: 22.5deg;                //1/4 of 90 degreea
             $betweens: $position + $deg-apart;
         
-            @include size(150px, 150px, 0 7px 0 0, 0);
+            @include size(100%, 163px, 0 7px 0 0, 0);
             transition: all 0.5s ease-in-out;
             position: relative;
         
@@ -365,6 +362,7 @@ body
         @include size(100%, 100%, 0, 0);
         @include fourGrid(1fr, 1fr, 1fr, 1fr);
         @include frostGlass(rgba(0, 0, 0, 0.1));
+
         backdrop-filter: blur(0);
         box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.5);
         border-radius: 20px 0 0 20px;
@@ -391,8 +389,6 @@ body
             p{
                 @include size(NULL, NULL, 0, 0);
                 @include font(300, 30px, NULL, 'Manrope');
-                // justify-self: flex-end;
-                // align-self: flex-end;
             }
 
             img{

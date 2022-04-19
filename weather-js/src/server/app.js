@@ -48,6 +48,7 @@ app.post('/input', (req, res) =>{
             console.error(error);
         }
         res.json(placesAPI)
+        console.error('Places Sent');
     }
     geocode();
 })
@@ -73,6 +74,7 @@ app.post('/weather', (req, res) => {
             console.log(error) 
         } 
         res.json(weatherAPI)
+        console.error('Weather Sent');
     }
     getWeather()
 })
