@@ -124,9 +124,9 @@ const updateHTML = (paramArr) => {
 
             const temp = placesArr.find(place => place.matchedPlace === choice)
 
-            displayFields.lat = temp.coord[1]
-            displayFields.long = temp.coord[0]
-            console.log('Coords: ' + displayFields.lat +' '+ displayFields.long)
+            apiComm.lat = temp.coord[1]
+            apiComm.long = temp.coord[0]
+            console.log('Coords: ' + apiComm.lat +' '+ apiComm.long)
 
             getWeather();
         })
@@ -144,7 +144,7 @@ const toggleUnits = () => {
         Cels.classList.toggle('unselected');
     }  
     apiComm.convention = (Fahr.classList.contains('selected')) ? 'imperial' : 'metric';
-    // getWeather()
+    getWeather()
 }  
 
 const clockTime = () => {
@@ -276,7 +276,7 @@ const getWeather = async () => {
 // }
 
 getWeather()
-// supers.addEventListener('click', toggleUnits);
+supers.addEventListener('click', toggleUnits);
 
 setInterval(clockTime, 1000);
 clockTime();
