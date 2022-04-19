@@ -97,7 +97,8 @@ body
     .search-div{
         
         @include frostGlass(#ffffff3d);
-        @include size(50%, 5%, 0, 5px);
+        @include size(clamp(350px, 45%, 500px), 5%, 0, 5px);
+
         @include flex(center, center, column, NULL, NULL);
         align-self: center;
         transition: all 0.4s ease-in-out;
@@ -109,6 +110,7 @@ body
         .search{
             @include font(300, 1rem, black, 'Overpass');
             @include size(90%, 37px, 0, 0 5px 0 5px);
+
             position: absolute;
             top: 5px;
             background: none;
@@ -300,7 +302,7 @@ body
             $deg-apart: 22.5deg;                //1/4 of 90 degreea
             $betweens: $position + $deg-apart;
         
-            @include size(100%, 163px, 0 7px 0 0, 0);
+            @include size(100%, clamp(160px, 15vw, 73%), 0 7px 0 0, 0);
             transition: all 0.5s ease-in-out;
             position: relative;
         
@@ -337,11 +339,20 @@ body
             @include size(94%, auto, 0, 0);
             @include frostGlass(rgba(128, 128, 128, 0.075));
             @include flex(space-around, center, NULL, NULL, flex-end);
-
             border-radius: 15px 0 0 15px;
-            // .baseOf{
-
-            // }
+            
+            .baseOf{
+                @include flex(center, center, column, NULL, NULL);
+                @include size(auto, auto, 0, 0);
+                
+                list-style: none;
+                .hour{
+                    border-top: 2px white solid;
+                }
+                & > * {
+                    @include font(400, 1.2em, black, 'Manrope');
+                }
+            }
         }
     }
 }
@@ -427,7 +438,6 @@ body
     - Right Side will be the current weather condition represented as an icon and the current feels like temperature
 */
 
-
 @media only screen and (max-width: 900px){
     #digital{
         opacity: 0;
@@ -465,6 +475,10 @@ body
             background: red;
         }
     }
+}
+
+@media only screen and (max-width: 700px){
+    
 }
 
 //=====================================================================//

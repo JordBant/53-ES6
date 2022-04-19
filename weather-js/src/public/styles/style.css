@@ -62,7 +62,7 @@ body > * {
           backdrop-filter: blur(14px);
   margin: 0;
   padding: 5px;
-  width: 50%;
+  width: clamp(350px, 45%, 500px);
   height: 5%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -487,7 +487,7 @@ body > * {
   margin: 0 7px 0 0;
   padding: 0;
   width: 100%;
-  height: 163px;
+  height: clamp(160px, 15vw, 73%);
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   position: relative;
@@ -645,6 +645,39 @@ body > * {
   -ms-flex-item-align: end;
       align-self: flex-end;
   border-radius: 15px 0 0 15px;
+}
+
+.aside1 .timeline .baseline .baseOf {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  list-style: none;
+}
+
+.aside1 .timeline .baseline .baseOf .hour {
+  border-top: 2px white solid;
+}
+
+.aside1 .timeline .baseline .baseOf > * {
+  font: 400 1.2em "Manrope", sans-serif;
+  color: black;
 }
 
 .aside2 {
