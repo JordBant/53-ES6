@@ -34,7 +34,7 @@ app.post('/input', (req, res) =>{
 
     const geocode = async () => {
         try {
-            const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${search}.json?country=us&limit=8&types=postcode%2Clocality%2Cplace%2Cneighborhood%2Cdistrict&language=en&access_token=${geocodeKEY}`);
+            const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${search}.json?country=us&limit=8&types=postcode%2Cregion%2Clocality%2Cplace&language=en&access_token=${geocodeKEY}`);
             const locations = response.data.features;
 
             placesAPI.placeData = locations.map(location => {
