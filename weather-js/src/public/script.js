@@ -153,7 +153,6 @@ const clockTime = () => {
     const dateIRL = new Date();
 
     const digitalClock = document.getElementById('digital');
-    const min = document.getElementById('min');
     
     const Hour = (dateIRL.getHours() > 12) ? dateIRL.getHours() - 12 : dateIRL.getHours();
     const Min = dateIRL.getMinutes();
@@ -190,8 +189,8 @@ const clockTime = () => {
     const tl_currentHour = document.getElementById('current-hour-at');
     const tl_lastHour = document.getElementById('last-hour-at');
     
-    (dateIRL.getHours() >= 12) ? tl_currentHour.textContent = `| ${Hour}PM` : tl_currentHour.textContent = `| ${Hour}AM`;
-    (dateIRL.getHours() + 8 > 23 || dateIRL.getHours() + 8 <= 12) ? tl_lastHour.textContent = `| ${Hour + 8}AM` : tl_lastHour.textContent = `| ${Hour + 8}PM`;
+    (dateIRL.getHours() >= 12) ? tl_currentHour.textContent = `${Hour}PM` : tl_currentHour.textContent = `${Hour}AM`;
+    (dateIRL.getHours() + 8 > 23 || dateIRL.getHours() + 8 <= 12) ? tl_lastHour.textContent = `${Hour + 8}AM` : tl_lastHour.textContent = `${Hour + 8}PM`;
 
 // const intervalList = document.querySelectorAll('#interval');
 // let interval = dateIRL.getHours() + 1;
@@ -257,6 +256,7 @@ const getWeather = async () => {
         apiComm.nineHour_Info = data.weatherInfo
         displayFields.currentTemp = data.weatherInfo[0].temperature
         displayFields.currentApparent = data.weatherInfo[0].temperatureApparent
+
         // toggleUnits()
 
     } catch (error) {
