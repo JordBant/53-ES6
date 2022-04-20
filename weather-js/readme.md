@@ -9,8 +9,11 @@ Readouts on the percipitation, windspeed and direction and 'feels-like' temperat
 
 Option between Celsius and Fahrenheit with the corresponding conversions
 
-Framework and Libraries
+Frameworks and Libraries
 ------------------------
+- Node.js
+- NPM
+  * Express.js
 - SASS
 
 APIs
@@ -19,20 +22,12 @@ Tomorrow.io API:
 - Weather API consumed via Javascript's FetchAPI to display weather conditions and climate in real time.
 - Also offers a selection of icons to represent weather conditions
 
-Google Maps API
-- This API will be used for reverse geocoding to aid users in searching for places to see climate
+MapBox API
+- This API will be used for geocoding to search for places entered by the user
+- This API also comes with a built in autocomplete feature
 
 Google Fonts API
 - Text font API provided by Google consumed via URL import into stylesheet. Offers wide range of different font styles.
 
 Unsplash API:
 - HD Photo API will be consumed via Javascript's FetchAPI to generate random HD photos upon client rendering.
-
-
-Notes
------------
-______________________
-Monday 28th February:
-______________________
-Resorted to hover for the event to listen for. 
------------
