@@ -79,4 +79,18 @@ app.post('/weather', (req, res) => {
     getWeather()
 })
 
+app.post('/photo', (req, res) => {
+    const photoParams = req.body;
+    const {state, timeOfDay: time, condition} = photoParams;
+
+    const getPhoto = async() => {
+        try {
+            const response = await axios.get(`https://api.unsplash.com/photos/random?client_id=YOUR_ACCESS_KEY`)
+        } catch (error) {
+            console.log(error)
+        }
+        getPhoto()
+    }
+})
+
 app.listen(PORT, console.log('Listening on port ' + PORT));

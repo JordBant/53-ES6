@@ -118,9 +118,9 @@ const updateHTML = (paramArr) => {
             const { chosenPlace: choice } = displayFields
             
             //Split string to select just locality and state
-            const cityNameArr = choice.split(',')
-            displayFields.locality = cityNameArr[0]
-            displayFields.state = cityNameArr[1]
+            const locNameArr = choice.split(',')
+            displayFields.locality = locNameArr[0]
+            displayFields.state = locNameArr[1]
 
             const temp = placesArr.find(place => place.matchedPlace === choice)
 
@@ -202,6 +202,29 @@ const clockTime = () => {
 //     }
 }
 
+const assessTimeOfDay = (sunrise, sunset, currHour) => {
+    switch (true) {
+        case sunrise <= currHour && currHour < 12:
+            return 'morning';
+            break;
+
+        case 12 <= currHour && currHour < 16:
+            return 'afternoon';
+            break;
+
+        case 16 <= currHour && currHour < sunset:
+            return 'evening';
+            break;
+
+        case sunset <= currHour && currHour < sunrise:
+            return 'night';
+            break;
+
+        default:
+            return 'afternoon';
+            break;
+    }
+}
 
                         //---------------------------//
 //==||==||==||==||==||==|| Server-Side Communication ||==||==||==||==||==||==//
@@ -263,6 +286,31 @@ const getWeather = async () => {
         console.log(error)
     }
     displayHTML()
+}
+
+
+const getPhoto = async () => {
+
+    const photoParams = {
+        state: displayFields.state,
+        timeOfDay: assessTimeOfDay(),
+        // condition: 
+    }
+
+    try {
+        const response = await fetch('/weather', {
+    
+            method: 'POST',
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(photoParams)
+    
+        })
+        const data = await response.json()
+        // const photo = data.
+
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 // const dynamicPictures = () => {
