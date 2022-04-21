@@ -217,7 +217,6 @@ body
 .pseudo{
 
     @include size(400px, 100vh, 0, 0);
-    // clamp(,40%,)
     @include frostGlass(#ffffff81);
 
     border-radius: 35px 0 0 35px;
@@ -474,24 +473,6 @@ body
     }
 }
 
-@media only screen and (max-height: 660px){
-    .pseudo{
-        // @include size(100%, 100%, 0, 0);
-        // @include flex(center, center, NULL, NULL, NULL);
-
-        border: 2px solid green;
-        border-radius: 0;
-
-        .aside1{
-            @include size(100%, 100%, 0, 0);
-            border: 2px solid orange;
-            // display: none;
-        }
-        .aside2{
-            display: none;
-        }
-    }
-}
 
 @media only screen and (max-width: 600px){
     body{
@@ -500,7 +481,7 @@ body
     }
     .main{
         @include size(100%, 100%, 0, 0);
-        border: 2px solid red;
+        // border: 2px solid red;
         .search-div{
             @include size(85%, 40px, 20px 0 0 0, 0);
         }
@@ -512,21 +493,62 @@ body
         @include size(100%, 100%, 0, 0);
         @include flex(center, center, NULL, NULL, NULL);
         @include frostGlass(rgba(61, 59, 59, 0.418));
-
-        border: 2px solid green;
+        
+        // border: 2px solid green;
         border-radius: 0;
-
+        
         .aside1{
             @include size(50px, 50px, 0, 0);
-            border: 2px solid orange;
+            // border: 2px solid orange;
             display: none;
         }
         .aside2{
             @include size(50px, 50px, 0, 0);
-            border: 2px solid brown;
+            // border: 2px solid brown;
             display: none;
         }
     }
 }
 
+@media only screen and (max-height: 650px){
+    .pseudo{
+        border-radius: 15px 0 0 15px;
+
+        .aside1{
+            @include size(100%, 100%, 0, 0);
+            @include flex(center, center, NULL, NULL, NULL);
+            // border: 2px solid blue;
+
+            .timeline{
+                @include flex(center, center, column, NULL, NULL);
+                // border: 2px solid red;
+                
+                .arch{
+                    @include size(150px, clamp(150px, 60%, 170px), 0, 0);
+                }
+    
+                .baseline {
+                    @include flex(space-around, center, NULL, NULL, flex-end);
+                    @include size(95%, 30%, 0, 0);
+                    font-size: 20px;
+                    border-radius: 15px 0 0 15px;
+                    // border: 2px solid cyan;
+                }
+            }
+        }
+        .aside2{
+            display: none;
+        }
+    }
+}
+@media only screen and (max-height: 450px){
+    .aside1{
+        @include size(100%, 100%, 0, 0);
+        // border: 2px solid orange;
+        // display: none;
+    }
+    .aside2{
+        display: none;
+    }
+}
 //=====================================================================//
