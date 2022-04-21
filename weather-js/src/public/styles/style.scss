@@ -367,8 +367,7 @@ body
     //==--==--==--==--==--==--==--==--==--==--==--==--==//
     .aside2
     {
-        @include size(auto, 45%, 0, 0);
-        padding: 20px 0 0 20px;
+        @include size(auto, 45%, 0, 20px 0 0 20px);
     
         .card-list{
             @include size(100%, 100%, 0, 0);
@@ -475,6 +474,25 @@ body
     }
 }
 
+@media only screen and (max-height: 660px){
+    .pseudo{
+        // @include size(100%, 100%, 0, 0);
+        // @include flex(center, center, NULL, NULL, NULL);
+
+        border: 2px solid green;
+        border-radius: 0;
+
+        .aside1{
+            @include size(100%, 100%, 0, 0);
+            border: 2px solid orange;
+            // display: none;
+        }
+        .aside2{
+            display: none;
+        }
+    }
+}
+
 @media only screen and (max-width: 600px){
     body{
         @include flex(center, center, column, NULL, NULL);
@@ -493,6 +511,7 @@ body
     .pseudo{
         @include size(100%, 100%, 0, 0);
         @include flex(center, center, NULL, NULL, NULL);
+        @include frostGlass(rgba(61, 59, 59, 0.418));
 
         border: 2px solid green;
         border-radius: 0;
