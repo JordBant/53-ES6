@@ -70,8 +70,8 @@
 body
 {
     @include body();
+    @include flex(center, center, NULL, NULL, NULL);
     @include size(100vw, 100vh, NULL, NULL);
-    @include fourGrid(1fr, 1fr, 3fr, 1fr);
     background: rgb(206, 174, 133) url(../media/weatherApp.jpg) no-repeat center center;
     background-size: cover;
 
@@ -85,9 +85,7 @@ body
 .main
 {
     @include flex(space-between, NULL, column, NULL, NULL);
-    padding: 20px 59px 40px 23px;
-    //border: 2px solid green;
-    grid-row: 1 / -1;
+    @include size(80%, 91.8vh, 0, 20px 30px);
 
     /* 
     ++++++++++++++++++++++ 
@@ -97,7 +95,7 @@ body
     .search-div{
         
         @include frostGlass(#ffffff3d);
-        @include size(clamp(350px, 50%, 500px), 5%, 0, 5px);
+        @include size(clamp(300px, 50%, 500px), 5%, 0, 5px 0 0 5px);
 
         @include flex(center, center, column, NULL, NULL);
         align-self: center;
@@ -151,7 +149,7 @@ body
         &:hover{
             height: 60%;
             border: none;
-            padding: 10px;
+            padding: 3px;
             border-radius: 15px;
             .search{
                 top: 5px;
@@ -174,7 +172,7 @@ body
         // border: 2px solid red;
         #temperature{
             @include font(400, clamp(25px, 4vw, 55px), white, 'Manrope');
-            transition: all 1s ease-in-out
+            transition: all 0.5s ease-in-out
         }
 
         .line{
@@ -216,210 +214,205 @@ body
     }
 }
 
-//==--==--==--==--==--==--==--==--==--==--==--==--==//
-             // Aside 1 (Grid Child 1) //
-//==--==--==--==--==--==--==--==--==--==--==--==--==//
-.aside1
-{
+.pseudo{
+
+    @include size(400px, 100vh, 0, 0);
+    // clamp(,40%,)
     @include frostGlass(#ffffff81);
-    @include flex(center, center, column, NULL, NULL); 
-    border-top-left-radius: 35px;
-    border-bottom: none;
-    border-right: none;
 
-    .now{
-        @include size(85%, auto, 0, 8px);
-        @include flex(space-between, center, row, NULL, flex-end);
-        @include frostGlass(rgba(0, 0, 0, 0.164));
-        box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
-        margin-bottom: auto;
-        // border: 2px solid blue;
-        border: none;
-        border-radius: 20px 0 0 20px;
-        margin-top: 15px;
-        padding: 0 15px 0 15px;
+    border-radius: 35px 0 0 35px;
+    border: none;
+    
+    //==--==--==--==--==--==--==--==--==--==--==--==--==//
+                 // Aside 1 (Grid Child 1) //
+    //==--==--==--==--==--==--==--==--==--==--==--==--==//
+    .aside1
+    {
+        @include flex(center, center, column, NULL, NULL); 
+        @include size(100%, 50%, 0, 0);
+    
+        .now{
+            @include size(85%, auto, 15px 0 auto 0, 0 15px 0 15px);
+            @include flex(space-between, center, row, NULL, flex-end);
+            @include frostGlass(rgba(0, 0, 0, 0.164));
 
-        .cur-condition{
-            @include flex(center, center, NULL, NULL, NULL);
-            @include size(auto, auto, NULL, 0);
-            position: relative;
-            // border: 2px solid brown;
-            &::before{
-                content: '';
-                @include size(0px, 50%, 15px, 0);
-                position: absolute;
-                left: 30%;
-                border: 1px solid white;
-            }
-            #apparent{
+            box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 20px 0 0 20px;
+    
+            .cur-condition{
+                @include flex(center, center, NULL, NULL, NULL);
+                @include size(auto, auto, NULL, 0);
                 position: relative;
-                @include font(200, 30px, black, 'Manrope');
-                @include flex(center, center, column, NULL, NULL);
-                @include size(60px, auto, NULL, 0);
-                // border: 2px solid red;
-                margin-left: 17px;
+
                 &::before{
-                    content: 'Feels Like';
+                    content: '';
+                    @include size(0px, 50%, 15px, 0);
+                    position: absolute;
+                    left: 30%;
+                    border: 1px solid white;
+                }
+                #apparent{
+                    @include font(200, 30px, black, 'Manrope');
+                    @include flex(center, center, column, NULL, NULL);
+                    @include size(60px, auto, NULL, 0);
+
+                    position: relative;
+                    margin-left: 17px;
+
+                    &::before{
+                        content: 'Feels Like';
+                        @include size(100%, auto, 0, 0);
+                        @include font(500, 12px, black, 'Overpass');
+                        text-align: center;
+                        opacity: 1;
+                        transition: all 0.4 ease-in;
+                    }
+                }
+            }
+            #clock{
+                @include flex(center, center, column, 0, 0);
+                @include font(300, clamp(27px, 2.3vw, 35px), black, 'Manrope');
+    
+                #digital{
+                    margin: 0;
+                    padding: 0;
+                }
+                .calender-date{
+                    @include font(500, 15px, black, 'Manrope');
+                    @include flex(center, center, NULL, NULL, NULL);
                     @include size(100%, auto, 0, 0);
-                    @include font(500, 12px, black, 'Overpass');
-                    text-align: center;
-                    opacity: 1;
-                    transition: all 0.4 ease-in;
+                    
+                    #day, #date{
+                        align-self: center;
+                        margin: 0;
+                        letter-spacing: 2px;
+                    }
                 }
             }
         }
-        #clock{
-            @include flex(center, center, column, 0, 0);
-            @include font(300, clamp(27px, 2.3vw, 35px), black, 'Manrope');
-
-            #digital{
-                margin: 0;
-                padding: 0;
-            }
-
-            .calender-date{
-                @include font(500, 15px, black, 'Manrope');
-                @include flex(center, center, NULL, NULL, NULL);
-                @include size(100%, auto, 0, 0);
+        
+        .timeline{
+            @include size(100%, 100%, 0, 0);
+            @include flex(center, center, column, NULL, NULL);
+            position: relative;
+            overflow: hidden;
+    
+            .arch{     
+                $position: 270deg;                  //relative position of the numbers on the baseline
+                $deg-apart: 22.5deg;                //1/4 of 90 degreea
+                $betweens: $position + $deg-apart;
+            
+                @include size(100%, clamp(150px, 15.9vw, 73%), 0 7px 0 0, 0);
+                transition: all 0.3s ease-in-out;
+                position: relative;
+            
+                .interval{
+                    @include size(100%, 190%, 0, 8px);
+            
+                    list-style: none;
+                    position: absolute;
+                    text-align: center;
+    
+                    #info-at{
+                        @include font(400, 0.85em, black, 'Overpass');
+                    }
+                    .time{
+                        @include font(400, 0.7em, black, 'Overpass');
+                    }
+                }
+            
+                @for $i from 1 through 7{
+                    .position-#{$i}{
+                        transform: rotate($betweens);
+                        .info-#{$i}{
+                            transform: rotate(-$betweens);
+                        }
+                        .interval-at#{$i}{
+                            transform: rotate(-$betweens);
+                        }
+                    }
+                    $betweens: $betweens + $deg-apart;
+                }
                 
-                #day, #date{
-                    align-self: center;
-                    margin: 0;
-                    letter-spacing: 2px;
+            }
+            .baseline{
+                @include size(94%, auto, 0, 0);
+                @include flex(space-around, center, NULL, NULL, flex-end);
+                @include frostGlass(rgba(0, 0, 0, 0.082));
+    
+                backdrop-filter: blur(0);
+                box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.5);
+                border-radius: 15px 0 0 15px;
+                
+                .baseOf{
+                    @include flex(center, center, column, NULL, NULL);
+                    @include size(auto, auto, 0, 7px);
+                    
+                    
+                    list-style: none;
+                    .hour{
+                        border-top: 2px white solid;
+                    }
+                    & > * {
+                        @include font(400, 1.2em, black, 'Manrope');
+                    }
                 }
             }
         }
     }
     
-    .timeline{
-        @include size(100%, 100%, 0, 0);
-        @include flex(center, center, column, NULL, NULL);
-        position: relative;
-        overflow: hidden;
-
-        .arch{     
-            $position: 270deg;                  //relative position of the numbers on the baseline
-            $deg-apart: 22.5deg;                //1/4 of 90 degreea
-            $betweens: $position + $deg-apart;
-        
-            @include size(100%, clamp(150px, 14vw, 73%), 0 7px 0 0, 0);
-            transition: all 0.5s ease-in-out;
-            position: relative;
-        
-            .interval{
-                @include size(100%, 190%, 0, 8px);
-        
-                list-style: none;
-                position: absolute;
-                text-align: center;
-
-                #info-at{
-                    @include font(400, 0.85em, black, 'Overpass');
-                }
-                .time{
-                    @include font(400, 0.7em, black, 'Overpass');
-                }
-            }
-        
-            @for $i from 1 through 7{
-                .position-#{$i}{
-                    transform: rotate($betweens);
-                    .info-#{$i}{
-                        transform: rotate(-$betweens);
-                    }
-                    .interval-at#{$i}{
-                        transform: rotate(-$betweens);
-                    }
-                }
-                $betweens: $betweens + $deg-apart;
-            }
-            
-        }
-        .baseline{
-            @include size(94%, auto, 0, 0);
-            @include flex(space-around, center, NULL, NULL, flex-end);
-            @include frostGlass(rgba(0, 0, 0, 0.082));
-
+    //==--==--==--==--==--==--==--==--==--==--==--==--==//
+                 // Aside 2 (Grid Child 2) //
+    //==--==--==--==--==--==--==--==--==--==--==--==--==//
+    .aside2
+    {
+        @include size(auto, 45%, 0, 0);
+        padding: 20px 0 0 20px;
+    
+        .card-list{
+            @include size(100%, 100%, 0, 0);
+            @include fourGrid(1fr, 1fr, 1fr, 1fr);
+            @include frostGlass(rgba(0, 0, 0, 0.1));
+    
             backdrop-filter: blur(0);
             box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.5);
-            border-radius: 15px 0 0 15px;
-            
-            .baseOf{
-                @include flex(center, center, column, NULL, NULL);
-                @include size(auto, auto, 0, 7px);
-                
-                
-                list-style: none;
-                .hour{
-                    border-top: 2px white solid;
+            border-radius: 10px 0 0 20px;
+            border: none;
+    
+            .card{
+                @include card(70%, 78%, NULL);
+                @include flex(space-between, flex-end, column, NULL, NULL);
+                @include font(200, 1rem, black, 'Manrope');
+    
+                position: relative;
+                background: none;
+                border-right: solid black 1px;
+                backdrop-filter: none;
+                transition: all 0.4s ease-in-out;
+                border-radius: 0;
+                box-shadow: none;
+    
+                p{
+                    @include size(NULL, NULL, 0, 0);
+                    @include font(300, 30px, NULL, 'Manrope');
                 }
-                & > * {
-                    @include font(400, 1.2em, black, 'Manrope');
+    
+                img{
+                    @include size(50%, auto, 0, 0);
                 }
-            }
-        }
-    }
-}
-
-//==--==--==--==--==--==--==--==--==--==--==--==--==//
-             // Aside 2 (Grid Child 2) //
-//==--==--==--==--==--==--==--==--==--==--==--==--==//
-.aside2
-{
-    @include frostGlass(#ffffff81);
-
-    padding: 20px 0 20px 20px;
-    border-bottom-left-radius: 35px;
-    border-top: none;
-    border-right: none;
-
-    .card-list{
-        @include size(100%, 100%, 0, 0);
-        @include fourGrid(1fr, 1fr, 1fr, 1fr);
-        @include frostGlass(rgba(0, 0, 0, 0.1));
-
-        backdrop-filter: blur(0);
-        box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.5);
-        border-radius: 20px 0 0 20px;
-        border: none;
-
-        // border: red solid 2px;
-        margin-right: 0;
-        justify-items: center;
-        align-items: center;
-
-        .card{
-            @include card(70%, 78%, NULL);
-            @include flex(space-between, flex-end, column, NULL, NULL);
-            @include font(200, 1rem, black, 'Manrope');
-
-            position: relative;
-            background: none;
-            border-right: solid black 1px;
-            backdrop-filter: none;
-            transition: all 2s ease-in-out;
-            border-radius: 0;
-            box-shadow: none;
-
-            p{
-                @include size(NULL, NULL, 0, 0);
-                @include font(300, 30px, NULL, 'Manrope');
-            }
-
-            img{
-                @include size(50%, auto, 0, 0);
-            }
-
-            &::before{
-                content: '';
-
-                @include size(100%, 100%, auto, 0);
-                @include glimmer();
-                border-radius: 15px 0 0 15px;
-            }
-
-            &:hover::before{
-                opacity: 0.7;
+    
+                &::before{
+                    content: '';
+    
+                    @include size(100%, 100%, auto, 0);
+                    @include glimmer();
+                    border-radius: 15px 0 0 15px;
+                }
+    
+                &:hover::before{
+                    opacity: 0.7;
+                }
             }
         }
     }
@@ -442,14 +435,15 @@ body
     - Right Side will be the current weather condition represented as an icon and the current feels like temperature
 */
 
-@media only screen and (max-width: 900px){
+@media only screen and (max-width: 925px){
     #digital{
-        opacity: 0;
-        position: absolute;
+        display: none;
+    }
+    #day{
+        display: none;
     }
     .analog{
         @include size(50px, 50px, NULL, NULL);
-    
         border: 3px solid black;
         border-radius: 50%;
         position: relative;
@@ -477,6 +471,41 @@ body
         .sec-hand{
             @include size(47%, 1.7px, NULL, NULL);
             background: red;
+        }
+    }
+}
+
+@media only screen and (max-width: 600px){
+    body{
+        @include flex(center, center, column, NULL, NULL);
+        @include size(100vw, 200vh, NULL, NULL);
+    }
+    .main{
+        @include size(100%, 100%, 0, 0);
+        border: 2px solid red;
+        .search-div{
+            @include size(85%, 40px, 20px 0 0 0, 0);
+        }
+        .main-sec{
+            @include size(85%, auto, 0, 0 0 0 20px);
+        }
+    }
+    .pseudo{
+        @include size(100%, 100%, 0, 0);
+        @include flex(center, center, NULL, NULL, NULL);
+
+        border: 2px solid green;
+        border-radius: 0;
+
+        .aside1{
+            @include size(50px, 50px, 0, 0);
+            border: 2px solid orange;
+            display: none;
+        }
+        .aside2{
+            @include size(50px, 50px, 0, 0);
+            border: 2px solid brown;
+            display: none;
         }
     }
 }

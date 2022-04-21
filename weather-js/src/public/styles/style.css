@@ -4,16 +4,26 @@ body {
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: NULL;
+          flex-direction: NULL;
+  justify-self: NULL;
+  -ms-flex-item-align: NULL;
+      align-self: NULL;
   margin: NULL;
   padding: NULL;
   width: 100vw;
   height: 100vh;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-  -ms-grid-columns: 3fr 1fr;
-      grid-template-columns: 3fr 1fr;
   background: #ceae85 url(../media/weatherApp.jpg) no-repeat center center;
   background-size: cover;
 }
@@ -39,8 +49,10 @@ body > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
-  padding: 20px 59px 40px 23px;
-  grid-row: 1 / -1;
+  margin: 0;
+  padding: 20px 30px;
+  width: 80%;
+  height: 91.8vh;
   /* 
     ++++++++++++++++++++++ 
         Search Section 
@@ -61,8 +73,8 @@ body > * {
   -webkit-backdrop-filter: blur(14px);
           backdrop-filter: blur(14px);
   margin: 0;
-  padding: 5px;
-  width: clamp(350px, 50%, 500px);
+  padding: 5px 0 0 5px;
+  width: clamp(300px, 50%, 500px);
   height: 5%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -159,7 +171,7 @@ body > * {
 .main .search-div:hover {
   height: 60%;
   border: none;
-  padding: 10px;
+  padding: 3px;
   border-radius: 15px;
 }
 
@@ -196,8 +208,8 @@ body > * {
 .main .main-sec #temperature {
   font: 400 clamp(25px, 4vw, 55px) "Manrope", sans-serif;
   color: white;
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .main .main-sec .line {
@@ -259,13 +271,22 @@ body > * {
   text-shadow: 0px 0px 2px white;
 }
 
-.aside1 {
+.pseudo {
+  margin: 0;
+  padding: 0;
+  width: 400px;
+  height: 100vh;
   background: #ffffff81;
   border: 1px solid #ffffff4d;
   -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   -webkit-backdrop-filter: blur(14px);
           backdrop-filter: blur(14px);
+  border-radius: 35px 0 0 35px;
+  border: none;
+}
+
+.pseudo .aside1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -282,14 +303,15 @@ body > * {
   justify-self: NULL;
   -ms-flex-item-align: NULL;
       align-self: NULL;
-  border-top-left-radius: 35px;
-  border-bottom: none;
-  border-right: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 50%;
 }
 
-.aside1 .now {
-  margin: 0;
-  padding: 8px;
+.pseudo .aside1 .now {
+  margin: 15px 0 auto 0;
+  padding: 0 15px 0 15px;
   width: 85%;
   height: auto;
   display: -webkit-box;
@@ -316,14 +338,11 @@ body > * {
           backdrop-filter: blur(14px);
   -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
           box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
-  margin-bottom: auto;
   border: none;
   border-radius: 20px 0 0 20px;
-  margin-top: 15px;
-  padding: 0 15px 0 15px;
 }
 
-.aside1 .now .cur-condition {
+.pseudo .aside1 .now .cur-condition {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -347,7 +366,7 @@ body > * {
   position: relative;
 }
 
-.aside1 .now .cur-condition::before {
+.pseudo .aside1 .now .cur-condition::before {
   content: '';
   margin: 15px;
   padding: 0;
@@ -358,8 +377,7 @@ body > * {
   border: 1px solid white;
 }
 
-.aside1 .now .cur-condition #apparent {
-  position: relative;
+.pseudo .aside1 .now .cur-condition #apparent {
   font: 200 30px "Manrope", sans-serif;
   color: black;
   display: -webkit-box;
@@ -382,10 +400,11 @@ body > * {
   padding: 0;
   width: 60px;
   height: auto;
+  position: relative;
   margin-left: 17px;
 }
 
-.aside1 .now .cur-condition #apparent::before {
+.pseudo .aside1 .now .cur-condition #apparent::before {
   content: 'Feels Like';
   margin: 0;
   padding: 0;
@@ -399,7 +418,7 @@ body > * {
   transition: all 0.4 ease-in;
 }
 
-.aside1 .now #clock {
+.pseudo .aside1 .now #clock {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -420,12 +439,12 @@ body > * {
   color: black;
 }
 
-.aside1 .now #clock #digital {
+.pseudo .aside1 .now #clock #digital {
   margin: 0;
   padding: 0;
 }
 
-.aside1 .now #clock .calender-date {
+.pseudo .aside1 .now #clock .calender-date {
   font: 500 15px "Manrope", sans-serif;
   color: black;
   display: -webkit-box;
@@ -450,7 +469,7 @@ body > * {
   height: auto;
 }
 
-.aside1 .now #clock .calender-date #day, .aside1 .now #clock .calender-date #date {
+.pseudo .aside1 .now #clock .calender-date #day, .pseudo .aside1 .now #clock .calender-date #date {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
@@ -458,7 +477,7 @@ body > * {
   letter-spacing: 2px;
 }
 
-.aside1 .timeline {
+.pseudo .aside1 .timeline {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -483,17 +502,17 @@ body > * {
   overflow: hidden;
 }
 
-.aside1 .timeline .arch {
+.pseudo .aside1 .timeline .arch {
   margin: 0 7px 0 0;
   padding: 0;
   width: 100%;
-  height: clamp(150px, 14vw, 73%);
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  height: clamp(150px, 15.9vw, 73%);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   position: relative;
 }
 
-.aside1 .timeline .arch .interval {
+.pseudo .aside1 .timeline .arch .interval {
   margin: 0;
   padding: 8px;
   width: 100%;
@@ -503,122 +522,122 @@ body > * {
   text-align: center;
 }
 
-.aside1 .timeline .arch .interval #info-at {
+.pseudo .aside1 .timeline .arch .interval #info-at {
   font: 400 0.85em "Overpass", sans-serif;
   color: black;
 }
 
-.aside1 .timeline .arch .interval .time {
+.pseudo .aside1 .timeline .arch .interval .time {
   font: 400 0.7em "Overpass", sans-serif;
   color: black;
 }
 
-.aside1 .timeline .arch .position-1 {
+.pseudo .aside1 .timeline .arch .position-1 {
   -webkit-transform: rotate(292.5deg);
           transform: rotate(292.5deg);
 }
 
-.aside1 .timeline .arch .position-1 .info-1 {
+.pseudo .aside1 .timeline .arch .position-1 .info-1 {
   -webkit-transform: rotate(-292.5deg);
           transform: rotate(-292.5deg);
 }
 
-.aside1 .timeline .arch .position-1 .interval-at1 {
+.pseudo .aside1 .timeline .arch .position-1 .interval-at1 {
   -webkit-transform: rotate(-292.5deg);
           transform: rotate(-292.5deg);
 }
 
-.aside1 .timeline .arch .position-2 {
+.pseudo .aside1 .timeline .arch .position-2 {
   -webkit-transform: rotate(315deg);
           transform: rotate(315deg);
 }
 
-.aside1 .timeline .arch .position-2 .info-2 {
+.pseudo .aside1 .timeline .arch .position-2 .info-2 {
   -webkit-transform: rotate(-315deg);
           transform: rotate(-315deg);
 }
 
-.aside1 .timeline .arch .position-2 .interval-at2 {
+.pseudo .aside1 .timeline .arch .position-2 .interval-at2 {
   -webkit-transform: rotate(-315deg);
           transform: rotate(-315deg);
 }
 
-.aside1 .timeline .arch .position-3 {
+.pseudo .aside1 .timeline .arch .position-3 {
   -webkit-transform: rotate(337.5deg);
           transform: rotate(337.5deg);
 }
 
-.aside1 .timeline .arch .position-3 .info-3 {
+.pseudo .aside1 .timeline .arch .position-3 .info-3 {
   -webkit-transform: rotate(-337.5deg);
           transform: rotate(-337.5deg);
 }
 
-.aside1 .timeline .arch .position-3 .interval-at3 {
+.pseudo .aside1 .timeline .arch .position-3 .interval-at3 {
   -webkit-transform: rotate(-337.5deg);
           transform: rotate(-337.5deg);
 }
 
-.aside1 .timeline .arch .position-4 {
+.pseudo .aside1 .timeline .arch .position-4 {
   -webkit-transform: rotate(360deg);
           transform: rotate(360deg);
 }
 
-.aside1 .timeline .arch .position-4 .info-4 {
+.pseudo .aside1 .timeline .arch .position-4 .info-4 {
   -webkit-transform: rotate(-360deg);
           transform: rotate(-360deg);
 }
 
-.aside1 .timeline .arch .position-4 .interval-at4 {
+.pseudo .aside1 .timeline .arch .position-4 .interval-at4 {
   -webkit-transform: rotate(-360deg);
           transform: rotate(-360deg);
 }
 
-.aside1 .timeline .arch .position-5 {
+.pseudo .aside1 .timeline .arch .position-5 {
   -webkit-transform: rotate(382.5deg);
           transform: rotate(382.5deg);
 }
 
-.aside1 .timeline .arch .position-5 .info-5 {
+.pseudo .aside1 .timeline .arch .position-5 .info-5 {
   -webkit-transform: rotate(-382.5deg);
           transform: rotate(-382.5deg);
 }
 
-.aside1 .timeline .arch .position-5 .interval-at5 {
+.pseudo .aside1 .timeline .arch .position-5 .interval-at5 {
   -webkit-transform: rotate(-382.5deg);
           transform: rotate(-382.5deg);
 }
 
-.aside1 .timeline .arch .position-6 {
+.pseudo .aside1 .timeline .arch .position-6 {
   -webkit-transform: rotate(405deg);
           transform: rotate(405deg);
 }
 
-.aside1 .timeline .arch .position-6 .info-6 {
+.pseudo .aside1 .timeline .arch .position-6 .info-6 {
   -webkit-transform: rotate(-405deg);
           transform: rotate(-405deg);
 }
 
-.aside1 .timeline .arch .position-6 .interval-at6 {
+.pseudo .aside1 .timeline .arch .position-6 .interval-at6 {
   -webkit-transform: rotate(-405deg);
           transform: rotate(-405deg);
 }
 
-.aside1 .timeline .arch .position-7 {
+.pseudo .aside1 .timeline .arch .position-7 {
   -webkit-transform: rotate(427.5deg);
           transform: rotate(427.5deg);
 }
 
-.aside1 .timeline .arch .position-7 .info-7 {
+.pseudo .aside1 .timeline .arch .position-7 .info-7 {
   -webkit-transform: rotate(-427.5deg);
           transform: rotate(-427.5deg);
 }
 
-.aside1 .timeline .arch .position-7 .interval-at7 {
+.pseudo .aside1 .timeline .arch .position-7 .interval-at7 {
   -webkit-transform: rotate(-427.5deg);
           transform: rotate(-427.5deg);
 }
 
-.aside1 .timeline .baseline {
+.pseudo .aside1 .timeline .baseline {
   margin: 0;
   padding: 0;
   width: 94%;
@@ -651,7 +670,7 @@ body > * {
   border-radius: 15px 0 0 15px;
 }
 
-.aside1 .timeline .baseline .baseOf {
+.pseudo .aside1 .timeline .baseline .baseOf {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -675,29 +694,24 @@ body > * {
   list-style: none;
 }
 
-.aside1 .timeline .baseline .baseOf .hour {
+.pseudo .aside1 .timeline .baseline .baseOf .hour {
   border-top: 2px white solid;
 }
 
-.aside1 .timeline .baseline .baseOf > * {
+.pseudo .aside1 .timeline .baseline .baseOf > * {
   font: 400 1.2em "Manrope", sans-serif;
   color: black;
 }
 
-.aside2 {
-  background: #ffffff81;
-  border: 1px solid #ffffff4d;
-  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  -webkit-backdrop-filter: blur(14px);
-          backdrop-filter: blur(14px);
-  padding: 20px 0 20px 20px;
-  border-bottom-left-radius: 35px;
-  border-top: none;
-  border-right: none;
+.pseudo .aside2 {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: 45%;
+  padding: 20px 0 0 20px;
 }
 
-.aside2 .card-list {
+.pseudo .aside2 .card-list {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -718,16 +732,11 @@ body > * {
           backdrop-filter: blur(0);
   -webkit-box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.5);
           box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.5);
-  border-radius: 20px 0 0 20px;
+  border-radius: 10px 0 0 20px;
   border: none;
-  margin-right: 0;
-  justify-items: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
-.aside2 .card-list .card {
+.pseudo .aside2 .card-list .card {
   margin: 10px;
   padding: 10px;
   width: 70%;
@@ -764,14 +773,14 @@ body > * {
   border-right: solid black 1px;
   -webkit-backdrop-filter: none;
           backdrop-filter: none;
-  -webkit-transition: all 2s ease-in-out;
-  transition: all 2s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
   border-radius: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.aside2 .card-list .card p {
+.pseudo .aside2 .card-list .card p {
   margin: 0;
   padding: 0;
   width: NULL;
@@ -780,14 +789,14 @@ body > * {
   color: NULL;
 }
 
-.aside2 .card-list .card img {
+.pseudo .aside2 .card-list .card img {
   margin: 0;
   padding: 0;
   width: 50%;
   height: auto;
 }
 
-.aside2 .card-list .card::before {
+.pseudo .aside2 .card-list .card::before {
   content: '';
   margin: auto;
   padding: 0;
@@ -809,7 +818,7 @@ body > * {
   border-radius: 15px 0 0 15px;
 }
 
-.aside2 .card-list .card:hover::before {
+.pseudo .aside2 .card-list .card:hover::before {
   opacity: 0.7;
 }
 
@@ -825,10 +834,12 @@ body > * {
     - Left side of the bottom page will be a list of the conditions with corresponding times
     - Right Side will be the current weather condition represented as an icon and the current feels like temperature
 */
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 925px) {
   #digital {
-    opacity: 0;
-    position: absolute;
+    display: none;
+  }
+  #day {
+    display: none;
   }
   .analog {
     margin: NULL;
@@ -876,6 +887,90 @@ body > * {
     width: 47%;
     height: 1.7px;
     background: red;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    justify-self: NULL;
+    -ms-flex-item-align: NULL;
+        align-self: NULL;
+    margin: NULL;
+    padding: NULL;
+    width: 100vw;
+    height: 200vh;
+  }
+  .main {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid red;
+  }
+  .main .search-div {
+    margin: 20px 0 0 0;
+    padding: 0;
+    width: 85%;
+    height: 40px;
+  }
+  .main .main-sec {
+    margin: 0;
+    padding: 0 0 0 20px;
+    width: 85%;
+    height: auto;
+  }
+  .pseudo {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: NULL;
+            flex-direction: NULL;
+    justify-self: NULL;
+    -ms-flex-item-align: NULL;
+        align-self: NULL;
+    border: 2px solid green;
+    border-radius: 0;
+  }
+  .pseudo .aside1 {
+    margin: 0;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    border: 2px solid orange;
+    display: none;
+  }
+  .pseudo .aside2 {
+    margin: 0;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    border: 2px solid brown;
+    display: none;
   }
 }
 /*# sourceMappingURL=style.css.map */

@@ -183,7 +183,7 @@ const clockTime = () => {
     const nowDay = document.getElementById('day');
     const nowDate = document.getElementById('date');
 
-    nowDay.textContent =`${week[dateIRL.getDay()]} - `
+    nowDay.textContent =`${week[dateIRL.getDay()]} -`
     nowDate.textContent = ` ${month[dateIRL.getMonth()]}/${todayDate}`;
     
     const tl_currentHour = document.getElementById('current-hour-at');
