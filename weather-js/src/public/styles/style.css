@@ -7,9 +7,9 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -24,7 +24,8 @@ body {
   padding: NULL;
   width: 100vw;
   height: 100vh;
-  background: #ceae85 url(../media/weatherApp.jpg) no-repeat center center;
+  background: #ceae85 no-repeat center center;
+  background-image: url(../media/weatherApp.jpg);
   background-size: cover;
 }
 
@@ -39,14 +40,14 @@ body > * {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: NULL;
-      -ms-flex-align: NULL;
-          align-items: NULL;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  justify-self: NULL;
+  justify-self: center;
   -ms-flex-item-align: NULL;
       align-self: NULL;
   margin: 0;
@@ -282,6 +283,7 @@ body > * {
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   -webkit-backdrop-filter: blur(14px);
           backdrop-filter: blur(14px);
+  justify-self: flex-end;
   border-radius: 35px 0 0 35px;
   border: none;
 }
@@ -506,7 +508,7 @@ body > * {
   margin: 0 7px 0 0;
   padding: 0;
   width: 100%;
-  height: clamp(150px, 15.9vw, 73%);
+  height: clamp(150px, 17vw, 200px);
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   position: relative;
@@ -1023,7 +1025,7 @@ body > * {
     margin: 0;
     padding: 0;
     width: 150px;
-    height: clamp(150px, 60%, 170px);
+    height: clamp(150px, 60%, 160px);
   }
   .pseudo .aside1 .timeline .baseline {
     display: -webkit-box;
