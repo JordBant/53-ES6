@@ -307,9 +307,8 @@ const getPhoto = async () => {
             body: JSON.stringify(photoParams)
     
         })
-        const {rawPhoto} = await response.json()
-        const bodyBackground = document.body
-        bodyBackground.style.backgroundImage = `${rawPhoto};`
+        const { rawPhoto } = await response.json()
+        document.body.style.backgroundImage = `url(${rawPhoto})`;
         console.log(rawPhoto)
 
     } catch (error) {
