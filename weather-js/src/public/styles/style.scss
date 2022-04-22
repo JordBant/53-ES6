@@ -95,7 +95,7 @@ body
     */
     .search-div{
         
-        @include frostGlass(#ffffff3d);
+        @include frostGlass(#2a2b33be);
         @include size(clamp(300px, 50%, 500px), 5%, 0, 5px 0 0 5px);
 
         @include flex(center, center, column, NULL, NULL);
@@ -107,7 +107,7 @@ body
         border-radius: 25px;
 
         .search{
-            @include font(300, 1rem, black, 'Overpass');
+            @include font(300, 1rem, white, 'Overpass');
             @include size(90%, 37px, 0, 0 5px 0 5px);
 
             position: absolute;
@@ -130,7 +130,7 @@ body
             list-style: none;
             // border: 2px solid red;
             .location{
-                @include font(100, 15px/*clamp(25px, 4vw, 55px)*/, black, 'Manrope');
+                @include font(100, 15px/*clamp(25px, 4vw, 55px)*/, white, 'Manrope');
                 @include size(95%, 10px, 0, 15px);
                 list-style: none;
                 position: relative;
@@ -218,7 +218,7 @@ body
 .pseudo{
 
     @include size(400px, 100vh, 0, 0);
-    @include frostGlass(#ffffff81);
+    @include frostGlass(#ffffffca);
 
     justify-self: flex-end;
     border-radius: 35px 0 0 35px;

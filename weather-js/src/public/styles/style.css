@@ -67,7 +67,7 @@ body > * {
 }
 
 .main .search-div {
-  background: #ffffff3d;
+  background: #2a2b33be;
   border: 1px solid #ffffff4d;
   -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -103,7 +103,7 @@ body > * {
 
 .main .search-div .search {
   font: 300 1rem "Overpass", sans-serif;
-  color: black;
+  color: white;
   margin: 0;
   padding: 0 5px 0 5px;
   width: 90%;
@@ -134,7 +134,7 @@ body > * {
 
 .main .search-div .locations-dropdown .location {
   font: 100 15px "Manrope", sans-serif;
-  color: black;
+  color: white;
   margin: 0;
   padding: 15px;
   width: 95%;
@@ -277,7 +277,7 @@ body > * {
   padding: 0;
   width: 400px;
   height: 100vh;
-  background: #ffffff81;
+  background: #ffffffca;
   border: 1px solid #ffffff4d;
   -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

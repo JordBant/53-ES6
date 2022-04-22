@@ -81,19 +81,18 @@ app.post('/weather', (req, res) => {
 })
 
 app.post('/photo', (req, res) => {
-    const photo = {}
+    const photo = { rawPhoto:'' }
     const { state } = req.body;
 
     const getPhoto = async() => {
         try {
             const response = await axios.get(`https://api.unsplash.com/photos/random?query=${state}&client_id=${photoKEY}`);
-            const { urls } = response;
-            photo.rawPhoto = urls;
+            photo.rawPhoto = response.data.urls.raw;
         } catch (error) {
             console.log(error);
         }
         res.json(photo);
-        console.log('Photo sent');
+        console.log(state);
     }
     getPhoto();
 })
