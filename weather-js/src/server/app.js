@@ -13,6 +13,7 @@ require('dotenv').config()
 const PORT = 5500;
 const weatherKEY = process.env.tmIO_KEY;
 const geocodeKEY = process.env.geoKEY;
+const photoKEY = process.env.photoKEY;
 
 //placeholder values 
 const weatherAppParams = {
@@ -80,17 +81,21 @@ app.post('/weather', (req, res) => {
 })
 
 app.post('/photo', (req, res) => {
-    const photoParams = req.body;
-    const {state, timeOfDay: time, condition} = photoParams;
+    const photo = {}
+    const { state } = req.body;
 
     const getPhoto = async() => {
         try {
-            const response = await axios.get(`https://api.unsplash.com/photos/random?query=${state}&client_id=YOUR_ACCESS_KEY`)
+            const response = await axios.get(`https://api.unsplash.com/photos/random?query=${state}&client_id=${photoKEY}`);
+            const { urls } = response;
+            photo.rawPhoto = urls;
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-        getPhoto()
+        res.json(photo);
+        console.log('Photo sent');
     }
+    getPhoto();
 })
 
 app.listen(PORT, console.log('Listening on port ' + PORT));

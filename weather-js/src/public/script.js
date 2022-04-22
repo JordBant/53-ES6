@@ -286,27 +286,31 @@ const getWeather = async () => {
         console.log(error)
     }
     displayHTML()
+    getPhoto()
 }
+
 
 
 const getPhoto = async () => {
 
     const photoParams = {
         state: displayFields.state,
-        timeOfDay: assessTimeOfDay(),
-        // condition: 
+        // timeOfDay: assessTimeOfDay(),
+        // condition:
     }
 
     try {
-        const response = await fetch('/weather', {
+        const response = await fetch('/photo', {
     
             method: 'POST',
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(photoParams)
     
         })
-        const data = await response.json()
-        // const photo = data.
+        const {rawPhoto} = await response.json()
+        const bodyBackground = document.body
+        bodyBackground.style.backgroundImage = `${rawPhoto};`
+        console.log(rawPhoto)
 
     } catch (error) {
         console.log(error)

@@ -70,9 +70,10 @@
 body
 {
     @include body();
-    @include flex(center, center, NULL, NULL, NULL);
+    @include flex(space-between, center, NULL, NULL, NULL);
     @include size(100vw, 100vh, NULL, NULL);
-    background: rgb(206, 174, 133) url(../media/weatherApp.jpg) no-repeat center center;
+    background: rgb(206, 174, 133) no-repeat center center;
+    background-image: url(../media/weatherApp.jpg);
     background-size: cover;
 
     & > *{background: transparent;}    
@@ -84,7 +85,7 @@ body
 
 .main
 {
-    @include flex(space-between, NULL, column, NULL, NULL);
+    @include flex(space-between, center, column, center, NULL);
     @include size(80%, 91.8vh, 0, 20px 30px);
 
     /* 
@@ -219,6 +220,7 @@ body
     @include size(400px, 100vh, 0, 0);
     @include frostGlass(#ffffff81);
 
+    justify-self: flex-end;
     border-radius: 35px 0 0 35px;
     border: none;
     
@@ -302,7 +304,7 @@ body
                 $deg-apart: 22.5deg;                //1/4 of 90 degreea
                 $betweens: $position + $deg-apart;
             
-                @include size(100%, clamp(150px, 15.9vw, 73%), 0 7px 0 0, 0);
+                @include size(100%, clamp(150px, 17vw, 200px), 0 7px 0 0, 0);
                 transition: all 0.3s ease-in-out;
                 position: relative;
             
@@ -524,7 +526,7 @@ body
                 // border: 2px solid red;
                 
                 .arch{
-                    @include size(150px, clamp(150px, 60%, 170px), 0, 0);
+                    @include size(150px, clamp(150px, 60%, 160px), 0, 0);
                 }
     
                 .baseline {
