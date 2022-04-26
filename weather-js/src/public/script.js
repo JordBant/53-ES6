@@ -295,8 +295,6 @@ const getPhoto = async () => {
 
     const photoParams = {
         state: displayFields.state,
-        // timeOfDay: assessTimeOfDay(),
-        // condition:
     }
 
     try {
@@ -305,11 +303,12 @@ const getPhoto = async () => {
             method: 'POST',
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(photoParams)
+            // SameSite: Lax
     
         })
-        const { rawPhoto } = await response.json()
-        document.body.style.backgroundImage = `url(${rawPhoto})`;
-        console.log(rawPhoto)
+        const { urlPhoto } = await response.json()
+        document.body.style.backgroundImage = `url(${urlPhoto})`;
+        console.log(urlPhoto)
 
     } catch (error) {
         console.log(error)

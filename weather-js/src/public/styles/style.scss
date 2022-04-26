@@ -60,6 +60,7 @@
 @mixin card($cardW-W, $cardH-H, $bg-bg){
     @include size($cardW-W, $cardH-H, 10px, 10px);
     @include frostGlass($bg-bg);
+    transition: all 0.5s ease-in-out;
     list-style: none;
     border-radius: 15px;
     border: none;
@@ -70,9 +71,10 @@
 body
 {
     @include body();
-    @include flex(space-between, center, NULL, NULL, NULL);
     @include size(100vw, 100vh, NULL, NULL);
-    background: rgb(206, 174, 133) no-repeat center center;
+    @include flex(space-between, center, NULL, NULL, NULL);
+
+    background: #0e101f no-repeat center center;
     background-image: url(../media/weatherApp.jpg);
     background-size: cover;
 
@@ -114,7 +116,6 @@ body
             top: 5px;
             background: none;
             outline: none;
-            // border: 2px solid red;
             border: none;
             transition: all 0.7s ease-in-out;
             
@@ -128,7 +129,7 @@ body
             overflow: scroll;
             text-align: start;
             list-style: none;
-            // border: 2px solid red;
+
             .location{
                 @include font(100, 15px/*clamp(25px, 4vw, 55px)*/, white, 'Manrope');
                 @include size(95%, 10px, 0, 15px);
@@ -168,7 +169,7 @@ body
     {        
         @include flex(flex-start, center, NULL, NULL, NULL);
         @include size(100%, auto, 0, 0);
-        @include font(100, clamp(25px, 4vw, 55px), white, 'Overpass');
+        @include font(200, clamp(30px, 4vw, 55px), white, 'Overpass');
 
         // border: 2px solid red;
         #temperature{
@@ -218,10 +219,10 @@ body
 .pseudo{
 
     @include size(400px, 100vh, 0, 0);
-    @include frostGlass(#ffffffca);
+    @include frostGlass(#2a2b33d8);
 
     justify-self: flex-end;
-    border-radius: 35px 0 0 35px;
+    border-radius: 45px 0 0 45px;
     border: none;
     
     //==--==--==--==--==--==--==--==--==--==--==--==--==//
@@ -233,38 +234,43 @@ body
         @include size(100%, 50%, 0, 0);
     
         .now{
-            @include size(85%, auto, 15px 0 auto 0, 0 15px 0 15px);
+            @include size(85%, auto, 35px 0 auto 0, 0 15px 0 15px);
             @include flex(space-between, center, row, NULL, flex-end);
             @include frostGlass(rgba(0, 0, 0, 0.164));
 
             box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
             border: none;
-            border-radius: 20px 0 0 20px;
+            border-radius: 30px 0 0 30px;
     
             .cur-condition{
                 @include flex(center, center, NULL, NULL, NULL);
                 @include size(auto, auto, NULL, 0);
                 position: relative;
 
-                &::before{
-                    content: '';
-                    @include size(0px, 50%, 15px, 0);
-                    position: absolute;
-                    left: 30%;
-                    border: 1px solid white;
+                #condition-icon{
+                    @include size(50px, auto, 0, 0);
                 }
+
                 #apparent{
-                    @include font(200, 30px, black, 'Manrope');
+                    @include font(200, 30px, white, 'Manrope');
                     @include flex(center, center, column, NULL, NULL);
                     @include size(60px, auto, NULL, 0);
 
                     position: relative;
                     margin-left: 17px;
 
+                    &::after{
+                        content: '';
+                        @include size(1.5px, 50px, 0, 0);
+                        position: absolute;
+                        right: 110%;
+                        background-color: white;
+                    }
+
                     &::before{
                         content: 'Feels Like';
                         @include size(100%, auto, 0, 0);
-                        @include font(500, 12px, black, 'Overpass');
+                        @include font(500, 12px, white, 'Overpass');
                         text-align: center;
                         opacity: 1;
                         transition: all 0.4 ease-in;
@@ -273,14 +279,14 @@ body
             }
             #clock{
                 @include flex(center, center, column, 0, 0);
-                @include font(300, clamp(27px, 2.3vw, 35px), black, 'Manrope');
+                @include font(300, clamp(27px, 2.3vw, 35px), white, 'Manrope');
     
                 #digital{
                     margin: 0;
                     padding: 0;
                 }
                 .calender-date{
-                    @include font(500, 15px, black, 'Manrope');
+                    @include font(500, 15px, white, 'Manrope');
                     @include flex(center, center, NULL, NULL, NULL);
                     @include size(100%, auto, 0, 0);
                     
@@ -316,10 +322,10 @@ body
                     text-align: center;
     
                     #info-at{
-                        @include font(400, 0.85em, black, 'Overpass');
+                        @include font(400, 1em, white, 'Overpass');
                     }
                     .time{
-                        @include font(400, 0.7em, black, 'Overpass');
+                        @include font(400, 0.7em, white, 'Overpass');
                     }
                 }
             
@@ -340,7 +346,7 @@ body
             .baseline{
                 @include size(94%, auto, 0, 0);
                 @include flex(space-around, center, NULL, NULL, flex-end);
-                @include frostGlass(rgba(0, 0, 0, 0.082));
+                @include frostGlass(rgba(0, 0, 0, 0.164));
     
                 backdrop-filter: blur(0);
                 box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.5);
@@ -356,7 +362,7 @@ body
                         border-top: 2px white solid;
                     }
                     & > * {
-                        @include font(400, 1.2em, black, 'Manrope');
+                        @include font(400, 1.2em, white, 'Manrope');
                     }
                 }
             }
@@ -373,17 +379,17 @@ body
         .card-list{
             @include size(100%, 100%, 0, 0);
             @include fourGrid(1fr, 1fr, 1fr, 1fr);
-            @include frostGlass(rgba(0, 0, 0, 0.1));
-    
+            @include frostGlass(rgba(0, 0, 0, 0.164));
+                
             backdrop-filter: blur(0);
             box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.5);
-            border-radius: 10px 0 0 20px;
+            border-radius: 45px 0 0 45px;
             border: none;
     
             .card{
                 @include card(70%, 78%, NULL);
                 @include flex(space-between, flex-end, column, NULL, NULL);
-                @include font(200, 1rem, black, 'Manrope');
+                @include font(200, 1rem, white, 'Manrope');
     
                 position: relative;
                 background: none;
@@ -444,13 +450,12 @@ body
     }
     .analog{
         @include size(50px, 50px, NULL, NULL);
-        border: 3px solid black;
+        border: 1.5px solid white;
         border-radius: 50%;
         position: relative;
         opacity: 1;
 
         .hand{
-            @include size(50%, 6px, NULL, NULL);
             top: 50%;
             right: 50%;
             position: absolute;
@@ -461,12 +466,12 @@ body
         }
     
         .hour-hand{
-            @include size(30%, 3px, NULL, NULL);
-            background: black;
+            @include size(30%, 2.5px, NULL, NULL);
+            background: white;
         }
         .min-hand{
-            @include size(45%, 2px, NULL, NULL);
-            background: black;
+            @include size(45%, 1.5px, NULL, NULL);
+            background: white;
         }
         .sec-hand{
             @include size(47%, 1.7px, NULL, NULL);
@@ -493,21 +498,69 @@ body
     }
     .pseudo{
         @include size(100%, 100%, 0, 0);
-        @include flex(center, center, NULL, NULL, NULL);
-        @include frostGlass(rgba(61, 59, 59, 0.418));
-        
-        // border: 2px solid green;
-        border-radius: 0;
+        @include flex(space-around, center, column, NULL, NULL);
+
+        backdrop-filter: blur(200px);
+        border-radius: 50px 50px 0 0;
         
         .aside1{
-            @include size(50px, 50px, 0, 0);
-            // border: 2px solid orange;
-            display: none;
+            @include size(90%, 40%, 0, 0);
+            @include flex(center, center, column, NULL, NULL);
+            // border: 2px red solid;
+            // justify-self: flex-start;
+
+            .now{
+                // @include
+                padding-top: 25px;
+                width: 65%;
+                align-self: center;
+                background-color: transparent;
+                backdrop-filter: none;
+                box-shadow: none;
+                border: none;
+                // border: 2px cyan solid;
+
+                #clock{display: none;}
+                .cur-condition{
+                    @include size(130%, 100%, 0, 5px);
+                    @include flex(center, center, NULL, NULL, NULL);
+                    @include frostGlass(rgba(0, 0, 0, 0.219));
+                    border: none;
+                    // box-shadow: 0 0 10px rgb(46, 46, 46);
+                    border-radius: 15px;
+                    
+                    & > *{
+                        @include size(100px, 100px, 0, 0);
+                    }
+                    #apparent{
+                        @include font(200, 35px, white, 'Manrope');
+                        @include flex(center, center, column, NULL, NULL);
+                        @include size(60px, auto, 0 0 0 40px, 0);
+                        justify-self: center;
+                    }
+                }
+            }
+            .timeline{
+                @include flex(center, center, NULL, NULL, NULL);
+
+                .baseline{
+                    @include size(90%, auto, 0, 0);
+
+                    align-self: center;
+                    background-color: transparent;
+                    backdrop-filter: none;
+                    box-shadow: none;
+                    border: none;
+    
+                    // border: red 2px solid;
+                }
+            }
         }
         .aside2{
-            @include size(50px, 50px, 0, 0);
-            // border: 2px solid brown;
-            display: none;
+            @include size(90%, auto, 0, 0);
+            .card-list{
+                border-radius: 15px;
+            }
         }
     }
 }
