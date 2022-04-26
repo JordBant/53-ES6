@@ -104,4 +104,24 @@ app.post('/photo', (req, res) => {
     getPhoto();
 })
 
+
+app.post('/code', (req, res) => {
+    const { code } = req.body;
+    const icon = {};
+
+    const getPhoto = async() => {
+        try {
+            const response = await axios.get();
+            photo.urlPhoto = response;
+        } catch (error) {
+            console.log(error);
+        }
+        // res.json(photo);
+        // console.log(photo.urlPhoto);
+    }
+    getPhoto();
+})
+
+
+
 app.listen(PORT, console.log('Listening on port ' + PORT));
