@@ -1,5 +1,12 @@
 const axios = require('axios')
 const path = require('path')
+// const mongoose = require('mongoose')
+
+// mongoose.connect(`mongodb://localhost/weatherIcons`, { useNewUrlParser: true })
+// const db = mongoose.connection
+
+// db.on('error', error => console.log(error))
+// db.once('open', () => console.log('Connected to database'))
 
 const express = require('express')
 const app = express()
@@ -81,18 +88,18 @@ app.post('/weather', (req, res) => {
 })
 
 app.post('/photo', (req, res) => {
-    const photo = { rawPhoto:'' }
+    const photo = { urlPhoto:'' }
     const { state } = req.body;
 
     const getPhoto = async() => {
         try {
             const response = await axios.get(`https://api.unsplash.com/photos/random?query=${state}&client_id=${photoKEY}`);
-            photo.rawPhoto = response.data.urls.raw;
+            photo.urlPhoto = response.data.urls.regular;
         } catch (error) {
             console.log(error);
         }
         res.json(photo);
-        console.log(state);
+        console.log(photo.urlPhoto);
     }
     getPhoto();
 })
