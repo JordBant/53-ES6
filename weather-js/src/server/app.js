@@ -1,18 +1,12 @@
 const axios = require('axios')
 const path = require('path')
-// const mongoose = require('mongoose')
-
-// mongoose.connect(`mongodb://localhost/weatherIcons`, { useNewUrlParser: true })
-// const db = mongoose.connection
-
-// db.on('error', error => console.log(error))
-// db.once('open', () => console.log('Connected to database'))
+const fs = require('fs');
 
 const express = require('express')
 const app = express()
 
-const myCurrPath = path.join(__dirname, '../public')
-app.use(express.static(myCurrPath))
+const publicPath = path.join(__dirname, '../public')
+app.use(express.static(publicPath))
 app.use(express.json());
 // app.use(express.urlencoded({extended: false}));
 
@@ -36,6 +30,27 @@ const weatherAPI = {
 const placesAPI = { 
     placeData: [] 
 }
+
+//------------------//---------File Manip.---------//------------------//
+
+const myCurrPath = path.join(__dirname, '/conditions_icon')
+console.log(myCurrPath)
+
+const svgPaths = async (dir) => {
+    try {
+      const files = await fs.promises.readdir(dir);
+      files.forEach(file => path.join(file));
+      console.log(files)
+
+      return files;
+
+    } catch (error){
+        console.log(error);
+    }
+}
+console.log(svgPaths(myCurrPath))
+
+//------------------//---------Routes---------//------------------//
 
 app.post('/input', (req, res) =>{
     const search = req.body.input
@@ -107,11 +122,13 @@ app.post('/photo', (req, res) => {
 
 app.post('/code', (req, res) => {
     const { code } = req.body;
-    const icon = {};
+    const icon = {
+        condition:''
+    };
 
-    const getPhoto = async() => {
+    const getIcon = async() => {
         try {
-            const response = await axios.get();
+            const response = await axios.get(`${code}`);
             photo.urlPhoto = response;
         } catch (error) {
             console.log(error);
@@ -119,7 +136,7 @@ app.post('/code', (req, res) => {
         // res.json(photo);
         // console.log(photo.urlPhoto);
     }
-    getPhoto();
+    getIcon();
 })
 
 

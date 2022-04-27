@@ -395,7 +395,8 @@ const getWeatherCon = () => {
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(data)
         })
-        const icon = await response.json();
+        const { icon } = await response.json();
+        console.log(icon)
 
     } catch (error) {
         console.log(error)
