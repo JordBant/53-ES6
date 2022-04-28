@@ -31,25 +31,6 @@ const placesAPI = {
     placeData: [] 
 }
 
-//------------------//---------File Manip.---------//------------------//
-
-const myCurrPath = path.join(__dirname, '/conditions_icon')
-console.log(myCurrPath)
-
-const svgPaths = async (dir) => {
-    try {
-      const files = await fs.promises.readdir(dir);
-      files.forEach(file => path.join(file));
-      console.log(files)
-
-      return files;
-
-    } catch (error){
-        console.log(error);
-    }
-}
-console.log(svgPaths(myCurrPath))
-
 //------------------//---------Routes---------//------------------//
 
 app.post('/input', (req, res) =>{
@@ -71,7 +52,7 @@ app.post('/input', (req, res) =>{
             console.error(error);
         }
         res.json(placesAPI)
-        console.error('Places Sent');
+        // console.log('Places Sent');
     }
     geocode();
 })
@@ -94,10 +75,10 @@ app.post('/weather', (req, res) => {
             }
 
         } catch (error) { 
-            console.log(error) 
+            console.log('error') 
         } 
         res.json(weatherAPI)
-        console.error('Weather Sent');
+        console.log('Weather Sent');
     }
     getWeather()
 })
@@ -114,29 +95,37 @@ app.post('/photo', (req, res) => {
             console.log(error);
         }
         res.json(photo);
-        console.log(photo.urlPhoto);
+        // console.log(photo.urlPhoto);
     }
     getPhoto();
 })
 
 
 app.post('/code', (req, res) => {
-    const { code } = req.body;
-    const icon = {
-        condition:''
+    const { currCondition: unaltered } = req.body;
+    const condition = unaltered.replace(/\s+/g, '').toLowerCase();
+
+    const resObj = {
+        iconPath:''
     };
 
-    const getIcon = async() => {
+    const getIconFile = async () => {
         try {
-            const response = await axios.get(`${code}`);
-            photo.urlPhoto = response;
-        } catch (error) {
-            console.log(error);
-        }
-        // res.json(photo);
-        // console.log(photo.urlPhoto);
+            const myCurrPath = 'conditions_icon/'
+            const files = await fs.promises.readdir(myCurrPath);
+            const svgFile = files.find(file => file.split('.',1).toString().toLowerCase() === condition)
+            resObj.iconPath = path.join(myCurrPath, svgFile)
+
+            console.log('File Path:  ', resObj.iconPath)
+            console.log('Current Condition: ', condition);
+       
+          } catch (error){
+              console.log(error);
+          }
+          console.log('Path to read file at: ', resObj.iconPath)
+        //   res.json(resObj);
     }
-    getIcon();
+    getIconFile();
 })
 
 

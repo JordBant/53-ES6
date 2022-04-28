@@ -20,16 +20,16 @@ const apiComm = {
     lat: 40.7,
     long: -74,
     convention: 'imperial',
-    currentCondition: 'Sunny',
+    weather_code: '',
 }
 
 const displayFields = {
     chosenPlace: '',
     currentTemp: '',
+    currentCondition: 'Sunny',
     currentApparent: '',
     locality: 'New York',
     state: 'New York',
-    currentCondition: 'Sunny',
 }
 
 //------------------------Weather Attributes----------------------------
@@ -55,29 +55,29 @@ const windSpeedEl = document.getElementById('windSpeed');
     list if the value of arr[0] is not the intended array 
 */
 
-const assessWeatherCon = (code) => {
-    const firstNum = code[0];
-    // const lastNum = code[4]
+const assessWeatherCond = (codeNum) => {
+    const code = codeNum.toString();
+    const firstNum = (code[0] === '6' || code[0] === '8') ? code[0] : false;
+    console.log('here is first', firstNum)
+    // (code.pop() === '0') 
 
-    switch (code || firstNum) {
-        case '1100': 
+    //Needs day and night distinctions 
+    switch (firstNum || code) {
+        case '1100':
         case '1101': 
         case '1103': 
         case '2101': 
         case '2102': 
         case '2106': 
         case '2107':
-            apiComm.currentCondition = 'Partly Cloudy'
-            break;
-
         case '1102': 
         case '2103': 
         case '2108':
-            apiComm.currentCondition = 'Mostly Cloudy'
+            displayFields.currentCondition = 'Partly Cloudy'
             break;
 
         case '1001':
-            apiComm.currentCondition = 'Cloudy'
+            displayFields.currentCondition = 'Cloudy'
             break;
 
         case '4000': 
@@ -88,7 +88,7 @@ const assessWeatherCon = (code) => {
         case '4213': 
         case '4214': 
         case '4215':
-            apiComm.currentCondition = 'Drizzling'
+            displayFields.currentCondition = 'Drizzling'
             break;
 
         case '4001': 
@@ -99,7 +99,7 @@ const assessWeatherCon = (code) => {
         case '4211': 
         case '4202': 
         case '4212':
-            apiComm.currentCondition = 'Raining'
+            displayFields.currentCondition = 'Raining'
             break;
 
         case '5001': 
@@ -110,7 +110,7 @@ const assessWeatherCon = (code) => {
         case '5102': 
         case '5103': 
         case '5104':
-            apiComm.currentCondition = 'Flurries'
+            displayFields.currentCondition = 'Flurries'
             break;
 
         case '5000': 
@@ -121,7 +121,7 @@ const assessWeatherCon = (code) => {
         case '5119': 
         case '5120': 
         case '5121':
-            apiComm.currentCondition = 'Snowing'
+            displayFields.currentCondition = 'Snowing'
             break;
 
         case '6':
@@ -130,18 +130,18 @@ const assessWeatherCon = (code) => {
         case '7117':
         case '7106':
         case '7103':
-            apiComm.currentCondition = 'Freezing Rain'
+            displayFields.currentCondition = 'Freezing Rain'
             break;
         
         case '8':
-            apiComm.currentCondition = 'Thunderstorm'
-            break;
-    
+            displayFields.currentCondition = 'Thunderstorm'
+
         default:
-            apiComm.currentCondition = 'Sunny'
-            break;
+        displayFields.currentCondition = 'Sunny'
+        break;
     }
-    return apiComm.currentCondition;
+    return displayFields.currentCondition;
+
 }
 
 const displayHTML = () => {
@@ -167,9 +167,6 @@ const displayHTML = () => {
         const wholeNum = Math.floor(displayArr[index])
         element.textContent = `${wholeNum}\u00B0` // + interpolated variable conatining appended unit
     });
-
-    console.log(assessWeatherCon(weatherCode.toString()))
-    // assessWeatherCon(weatherCode.toString());
 
     console.log('Particular condition:', displayArr)
     console.log('Object Array:', nineHour)
@@ -371,31 +368,36 @@ const getWeather = async () => {
         const data = await response.json()
 
         apiComm.nineHour_Info = data.weatherInfo
+        apiComm.weather_code = data.weatherInfo[0].weatherCode
         displayFields.currentTemp = data.weatherInfo[0].temperature
         displayFields.currentApparent = data.weatherInfo[0].temperatureApparent
-
-        console.log(apiComm.nineHour_Info);
 
     } catch (error) {
         console.log(error)
     }
 
-    displayHTML()
-    getPhoto()
+    // displayHTML()
+    getCondIcon()
+    // getPhoto()
 }
 
-const getWeatherCon = () => {
-    const data = {
-        code: apiComm.currentCondition
-    }
+const getCondIcon = async () => {
+    const data = { currCondition: '' }
+    const { weather_code: code } = apiComm;
+    // const weatherCondition = { currCondition : assessWeatherCond(code) }
+    
+    data.currCondition = assessWeatherCond(code)
+
+    console.log(data.currCondition)
+
     try {
-        const response = await fetch('/photo', {
+        const response = await fetch('/code', {
     
             method: 'POST',
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(data)
         })
-        const { icon } = await response.json();
+        const { currCondition: icon } = await response.json();
         console.log(icon)
 
     } catch (error) {
