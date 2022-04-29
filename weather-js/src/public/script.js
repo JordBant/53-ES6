@@ -360,21 +360,20 @@ const getWeather = async () => {
         apiComm.weather_code = data.weatherInfo[0].weatherCode
         displayFields.currentTemp = data.weatherInfo[0].temperature
         displayFields.currentApparent = data.weatherInfo[0].temperatureApparent
-        getCondIcon()
-
+        
     } catch (error) {
         console.log(error)
     }
-
+    
     getPhoto()
     displayHTML()
+    getCondIcon()
 }
 
 const getCondIcon = async () => {
     const data = { currCondition: '' }
     const { weather_code: code } = apiComm;
-    // const weatherCondition = { currCondition : assessWeatherCond(code) }
-    
+
     data.currCondition = assessWeatherCond(code)
 
     try {
