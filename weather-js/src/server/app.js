@@ -74,7 +74,7 @@ app.post('/weather', (req, res) => {
             }
 
         } catch (error) { 
-            console.log('error') 
+            console.log(error) 
         } 
         res.json(weatherAPI)
         console.log('Weather Sent');
@@ -111,34 +111,25 @@ app.post('/code', (req, res) => {
     const IconFileManip = async () => {
         try {
             const myCurrPath = 'conditions_icon/'
-            const dirToRead = '../public/media/'
+            const dirToOverwrite = '../public/media/'
 
             const files = await fs.promises.readdir(myCurrPath);
-            const targetDir = await fs.promises.readdir(dirToRead)
-            const fileTo_Overwrite = targetDir.find(target => target === 'curCondition')
-            const writeFrom = files.find(file => file.split('.',1).toString().toLowerCase() === condition)
+            const targetDir = await fs.promises.readdir(dirToOverwrite)
 
-            // fs.readFile(writeFrom, (data, err) => {
-            //     try {
-            //         fs.writeFile(fileTo_Overwrite, writeFrom, (error) => console.log(error))
-            //     } catch (error) {
-            //         console.log(error)
-            //     }
-            // })
-            console.log(targetDir[1])
-            // fs.readFile(fileToWrite[0], (buffer, err) => {
-            //     try {
-                    
-            //     } catch (error) {
-                    
-            //     }
-            // })
-            // console.log()
+            const targetFile = targetDir.find(file => file === 'displayed.svg')
+            const fileToCopy = files.find(file => {
+                file.split('.', 2)[1] === 'txt'
+            })
+            // const target = path.join(targetDir, targetFile)
+            // const writeFrom = path.join(myCurrPath, fileToCopy)
 
-            // const svgFile = files.find(file => file.split('.',1).toString().toLowerCase() === condition)
-            // resObj.iconPath = path.join(myCurrPath, svgFile)
+            console.log(targetFile)
+            console.log(fileToCopy)
 
-            // console.log('File Path:  ', resObj.iconPath)
+            // fs.readFile(target, )
+            console.log('')
+            // fs.writeFile(writeFrom, 'No',(err) => {console.log(err)})
+            // res.end({msg: 'Got icon'})
             console.log('Current Condition: ', condition);
        
           } catch (error){
