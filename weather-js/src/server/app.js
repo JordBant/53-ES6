@@ -104,26 +104,49 @@ app.post('/code', (req, res) => {
     const { currCondition: unaltered } = req.body;
     const condition = unaltered.replace(/\s+/g, '').toLowerCase();
 
-    const resObj = {
-        iconPath:''
+    const iconObj = {
+        svgFrom:''
     };
 
-    const getIconFile = async () => {
+    const IconFileManip = async () => {
         try {
             const myCurrPath = 'conditions_icon/'
-            const files = await fs.promises.readdir(myCurrPath);
-            const svgFile = files.find(file => file.split('.',1).toString().toLowerCase() === condition)
-            resObj.iconPath = path.join(myCurrPath, svgFile)
+            const dirToRead = '../public/media/'
 
-            console.log('File Path:  ', resObj.iconPath)
+            const files = await fs.promises.readdir(myCurrPath);
+            const targetDir = await fs.promises.readdir(dirToRead)
+            const fileTo_Overwrite = targetDir.find(target => target === 'curCondition')
+            const writeFrom = files.find(file => file.split('.',1).toString().toLowerCase() === condition)
+
+            // fs.readFile(writeFrom, (data, err) => {
+            //     try {
+            //         fs.writeFile(fileTo_Overwrite, writeFrom, (error) => console.log(error))
+            //     } catch (error) {
+            //         console.log(error)
+            //     }
+            // })
+            console.log(targetDir[1])
+            // fs.readFile(fileToWrite[0], (buffer, err) => {
+            //     try {
+                    
+            //     } catch (error) {
+                    
+            //     }
+            // })
+            // console.log()
+
+            // const svgFile = files.find(file => file.split('.',1).toString().toLowerCase() === condition)
+            // resObj.iconPath = path.join(myCurrPath, svgFile)
+
+            // console.log('File Path:  ', resObj.iconPath)
             console.log('Current Condition: ', condition);
        
           } catch (error){
               console.log(error);
           }
-          res.json(resObj)
+        //   res.json(resObj)
     }
-    getIconFile();
+    IconFileManip();
 })
 
 app.listen(PORT, console.log('Listening on port ' + PORT));

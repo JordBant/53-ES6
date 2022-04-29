@@ -31,7 +31,7 @@ const displayFields = {
     currentConditionIcon: '',
     currentApparent: '',
     locality: 'New York',
-    state: 'New York',
+    state: 'New York'
 }
 
 //------------------------Weather Attributes----------------------------
@@ -146,6 +146,7 @@ const assessWeatherCond = (codeNum) => {
 const displayHTML = () => {
     const elementArr = [...intervals];
     const { nineHour_Info: nineHour, iconPath: iconSVG } =  apiComm   
+    // const buffer = new Buffer
 
     const displayArr = nineHour.map(object => object.temperature) 
 
@@ -383,8 +384,8 @@ const getCondIcon = async () => {
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(data)
         })
-        const { iconPath:svgIcon } = await response.json();
-        
+        const info = await response.json();
+        // console.log(info)
         
     } catch (error) {
         console.log(error)
