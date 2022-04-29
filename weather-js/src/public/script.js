@@ -21,12 +21,14 @@ const apiComm = {
     long: -74,
     convention: 'imperial',
     weather_code: '',
+    iconPath:'no current path'
 }
 
 const displayFields = {
     chosenPlace: '',
     currentTemp: '',
     currentCondition: 'Sunny',
+    currentConditionIcon: '',
     currentApparent: '',
     locality: 'New York',
     state: 'New York',
@@ -58,8 +60,6 @@ const windSpeedEl = document.getElementById('windSpeed');
 const assessWeatherCond = (codeNum) => {
     const code = codeNum.toString();
     const firstNum = (code[0] === '6' || code[0] === '8') ? code[0] : false;
-    console.log('here is first', firstNum)
-    // (code.pop() === '0') 
 
     //Needs day and night distinctions 
     switch (firstNum || code) {
@@ -141,15 +141,12 @@ const assessWeatherCond = (codeNum) => {
         break;
     }
     return displayFields.currentCondition;
-
 }
 
 const displayHTML = () => {
     const elementArr = [...intervals];
-    const { nineHour_Info: nineHour } =  apiComm    
+    const { nineHour_Info: nineHour, iconPath: iconSVG } =  apiComm   
 
-    //find out how to make the object's property be ...
-    // ... dynamically interchangable with other properties
     const displayArr = nineHour.map(object => object.temperature) 
 
     degree.textContent = `${Math.floor(displayFields.currentTemp)}\u00B0`
@@ -168,18 +165,9 @@ const displayHTML = () => {
         element.textContent = `${wholeNum}\u00B0` // + interpolated variable conatining appended unit
     });
 
-    console.log('Particular condition:', displayArr)
+    // console.log('Particular condition:', displayArr)
     console.log('Object Array:', nineHour)
-    console.log('Element Arr:', elementArr)    
-
-    /**
-     * Display temperatures
-     * 
-     * Display weather conditions respective to whats denoted by the card number in 
-     * the weatherConditions Object Arr
-     * 
-     * Map the nineHour object array to the array of data in in the 9Hour arch
-     */
+    // console.log('Element Arr:', elementArr)    
 }
 
 const updateHTML = (paramArr) => {
@@ -199,7 +187,7 @@ const updateHTML = (paramArr) => {
             loc_List.replaceChild(locationLi, loc_List.children[i]);
         }
         
-        //Get Weather on click location
+        //Get Weather on click location 
         locationLi.addEventListener('click', 
         () => {
             displayFields.chosenPlace = locationLi.textContent
@@ -371,14 +359,14 @@ const getWeather = async () => {
         apiComm.weather_code = data.weatherInfo[0].weatherCode
         displayFields.currentTemp = data.weatherInfo[0].temperature
         displayFields.currentApparent = data.weatherInfo[0].temperatureApparent
+        getCondIcon()
 
     } catch (error) {
         console.log(error)
     }
 
-    // displayHTML()
-    getCondIcon()
-    // getPhoto()
+    getPhoto()
+    displayHTML()
 }
 
 const getCondIcon = async () => {
@@ -388,8 +376,6 @@ const getCondIcon = async () => {
     
     data.currCondition = assessWeatherCond(code)
 
-    console.log(data.currCondition)
-
     try {
         const response = await fetch('/code', {
     
@@ -397,9 +383,9 @@ const getCondIcon = async () => {
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(data)
         })
-        const { currCondition: icon } = await response.json();
-        console.log(icon)
-
+        const { iconPath:svgIcon } = await response.json();
+        
+        
     } catch (error) {
         console.log(error)
     }
@@ -428,20 +414,6 @@ const getPhoto = async () => {
         console.log(error)
     }
 }
-
-// getWeatherCodes{
-
-// }
-
-// const dynamicPictures = () => {
-//     const pictureParams = {
-//         /*
-//             Time of day
-//             Weather condition
-//             locality, state
-//         */
-//     }
-// }
 
 getWeather()
 supers.addEventListener('click', toggleUnits);
