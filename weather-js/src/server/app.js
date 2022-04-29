@@ -2,13 +2,12 @@ const axios = require('axios')
 const path = require('path')
 const fs = require('fs');
 
+const publicPath = path.join(__dirname, '../public')
+
 const express = require('express')
 const app = express()
-
-const publicPath = path.join(__dirname, '../public')
 app.use(express.static(publicPath))
 app.use(express.json());
-// app.use(express.urlencoded({extended: false}));
 
 require('dotenv').config()
 const PORT = 5500;
@@ -52,7 +51,7 @@ app.post('/input', (req, res) =>{
             console.error(error);
         }
         res.json(placesAPI)
-        // console.log('Places Sent');
+        console.log('Places Sent');
     }
     geocode();
 })
@@ -95,7 +94,7 @@ app.post('/photo', (req, res) => {
             console.log(error);
         }
         res.json(photo);
-        // console.log(photo.urlPhoto);
+        console.log('Photo sent');
     }
     getPhoto();
 })
@@ -122,12 +121,9 @@ app.post('/code', (req, res) => {
           } catch (error){
               console.log(error);
           }
-          console.log('Path to read file at: ', resObj.iconPath)
-        //   res.json(resObj);
+          res.json(resObj)
     }
     getIconFile();
 })
-
-
 
 app.listen(PORT, console.log('Listening on port ' + PORT));
