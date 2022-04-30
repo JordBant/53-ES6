@@ -103,35 +103,39 @@ app.post('/photo', (req, res) => {
 app.post('/code', (req, res) => {
     const { currCondition: unaltered } = req.body;
     const condition = unaltered.replace(/\s+/g, '').toLowerCase();
-
-    const iconObj = {
-        svgFrom:''
-    };
-
     const IconFileManip = async () => {
         try {
-            const myCurrPath = 'conditions_icon/'
-            const dirToOverwrite = '../public/media/'
+            const myCurrPath = 'conditions_icon/' //condition.svg
+            const dirOfTarget = '../public/media/' //displayed.svg
 
             const files = await fs.promises.readdir(myCurrPath);
-            const targetDir = await fs.promises.readdir(dirToOverwrite)
+            const targetDir = await fs.promises.readdir(dirOfTarget)
 
             const targetFile = targetDir.find(file => file === 'displayed.svg')
             const fileToCopy = files.find(file => {
-                file.split('.', 2)[1] === 'txt'
+                return condition === file.split('.', 1).toString().toLowerCase()
+                // file.split('.', 2)[1] === 'txt'
             })
-            // const target = path.join(targetDir, targetFile)
-            // const writeFrom = path.join(myCurrPath, fileToCopy)
 
-            console.log(targetFile)
-            console.log(fileToCopy)
+            const target = path.join(dirOfTarget, targetFile)
+            const copyFrom = path.join(myCurrPath, fileToCopy)
 
-            // fs.readFile(target, )
-            console.log('')
-            // fs.writeFile(writeFrom, 'No',(err) => {console.log(err)})
-            // res.end({msg: 'Got icon'})
-            console.log('Current Condition: ', condition);
-       
+            console.log(target)
+            console.log(copyFrom)
+
+            fs.copyFile(copyFrom, target, err => console.log(err))
+
+            fs.readFile(copyFrom, (err, data) => {
+                if(err){
+                    console.log('Err encountered:', err)
+                } else {
+                    console.log('Here is buffer:', data)
+                    // fs.writeFile(copyFrom, 'No',(err) => {console.log(err)})
+                    // res.end({msg: 'Got icon'})
+                    // console.log('Current Condition: ', condition);
+                    return data
+                }
+            })       
           } catch (error){
               console.log(error);
           }
