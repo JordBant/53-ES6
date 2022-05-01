@@ -123,23 +123,11 @@ app.post('/code', (req, res) => {
             console.log(target)
             console.log(copyFrom)
 
-            fs.copyFile(copyFrom, target, err => console.log(err))
-
-            fs.readFile(copyFrom, (err, data) => {
-                if(err){
-                    console.log('Err encountered:', err)
-                } else {
-                    console.log('Here is buffer:', data)
-                    // fs.writeFile(copyFrom, 'No',(err) => {console.log(err)})
-                    // res.end({msg: 'Got icon'})
-                    // console.log('Current Condition: ', condition);
-                    return data
-                }
-            })       
+            fs.copyFile(copyFrom, target, err => console.log('Error:',err))      
           } catch (error){
               console.log(error);
           }
-        //   res.json(resObj)
+          res.json({msg: 'response end'})
     }
     IconFileManip();
 })
