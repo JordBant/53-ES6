@@ -1,3 +1,4 @@
+
 //----------------------------()--------------------------------
 const supers = document.getElementById('supers');
 const searchBar = document.getElementById('search'); 
@@ -5,6 +6,7 @@ const loc_List = document.getElementById('locations-dropdown')
 const city = document.getElementById('location')
 
 const intervals = document.querySelectorAll('#info-at')
+const timelineHrs = document.querySelectorAll('.time')
 
 const oldChildren = loc_List.children;
 //----------------------------Clock--------------------------------
@@ -31,7 +33,8 @@ const displayFields = {
     currentConditionIcon: '',
     currentApparent: '',
     locality: 'New York',
-    state: 'New York'
+    state: 'New York',
+    timelineHrs: []
 }
 
 //------------------------Weather Attributes----------------------------
@@ -226,6 +229,17 @@ const toggleUnits = () => {
     getWeather()
 }  
 
+const createTimelineHours = (currTime) => {
+    const timelineHours = new Array(7)
+    for (let i = 0; i < timelineHours.length; i++) {
+        const alt_hour = (currTime > 12 && currTime <= 23) ? currTime - 12 : currTime;
+        timelineHours[i] = (alt_hour > 23) ? alt_hour - 24: alt_hour;
+        currTime += 1
+    }
+    // con sole.log(timelineHours)
+    return timelineHours
+}
+
 const clockTime = () => {
 
     //---------------------------Digital---------------------------//
@@ -233,7 +247,8 @@ const clockTime = () => {
 
     const digitalClock = document.getElementById('digital');
     
-    const Hour = (dateIRL.getHours() > 12) ? dateIRL.getHours() - 12 : dateIRL.getHours();
+    const unalt_Hour = (dateIRL.getHours() > 12) ? dateIRL.getHours() - 12 : dateIRL.getHours();
+    const Hour = (unalt_Hour === 0) ? 12 : unalt_Hour ;
     const Min = dateIRL.getMinutes();
     const Sec = dateIRL.getSeconds(); 
 
@@ -257,7 +272,7 @@ const clockTime = () => {
     hourHand.style.transform = `rotate(${hourDegrees}deg)`;
     console.log(`${Hour}:${Min}`)
 
-    //------------------------------Date------------------------------//
+    //------------------------------Date & Time------------------------------//
     const todayDate = (dateIRL.getDate() < 10) ? `0${dateIRL.getDate()}` : `${dateIRL.getDate()}`;
     const nowDay = document.getElementById('day');
     const nowDate = document.getElementById('date');
@@ -268,17 +283,16 @@ const clockTime = () => {
     const tl_currentHour = document.getElementById('current-hour-at');
     const tl_lastHour = document.getElementById('last-hour-at');
     
-    (dateIRL.getHours() >= 12) ? tl_currentHour.textContent = `${Hour}PM` : tl_currentHour.textContent = `${Hour}AM`;
-    (dateIRL.getHours() + 8 > 23 || dateIRL.getHours() + 8 <= 12) ? tl_lastHour.textContent = `${Hour + 8}AM` : tl_lastHour.textContent = `${Hour + 8}PM`;
+    const timeline = createTimelineHours(dateIRL.getHours() + 1)
 
-// const intervalList = document.querySelectorAll('#interval');
-// let interval = dateIRL.getHours() + 1;
-// for(i = 0; i < 8; i++){
-//         const intervalMeridiem = (interval > 11) ? `PM` : `AM`;
-//         const civTime = (interval > 12) ? interval - 12 : interval;
-//         intervalList[i].firstChild.textContent = `${civTime}${intervalMeridiem}`; //${intervalMeridiem}
-//         interval += 1;
-//     }
+    tl_currentHour.textContent = Hour
+    tl_lastHour.textContent = timeline[timeline.length - 1] + 1
+   
+    const timeArr = [...timelineHrs]
+    timeArr.forEach((timeAt, index) => {
+        const scopedMeridiem = (dateIRL.getHours() < 12) ? `AM` : `PM`;
+        timeAt.textContent = `${timeline[index]} ${scopedMeridiem}` // + interpolated variable conatining appended unit
+    });
 }
 
 const assessTimeOfDay = (sunrise, sunset, currHour) => {
