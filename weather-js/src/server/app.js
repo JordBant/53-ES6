@@ -114,7 +114,6 @@ app.post('/code', (req, res) => {
             const targetFile = targetDir.find(file => file === 'displayed.svg')
             const fileToCopy = files.find(file => {
                 return condition === file.split('.', 1).toString().toLowerCase()
-                // file.split('.', 2)[1] === 'txt'
             })
 
             const target = path.join(dirOfTarget, targetFile)
