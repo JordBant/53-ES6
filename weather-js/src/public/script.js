@@ -174,7 +174,7 @@ const displayHTML = () => {
     // console.log('Element Arr:', elementArr)    
 }
 
-const updateHTML = (paramArr) => {
+const updateList = (paramArr) => {
     while ((searchBar.value === '' && oldChildren.length > 0) || (paramArr.length === 0 && oldChildren.length > 0)){
         for (let i = 0; i < oldChildren.length; i++) {
             loc_List.removeChild(loc_List.firstChild);
@@ -230,13 +230,13 @@ const toggleUnits = () => {
 }  
 
 const createTimelineHours = (currTime) => {
-    const timelineHours = new Array(7)
+    const timelineHours = new Array(9)
     for (let i = 0; i < timelineHours.length; i++) {
+        const meridiem = (currTime > 11 && currTime <= 23) ? 'PM' : 'AM';
         const alt_hour = (currTime > 12 && currTime <= 23) ? currTime - 12 : currTime;
-        timelineHours[i] = (alt_hour > 23) ? alt_hour - 24: alt_hour;
+        timelineHours[i] = (alt_hour > 23) ? `${alt_hour - 24}${meridiem}`: `${alt_hour}${meridiem}`;
         currTime += 1
     }
-    // con sole.log(timelineHours)
     return timelineHours
 }
 
@@ -244,11 +244,11 @@ const clockTime = () => {
 
     //---------------------------Digital---------------------------//
     const dateIRL = new Date();
-
+    const timeline = createTimelineHours(dateIRL.getHours())
     const digitalClock = document.getElementById('digital');
     
     const unalt_Hour = (dateIRL.getHours() > 12) ? dateIRL.getHours() - 12 : dateIRL.getHours();
-    const Hour = (unalt_Hour === 0) ? 12 : unalt_Hour ;
+    const Hour = (unalt_Hour === 0) ? `12` : unalt_Hour ;
     const Min = dateIRL.getMinutes();
     const Sec = dateIRL.getSeconds(); 
 
@@ -282,16 +282,15 @@ const clockTime = () => {
     
     const tl_currentHour = document.getElementById('current-hour-at');
     const tl_lastHour = document.getElementById('last-hour-at');
-    
-    const timeline = createTimelineHours(dateIRL.getHours() + 1)
 
-    tl_currentHour.textContent = Hour
-    tl_lastHour.textContent = timeline[timeline.length - 1] + 1
-   
-    const timeArr = [...timelineHrs]
-    timeArr.forEach((timeAt, index) => {
-        const scopedMeridiem = (dateIRL.getHours() < 12) ? `AM` : `PM`;
-        timeAt.textContent = `${timeline[index]} ${scopedMeridiem}` // + interpolated variable conatining appended unit
+    if(timeline.includes('0AM')){
+        const exists = timeline.findIndex(time => time === '0AM')
+        timeline[exists] = `12AM`
+    } 
+    
+    const timeArr = [tl_currentHour, ...timelineHrs, tl_lastHour]
+    timeArr.forEach((timeAt, i) => {
+        timeAt.textContent = timeline[i] // + interpolated variable conatining appended unit
     });
 }
 
@@ -340,7 +339,7 @@ searchBar.addEventListener('input', async () => {
         apiComm.suggestArr = loc_Obj.placeData.map(location => location.matchedPlace);
         
         const { suggestArr: suggest } = apiComm;
-        updateHTML(suggest)   
+        updateList(suggest)   
 
     }
     catch(error) { 
