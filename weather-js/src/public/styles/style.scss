@@ -414,11 +414,13 @@ body
                     @include size(100%, 100%, auto, 0);
                     @include glimmer();
                     border-radius: 15px 0 0 15px;
+                    z-index: -1;
                 }
     
                 &:hover::before{
                     opacity: 0.7;
                 }
+
             }
         }
     }

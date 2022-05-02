@@ -4,6 +4,8 @@ const supers = document.getElementById('supers');
 const searchBar = document.getElementById('search'); 
 const loc_List = document.getElementById('locations-dropdown')
 const city = document.getElementById('location')
+  
+document.addEventListener('click', (Event) => console.log(Event.target))
 
 const intervals = document.querySelectorAll('#info-at')
 const timelineHrs = document.querySelectorAll('.time')
@@ -159,10 +161,11 @@ const displayHTML = () => {
 
     const { humidity, visibility, precipitationProbability:percipProb, windSpeed, weatherCode } = nineHour[0] 
 
+    (apiComm.convention === 'imperial') ? humid.textContent = `${visibility}mi`: humid.textContent = `${visibility}km`;
+    (apiComm.convention === 'imperial') ? windSpeedEl.textContent = `${windSpeed}mph`: hwindSpeedEl.textContent = `${windSpeed}km/h`;
+
     vis.textContent = `${humidity}%`
-    humid.textContent = `${visibility}mi`
     percipProbEl.textContent = `${percipProb}%`
-    windSpeedEl.textContent = `${windSpeed}mph`
 
     elementArr.forEach((element, index) => {
         const wholeNum = Math.floor(displayArr[index])
@@ -171,7 +174,6 @@ const displayHTML = () => {
 
     // console.log('Particular condition:', displayArr)
     console.log('Object Array:', nineHour)
-    // console.log('Element Arr:', elementArr)    
 }
 
 const updateList = (paramArr) => {
@@ -270,7 +272,7 @@ const clockTime = () => {
     
     const hourDegrees = ((Hour / 12) * 360) + ((Min/60)*30) + 90;
     hourHand.style.transform = `rotate(${hourDegrees}deg)`;
-    console.log(`${Hour}:${Min}`)
+    // console.log(`${Hour}:${Min}`)
 
     //------------------------------Date & Time------------------------------//
     const todayDate = (dateIRL.getDate() < 10) ? `0${dateIRL.getDate()}` : `${dateIRL.getDate()}`;
