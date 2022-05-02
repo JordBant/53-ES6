@@ -379,8 +379,8 @@ const getWeather = async () => {
     }
     
     getPhoto()
-    displayHTML()
     getCondIcon()
+    displayHTML()
 }
 
 const getCondIcon = async () => {
@@ -397,7 +397,7 @@ const getCondIcon = async () => {
             body: JSON.stringify(data)
         })
         const info = await response.json();
-        // console.log(info)
+        console.log(info)
         
     } catch (error) {
         console.log(error)
