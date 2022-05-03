@@ -161,8 +161,11 @@ const displayHTML = () => {
 
     const { humidity, visibility, precipitationProbability:percipProb, windSpeed, weatherCode } = nineHour[0] 
 
-    (apiComm.convention === 'imperial') ? humid.textContent = `${visibility}mi`: humid.textContent = `${visibility}km`;
-    (apiComm.convention === 'imperial') ? windSpeedEl.textContent = `${windSpeed}mph`: hwindSpeedEl.textContent = `${windSpeed}km/h`;
+    const humidText = (apiComm.convention === 'imperial') ? `${visibility}mi`:`${visibility}km`;
+    const windSpeedText = (apiComm.convention === 'imperial') ? `${windSpeed}mph`: `${windSpeed}km/h`;
+
+    humid.textContent = humidText
+    windSpeedEl.textContent = windSpeedText
 
     vis.textContent = `${humidity}%`
     percipProbEl.textContent = `${percipProb}%`
@@ -417,8 +420,8 @@ const getPhoto = async () => {
     
             method: 'POST',
             headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify(photoParams)
-            // SameSite: Lax
+            body: JSON.stringify(photoParams),
+            // SameSite:  
     
         })
         const { urlPhoto } = await response.json()
