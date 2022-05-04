@@ -21,21 +21,24 @@ const apiComm = {
     suggestArr: [], 
     placesArr: [],
     nineHour_Info: [],
-    lat: 40.7,
-    long: -74,
+    evalCoord: () => localStorage.getItem('Coord').split(','),
+    lat: 40.7 ?? this.evalCoord[1],
+    long: -74 ?? this.evalCoord[0],
     convention: 'imperial',
     weather_code: '',
-    iconPath:'no current path'
 }
 
 const displayFields = {
-    chosenPlace: 'New York, New York, United States',
+    chosenPlace: '',
     currentTemp: '',
-    currentCondition: 'Sunny',
-    currentConditionIcon: '',
+    currentCondition: '',
     currentApparent: '',
-    locality: '',
-    state: '',
+    evalLocation: [
+        localStorage.getItem('chosenPlace').split(',', 2)[0],
+        localStorage.getItem('chosenPlace').split(',', 2)[1]
+    ],
+    locality: this.evalLocation[0] ?? 'Manhattan',
+    state: 'New York' ?? this.evalLocation[1],
     timelineHrs: []
 }
 
@@ -150,16 +153,14 @@ const assessWeatherCond = (codeNum) => {
 
 const displayHTML = () => {
     const elementArr = [...intervals];
-    const { nineHour_Info: nineHour, iconPath: iconSVG } =  apiComm   
-    // const buffer = new Buffer
-
+    const { nineHour_Info: nineHour} =  apiComm   
     const displayArr = nineHour.map(object => object.temperature) 
 
     degree.textContent = `${Math.floor(displayFields.currentTemp)}\u00B0`
     apparent.textContent = `${Math.floor(displayFields.currentApparent)}\u00B0`
     city.textContent = `${displayFields.locality}, ${displayFields.state}`
 
-    const { humidity, visibility, precipitationProbability:percipProb, windSpeed, weatherCode } = nineHour[0] 
+    const { humidity, visibility, precipitationProbability:percipProb, windSpeed } = nineHour[0] 
 
     const humidText = (apiComm.convention === 'imperial') ? `${visibility}mi`:`${visibility}km`;
     const windSpeedText = (apiComm.convention === 'imperial') ? `${windSpeed}mph`: `${windSpeed}km/h`;
@@ -200,25 +201,23 @@ const updateList = (paramArr) => {
         locationLi.addEventListener('click', 
         () => {
             displayFields.chosenPlace = locationLi.textContent
+            localStorage.setItem('chosenPlace', displayFields.chosenPlace)
             
             const { placesArr } = apiComm
             const { chosenPlace: choice } = displayFields
-            localStorage.setItem(`chosenLocation`,`${displayFields.chosenPlace}`)
-            console.log(localStorage)
-            // const storedInstance = 
+            const placesData = placesArr.find(place => place.matchedPlace === choice)
             
-            //Split string to select just locality and state
-            const locNameArr = choice.split(',', 2)
-            displayFields.locality = locNameArr[0]
-            displayFields.state = locNameArr[1]
+            localStorage.setItem('Coords', placesData.coord)
+            const temp = localStorage.getItem('Coords').split(',')
+            const temp2 = localStorage.getItem('chosenPlace').split(',')
 
-            const temp = placesArr.find(place => place.matchedPlace === choice)
+            console.log('Here', temp)
+            console.log('Here', temp2)
 
-            apiComm.lat = temp.coord[1]
-            apiComm.long = temp.coord[0]
+
+            apiComm.lat = Number(temp[1])
+            apiComm.long = Number(temp[0])
             console.log('Coords: ' + apiComm.lat +' '+ apiComm.long)
-
-
 
             getWeather();
         })
