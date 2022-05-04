@@ -29,13 +29,13 @@ const apiComm = {
 }
 
 const displayFields = {
-    chosenPlace: '',
+    chosenPlace: 'New York, New York, United States',
     currentTemp: '',
     currentCondition: 'Sunny',
     currentConditionIcon: '',
     currentApparent: '',
-    locality: 'New York',
-    state: 'New York',
+    locality: '',
+    state: '',
     timelineHrs: []
 }
 
@@ -200,12 +200,15 @@ const updateList = (paramArr) => {
         locationLi.addEventListener('click', 
         () => {
             displayFields.chosenPlace = locationLi.textContent
-
+            
             const { placesArr } = apiComm
             const { chosenPlace: choice } = displayFields
+            localStorage.setItem(`chosenLocation`,`${displayFields.chosenPlace}`)
+            console.log(localStorage)
+            // const storedInstance = 
             
             //Split string to select just locality and state
-            const locNameArr = choice.split(',')
+            const locNameArr = choice.split(',', 2)
             displayFields.locality = locNameArr[0]
             displayFields.state = locNameArr[1]
 
@@ -214,6 +217,8 @@ const updateList = (paramArr) => {
             apiComm.lat = temp.coord[1]
             apiComm.long = temp.coord[0]
             console.log('Coords: ' + apiComm.lat +' '+ apiComm.long)
+
+
 
             getWeather();
         })
@@ -389,10 +394,8 @@ const getWeather = async () => {
 }
 
 const getCondIcon = async () => {
-    const data = { currCondition: '' }
     const { weather_code: code } = apiComm;
-
-    data.currCondition = assessWeatherCond(code)
+    const data = { currCondition: assessWeatherCond(code) }
 
     try {
         const response = await fetch('/code', {
@@ -407,6 +410,7 @@ const getCondIcon = async () => {
     } catch (error) {
         console.log(error)
     }
+    document.getElementById('condition-icon').src += '';
 }
 
 const getPhoto = async () => {
