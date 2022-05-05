@@ -38,14 +38,12 @@ const displayFields = {
     currentTemp: '',
     currentCondition: '',
     currentApparent: '',
-    evalLocation: () => {
-        return [
-            localStorage.getItem('chosenPlace').split(',', 2)[0],
-            localStorage.getItem('chosenPlace').split(',', 2)[1]
-        ]
+    locality: function(){
+        return localStorage.getItem('chosenPlace').split(',', 2)[0]
     },
-    locality: this.evalLocation()[0] ?? 'Manhattan',
-    state: 'New York' ?? this.evalLocation[1],
+    state: function(){
+        return localStorage.getItem('chosenPlace').split(',', 2)[1]
+    },
     timelineHrs: []
 }
 
@@ -164,7 +162,7 @@ const displayHTML = () => {
 
     degree.textContent = `${Math.floor(displayFields.currentTemp)}\u00B0`
     apparent.textContent = `${Math.floor(displayFields.currentApparent)}\u00B0`
-    city.textContent = `${displayFields.locality}, ${displayFields.state}`
+    city.textContent = `${displayFields.locality()}, ${displayFields.state()}`
 
     const { humidity, visibility, precipitationProbability:percipProb, windSpeed } = nineHour[0] 
 
@@ -215,9 +213,6 @@ const updateList = (paramArr) => {
             localStorage.setItem('chosenPlace', displayFields.chosenPlace)
             localStorage.setItem('Coords', placesData.coord)
             console.log(localStorage)
-
-            console.log('Here is the evalLOC:', displayFields.evalLocation())
-            console.log('Here is the evalCOORD:', apiComm.evalCoord())
             
             const temp = localStorage.getItem('Coords').split(',')
             // const temp2 = localStorage.getItem('chosenPlace').split(',')
