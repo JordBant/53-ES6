@@ -21,12 +21,14 @@ const apiComm = {
     suggestArr: [], 
     placesArr: [],
     nineHour_Info: [],
-    evalCoord: [
-        localStorage.getItem('Coords').split(',', 2)[0],
-        localStorage.getItem('Coords').split(',', 2)[1]
-    ],
-    lat: 40.7 ?? this.evalCoord[0],
-    long: -74 ?? this.evalCoord[1],
+    evalCoord: () => {
+        return [
+            localStorage.getItem('Coords').split(',', 2)[0],
+            localStorage.getItem('Coords').split(',', 2)[1]
+        ]
+    },
+    lat: 40.7 ?? this.evalCoord,
+    long: -74 ?? this.evalCoord,
     convention: 'imperial',
     weather_code: '',
 }
@@ -36,11 +38,13 @@ const displayFields = {
     currentTemp: '',
     currentCondition: '',
     currentApparent: '',
-    evalLocation: [
-        localStorage.getItem('chosenPlace').split(',', 2)[0],
-        localStorage.getItem('chosenPlace').split(',', 2)[1]
-    ],
-    locality: 'Manhattan' ?? this.evalLocation[0],
+    evalLocation: () => {
+        return [
+            localStorage.getItem('chosenPlace').split(',', 2)[0],
+            localStorage.getItem('chosenPlace').split(',', 2)[1]
+        ]
+    },
+    locality: this.evalLocation()[0] ?? 'Manhattan',
     state: 'New York' ?? this.evalLocation[1],
     timelineHrs: []
 }
@@ -211,8 +215,9 @@ const updateList = (paramArr) => {
             localStorage.setItem('chosenPlace', displayFields.chosenPlace)
             localStorage.setItem('Coords', placesData.coord)
             console.log(localStorage)
-            console.log('Here is the evalLOC:', displayFields.evalLocation)
-            console.log('Here is the evalCOORD:', apiComm.evalCoord)
+
+            console.log('Here is the evalLOC:', displayFields.evalLocation())
+            console.log('Here is the evalCOORD:', apiComm.evalCoord())
             
             const temp = localStorage.getItem('Coords').split(',')
             // const temp2 = localStorage.getItem('chosenPlace').split(',')
