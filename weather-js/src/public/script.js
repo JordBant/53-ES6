@@ -21,9 +21,12 @@ const apiComm = {
     suggestArr: [], 
     placesArr: [],
     nineHour_Info: [],
-    evalCoord: () => localStorage.getItem('Coord').split(','),
-    lat: 40.7 ?? this.evalCoord[1],
-    long: -74 ?? this.evalCoord[0],
+    evalCoord: [
+        localStorage.getItem('Coords').split(',', 2)[0],
+        localStorage.getItem('Coords').split(',', 2)[1]
+    ],
+    lat: 40.7 ?? this.evalCoord[0],
+    long: -74 ?? this.evalCoord[1],
     convention: 'imperial',
     weather_code: '',
 }
@@ -37,7 +40,7 @@ const displayFields = {
         localStorage.getItem('chosenPlace').split(',', 2)[0],
         localStorage.getItem('chosenPlace').split(',', 2)[1]
     ],
-    locality: this.evalLocation[0] ?? 'Manhattan',
+    locality: 'Manhattan' ?? this.evalLocation[0],
     state: 'New York' ?? this.evalLocation[1],
     timelineHrs: []
 }
@@ -47,7 +50,6 @@ const degree = document.getElementById('temperature');
 const apparent = document.getElementById('apparent');
 
 const percipProbEl = document.getElementById('percipProb');
-
 const humid = document.getElementById('humid');
 const vis = document.getElementById('visibility');
 const windSpeedEl = document.getElementById('windSpeed');
@@ -189,7 +191,7 @@ const updateList = (paramArr) => {
 
     for(let i = 0; i <= paramArr.length; i++){
         const locationLi = document.createElement('li');
-        locationLi.setAttribute('class' , 'location');
+        locationLi.setAttribute('class', 'location');
         locationLi.textContent = paramArr[i];
         loc_List.appendChild(locationLi);
 
@@ -201,23 +203,23 @@ const updateList = (paramArr) => {
         locationLi.addEventListener('click', 
         () => {
             displayFields.chosenPlace = locationLi.textContent
-            localStorage.setItem('chosenPlace', displayFields.chosenPlace)
             
             const { placesArr } = apiComm
             const { chosenPlace: choice } = displayFields
             const placesData = placesArr.find(place => place.matchedPlace === choice)
             
+            localStorage.setItem('chosenPlace', displayFields.chosenPlace)
             localStorage.setItem('Coords', placesData.coord)
+            console.log(localStorage)
+            console.log('Here is the evalLOC:', displayFields.evalLocation)
+            console.log('Here is the evalCOORD:', apiComm.evalCoord)
+            
             const temp = localStorage.getItem('Coords').split(',')
-            const temp2 = localStorage.getItem('chosenPlace').split(',')
-
-            console.log('Here', temp)
-            console.log('Here', temp2)
-
+            // const temp2 = localStorage.getItem('chosenPlace').split(',')
 
             apiComm.lat = Number(temp[1])
             apiComm.long = Number(temp[0])
-            console.log('Coords: ' + apiComm.lat +' '+ apiComm.long)
+            console.log('API COMM Coords: ' + apiComm.lat +' '+ apiComm.long)
 
             getWeather();
         })
