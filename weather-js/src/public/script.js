@@ -21,29 +21,19 @@ const apiComm = {
     suggestArr: [], 
     placesArr: [],
     nineHour_Info: [],
-    evalCoord: () => {
-        return [
-            localStorage.getItem('Coords').split(',', 2)[0],
-            localStorage.getItem('Coords').split(',', 2)[1]
-        ]
-    },
-    lat: 40.7 ?? this.evalCoord,
-    long: -74 ?? this.evalCoord,
+    long: () =>  localStorage.getItem('Coords').split(',', 2)[0],
+    lat: () => localStorage.getItem('Coords').split(',', 2)[1],
     convention: 'imperial',
-    weather_code: '',
+    currentCondition: '',
+    weather_code: ''
 }
 
 const displayFields = {
     chosenPlace: '',
     currentTemp: '',
-    currentCondition: '',
     currentApparent: '',
-    locality: function(){
-        return localStorage.getItem('chosenPlace').split(',', 2)[0]
-    },
-    state: function(){
-        return localStorage.getItem('chosenPlace').split(',', 2)[1]
-    },
+    locality: () => localStorage.getItem('chosenPlace').split(',', 2)[0],
+    state: () => localStorage.getItem('chosenPlace').split(',', 2)[1],
     timelineHrs: []
 }
 
@@ -70,7 +60,15 @@ const windSpeedEl = document.getElementById('windSpeed');
 */
 
 const assessWeatherCond = (codeNum) => {
+    const currHour = new Date().getHours();
+    const sunrise = new Date(apiComm.nineHour_Info[0].sunriseTime).getHours()
+    const sunset = new Date(apiComm.nineHour_Info[0].sunsetTime).getHours()
+
     const code = codeNum.toString();
+    const condition = {
+        condNow: '',
+        condSuffix: ''
+    }
     const firstNum = (code[0] === '6' || code[0] === '8') ? code[0] : false;
 
     //Needs day and night distinctions 
@@ -85,11 +83,11 @@ const assessWeatherCond = (codeNum) => {
         case '1102': 
         case '2103': 
         case '2108':
-            displayFields.currentCondition = 'Partly Cloudy'
+            condition.condNow = 'Partly Cloudy'
             break;
 
         case '1001':
-            displayFields.currentCondition = 'Cloudy'
+            condition.condNow = 'Cloudy'
             break;
 
         case '4000': 
@@ -100,7 +98,7 @@ const assessWeatherCond = (codeNum) => {
         case '4213': 
         case '4214': 
         case '4215':
-            displayFields.currentCondition = 'Drizzling'
+            condition.condNow = 'Drizzling'
             break;
 
         case '4001': 
@@ -111,7 +109,7 @@ const assessWeatherCond = (codeNum) => {
         case '4211': 
         case '4202': 
         case '4212':
-            displayFields.currentCondition = 'Raining'
+            condition.condNow = 'Raining'
             break;
 
         case '5001': 
@@ -122,7 +120,7 @@ const assessWeatherCond = (codeNum) => {
         case '5102': 
         case '5103': 
         case '5104':
-            displayFields.currentCondition = 'Flurries'
+            condition.condNow = 'Flurries'
             break;
 
         case '5000': 
@@ -133,7 +131,7 @@ const assessWeatherCond = (codeNum) => {
         case '5119': 
         case '5120': 
         case '5121':
-            displayFields.currentCondition = 'Snowing'
+            condition.condNow = 'Snowing'
             break;
 
         case '6':
@@ -142,17 +140,24 @@ const assessWeatherCond = (codeNum) => {
         case '7117':
         case '7106':
         case '7103':
-            displayFields.currentCondition = 'Freezing Rain'
+            condition.condNow = 'Freezing Rain'
             break;
         
         case '8':
-            displayFields.currentCondition = 'Thunderstorm'
+            condition.condNow = 'Thunderstorm'
 
         default:
-        displayFields.currentCondition = 'Sunny'
+            condition.condNow = 'Clear'
         break;
     }
-    return displayFields.currentCondition;
+
+    const codeSuffix = (((currHour >= sunset) && (currHour <= 23)) || ((currHour >= 0) && (currHour < sunrise)))
+    ? true
+    : false
+
+    return displayFields.currentCondition = ((condition.condNow === 'Clear' || condition.condNow === 'Partly Cloudy') && (codeSuffix)) 
+    ? condition.condNow + 'Night' 
+    : condition.condNow
 }
 
 const displayHTML = () => {
@@ -185,13 +190,14 @@ const displayHTML = () => {
 }
 
 const updateList = (paramArr) => {
-    while ((searchBar.value === '' && oldChildren.length > 0) || (paramArr.length === 0 && oldChildren.length > 0)){
+    const paramArrLength = paramArr.length
+    while ((searchBar.value === '' && oldChildren.length > 0) || (paramArrLength === 0 && oldChildren.length > 0)){
         for (let i = 0; i < oldChildren.length; i++) {
             loc_List.removeChild(loc_List.firstChild);
         }
     }
 
-    for(let i = 0; i <= paramArr.length; i++){
+    for(let i = 0; i <= paramArrLength; i++){
         const locationLi = document.createElement('li');
         locationLi.setAttribute('class', 'location');
         locationLi.textContent = paramArr[i];
@@ -204,6 +210,7 @@ const updateList = (paramArr) => {
         //Get Weather on click location 
         locationLi.addEventListener('click', 
         () => {
+            searchBar.value = ''
             displayFields.chosenPlace = locationLi.textContent
             
             const { placesArr } = apiComm
@@ -212,14 +219,7 @@ const updateList = (paramArr) => {
             
             localStorage.setItem('chosenPlace', displayFields.chosenPlace)
             localStorage.setItem('Coords', placesData.coord)
-            console.log(localStorage)
-            
-            const temp = localStorage.getItem('Coords').split(',')
-            // const temp2 = localStorage.getItem('chosenPlace').split(',')
-
-            apiComm.lat = Number(temp[1])
-            apiComm.long = Number(temp[0])
-            console.log('API COMM Coords: ' + apiComm.lat +' '+ apiComm.long)
+            // console.log(localStorage)
 
             getWeather();
         })
@@ -245,7 +245,7 @@ const createTimelineHours = (currTime) => {
     for (let i = 0; i < timelineHours.length; i++) {
         const meridiem = (currTime > 11 && currTime <= 23) ? 'PM' : 'AM';
         const alt_hour = (currTime > 12 && currTime <= 23) ? currTime - 12 : currTime;
-        timelineHours[i] = (alt_hour > 23) ? `${alt_hour - 24}${meridiem}`: `${alt_hour}${meridiem}`;
+        timelineHours[i] = (alt_hour > 23) ? `${alt_hour - 24} ${meridiem}`: `${alt_hour} ${meridiem}`;
         currTime += 1
     }
     return timelineHours
@@ -255,6 +255,7 @@ const clockTime = () => {
 
     //---------------------------Digital---------------------------//
     const dateIRL = new Date();
+
     const timeline = createTimelineHours(dateIRL.getHours())
     const digitalClock = document.getElementById('digital');
     
@@ -296,7 +297,7 @@ const clockTime = () => {
 
     if(timeline.includes('0AM')){
         const exists = timeline.findIndex(time => time === '0AM')
-        timeline[exists] = `12AM`
+        timeline[exists] = `12 AM`
     } 
     
     const timeArr = [tl_currentHour, ...timelineHrs, tl_lastHour]
@@ -304,31 +305,6 @@ const clockTime = () => {
         timeAt.textContent = timeline[i] // + interpolated variable conatining appended unit
     });
 }
-
-const assessTimeOfDay = (sunrise, sunset, currHour) => {
-    switch (true) {
-        case sunrise <= currHour && currHour < 12:
-            return 'morning';
-            break;
-
-        case 12 <= currHour && currHour < 16:
-            return 'afternoon';
-            break;
-
-        case 16 <= currHour && currHour < sunset:
-            return 'evening';
-            break;
-
-        case sunset <= currHour && currHour < sunrise:
-            return 'night';
-            break;
-
-        default:
-            return 'afternoon';
-            break;
-    }
-}
-
                         //---------------------------//
 //==||==||==||==||==||==|| Server-Side Communication ||==||==||==||==||==||==//
                         //---------------------------//
@@ -365,8 +341,8 @@ const getWeather = async () => {
         unit: apiComm.convention,
         geolocation:[
 
-            apiComm.lat,
-            apiComm.long
+            apiComm.lat(),
+            apiComm.long()
 
         ]}
 
@@ -417,7 +393,7 @@ const getCondIcon = async () => {
 const getPhoto = async () => {
 
     const photoParams = {
-        state: displayFields.state,
+        state: displayFields.state(),
     }
 
     try {

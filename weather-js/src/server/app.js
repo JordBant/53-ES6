@@ -66,7 +66,7 @@ app.post('/weather', (req, res) => {
 
     const getWeather = async () => {
         try {
-            const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=1h&units=${unit}&apikey=${weatherKEY}`)
+            const response = await axios.get(`https://api.tomorrow.io/v4/timelines?location=${lat},${long}&fields=sunriseTime&fields=sunsetTime&fields=weatherCode&fields=temperatureApparent&fields=windSpeed&fields=temperature&fields=precipitationType&fields=precipitationProbability&fields=visibility&fields=humidity&timesteps=1d&units=${unit}&apikey=${weatherKEY}`)
             const intervalArr = response.data.data.timelines[0].intervals
 
             for(let i = 0; i < 9; i++){
