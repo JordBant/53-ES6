@@ -37,7 +37,7 @@ app.post('/input', (req, res) =>{
 
     const geocode = async () => {
         try {
-            const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${search}.json?country=us&limit=8&types=postcode%2Cregion%2Clocality%2Cplace&language=en&access_token=${geocodeKEY}`);
+            const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${search}.json?country=us&limit=8&types=postcode%2Cregion%2Clocality%2Cplace%2Cneighborhood&language=en&access_token=${geocodeKEY}`);
             const locations = response.data.features;
 
             placesAPI.placeData = locations.map(location => {
@@ -85,7 +85,7 @@ app.post('/weather', (req, res) => {
 app.post('/photo', (req, res) => {
     const photo = { urlPhoto:'' }
     const { state } = req.body;
-    
+
     const getPhoto = async() => {
         try {
             const response = await axios.get(`https://api.unsplash.com/photos/random?query=${state}&client_id=${photoKEY}`);
