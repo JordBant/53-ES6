@@ -1,4 +1,3 @@
-
 //----------------------------()--------------------------------
 const supers = document.getElementById('supers');
 const searchBar = document.getElementById('search'); 
@@ -34,7 +33,9 @@ const displayFields = {
     currentApparent: '',
     locality: () => localStorage.getItem('chosenPlace').split(',', 2)[0],
     state: () => localStorage.getItem('chosenPlace').split(',', 2)[1],
-    timelineHrs: []
+    timelineHrs: [],
+    dawnHour: '',
+    duskHour: ''
 }
 
 //------------------------Weather Attributes----------------------------
@@ -63,6 +64,9 @@ const assessWeatherCond = (codeNum) => {
     const currHour = new Date().getHours();
     const sunrise = new Date(apiComm.nineHour_Info[0].sunriseTime).getHours()
     const sunset = new Date(apiComm.nineHour_Info[0].sunsetTime).getHours()
+
+    displayFields.dawnHour = sunrise
+    displayFields.duskHour = sunset
 
     const code = codeNum.toString();
     const condition = {
@@ -165,11 +169,16 @@ const displayHTML = () => {
     const { nineHour_Info: nineHour} =  apiComm   
     const displayArr = nineHour.map(object => object.temperature) 
 
+    const curInfo = document.getElementById('current-info')
+    const lastInfo = document.getElementById('last-info')
+
     degree.textContent = `${Math.floor(displayFields.currentTemp)}\u00B0`
     apparent.textContent = `${Math.floor(displayFields.currentApparent)}\u00B0`
     city.textContent = `${displayFields.locality()}, ${displayFields.state()}`
 
     const { humidity, visibility, precipitationProbability:percipProb, windSpeed } = nineHour[0] 
+    curInfo.textContent = `${Math.floor(displayFields.currentTemp)}\u00B0`
+    lastInfo.textContent = `${Math.floor(nineHour[8].temperature)}\u00B0`
 
     const humidText = (apiComm.convention === 'imperial') ? `${visibility}mi`:`${visibility}km`;
     const windSpeedText = (apiComm.convention === 'imperial') ? `${windSpeed}mph`: `${windSpeed}km/h`;
@@ -282,7 +291,6 @@ const clockTime = () => {
     
     const hourDegrees = ((Hour / 12) * 360) + ((Min/60)*30) + 90;
     hourHand.style.transform = `rotate(${hourDegrees}deg)`;
-    // console.log(`${Hour}:${Min}`)
 
     //------------------------------Date & Time------------------------------//
     const todayDate = (dateIRL.getDate() < 10) ? `0${dateIRL.getDate()}` : `${dateIRL.getDate()}`;
@@ -295,12 +303,12 @@ const clockTime = () => {
     const tl_currentHour = document.getElementById('current-hour-at');
     const tl_lastHour = document.getElementById('last-hour-at');
 
-    if(timeline.includes('0AM')){
-        const exists = timeline.findIndex(time => time === '0AM')
+    if(timeline.includes('0 AM')){
+        const exists = timeline.findIndex(time => time === '0 AM')
         timeline[exists] = `12 AM`
     } 
-    
     const timeArr = [tl_currentHour, ...timelineHrs, tl_lastHour]
+
     timeArr.forEach((timeAt, i) => {
         timeAt.textContent = timeline[i] // + interpolated variable conatining appended unit
     });
@@ -327,7 +335,6 @@ searchBar.addEventListener('input', async () => {
         
         const { suggestArr: suggest } = apiComm;
         updateList(suggest)   
-
     }
     catch(error) { 
         return error 
