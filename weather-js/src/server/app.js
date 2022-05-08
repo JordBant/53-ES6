@@ -13,7 +13,7 @@ require('dotenv').config()
 const PORT = 5500;
 const weatherKEY = process.env.tmIO_KEY;
 const geocodeKEY = process.env.geoKEY;
-const photoKEY = process.env.photoKEY;
+const photoKEY = process.env.photoKEY; 
 
 //placeholder values 
 const weatherAppParams = {
@@ -85,7 +85,7 @@ app.post('/weather', (req, res) => {
 app.post('/photo', (req, res) => {
     const photo = { urlPhoto:'' }
     const { state } = req.body;
-
+    
     const getPhoto = async() => {
         try {
             const response = await axios.get(`https://api.unsplash.com/photos/random?query=${state}&client_id=${photoKEY}`);
@@ -100,9 +100,11 @@ app.post('/photo', (req, res) => {
 })
 
 
+
 app.post('/code', (req, res) => {
     const { currCondition: unaltered } = req.body;
     const condition = unaltered.replace(/\s+/g, '').toLowerCase();
+
     const IconFileManip = async () => {
         try {
             const myCurrPath = 'conditions_icon/' //condition.svg
