@@ -180,13 +180,13 @@ const displayHTML = () => {
     curInfo.textContent = `${Math.floor(displayFields.currentTemp)}\u00B0`
     lastInfo.textContent = `${Math.floor(nineHour[8].temperature)}\u00B0`
 
-    const humidText = (apiComm.convention === 'imperial') ? `${visibility}mi`:`${visibility}km`;
-    const windSpeedText = (apiComm.convention === 'imperial') ? `${windSpeed}mph`: `${windSpeed}km/h`;
+    const visText = (apiComm.convention === 'imperial') ? `${Math.floor(visibility)}mi`:`${Math.floor(visibility)}km`;
+    const windSpeedText = (apiComm.convention === 'imperial') ? `${Math.floor(windSpeed)}mph`: `${Math.floor(windSpeed)}km/h`;
 
-    humid.textContent = humidText
+    vis.textContent = visText
     windSpeedEl.textContent = windSpeedText
 
-    vis.textContent = `${humidity}%`
+    humid.textContent = `${Math.floor(humidity)}%`
     percipProbEl.textContent = `${percipProb}%`
 
     elementArr.forEach((element, index) => {
