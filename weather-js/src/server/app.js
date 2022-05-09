@@ -121,10 +121,12 @@ app.post('/code', (req, res) => {
             const target = path.join(dirOfTarget, targetFile)
             const copyFrom = path.join(myCurrPath, fileToCopy)
 
-            console.log(target)
-            console.log(copyFrom)
+            console.log(files)
+            console.log(condition)
+            console.log(targetFile)
+            
+            fs.copyFile(copyFrom, target, err => console.log('Error:',err))   
 
-            fs.copyFile(copyFrom, target, err => console.log('Error:',err))      
           } catch (error){
               console.log(error);
           }
