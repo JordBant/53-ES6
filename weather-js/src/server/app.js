@@ -10,10 +10,10 @@ app.use(express.static(publicPath))
 app.use(express.json());
 
 require('dotenv').config()
-const PORT = process.env.PORT ||  5500;
-const weatherKEY = process.env.tmIO_KEY;
-const geocodeKEY = process.env.geoKEY;
-const photoKEY = process.env.photoKEY; 
+const PORT = process.env.PORT ||  5501;
+const weatherKEY = process.env.tmIO;
+const geocodeKEY = process.env.mapbx;
+const photoKEY = process.env.unsplash; 
 
 //placeholder values 
 const weatherAppParams = {
@@ -22,7 +22,7 @@ const weatherAppParams = {
     unit: 'imperial'
 }
 
-const weatherAPI = { 
+const weatherAPI = {
     weatherInfo: [] 
 }
 

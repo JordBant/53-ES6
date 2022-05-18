@@ -1,10 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;400&family=Overpass:wght@100;300;400;800&display=swap');
 
-//=============Animations==============// 
-
 
 //===========================Mixins===========================//
-
 @mixin body {
     margin: 0;
     padding: 0;
@@ -60,6 +57,7 @@
 @mixin card($cardW-W, $cardH-H, $bg-bg){
     @include size($cardW-W, $cardH-H, 10px, 10px);
     @include frostGlass($bg-bg);
+
     transition: all 0.5s ease-in-out;
     list-style: none;
     border-radius: 15px;
@@ -75,7 +73,6 @@ body
     @include flex(space-between, center, NULL, NULL, NULL);
 
     background: #0e101f no-repeat center center;
-    background-image: url(../media/weatherApp.jpg);
     background-size: cover;
 
     & > *{background: transparent;}    
@@ -90,6 +87,69 @@ body
     @include flex(space-between, center, column, center, NULL);
     @include size(80%, 91.8vh, 0, 20px 30px);
 
+    .accredit{
+        $circleDim: 57px;
+
+        @include size(auto, 350px, 0, 20px 0);
+        // @include size($circleDim, $circleDim, 0, 0);
+        @include frostGlass(#2a2b33be);
+        @include frostGlass(orange);
+
+        @include flex(center, center, column, NULL, flex-start);
+        // clamp(27px, 
+
+        overflow: hidden;
+        position: absolute;
+        border-radius: 100px;
+        // border-radius: 50%;
+
+        border: none;
+        transition: all 0.45s cubic-bezier(0.26, 1.05, 0.63, 1.10);
+        & > *{
+            transition: all 0.1s ease-in-out;
+            opacity: 1;
+        }
+
+        &:hover{
+            @include size(auto, 350px, 0, 12px);
+            // @include size(auto, 350px, 0, 20px 0);
+
+            border-radius: 100px;
+            & > *{
+                opacity: 1;
+            }
+        }
+        .profileInfo{
+            @include flex(center, center, column, NULL, NULL);
+            @include size(auto, auto, 0, 3px);
+           
+            border: blue 2px solid;
+            
+            .profilePic{
+                @include size(50px, 50px, 0, 0);
+
+                border-radius: 50%;
+                background-color: yellow;
+            }
+            .username{
+                @include font(400, 17px, white, Manrope);
+                margin: 3px;
+            }
+        }
+        .socialList{
+            @include size(80%, 100%, 10px, 0);
+            @include flex(space-evenly, center, column, NULL, NULL);
+
+            border: 2px solid cyan;
+            list-style: none;
+            .social{
+                @include size(50px, 50px, 0, 0);
+                background-color: #0e101f;
+                border-radius: 50%;
+            }
+        }
+    }
+
     /* 
     ++++++++++++++++++++++ 
         Search Section 
@@ -99,14 +159,12 @@ body
         
         @include frostGlass(#2a2b33be);
         @include size(clamp(300px, 50%, 500px), 5%, 0, 5px 0 0 5px);
+        @include flex(center, center, column, flex-start, NULL);
 
-        @include flex(center, center, column, NULL, NULL);
-        align-self: center;
-        transition: all 0.4s ease-in-out;
+        transition: all 0.55s cubic-bezier(0.26, 1.05, 0.63, 1.05);
         position: relative;
-
-        // border: pink solid 2px;
         border-radius: 25px;
+        // border: pink solid 2px;
 
         .search{
             @include font(300, 1rem, white, 'Overpass');
@@ -117,7 +175,6 @@ body
             background: none;
             outline: none;
             border: none;
-            transition: all 0.7s ease-in-out;
             
             &:focus{
                 outline: none;
@@ -133,6 +190,7 @@ body
             .location{
                 @include font(100, 15px/*clamp(25px, 4vw, 55px)*/, white, 'Manrope');
                 @include size(95%, 10px, 0, 15px);
+
                 list-style: none;
                 position: relative;
                 border-top: rgba(255, 255, 255, 0.521) solid 1px;
@@ -266,6 +324,7 @@ body
                     &::after{
                         content: '';
                         @include size(1.5px, 50px, 0, 0);
+
                         position: absolute;
                         right: 110%;
                         background-color: white;
@@ -275,6 +334,7 @@ body
                         content: 'Feels Like';
                         @include size(100%, auto, 0, 0);
                         @include font(500, 12px, white, 'Overpass');
+
                         text-align: center;
                         opacity: 1;
                         transition: all 0.4 ease-in;
@@ -345,7 +405,6 @@ body
                     }
                     $betweens: $betweens + $deg-apart;
                 }
-                
             }
             .baseline{
                 @include size(94%, auto, 0, 0);

@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node src/server/app.js",
     "dev": "nodemon src/server/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "prod src/public/script.js /dist/bundle.js -p"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +18,7 @@
   "description": "Weather App created in Vanilla Javascript, HTML, CSS(SASS). And the backend built in Node.js and Express.js and produced with Gulp.js",
   "devDependencies": {
     "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
     "gulp-sass": "^5.1.0",
     "gulp-uglify": "^3.0.2",
     "sass": "^1.51.0"
